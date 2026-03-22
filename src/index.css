@@ -1,0 +1,87 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+
+:root {
+  --bg:        #FDFAF5;
+  --bg2:       #FAF6EE;
+  --bg3:       #F3EDE0;
+  --border:    #E2D8C8;
+  --border2:   #D4C9B4;
+  --red:       #B91C1C;
+  --red-light: #FEF2F2;
+  --red-mid:   #FECACA;
+  --red-dim:   #991B1B;
+  --text:      #1C1009;
+  --text2:     #5C4A32;
+  --muted:     #9C8770;
+  --success:   #166534;
+  --success-bg:#F0FDF4;
+  --surface:   #FFFFFF;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { height: 100vh; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #b8a898; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+button { transition: all 0.15s ease; cursor: pointer; }
+a { transition: all 0.15s ease; }
+
+.callout-tip {
+  background: #FFF7ED;
+  border: 1px solid #FED7AA;
+  border-left: 3px solid #F97316;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.callout-rubric {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-left: 3px solid #3B82F6;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.callout-overview {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--subject-color, var(--muted));
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+code, .code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85em;
+  background: #FEF2F2;
+  color: var(--red);
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid var(--red-mid);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.25s ease forwards; }
+
+@keyframes checkPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
