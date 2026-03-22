@@ -108,7 +108,7 @@ function AuthPage({ onAuth }) {
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '30px', fontWeight: 700, color: C.text, letterSpacing: '-0.02em', marginBottom: '6px' }}>
             Score <span style={{ color: C.red }}>Forge</span>
           </div>
-          <div style={{ color: C.muted, fontSize: '13px' }}>Forge your AP exam scores</div>
+          <div style={{ color: C.muted, fontSize: '13px' }}>Forge your 5s</div>
         </div>
 
         {/* Card */}
