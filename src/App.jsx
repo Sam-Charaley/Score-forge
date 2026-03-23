@@ -191,7 +191,7 @@ function SubjectPicker({ username, initial, onSave }) {
             <div style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '16px', padding: '28px', marginBottom: '20px' }}>
               <div style={{ color: C.muted, fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 700, marginBottom: '14px' }}>Study Duration</div>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <input type="number" min="1" max="730" value={globalDays} onChange={e => setGlobalDays(Math.max(1,parseInt(e.target.value)||1))}
+                <input type="number" min="1" max="730" value={globalDays} onChange={e => setGlobalDays(Math.max(1, parseInt(e.target.value) || 1))}
                   style={{ width: '90px', textAlign: 'center', fontSize: '28px', fontWeight: 800, color: C.red, background: C.redLight, border: `2px solid ${C.redMid}`, borderRadius: '10px', padding: '10px', fontFamily: 'inherit', outline: 'none' }} />
                 <div>
                   <div style={{ color: C.red, fontSize: '13px', fontWeight: 700 }}>{globalDays <= 7 ? '⚡ Crash Course' : globalDays <= 14 ? '🔥 Intensive' : globalDays <= 30 ? '📅 Standard' : globalDays <= 60 ? '✨ Comfortable' : '📚 Thorough'}</div>
@@ -217,7 +217,7 @@ function SubjectPicker({ username, initial, onSave }) {
                 <div style={{ color: C.text, fontSize: '13px', fontWeight: 700 }}>{s.shortName}</div>
                 <button onClick={() => setPerSubject(p => ({ ...p, [s.id]: Math.max(1, daysUntil(s.examDate)) }))} style={{ marginLeft: 'auto', background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '3px 10px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>🎯 Till exam</button>
               </div>
-              <input type="number" min="1" max="730" value={perSubject[s.id]} onChange={e => setPerSubject(p => ({ ...p, [s.id]: Math.max(1, parseInt(e.target.value)||1) }))}
+              <input type="number" min="1" max="730" value={perSubject[s.id]} onChange={e => setPerSubject(p => ({ ...p, [s.id]: Math.max(1, parseInt(e.target.value) || 1) }))}
                 style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}30`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
               <span style={{ marginLeft: '8px', color: C.muted, fontSize: '12px' }}>days</span>
             </div>
@@ -283,7 +283,7 @@ function HomePage({ username, checked, mySubjects, planSettings, onNavigate, onL
   const totalDone = allProgress.reduce((a, s) => a + s.done, 0);
   const totalTasks = allProgress.reduce((a, s) => a + s.total, 0);
   const totalPct = totalTasks === 0 ? 0 : Math.round((totalDone / totalTasks) * 100);
-  const totalCards = mySubjects.reduce((a, s) => a + (FLASHCARDS[s.id]||[]).length, 0);
+  const totalCards = mySubjects.reduce((a, s) => a + (FLASHCARDS[s.id] || []).length, 0);
   const nextExam = [...mySubjects].sort((a, b) => new Date(a.examDate) - new Date(b.examDate)).find(s => daysUntil(s.examDate) > 0);
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
@@ -412,7 +412,7 @@ function HomePage({ username, checked, mySubjects, planSettings, onNavigate, onL
                       <div style={{ width: '36px', height: '36px', background: `${sub.color}12`, border: `1px solid ${sub.color}25`, borderRadius: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>{sub.icon}</div>
                       <div>
                         <div style={{ color: C.text, fontSize: '12px', fontWeight: 700 }}>{sub.name}</div>
-                        <div style={{ color: C.muted, fontSize: '10px', marginTop: '1px' }}>{sub.weeks.length} weeks · {(FLASHCARDS[sub.id]||[]).length} cards{planSettings[sub.id] ? ` · ${planSettings[sub.id].durationDays}d plan` : ''}</div>
+                        <div style={{ color: C.muted, fontSize: '10px', marginTop: '1px' }}>{sub.weeks.length} weeks · {(FLASHCARDS[sub.id] || []).length} cards{planSettings[sub.id] ? ` · ${planSettings[sub.id].durationDays}d plan` : ''}</div>
                       </div>
                     </div>
                     <div style={{ textAlign: 'right' }}>
@@ -454,6 +454,19 @@ function StudyPage({ username, subject, adaptedWeeks, checked, toggleTask, getTa
     return id;
   });
   const [activeTab, setActiveTab] = useState('days');
+  const notesKey = `sf_notes_${username}_${subject.id}_${activeWeek}`;
+  const [noteText, setNoteText] = useState(() => {
+    try { return localStorage.getItem(notesKey) || ''; } catch { return ''; }
+  });
+
+  useEffect(() => {
+    try { setNoteText(localStorage.getItem(`sf_notes_${username}_${subject.id}_${activeWeek}`) || ''); } catch { }
+  }, [activeWeek, subject.id]);
+
+  const saveNote = (val) => {
+    setNoteText(val);
+    try { localStorage.setItem(`sf_notes_${username}_${subject.id}_${activeWeek}`, val); } catch { }
+  };
   const w = adaptedWeeks.find(wk => wk.id === activeWeek) || adaptedWeeks[0];
   const todayDate = new Date();
 
@@ -478,6 +491,7 @@ function StudyPage({ username, subject, adaptedWeeks, checked, toggleTask, getTa
     { id: 'rules', label: '📌 Key Rules' },
     { id: 'resources', label: '🔗 Resources' },
     ...(w && w.frq ? [{ id: 'frq', label: '✍ FRQ' }] : []),
+    { id: 'notes', label: '📝 Notes' },
   ];
 
   const examDays = daysUntil(subject.examDate);
@@ -680,6 +694,32 @@ function StudyPage({ username, subject, adaptedWeeks, checked, toggleTask, getTa
                   </div>
                 </div>
               )}
+
+              {/* Notes tab */}
+              {activeTab === 'notes' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '14px', overflow: 'hidden' }}>
+                    <div style={{ padding: '10px 16px', borderBottom: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: C.bg }}>
+                      <span style={{ fontSize: '11px', fontWeight: 700, color: C.text2 }}>📝 Notes for {w.label}</span>
+                      <span style={{ fontSize: '10px', color: C.muted }}>auto-saved</span>
+                    </div>
+                    <textarea
+                      value={noteText}
+                      onChange={e => saveNote(e.target.value)}
+                      placeholder={`Write anything about ${w.theme}...`}
+                      style={{ width: '100%', minHeight: '300px', padding: '16px', background: C.white, border: 'none', outline: 'none', fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: '13px', color: C.text, lineHeight: '1.8', resize: 'vertical' }}
+                    />
+                  </div>
+                  {noteText.length > 0 && (
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <button onClick={() => { if (window.confirm('Clear notes for this week?')) saveNote(''); }}
+                        style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: C.muted }}>
+                        Clear notes
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -700,7 +740,7 @@ function FlashcardMode({ subject, mySubjects, onBack, onSubject }) {
   const [finished, setFinished] = useState(false);
 
   const card = deck[idx];
-  const progress = deck.length > 0 ? Math.round(((known.size + unknown.size) / Math.max(cards.length,1)) * 100) : 0;
+  const progress = deck.length > 0 ? Math.round(((known.size + unknown.size) / Math.max(cards.length, 1)) * 100) : 0;
 
   const shuffle = () => { setDeck([...cards].sort(() => Math.random() - 0.5)); setIdx(0); setFlipped(false); setKnown(new Set()); setUnknown(new Set()); setFinished(false); };
   const reviewUnknown = () => { const missed = cards.filter((_, i) => unknown.has(i)); if (!missed.length) return; setDeck(missed.sort(() => Math.random() - 0.5)); setIdx(0); setFlipped(false); setKnown(new Set()); setUnknown(new Set()); setFinished(false); };
@@ -793,8 +833,8 @@ function LibraryMode({ onBack }) {
   const allResources = useMemo(() => {
     const list = [];
     SUBJECTS.forEach(sub => {
-      (sub.globalResources||[]).forEach(r => list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color }));
-      sub.weeks.forEach(wk => (wk.resources||[]).forEach(r => { if (!list.find(x => x.url === r.url)) list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color, tag: r.tag||'Week' }); }));
+      (sub.globalResources || []).forEach(r => list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color }));
+      sub.weeks.forEach(wk => (wk.resources || []).forEach(r => { if (!list.find(x => x.url === r.url)) list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color, tag: r.tag || 'Week' }); }));
     });
     return list;
   }, []);
@@ -806,7 +846,7 @@ function LibraryMode({ onBack }) {
     const matchSub = filterSubject === 'all' || r.subjectId === filterSubject;
     const matchTag = filterTag === 'all' || r.tag === filterTag;
     const q = search.toLowerCase();
-    const matchSearch = !q || r.name.toLowerCase().includes(q) || (r.desc||'').toLowerCase().includes(q);
+    const matchSearch = !q || r.name.toLowerCase().includes(q) || (r.desc || '').toLowerCase().includes(q);
     if (!matchSub || !matchTag || !matchSearch) return false;
     if (seen.has(r.url)) return false;
     seen.add(r.url); return true;
@@ -831,7 +871,7 @@ function LibraryMode({ onBack }) {
           </div>
           <div style={{ display: 'flex', gap: '5px', marginBottom: '20px', flexWrap: 'wrap' }}>
             {allTags.map(tag => (
-              <button key={tag} onClick={() => setFilterTag(tag)} style={{ background: filterTag === tag ? `${tagColor[tag]||C.muted}15` : 'transparent', border: `1px solid ${filterTag === tag ? (tagColor[tag]||C.muted) : C.border}`, borderRadius: '10px', color: filterTag === tag ? (tagColor[tag]||C.text) : C.muted, fontSize: '10px', padding: '4px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{tag === 'all' ? 'All Types' : tag}</button>
+              <button key={tag} onClick={() => setFilterTag(tag)} style={{ background: filterTag === tag ? `${tagColor[tag] || C.muted}15` : 'transparent', border: `1px solid ${filterTag === tag ? (tagColor[tag] || C.muted) : C.border}`, borderRadius: '10px', color: filterTag === tag ? (tagColor[tag] || C.text) : C.muted, fontSize: '10px', padding: '4px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{tag === 'all' ? 'All Types' : tag}</button>
             ))}
           </div>
           {filtered.length === 0 ? (
@@ -844,7 +884,7 @@ function LibraryMode({ onBack }) {
                   onMouseEnter={e => e.currentTarget.style.borderColor = r.subjectColor + '50'}
                   onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
                   <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                    {r.tag && <span style={{ fontSize: '10px', border: `1px solid ${(tagColor[r.tag]||C.muted)}30`, borderRadius: '99px', padding: '1px 6px', color: tagColor[r.tag]||C.muted }}>{r.tag}</span>}
+                    {r.tag && <span style={{ fontSize: '10px', border: `1px solid ${(tagColor[r.tag] || C.muted)}30`, borderRadius: '99px', padding: '1px 6px', color: tagColor[r.tag] || C.muted }}>{r.tag}</span>}
                     <span style={{ fontSize: '10px', border: `1px solid ${r.subjectColor}25`, borderRadius: '99px', padding: '1px 6px', color: r.subjectColor }}>{r.subjectName}</span>
                   </div>
                   <div style={{ color: C.text, fontSize: '12px', fontWeight: 600 }}>{r.name}</div>
@@ -952,11 +992,26 @@ function AccountPage({ username, onBack, onLogout, onProgressReset }) {
 
 // ─── MAIN APP ────────────────────────────────────────────────
 function App() {
-  const [username, setUsername]         = useState(() => Auth.getSession());
-  const [screen, setScreen]             = useState('home');
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(() => Auth.getSession());
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 900);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (loading) return (
+    <div style={{ height: '100vh', background: '#FDFAF5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans', system-ui, sans-serif" }}>
+      <div style={{ width: '64px', height: '64px', background: 'linear-gradient(135deg, #FEF2F2, #FFF7ED)', border: '1.5px solid #FECACA', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', marginBottom: '16px', boxShadow: '0 4px 24px rgba(185,28,28,0.1)', animation: 'pulse 1s ease infinite' }}>⚒️</div>
+      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: '#1C1009', marginBottom: '6px' }}>Score <span style={{ color: '#B91C1C' }}>Forge</span></div>
+      <div style={{ color: '#9C8770', fontSize: '12px' }}>Loading your study plan...</div>
+      <style>{`@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }`}</style>
+    </div>
+  );
+  const [screen, setScreen] = useState('home');
   const [activeSubjectId, setActiveSubjectId] = useState('csa');
-  const [checked, setChecked]           = useState(() => username ? Auth.getChecked(username) : {});
-  const [selectedIds, setSelectedIds]   = useState(() => username ? Auth.getSubjects(username) : null);
+  const [checked, setChecked] = useState(() => username ? Auth.getChecked(username) : {});
+  const [selectedIds, setSelectedIds] = useState(() => username ? Auth.getSubjects(username) : null);
   const [planSettings, setPlanSettings] = useState(() => username ? Auth.getPlanSettings(username) : {});
   const [adjustingPlan, setAdjustingPlan] = useState(false);
 
@@ -1044,7 +1099,7 @@ function App() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || 42}
-                    onChange={e => { const v = Math.max(1, parseInt(e.target.value)||1); Auth.savePlanSetting(username, s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || new Date().toISOString().split('T')[0] }); setPlanSettings(Auth.getPlanSettings(username)); }}
+                    onChange={e => { const v = Math.max(1, parseInt(e.target.value) || 1); Auth.savePlanSetting(username, s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || new Date().toISOString().split('T')[0] }); setPlanSettings(Auth.getPlanSettings(username)); }}
                     style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}25`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
                   <span style={{ color: C.muted, fontSize: '12px' }}>days · {adaptPlanToWindow(s, planSettings[s.id]?.durationDays || 42, planSettings[s.id]?.startDate).length} phases</span>
                 </div>

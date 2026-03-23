@@ -60,7 +60,11 @@ function SubjectPicker({ username, initial, onSave }) {
                 </div>
                 <div style={{ fontSize: "22px", marginBottom: "8px" }}>{s.icon}</div>
                 <div style={{ color: on ? s.color : "#f7f8fc", fontSize: "12px", fontWeight: 700, marginBottom: "3px" }}>{s.shortName}</div>
-                <div style={{ color: "#94a3b8", fontSize: "10px", lineHeight: "1.4" }}>{s.examInfo.split('·')[0].trim()}</div>
+                <div style={{ color: C.muted, fontSize: '10px', lineHeight: '1.4' }}>{s.examInfo.split('·')[0].trim()}</div>
+                <div style={{ marginTop: '5px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: daysUntil(s.examDate) < 30 ? '#B91C1C' : daysUntil(s.examDate) < 60 ? '#d97706' : '#16a34a' }} />
+                  <span style={{ fontSize: '10px', fontWeight: 600, color: daysUntil(s.examDate) < 30 ? '#B91C1C' : daysUntil(s.examDate) < 60 ? '#d97706' : '#16a34a' }}>{daysUntil(s.examDate)}d away</span>
+                </div>
               </button>
             )
           })}
