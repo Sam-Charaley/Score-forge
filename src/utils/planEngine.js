@@ -53,14 +53,14 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
         const od = allOrigDays[idx];
         mergedDays.push({
           ...od,
-          day: `${fmtDate(addDays(phaseStart, i))} — ${od.day.split(' ').slice(2).join(' ')}`,
+          day: `${fmtDate(addDays(phaseStart, i))} — ${od.day.split(' ').slice(1).join(' ')}`,
         });
       }
     } else {
       const singleWk = covered[0];
       const gapDays = Math.max(1, Math.floor(daysPerPhase / Math.max(singleWk.days.length, 1)));
       singleWk.days.forEach((d, di) => {
-        const origParts = d.day.split(' ').slice(2).join(' ');
+        const origParts = d.day.split(' ').slice(1).join(' ');
         mergedDays.push({
           ...d,
           day: `${fmtDate(addDays(phaseStart, di * gapDays))} — ${origParts}`,
