@@ -53,7 +53,7 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
         const od = allOrigDays[idx];
         mergedDays.push({
           ...od,
-          day: `${fmtDate(addDays(phaseStart, i))} — ${od.day.split(' ').slice(1).join(' ')}`,
+          day: `${fmtDate(addDays(phaseStart, i))}`,
         });
       }
     } else {
@@ -63,7 +63,7 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
         const origParts = d.day.split(' ').slice(1).join(' ');
         mergedDays.push({
           ...d,
-          day: `${fmtDate(addDays(phaseStart, di * gapDays))} — ${origParts}`,
+          day: `${fmtDate(addDays(phaseStart, di * gapDays))}`,
           _origWeekId: singleWk.id,
         });
       });
