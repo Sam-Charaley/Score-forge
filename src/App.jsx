@@ -992,22 +992,7 @@ function AccountPage({ username, onBack, onLogout, onProgressReset }) {
 
 // ─── MAIN APP ────────────────────────────────────────────────
 function App() {
-  const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(() => Auth.getSession());
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 900);
-    return () => clearTimeout(t);
-  }, []);
-
-  if (loading) return (
-    <div style={{ height: '100vh', background: '#FDFAF5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-      <div style={{ width: '64px', height: '64px', background: 'linear-gradient(135deg, #FEF2F2, #FFF7ED)', border: '1.5px solid #FECACA', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', marginBottom: '16px', boxShadow: '0 4px 24px rgba(185,28,28,0.1)', animation: 'pulse 1s ease infinite' }}>⚒️</div>
-      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: '#1C1009', marginBottom: '6px' }}>Score <span style={{ color: '#B91C1C' }}>Forge</span></div>
-      <div style={{ color: '#9C8770', fontSize: '12px' }}>Loading your study plan...</div>
-      <style>{`@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }`}</style>
-    </div>
-  );
   const [screen, setScreen] = useState('home');
   const [activeSubjectId, setActiveSubjectId] = useState('csa');
   const [checked, setChecked] = useState(() => username ? Auth.getChecked(username) : {});
