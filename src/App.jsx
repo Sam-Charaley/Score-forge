@@ -112,7 +112,7 @@ function AuthPage({ onAuth }) {
 
           {/* Google button */}
           <button onClick={googleLogin} disabled={loading} style={{ width: '100%', background: C.white, border: `1.5px solid ${C.border}`, borderRadius: '10px', padding: '11px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', fontWeight: 600, color: C.text, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
-            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" /><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" /><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" /><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" /></svg>
             Continue with Google
           </button>
 
@@ -272,7 +272,8 @@ function SubjectPicker({ user, initial, onSave }) {
 }
 
 // ─── HOME PAGE ──────────────────────────────────────────────
-function HomePage({ user, profile, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {
+function HomePage({ username, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {
+  const isMobile = useIsMobile();
   const allProgress = mySubjects.map(s => {
     let total = 0, done = 0;
     s.weeks.forEach(wk => wk.days.forEach((day, di) => day.tasks.forEach((_, ti) => {
@@ -287,7 +288,7 @@ function HomePage({ user, profile, checked, mySubjects, planSettings, streak, on
   const nextExam = [...mySubjects].sort((a, b) => new Date(a.examDate) - new Date(b.examDate)).find(s => daysUntil(s.examDate) > 0);
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
-  const displayName = profile?.username || user?.email?.split('@')[0] || 'there';
+  const displayName = username || 'there';
 
   const todayFocusSubject = nextExam;
   const todayFocusPlan = todayFocusSubject ? planSettings[todayFocusSubject.id] : null;
@@ -433,7 +434,7 @@ function HomePage({ user, profile, checked, mySubjects, planSettings, streak, on
       {isMobile && (
         <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: C.white, borderTop: `1px solid ${C.border}`, height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 8px', boxShadow: '0 -2px 12px rgba(28,16,9,0.06)', zIndex: 200, paddingBottom: 'env(safe-area-inset-bottom)' }}>
           {[
-            { icon: '🏠', label: 'Home', action: () => {} },
+            { icon: '🏠', label: 'Home', action: () => { } },
             { icon: '✎', label: 'Subjects', action: onEditSubjects },
             { icon: '🗓', label: 'Plans', action: onAdjustPlan },
             { icon: '📚', label: 'Library', action: () => onNavigate('library') },
@@ -693,7 +694,7 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
         <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: C.white, borderTop: `1px solid ${C.border}`, height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 8px', boxShadow: '0 -2px 12px rgba(28,16,9,0.06)', zIndex: 200, paddingBottom: 'env(safe-area-inset-bottom)' }}>
           {[
             { icon: '🏠', label: 'Home', action: onBack },
-            { icon: '📅', label: 'Plan', action: () => {} },
+            { icon: '📅', label: 'Plan', action: () => { } },
             { icon: '🃏', label: 'Cards', action: onFlashcards },
             { icon: '📚', label: 'Library', action: onLibrary },
             { icon: '⚙', label: 'Adjust', action: onAdjustPlan },
@@ -967,28 +968,28 @@ function AccountPage({ user, profile, onBack, onLogout, onProgressReset }) {
 
 // ─── MAIN APP ────────────────────────────────────────────────
 function App() {
-  const [user, setUser]                 = useState(null);
-  const [username, setUsername]         = useState(null);
-  const [profile, setProfile]           = useState(null);
-  const [loading, setLoading]           = useState(true);
-  const [screen, setScreen]             = useState('home');
+  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [screen, setScreen] = useState('home');
   const [activeSubjectId, setActiveSubjectId] = useState('csa');
-  const [checked, setChecked]           = useState({});
-  const [selectedIds, setSelectedIds]   = useState(null);
+  const [checked, setChecked] = useState({});
+  const [selectedIds, setSelectedIds] = useState(null);
   const [planSettings, setPlanSettings] = useState({});
   const [adjustingPlan, setAdjustingPlan] = useState(false);
-  const [streak, setStreak]             = useState({ count: 0, last_date: null });
+  const [streak, setStreak] = useState({ count: 0, last_date: null });
 
   const loadUserData = async (sessionUser) => {
     setUser(sessionUser);
     let prof = null;
-    try { prof = await Auth.getProfile(sessionUser.id); } catch(e) {}
+    try { prof = await Auth.getProfile(sessionUser.id); } catch (e) { }
     if (!prof) {
       const uname = (sessionUser.email?.split('@')[0] || 'user').replace(/[^a-zA-Z0-9_]/g, '_');
       try {
         const { data } = await supabase.from('profiles').insert({ id: sessionUser.id, username: uname }).select().single();
         prof = data;
-      } catch(e) {}
+      } catch (e) { }
       if (!prof) prof = { username: uname };
     }
     const uname = prof?.username || sessionUser.email?.split('@')[0] || 'User';
@@ -1116,7 +1117,7 @@ function App() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || 42}
                   onChange={async e => {
-                    const v = Math.max(1, parseInt(e.target.value)||1);
+                    const v = Math.max(1, parseInt(e.target.value) || 1);
                     await Auth.savePlanSetting(user.id, s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || new Date().toISOString().split('T')[0] });
                     const plans = await Auth.getPlanSettings(user.id);
                     setPlanSettings(plans);
