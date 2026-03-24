@@ -3,6 +3,8 @@ import { SUBJECTS } from './data/subjects'
 import { FLASHCARDS } from './data/flashcards'
 import { Auth } from './utils/auth'
 import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId } from './utils/planEngine'
+const [username, setUsername] = useState(null);
+const [profile, setProfile]   = useState(null);
 
 // ─── UTILITIES ──────────────────────────────────────────────
 function daysUntil(dateStr) {
@@ -952,9 +954,24 @@ function App() {
 
   const loadUserData = async (sessionUser) => {
     setUser(sessionUser);
-    const profile = await Auth.getProfile(sessionUser.id);
+    
+    // Get or create profile
+    let profile = null;
+    try {
+      profile = await Auth.getProfile(sessionUser.id);
+    } catch(e) {}
+    
+    // If no profile exists yet (Google sign-in), create one
+    if (!profile) {
+      const uname = sessionUser.email?.split('@')[0]?.replace(/[^a-zA-Z0-9_]/g, '_') || 'user';
+      await supabase.from('profiles').insert({ id: sessionUser.id, username: uname }).select().single();
+      profile = { username: uname };
+    }
+    
     const uname = profile?.username || sessionUser.email?.split('@')[0] || 'User';
     setUsername(uname);
+    setProfile(profile);
+
     const [subs, prog, plans, str] = await Promise.all([
       Auth.getSubjects(sessionUser.id),
       Auth.getChecked(sessionUser.id),
