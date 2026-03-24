@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { SUBJECTS } from './data/subjects'
 import { FLASHCARDS } from './data/flashcards'
 import { Auth } from './utils/auth'
-import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId } from './utils/planEngine'
-const [username, setUsername] = useState(null);
-const [profile, setProfile]   = useState(null);
 import { supabase } from './utils/supabase'
+import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId } from './utils/planEngine'
 
 // ─── UTILITIES ──────────────────────────────────────────────
 function daysUntil(dateStr) {
@@ -102,7 +100,7 @@ function AuthPage({ onAuth }) {
 
           {/* Google button */}
           <button onClick={googleLogin} disabled={loading} style={{ width: '100%', background: C.white, border: `1.5px solid ${C.border}`, borderRadius: '10px', padding: '11px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', fontWeight: 600, color: C.text, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
-            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" /><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" /><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" /><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" /></svg>
+            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
             Continue with Google
           </button>
 
@@ -920,59 +918,33 @@ function AccountPage({ user, profile, onBack, onLogout, onProgressReset }) {
 
 // ─── MAIN APP ────────────────────────────────────────────────
 function App() {
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [screen, setScreen] = useState('home');
+  const [user, setUser]                 = useState(null);
+  const [username, setUsername]         = useState(null);
+  const [profile, setProfile]           = useState(null);
+  const [loading, setLoading]           = useState(true);
+  const [screen, setScreen]             = useState('home');
   const [activeSubjectId, setActiveSubjectId] = useState('csa');
-  const [checked, setChecked] = useState({});
-  const [selectedIds, setSelectedIds] = useState(null);
+  const [checked, setChecked]           = useState({});
+  const [selectedIds, setSelectedIds]   = useState(null);
   const [planSettings, setPlanSettings] = useState({});
-  const [streak, setStreak] = useState({ count: 0, last_date: null });
   const [adjustingPlan, setAdjustingPlan] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setLoading(false), 3000);
-
-    Auth.getSession().then(async (sessionUser) => {
-      clearTimeout(timeout);
-      if (sessionUser) await loadUserData(sessionUser);
-      setLoading(false);
-    }).catch(() => {
-      clearTimeout(timeout);
-      setLoading(false);
-    });
-
-    Auth.onAuthChange(async (sessionUser) => {
-      if (sessionUser) await loadUserData(sessionUser);
-      else {
-        setUser(null); setUsername(null); setChecked({});
-        setSelectedIds(null); setPlanSettings({}); setScreen('home');
-      }
-      setLoading(false);
-    });
-  }, []);
+  const [streak, setStreak]             = useState({ count: 0, last_date: null });
 
   const loadUserData = async (sessionUser) => {
     setUser(sessionUser);
-    
-    // Get or create profile
-    let profile = null;
-    try {
-      profile = await Auth.getProfile(sessionUser.id);
-    } catch(e) {}
-    
-    // If no profile exists yet (Google sign-in), create one
-    if (!profile) {
-      const uname = sessionUser.email?.split('@')[0]?.replace(/[^a-zA-Z0-9_]/g, '_') || 'user';
-      await supabase.from('profiles').insert({ id: sessionUser.id, username: uname }).select().single();
-      profile = { username: uname };
+    let prof = null;
+    try { prof = await Auth.getProfile(sessionUser.id); } catch(e) {}
+    if (!prof) {
+      const uname = (sessionUser.email?.split('@')[0] || 'user').replace(/[^a-zA-Z0-9_]/g, '_');
+      try {
+        const { data } = await supabase.from('profiles').insert({ id: sessionUser.id, username: uname }).select().single();
+        prof = data;
+      } catch(e) {}
+      if (!prof) prof = { username: uname };
     }
-    
-    const uname = profile?.username || sessionUser.email?.split('@')[0] || 'User';
+    const uname = prof?.username || sessionUser.email?.split('@')[0] || 'User';
     setUsername(uname);
-    setProfile(profile);
-
+    setProfile(prof);
     const [subs, prog, plans, str] = await Promise.all([
       Auth.getSubjects(sessionUser.id),
       Auth.getChecked(sessionUser.id),
@@ -986,9 +958,29 @@ function App() {
     setScreen(subs ? 'home' : 'picker');
   };
 
-  const handleAuth = async (sessionUser) => {
-    await loadUserData(sessionUser);
-    setScreen('home');
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 4000);
+    Auth.getSession().then(async (sessionUser) => {
+      clearTimeout(timeout);
+      if (sessionUser) await loadUserData(sessionUser);
+      setLoading(false);
+    }).catch(() => { clearTimeout(timeout); setLoading(false); });
+
+    Auth.onAuthChange(async (sessionUser) => {
+      if (sessionUser) await loadUserData(sessionUser);
+      else {
+        setUser(null); setUsername(null); setProfile(null);
+        setChecked({}); setSelectedIds(null); setPlanSettings({});
+        setScreen('home');
+      }
+      setLoading(false);
+    });
+  }, []);
+
+  const handleAuth = async (authUser) => {
+    await loadUserData(authUser);
+    const streakData = await Auth.updateStreak(authUser.id);
+    setStreak(streakData);
   };
 
   const handlePickerSave = async (ids, newPlanSettings) => {
@@ -1005,90 +997,104 @@ function App() {
     setScreen('home');
   };
 
-  const handleLogout = async () => { await Auth.logout(); setUser(null); setScreen('home'); };
-  const handleProgressReset = () => setChecked({});
-  const navigate = (dest, subjectId) => { if (subjectId) setActiveSubjectId(subjectId); setScreen(dest); };
+  const handleLogout = async () => { await Auth.logout(); };
 
-  if (loading) return (
-    <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-      <div style={{ width: '64px', height: '64px', background: `linear-gradient(135deg, ${C.redLight}, #FFF7ED)`, border: `1.5px solid ${C.redMid}`, borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', marginBottom: '16px' }}>⚒️</div>
-      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: C.text, marginBottom: '6px' }}>Score <span style={{ color: C.red }}>Forge</span></div>
-      <div style={{ color: C.muted, fontSize: '12px' }}>Loading...</div>
-    </div>
-  );
+  const handleProgressReset = async () => {
+    await Auth.resetProgress(user.id);
+    setChecked({});
+  };
 
-  if (!user) return <AuthPage onAuth={handleAuth} />;
-  if (screen === 'picker') return <SubjectPicker user={user} initial={selectedIds} onSave={handlePickerSave} />;
-
-  const MY_SUBJECTS = selectedIds?.length > 0 ? SUBJECTS.filter(s => selectedIds.includes(s.id)) : SUBJECTS;
-  const subject = MY_SUBJECTS.find(s => s.id === activeSubjectId) || MY_SUBJECTS[0];
-  const subjectPlan = planSettings[subject.id];
-  const planDays = subjectPlan?.durationDays || null;
-  const planStart = subjectPlan?.startDate || null;
-  const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : subject.weeks;
+  const navigate = (dest, subjectId) => {
+    if (subjectId) setActiveSubjectId(subjectId);
+    setScreen(dest);
+  };
 
   const toggleTask = async (weekId, dayIdx, taskIdx) => {
     const key = `${activeSubjectId}-${weekId}-${dayIdx}-${taskIdx}`;
     const newDone = !checked[key];
     setChecked(prev => ({ ...prev, [key]: newDone }));
     await Auth.toggleTask(user.id, activeSubjectId, weekId, dayIdx, taskIdx, newDone);
-    const newStreak = await Auth.updateStreak(user.id);
-    setStreak(newStreak);
+    const streakData = await Auth.updateStreak(user.id);
+    setStreak(streakData);
   };
 
   const getTaskKey = (weekId, dayIdx, taskIdx) => `${activeSubjectId}-${weekId}-${dayIdx}-${taskIdx}`;
 
-  if (adjustingPlan) return (
-    <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto' }}>
-      <div style={{ width: '100%', maxWidth: '600px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontWeight: 700, color: C.text, marginBottom: '8px' }}>🗓️ Adjust Study Plans</div>
-          <p style={{ color: C.muted, fontSize: '13px' }}>Update your study duration for any subject.</p>
-        </div>
-        {MY_SUBJECTS.map(s => (
-          <div key={s.id} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '16px', padding: '20px 24px', marginBottom: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-              <div style={{ width: '34px', height: '34px', background: `${s.color}12`, border: `1px solid ${s.color}25`, borderRadius: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>{s.icon}</div>
-              <div style={{ flex: 1 }}>
-                <div style={{ color: C.text, fontSize: '13px', fontWeight: 700 }}>{s.name}</div>
-                <div style={{ color: C.muted, fontSize: '10px' }}>{s.examInfo.split('·')[0].trim()}</div>
-              </div>
-              <button onClick={async () => {
-                const d = Math.max(1, daysUntil(s.examDate));
-                const setting = { durationDays: d, startDate: new Date().toISOString().split('T')[0] };
-                await Auth.savePlanSetting(user.id, s.id, setting);
-                setPlanSettings(await Auth.getPlanSettings(user.id));
-              }} style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>
-                🎯 Till exam ({Math.max(1, daysUntil(s.examDate))}d)
-              </button>
-            </div>
-            <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || 42}
-              onChange={async e => {
-                const v = Math.max(1, parseInt(e.target.value) || 1);
-                const setting = { durationDays: v, startDate: planSettings[s.id]?.startDate || new Date().toISOString().split('T')[0] };
-                await Auth.savePlanSetting(user.id, s.id, setting);
-                setPlanSettings(await Auth.getPlanSettings(user.id));
-              }}
-              style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}25`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
-            <span style={{ marginLeft: '8px', color: C.muted, fontSize: '12px' }}>days</span>
-          </div>
-        ))}
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>
-          <Btn onClick={() => setAdjustingPlan(false)} variant="ghost">← Back</Btn>
-          <Btn onClick={() => setAdjustingPlan(false)}>Done ✓</Btn>
-        </div>
-      </div>
+  if (loading) return (
+    <div style={{ height: '100vh', background: '#FDFAF5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans', system-ui, sans-serif" }}>
+      <div style={{ width: '64px', height: '64px', background: 'linear-gradient(135deg, #FEF2F2, #FFF7ED)', border: '1.5px solid #FECACA', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', marginBottom: '16px', boxShadow: '0 4px 24px rgba(185,28,28,0.1)' }}>⚒️</div>
+      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: '#1C1009', marginBottom: '6px' }}>Score <span style={{ color: '#B91C1C' }}>Forge</span></div>
+      <div style={{ color: '#9C8770', fontSize: '12px' }}>Loading...</div>
     </div>
   );
 
-  if (screen === 'home') return <HomePage user={user} profile={profile} checked={checked} mySubjects={MY_SUBJECTS} planSettings={planSettings} streak={streak} onNavigate={navigate} onLogout={handleLogout} onEditSubjects={() => setScreen('picker')} onAdjustPlan={() => setAdjustingPlan(true)} />;
-  if (screen === 'account') return <AccountPage user={user} profile={profile} onBack={() => setScreen('home')} onLogout={handleLogout} onProgressReset={handleProgressReset} />;
+  if (!user) return <AuthPage onAuth={handleAuth} />;
+  if (screen === 'picker') return <SubjectPicker username={username} initial={selectedIds} onSave={handlePickerSave} />;
+
+  const MY_SUBJECTS = selectedIds && selectedIds.length > 0 ? SUBJECTS.filter(s => selectedIds.includes(s.id)) : SUBJECTS;
+  const subject = MY_SUBJECTS.find(s => s.id === activeSubjectId) || MY_SUBJECTS[0];
+  const subjectPlan = planSettings[subject.id];
+  const planDays = subjectPlan?.durationDays || null;
+  const planStart = subjectPlan?.startDate || null;
+  const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : subject.weeks;
+
+  if (adjustingPlan) {
+    return (
+      <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundImage: `radial-gradient(${C.border} 1px, transparent 1px)`, backgroundSize: '28px 28px', opacity: 0.6, pointerEvents: 'none' }} />
+        <div style={{ width: '100%', maxWidth: '600px', position: 'relative' }}>
+          <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontWeight: 700, color: C.text, marginBottom: '8px' }}>🗓️ Adjust Study Plans</div>
+            <p style={{ color: C.muted, fontSize: '13px' }}>Update your study duration for any subject.</p>
+          </div>
+          {MY_SUBJECTS.map(s => (
+            <div key={s.id} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '16px', padding: '20px 24px', marginBottom: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                <div style={{ width: '34px', height: '34px', background: `${s.color}12`, border: `1px solid ${s.color}25`, borderRadius: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>{s.icon}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ color: C.text, fontSize: '13px', fontWeight: 700 }}>{s.name}</div>
+                  <div style={{ color: C.muted, fontSize: '10px' }}>Exam: {s.examInfo.split('·')[0].trim()}</div>
+                </div>
+                <button onClick={async () => {
+                  const d = Math.max(1, daysUntil(s.examDate));
+                  await Auth.savePlanSetting(user.id, s.id, { durationDays: d, startDate: new Date().toISOString().split('T')[0] });
+                  const plans = await Auth.getPlanSettings(user.id);
+                  setPlanSettings(plans);
+                }} style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>
+                  🎯 Till exam ({Math.max(1, daysUntil(s.examDate))}d)
+                </button>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || 42}
+                  onChange={async e => {
+                    const v = Math.max(1, parseInt(e.target.value)||1);
+                    await Auth.savePlanSetting(user.id, s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || new Date().toISOString().split('T')[0] });
+                    const plans = await Auth.getPlanSettings(user.id);
+                    setPlanSettings(plans);
+                  }}
+                  style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}25`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
+                <span style={{ color: C.muted, fontSize: '12px' }}>days · {adaptPlanToWindow(s, planSettings[s.id]?.durationDays || 42, planSettings[s.id]?.startDate).length} phases</span>
+              </div>
+            </div>
+          ))}
+          <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>
+            <Btn onClick={() => setAdjustingPlan(false)} variant="ghost">← Back</Btn>
+            <Btn onClick={() => setAdjustingPlan(false)}>Done ✓</Btn>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (screen === 'home') return <HomePage username={username} checked={checked} mySubjects={MY_SUBJECTS} planSettings={planSettings} streak={streak} onNavigate={navigate} onLogout={handleLogout} onEditSubjects={() => setScreen('picker')} onAdjustPlan={() => setAdjustingPlan(true)} />;
+  if (screen === 'account') return <AccountPage user={user} username={username} onBack={() => setScreen('home')} onLogout={handleLogout} onProgressReset={handleProgressReset} />;
   if (screen === 'library') return <LibraryMode onBack={() => setScreen('study')} />;
   if (screen === 'flashcards') return <FlashcardMode subject={subject} mySubjects={MY_SUBJECTS} onBack={() => setScreen('study')} onSubject={id => setActiveSubjectId(id)} />;
 
   return (
     <StudyPage
       user={user}
+      username={username}
       subject={subject}
       adaptedWeeks={adaptedWeeks}
       checked={checked}
@@ -1102,6 +1108,7 @@ function App() {
       onLibrary={() => setScreen('library')}
       onSubject={id => setActiveSubjectId(id)}
       mySubjects={MY_SUBJECTS}
+      screen={screen}
     />
   );
 }
