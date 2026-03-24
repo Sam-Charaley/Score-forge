@@ -5,6 +5,7 @@ import { Auth } from './utils/auth'
 import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId } from './utils/planEngine'
 const [username, setUsername] = useState(null);
 const [profile, setProfile]   = useState(null);
+import { supabase } from './utils/supabase'
 
 // ─── UTILITIES ──────────────────────────────────────────────
 function daysUntil(dateStr) {
