@@ -1,5 +1,5 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overflow: hidden; }
+html, body { height: 100%; }
 
 :root {
   --bg:        #FDFAF5;
@@ -14,9 +14,7 @@ html, body { height: 100%; overflow: hidden; }
   --text:      #1C1009;
   --text2:     #5C4A32;
   --muted:     #9C8770;
-  --success:   #166534;
-  --success-bg:#F0FDF4;
-  --surface:   #FFFFFF;
+  --white:     #FFFFFF;
 }
 
 body {
@@ -26,52 +24,34 @@ body {
   font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-#root { height: 100vh; }
+#root { height: 100dvh; }
 
-::-webkit-scrollbar { width: 5px; }
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #b8a898; }
 
+/* ── SHARED ── */
 input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
 input[type=number] { -moz-appearance: textfield; }
-
-button { transition: all 0.15s ease; cursor: pointer; }
-a { transition: all 0.15s ease; }
 
 .callout-tip {
   background: #FFF7ED;
   border: 1px solid #FED7AA;
   border-left: 3px solid #F97316;
   border-radius: 12px;
-  padding: 14px 18px;
+  padding: 14px 16px;
 }
 .callout-rubric {
   background: #EFF6FF;
   border: 1px solid #BFDBFE;
   border-left: 3px solid #3B82F6;
   border-radius: 12px;
-  padding: 14px 18px;
-}
-.callout-overview {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--subject-color, var(--muted));
-  border-radius: 12px;
-  padding: 14px 18px;
-}
-
-code, .code {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.85em;
-  background: #FEF2F2;
-  color: var(--red);
-  padding: 2px 6px;
-  border-radius: 5px;
-  border: 1px solid var(--red-mid);
+  padding: 14px 16px;
 }
 
 @keyframes fadeIn {
@@ -80,8 +60,200 @@ code, .code {
 }
 .fade-in { animation: fadeIn 0.25s ease forwards; }
 
-@keyframes checkPop {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.2); }
-  100% { transform: scale(1); }
+/* ── MOBILE: hide sidebar, stack layout ── */
+@media (max-width: 768px) {
+
+  /* Study screen sidebar — hide on mobile */
+  [data-sidebar] { display: none !important; }
+
+  /* Study screen subject tabs in topbar — horizontal scroll */
+  [data-subject-tabs] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+    padding: 4px 0;
+    scrollbar-width: none;
+  }
+  [data-subject-tabs]::-webkit-scrollbar { display: none; }
+
+  /* Home stats grid — 2 columns on mobile */
+  [data-stats-grid] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Subjects grid — 1 column on mobile */
+  [data-subjects-grid] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Picker grid — 2 columns on mobile */
+  [data-picker-grid] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Topbar — reduce padding */
+  [data-topbar] {
+    padding: 0 12px !important;
+  }
+
+  /* Home body padding */
+  [data-home-body] {
+    padding: 16px !important;
+  }
+
+  /* Study main padding */
+  [data-study-main] {
+    padding: 16px !important;
+  }
+
+  /* Subject picker plan screen — stack */
+  [data-plan-wrap] {
+    padding: 16px !important;
+  }
+
+  /* Next exam banner — stack vertically */
+  [data-exam-banner] {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: center;
+  }
+
+  /* Today's focus — stack */
+  [data-focus-card] {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  /* Week tabs — horizontal scroll */
+  [data-week-tabs] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  [data-week-tabs]::-webkit-scrollbar { display: none; }
+  [data-week-tabs] button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Subject bar — wrap on mobile */
+  [data-subject-bar] {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+
+  /* Countdown pill — smaller */
+  [data-exam-countdown] {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+
+  /* Adjusting plan overlay */
+  [data-plan-overlay] {
+    padding: 16px !important;
+  }
+
+  /* Auth card */
+  [data-auth-wrap] {
+    padding: 0 16px !important;
+  }
+
+  /* Flashcard */
+  [data-flashcard-area] {
+    padding: 16px !important;
+  }
+
+  /* Library */
+  [data-library-grid] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Account */
+  [data-account-wrap] {
+    padding: 16px !important;
+  }
+
+  /* Bottom mobile nav bar */
+  [data-mobile-nav] {
+    display: flex !important;
+  }
+
+  /* Hide desktop topbar actions on mobile */
+  [data-desktop-only] {
+    display: none !important;
+  }
+
+  /* Make main content account for bottom nav */
+  [data-main-scroll] {
+    padding-bottom: 70px !important;
+  }
+}
+
+/* ── MOBILE NAV BAR (hidden on desktop) ── */
+[data-mobile-nav] {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  height: 60px;
+  z-index: 200;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+  box-shadow: 0 -2px 12px rgba(28,16,9,0.06);
+}
+
+[data-mobile-nav] button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
+  min-width: 52px;
+  transition: all 0.15s ease;
+}
+
+[data-mobile-nav] button .nav-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+[data-mobile-nav] button .nav-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+[data-mobile-nav] button.active .nav-label {
+  color: var(--red);
+}
+
+[data-mobile-nav] button.active {
+  background: var(--red-light);
+}
+
+/* ── SAFE AREA (iPhone notch) ── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  [data-mobile-nav] {
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(60px + env(safe-area-inset-bottom));
+  }
+  @media (max-width: 768px) {
+    [data-main-scroll] {
+      padding-bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+    }
+  }
 }

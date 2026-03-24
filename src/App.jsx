@@ -5,6 +5,18 @@ import { Auth } from './utils/auth'
 import { supabase } from './utils/supabase'
 import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId } from './utils/planEngine'
 
+
+// ─── MOBILE DETECTION ────────────────────────────────────────
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return isMobile;
+}
+
 // ─── UTILITIES ──────────────────────────────────────────────
 function daysUntil(dateStr) {
   return Math.ceil((new Date(dateStr) - new Date()) / (1000 * 60 * 60 * 24));
@@ -309,7 +321,7 @@ function HomePage({ user, profile, checked, mySubjects, planSettings, streak, on
             <p style={{ color: C.muted, fontSize: '14px' }}>{totalDone === 0 ? 'Ready to start forging your scores?' : `${totalDone} of ${totalTasks} tasks complete.`}</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px', marginBottom: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px', marginBottom: '24px' }}>
             {[
               { label: 'Overall Progress', value: `${totalPct}%`, sub: `${totalDone} / ${totalTasks} tasks`, color: C.red },
               { label: 'Subjects', value: `${mySubjects.length}`, sub: 'AP courses tracked', color: '#2563eb' },
@@ -372,7 +384,7 @@ function HomePage({ user, profile, checked, mySubjects, planSettings, streak, on
             <button onClick={onEditSubjects} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '3px 10px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.muted }}>✎ Edit</button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px', marginBottom: '28px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '10px', marginBottom: '28px' }}>
             {allProgress.map(sub => {
               const days = daysUntil(sub.examDate);
               const urgency = days < 14 ? C.red : days < 30 ? '#d97706' : sub.color;
@@ -416,6 +428,24 @@ function HomePage({ user, profile, checked, mySubjects, planSettings, streak, on
           </div>
         </div>
       </div>
+
+      {/* Mobile bottom nav */}
+      {isMobile && (
+        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: C.white, borderTop: `1px solid ${C.border}`, height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 8px', boxShadow: '0 -2px 12px rgba(28,16,9,0.06)', zIndex: 200, paddingBottom: 'env(safe-area-inset-bottom)' }}>
+          {[
+            { icon: '🏠', label: 'Home', action: () => {} },
+            { icon: '✎', label: 'Subjects', action: onEditSubjects },
+            { icon: '🗓', label: 'Plans', action: onAdjustPlan },
+            { icon: '📚', label: 'Library', action: () => onNavigate('library') },
+            { icon: '⚙', label: 'Account', action: () => onNavigate('account') },
+          ].map(item => (
+            <button key={item.label} onClick={item.action} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', background: item.label === 'Home' ? C.redLight : 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRadius: '10px', minWidth: '52px' }}>
+              <span style={{ fontSize: '18px' }}>{item.icon}</span>
+              <span style={{ fontFamily: 'inherit', fontSize: '9px', fontWeight: 600, color: item.label === 'Home' ? C.red : C.muted }}>{item.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -469,7 +499,7 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: C.red }} />
           <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: C.text }}>Score Forge</span>
         </button>
-        <div style={{ display: 'flex', gap: '4px', flex: 1, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '4px', flex: 1, justifyContent: isMobile ? 'flex-start' : 'center', flexWrap: 'nowrap', overflowX: 'auto', scrollbarWidth: 'none' }}>
           {mySubjects.map(s => (
             <button key={s.id} onClick={() => onSubject(s.id)} style={{ background: s.id === subject.id ? `${s.color}12` : 'transparent', border: `1px solid ${s.id === subject.id ? s.color : C.border}`, borderRadius: '8px', padding: '4px 11px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', fontWeight: s.id === subject.id ? 700 : 500, color: s.id === subject.id ? s.color : C.muted }}>
               {s.icon} {s.shortName}
@@ -496,7 +526,7 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
       </div>
 
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        <div style={{ width: '210px', minWidth: '210px', borderRight: `1px solid ${C.border}`, background: C.white, overflowY: 'auto', padding: '8px 0' }}>
+        <div style={{ width: isMobile ? '0' : '210px', minWidth: isMobile ? '0' : '210px', borderRight: isMobile ? 'none' : `1px solid ${C.border}`, background: C.white, overflowY: 'auto', padding: isMobile ? '0' : '8px 0', display: isMobile ? 'none' : 'block' }}>
           <div style={{ padding: '12px 14px 10px', borderBottom: `1px solid ${C.border}`, marginBottom: '4px' }}>
             <div style={{ fontSize: '11px', fontWeight: 700, color: C.text, marginBottom: '6px' }}>{subject.shortName}</div>
             <div style={{ height: '4px', background: C.bg3, borderRadius: '99px', overflow: 'hidden' }}>
@@ -526,7 +556,7 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
         </div>
 
         {w && (
-          <div style={{ flex: 1, overflowY: 'auto', padding: '26px 34px', background: C.bg }}>
+          <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '14px' : '26px 34px', background: C.bg, paddingBottom: isMobile ? '80px' : '26px' }}>
             <div style={{ maxWidth: '720px' }}>
               {!planDays && (
                 <div style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '14px', padding: '16px 20px', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '14px' }}>
@@ -657,12 +687,31 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
           </div>
         )}
       </div>
+
+      {/* Mobile bottom nav */}
+      {isMobile && (
+        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: C.white, borderTop: `1px solid ${C.border}`, height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 8px', boxShadow: '0 -2px 12px rgba(28,16,9,0.06)', zIndex: 200, paddingBottom: 'env(safe-area-inset-bottom)' }}>
+          {[
+            { icon: '🏠', label: 'Home', action: onBack },
+            { icon: '📅', label: 'Plan', action: () => {} },
+            { icon: '🃏', label: 'Cards', action: onFlashcards },
+            { icon: '📚', label: 'Library', action: onLibrary },
+            { icon: '⚙', label: 'Adjust', action: onAdjustPlan },
+          ].map(item => (
+            <button key={item.label} onClick={item.action} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', background: item.label === 'Plan' ? `${subject.color}15` : 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRadius: '10px', minWidth: '52px' }}>
+              <span style={{ fontSize: '18px' }}>{item.icon}</span>
+              <span style={{ fontFamily: 'inherit', fontSize: '9px', fontWeight: 600, color: item.label === 'Plan' ? subject.color : C.muted }}>{item.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 // ─── FLASHCARD MODE ─────────────────────────────────────────
 function FlashcardMode({ subject, mySubjects, onBack, onSubject }) {
+  const isMobile = useIsMobile();
   const cards = FLASHCARDS[subject.id] || [];
   const [deck, setDeck] = useState(() => [...cards]);
   const [idx, setIdx] = useState(0);
@@ -703,7 +752,7 @@ function FlashcardMode({ subject, mySubjects, onBack, onSubject }) {
         </div>
       </div>
 
-      <div style={{ flex: 1, overflowY: 'auto', padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '16px 12px' : '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingBottom: isMobile ? '80px' : '28px' }}>
         <div style={{ width: '100%', maxWidth: '620px', marginBottom: '18px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
             <span style={{ color: C.muted, fontSize: '11px' }}>{Math.min(idx + 1, deck.length)} / {deck.length}</span>
