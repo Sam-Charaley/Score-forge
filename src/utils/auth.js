@@ -73,9 +73,13 @@ export const Auth = {
 
   async toggleTask(userId, subjectId, weekId, dayIndex, taskIndex, done) {
     await supabase.from('progress').upsert({
-      user_id: userId, subject_id: subjectId,
-      week_id: weekId, day_index: dayIndex,
-      task_index: taskIndex, done, updated_at: new Date()
+      user_id: userId,
+      subject_id: String(subjectId),
+      week_id: parseInt(weekId),
+      day_index: parseInt(dayIndex),
+      task_index: parseInt(taskIndex),
+      done,
+      updated_at: new Date()
     })
   },
 
