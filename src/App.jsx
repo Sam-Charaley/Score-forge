@@ -929,10 +929,17 @@ function App() {
   const [adjustingPlan, setAdjustingPlan] = useState(false);
 
   useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 3000);
+
     Auth.getSession().then(async (sessionUser) => {
+      clearTimeout(timeout);
       if (sessionUser) await loadUserData(sessionUser);
       setLoading(false);
+    }).catch(() => {
+      clearTimeout(timeout);
+      setLoading(false);
     });
+
     Auth.onAuthChange(async (sessionUser) => {
       if (sessionUser) await loadUserData(sessionUser);
       else {
