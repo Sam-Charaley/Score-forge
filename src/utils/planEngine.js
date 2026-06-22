@@ -1,3 +1,5 @@
+import { EXAM_DATES_CONFIRMED } from '../data/subjects';
+
 export function fmtDate(d) {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
@@ -6,6 +8,21 @@ export function addDays(date, n) {
   const d = new Date(date);
   d.setDate(d.getDate() + n);
   return d;
+}
+
+// ─── EXAM COUNTDOWN ─────────────────────────────────────────
+// Single gate for every "days until exam" display in the app. When the
+// upcoming cycle's dates aren't confirmed yet (see data/subjects.js),
+// this returns confirmed:false instead of a number, so the UI can show
+// "Dates TBA" rather than a stale or negative day count. Once the dates
+// are confirmed, every caller of this function resumes real countdowns
+// automatically — nothing else needs to change.
+export function getExamCountdown(examDate) {
+  if (!EXAM_DATES_CONFIRMED) {
+    return { confirmed: false, days: null, label: 'Dates TBA' };
+  }
+  const days = Math.ceil((new Date(examDate) - new Date()) / 86400000);
+  return { confirmed: true, days, label: `${days}d away` };
 }
 
 export function adaptPlanToWindow(subject, durationDays, startDateStr) {

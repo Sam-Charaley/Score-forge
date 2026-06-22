@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { SUBJECTS } from './data/subjects'
+import { SUBJECTS, EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from './data/subjects'
 import { FLASHCARDS } from './data/flashcards'
 import { Auth } from './utils/auth'
 import { supabase } from './utils/supabase'
-import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId } from './utils/planEngine'
+import { adaptPlanToWindow, fmtDate, addDays, getCurrentPhaseId, getExamCountdown } from './utils/planEngine'
 
 
 // ─── MOBILE DETECTION ────────────────────────────────────────
@@ -15,11 +15,6 @@ function useIsMobile() {
     return () => window.removeEventListener('resize', handler);
   }, []);
   return isMobile;
-}
-
-// ─── UTILITIES ──────────────────────────────────────────────
-function daysUntil(dateStr) {
-  return Math.ceil((new Date(dateStr) - new Date()) / (1000 * 60 * 60 * 24));
 }
 
 // ─── DESIGN TOKENS ──────────────────────────────────────────
@@ -174,7 +169,7 @@ function SubjectPicker({ user, initial, onSave }) {
   };
 
   if (step === 'plan') return (
-    <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto' }}>
+    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px', overflowY: 'auto' }}>
       <div style={{ width: '100%', maxWidth: '600px' }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontWeight: 700, color: C.text, marginBottom: '8px' }}>Build Your Study Plan</div>
@@ -204,10 +199,12 @@ function SubjectPicker({ user, initial, onSave }) {
               {[7, 14, 30, 60, 90].map(d => (
                 <button key={d} onClick={() => setGlobalDays(d)} style={{ background: globalDays === d ? C.redLight : C.bg2, border: `1px solid ${globalDays === d ? C.red : C.border}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: globalDays === d ? C.red : C.muted, fontWeight: globalDays === d ? 700 : 400 }}>{d}d</button>
               ))}
-              {selectedSubjects.map(s => {
-                const d = Math.max(1, daysUntil(s.examDate));
-                return <button key={s.id} onClick={() => setGlobalDays(d)} style={{ background: globalDays === d ? `${s.color}15` : C.bg2, border: `1px solid ${globalDays === d ? s.color : C.border}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: globalDays === d ? s.color : C.muted, fontWeight: globalDays === d ? 700 : 400 }}>🎯 {s.shortName} ({d}d)</button>;
-              })}
+              {EXAM_DATES_CONFIRMED ? selectedSubjects.map(s => {
+                const { days: d } = getExamCountdown(s.examDate);
+                return <button key={s.id} onClick={() => setGlobalDays(Math.max(1, d))} style={{ background: globalDays === d ? `${s.color}15` : C.bg2, border: `1px solid ${globalDays === d ? s.color : C.border}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: globalDays === d ? s.color : C.muted, fontWeight: globalDays === d ? 700 : 400 }}>🎯 {s.shortName} ({Math.max(1, d)}d)</button>;
+              }) : (
+                <span style={{ fontSize: '10px', color: C.muted, alignSelf: 'center' }}>🎯 Exam-date quick-set will appear once next year's AP calendar is confirmed.</span>
+              )}
             </div>
           </div>
         )}
@@ -217,7 +214,11 @@ function SubjectPicker({ user, initial, onSave }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
               <div style={{ width: '32px', height: '32px', background: `${s.color}15`, border: `1px solid ${s.color}30`, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>{s.icon}</div>
               <div style={{ color: C.text, fontSize: '13px', fontWeight: 700 }}>{s.shortName}</div>
-              <button onClick={() => setPerSubject(p => ({ ...p, [s.id]: Math.max(1, daysUntil(s.examDate)) }))} style={{ marginLeft: 'auto', background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '3px 10px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>🎯 Till exam</button>
+              {EXAM_DATES_CONFIRMED ? (
+                <button onClick={() => setPerSubject(p => ({ ...p, [s.id]: Math.max(1, getExamCountdown(s.examDate).days) }))} style={{ marginLeft: 'auto', background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '3px 10px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>🎯 Till exam</button>
+              ) : (
+                <span style={{ marginLeft: 'auto', fontSize: '10px', color: C.muted }}>Exam date TBA</span>
+              )}
             </div>
             <input type="number" min="1" max="730" value={perSubject[s.id]} onChange={e => setPerSubject(p => ({ ...p, [s.id]: Math.max(1, parseInt(e.target.value) || 1) }))}
               style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}30`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
@@ -234,7 +235,7 @@ function SubjectPicker({ user, initial, onSave }) {
   );
 
   return (
-    <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto' }}>
+    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px', overflowY: 'auto' }}>
       <div style={{ width: '100%', maxWidth: '600px' }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: C.text, marginBottom: '6px' }}>{initial ? 'Edit Your Subjects' : 'Welcome aboard!'}</div>
@@ -252,8 +253,17 @@ function SubjectPicker({ user, initial, onSave }) {
                 <div style={{ color: on ? s.color : C.text, fontSize: '12px', fontWeight: 700, marginBottom: '2px' }}>{s.shortName}</div>
                 <div style={{ color: C.muted, fontSize: '10px', lineHeight: '1.4' }}>{s.examInfo.split('·')[0].trim()}</div>
                 <div style={{ marginTop: '5px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: daysUntil(s.examDate) < 30 ? C.red : daysUntil(s.examDate) < 60 ? '#d97706' : '#16a34a' }} />
-                  <span style={{ fontSize: '10px', fontWeight: 600, color: daysUntil(s.examDate) < 30 ? C.red : daysUntil(s.examDate) < 60 ? '#d97706' : '#16a34a' }}>{daysUntil(s.examDate)}d away</span>
+                  {(() => {
+                    const { confirmed, days, label } = getExamCountdown(s.examDate);
+                    const dotColor = !confirmed ? C.border2 : days < 30 ? C.red : days < 60 ? '#d97706' : '#16a34a';
+                    const textColor = !confirmed ? C.muted : days < 30 ? C.red : days < 60 ? '#d97706' : '#16a34a';
+                    return (
+                      <>
+                        <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: dotColor }} />
+                        <span style={{ fontSize: '10px', fontWeight: 600, color: textColor }}>{label}</span>
+                      </>
+                    );
+                  })()}
                 </div>
               </button>
             );
@@ -285,7 +295,9 @@ function HomePage({ username, checked, mySubjects, planSettings, streak, onNavig
   const totalTasks = allProgress.reduce((a, s) => a + s.total, 0);
   const totalPct = totalTasks === 0 ? 0 : Math.round((totalDone / totalTasks) * 100);
   const totalCards = mySubjects.reduce((a, s) => a + (FLASHCARDS[s.id] || []).length, 0);
-  const nextExam = [...mySubjects].sort((a, b) => new Date(a.examDate) - new Date(b.examDate)).find(s => daysUntil(s.examDate) > 0);
+  const nextExam = EXAM_DATES_CONFIRMED
+    ? [...mySubjects].sort((a, b) => new Date(a.examDate) - new Date(b.examDate)).find(s => getExamCountdown(s.examDate).days > 0)
+    : undefined;
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
   const displayName = username || 'there';
@@ -327,7 +339,7 @@ function HomePage({ username, checked, mySubjects, planSettings, streak, onNavig
               { label: 'Overall Progress', value: `${totalPct}%`, sub: `${totalDone} / ${totalTasks} tasks`, color: C.red },
               { label: 'Subjects', value: `${mySubjects.length}`, sub: 'AP courses tracked', color: '#2563eb' },
               { label: 'Flashcards', value: `${totalCards}`, sub: 'total cards available', color: '#d97706' },
-              { label: 'Next Exam', value: nextExam ? `${daysUntil(nextExam.examDate)}d` : '—', sub: nextExam ? nextExam.shortName : 'All done!', color: nextExam ? nextExam.color : C.muted },
+              { label: 'Next Exam', value: nextExam ? `${getExamCountdown(nextExam.examDate).days}d` : '—', sub: nextExam ? nextExam.shortName : (EXAM_DATES_CONFIRMED ? 'All done!' : 'Dates TBA'), color: nextExam ? nextExam.color : C.muted },
             ].map((s, i) => (
               <div key={i} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '16px', padding: '18px 20px' }}>
                 <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: '8px' }}>{s.label}</div>
@@ -362,7 +374,7 @@ function HomePage({ username, checked, mySubjects, planSettings, streak, onNavig
                 <div style={{ fontSize: '12px', color: C.muted }}>{nextExam.examInfo}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', fontWeight: 700, color: C.red, lineHeight: 1 }}>{daysUntil(nextExam.examDate)}</div>
+                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '40px', fontWeight: 700, color: C.red, lineHeight: 1 }}>{getExamCountdown(nextExam.examDate).days}</div>
                 <div style={{ fontSize: '11px', color: C.muted }}>days away</div>
               </div>
               <Btn onClick={() => onNavigate('study', nextExam.id)} style={{ whiteSpace: 'nowrap' }}>Study Now →</Btn>
@@ -387,8 +399,8 @@ function HomePage({ username, checked, mySubjects, planSettings, streak, onNavig
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '10px', marginBottom: '28px' }}>
             {allProgress.map(sub => {
-              const days = daysUntil(sub.examDate);
-              const urgency = days < 14 ? C.red : days < 30 ? '#d97706' : sub.color;
+              const { confirmed, days } = getExamCountdown(sub.examDate);
+              const urgency = !confirmed ? C.muted : days < 14 ? C.red : days < 30 ? '#d97706' : sub.color;
               return (
                 <div key={sub.id} onClick={() => onNavigate('study', sub.id)}
                   style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '16px', padding: '18px 20px', cursor: 'pointer', transition: 'all 0.18s ease' }}
@@ -403,7 +415,7 @@ function HomePage({ username, checked, mySubjects, planSettings, streak, onNavig
                       </div>
                     </div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ color: urgency, fontSize: '16px', fontWeight: 700 }}>{days}d</div>
+                      <div style={{ color: urgency, fontSize: '16px', fontWeight: 700 }}>{confirmed ? `${days}d` : 'TBA'}</div>
                       <div style={{ color: C.muted, fontSize: '10px' }}>until exam</div>
                     </div>
                   </div>
@@ -424,7 +436,7 @@ function HomePage({ username, checked, mySubjects, planSettings, streak, onNavig
           </div>
 
           <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: '20px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
-            <div style={{ color: C.muted, fontSize: '11px' }}>Score Forge · Built for AP 2026</div>
+            <div style={{ color: C.muted, fontSize: '11px' }}>Score Forge · Built for AP {EXAM_CYCLE_YEAR}</div>
             <button onClick={onLogout} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 14px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.muted }}>Sign Out</button>
           </div>
         </div>
@@ -484,7 +496,7 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
     return total === 0 ? 0 : Math.round((done / total) * 100);
   };
 
-  const examDays = daysUntil(subject.examDate);
+  const { confirmed: examConfirmed, days: examDays } = getExamCountdown(subject.examDate);
   const tabs = [
     { id: 'days', label: '📅 Daily Plan' },
     { id: 'rules', label: '📌 Key Rules' },
@@ -518,8 +530,8 @@ function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKe
         <span style={{ color: subject.color, fontSize: '12px', fontWeight: 700 }}>{subject.name}</span>
         <span style={{ color: C.muted, fontSize: '11px' }}>· {subject.examInfo}</span>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ background: examDays < 14 ? C.redLight : examDays < 30 ? '#FFF7ED' : C.bg2, border: `1px solid ${examDays < 14 ? C.redMid : examDays < 30 ? '#FED7AA' : C.border}`, borderRadius: '99px', padding: '3px 12px', fontSize: '11px', fontWeight: 700, color: examDays < 14 ? C.red : examDays < 30 ? '#9A3412' : C.text2 }}>
-            ⏱ {examDays}d until exam
+          <div style={{ background: !examConfirmed ? C.bg2 : examDays < 14 ? C.redLight : examDays < 30 ? '#FFF7ED' : C.bg2, border: `1px solid ${!examConfirmed ? C.border : examDays < 14 ? C.redMid : examDays < 30 ? '#FED7AA' : C.border}`, borderRadius: '99px', padding: '3px 12px', fontSize: '11px', fontWeight: 700, color: !examConfirmed ? C.muted : examDays < 14 ? C.red : examDays < 30 ? '#9A3412' : C.text2 }}>
+            ⏱ {examConfirmed ? `${examDays}d until exam` : 'Exam date TBA'}
           </div>
           {planDays && <div style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '3px 10px', fontSize: '10px', color: C.red, fontWeight: 700 }}>{planDays}d plan · {adaptedWeeks.length} phases</div>}
           <button onClick={onAdjustPlan} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '99px', color: C.muted, fontSize: '10px', padding: '3px 11px', cursor: 'pointer', fontFamily: 'inherit' }}>⚙ Adjust Plan</button>
@@ -1090,7 +1102,7 @@ function App() {
 
   if (adjustingPlan) {
     return (
-      <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', overflowY: 'auto' }}>
+      <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px', overflowY: 'auto' }}>
         <div style={{ position: 'fixed', inset: 0, backgroundImage: `radial-gradient(${C.border} 1px, transparent 1px)`, backgroundSize: '28px 28px', opacity: 0.6, pointerEvents: 'none' }} />
         <div style={{ width: '100%', maxWidth: '600px', position: 'relative' }}>
           <div style={{ textAlign: 'center', marginBottom: '28px' }}>
@@ -1105,14 +1117,18 @@ function App() {
                   <div style={{ color: C.text, fontSize: '13px', fontWeight: 700 }}>{s.name}</div>
                   <div style={{ color: C.muted, fontSize: '10px' }}>Exam: {s.examInfo.split('·')[0].trim()}</div>
                 </div>
-                <button onClick={async () => {
-                  const d = Math.max(1, daysUntil(s.examDate));
-                  await Auth.savePlanSetting(user.id, s.id, { durationDays: d, startDate: new Date().toISOString().split('T')[0] });
-                  const plans = await Auth.getPlanSettings(user.id);
-                  setPlanSettings(plans);
-                }} style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>
-                  🎯 Till exam ({Math.max(1, daysUntil(s.examDate))}d)
-                </button>
+                {EXAM_DATES_CONFIRMED ? (
+                  <button onClick={async () => {
+                    const d = Math.max(1, getExamCountdown(s.examDate).days);
+                    await Auth.savePlanSetting(user.id, s.id, { durationDays: d, startDate: new Date().toISOString().split('T')[0] });
+                    const plans = await Auth.getPlanSettings(user.id);
+                    setPlanSettings(plans);
+                  }} style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>
+                    🎯 Till exam ({Math.max(1, getExamCountdown(s.examDate).days)}d)
+                  </button>
+                ) : (
+                  <span style={{ fontSize: '10px', color: C.muted }}>Exam date TBA</span>
+                )}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || 42}

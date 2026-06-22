@@ -1,3 +1,22 @@
+// ─── EXAM CYCLE STATUS ───────────────────────────────────────
+// College Board publishes next year's AP calendar in late summer/early fall
+// (historically Aug–Sept). Every examDate below is for EXAM_CYCLE_YEAR.
+// Until EXAM_DATES_CONFIRMED is true, the app will NOT compute or display
+// "days until exam" countdowns from these dates — it shows "Dates TBA"
+// instead, everywhere, automatically. That's intentional: a stale date is
+// worse than no date.
+//
+// TO ROLL OVER TO A NEW CYCLE once College Board publishes the calendar:
+//   1. Bump EXAM_CYCLE_YEAR below.
+//   2. Find/replace each subject's examDate ("YYYY-MM-DD") and the leading
+//      date in its examInfo string with the confirmed date.
+//   3. Flip EXAM_DATES_CONFIRMED to true.
+// Every countdown, badge, and "Xd away" label in the app reads through
+// getExamCountdown() in utils/planEngine.js — once steps 1–3 are done,
+// they all resume automatically. No other code changes needed.
+export const EXAM_CYCLE_YEAR = 2026;
+export const EXAM_DATES_CONFIRMED = false;
+
 export const SUBJECTS = [
   // ══════════════════════════════════════════════════════════════════════════════
   // AP COMPUTER SCIENCE A
