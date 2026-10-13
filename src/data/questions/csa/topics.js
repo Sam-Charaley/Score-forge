@@ -24,3 +24,5 @@ export const CSA_TOPICS = [
   { id: '2d-arrays', unit: 'u4', name: '2D Arrays' },
   { id: 'search-sort', unit: 'u4', name: 'Searching, Sorting & Recursion' },
 ];
+
+export default { units: CSA_UNITS, topics: CSA_TOPICS };

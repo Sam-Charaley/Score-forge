@@ -174,7 +174,7 @@ export function useUserData({ onSignedIn, onSignedOut }) {
   return {
     user, username, profile, loading, loadError, saveError,
     checked, selectedIds, planSettings, streak,
-    signInWith, signOut, retryLoad, dismissSaveError: () => setSaveError(null),
+    signInWith, signOut, retryLoad, dismissSaveError: () => setSaveError(null), reportSaveError: setSaveError,
     saveSubjects, savePlanSetting, toggleTask, resetProgress, saveNote,
   };
 }

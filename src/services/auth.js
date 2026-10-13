@@ -1,14 +1,9 @@
 import { supabase } from './supabase'
+import { unwrap } from './unwrap'
 
 const USERNAME_MIN_LENGTH = 2;
 const USERNAME_PATTERN = /^[a-zA-Z0-9_]+$/;
 
-// Every data call goes through this, so a failed request surfaces as an
-// exception the UI can report instead of looking like an empty result.
-function unwrap({ data, error }, action) {
-  if (error) throw new Error(`Couldn't ${action}. ${error.message}`);
-  return data;
-}
 
 export const Auth = {
   // Returns an unsubscribe function. The callback is deferred a tick because

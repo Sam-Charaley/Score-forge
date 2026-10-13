@@ -14,6 +14,8 @@ import FlashcardMode from './screens/FlashcardMode'
 import LibraryMode from './screens/LibraryMode'
 import AccountPage from './screens/AccountPage'
 import AdjustPlanPage from './screens/AdjustPlanPage'
+import PracticePage from './screens/PracticePage'
+import { hasQuestionBank } from './data/questions/questionLoader'
 
 const DEFAULT_SUBJECT_ID = 'csa'
 const KNOWN_SUBJECT_IDS = SUBJECT_INDEX.map(meta => meta.id)
@@ -97,6 +99,7 @@ export default function App() {
       );
     }
     if (screen === 'account') return <AccountPage user={data.user} username={data.username} onBack={() => setScreen('home')} onLogout={data.signOut} onProgressReset={data.resetProgress} />;
+    if (screen === 'practice' && hasQuestionBank(subject.id)) return <PracticePage key={subject.id} user={data.user} subject={subject} onBack={() => setScreen('study')} onSaveError={data.reportSaveError} />;
     if (screen === 'library') return <LibraryMode onBack={() => setScreen('study')} />;
     if (screen === 'flashcards') return <FlashcardMode key={subject.id} subject={subject} mySubjects={mySubjects} onBack={() => setScreen('study')} onSubject={setActiveSubjectId} />;
 
@@ -113,6 +116,7 @@ export default function App() {
         planStart={planStart}
         onAdjustPlan={openPlanEditor}
         onBack={() => setScreen('home')}
+        onPractice={hasQuestionBank(subject.id) ? () => setScreen('practice') : null}
         onFlashcards={() => setScreen('flashcards')}
         onLibrary={() => setScreen('library')}
         onSubject={setActiveSubjectId}

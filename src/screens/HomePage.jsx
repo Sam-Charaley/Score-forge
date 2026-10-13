@@ -1,6 +1,7 @@
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
+import { hasQuestionBank } from '../data/questions/questionLoader'
 import { FLASHCARDS } from '../data/flashcards'
 import { EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from '../data/subjectIndex'
 import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs, pickFurthestBehind } from '../utils/planEngine'
@@ -155,6 +156,7 @@ export default function HomePage({ username, checked, mySubjects, planSettings, 
                   <div style={{ display: 'flex', gap: '5px' }}>
                     <div style={{ flex: 1, background: C.bg, border: `1px solid ${C.border}`, borderRadius: '10px', padding: '5px 8px', textAlign: 'center', color: sub.color, fontSize: '10px', fontWeight: 500 }}>📅 Study</div>
                     <div onClick={e => { e.stopPropagation(); onNavigate('flashcards', sub.id); }} style={{ flex: 1, background: C.bg, border: `1px solid ${C.border}`, borderRadius: '10px', padding: '5px 8px', textAlign: 'center', color: C.muted, fontSize: '10px', cursor: 'pointer' }}>🃏 Cards</div>
+                    {hasQuestionBank(sub.id) && (<div onClick={e => { e.stopPropagation(); onNavigate('practice', sub.id); }} style={{ flex: 1, background: C.bg, border: `1px solid ${C.border}`, borderRadius: '10px', padding: '5px 8px', textAlign: 'center', color: sub.color, fontWeight: 600, fontSize: '10px', cursor: 'pointer' }}>🎯 Practice</div>)}
                   </div>
                 </div>
               );

@@ -5,7 +5,7 @@ import { useIsMobile } from '../hooks/useIsMobile'
 import { useWeekNote, NOTE_STATUS } from '../hooks/useWeekNote'
 import { getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs } from '../utils/planEngine'
 
-export default function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, onSaveNote, planDays, planStart, onAdjustPlan, onBack, onFlashcards, onLibrary, onSubject, mySubjects }) {
+export default function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, onSaveNote, planDays, planStart, onAdjustPlan, onBack, onPractice, onFlashcards, onLibrary, onSubject, mySubjects }) {
   const isMobile = useIsMobile();
   const [activeWeek, setActiveWeek] = useState(() => getCurrentPhaseId(adaptedWeeks, planStart));
   const [activeTab, setActiveTab] = useState('days');
@@ -51,6 +51,7 @@ export default function StudyPage({ user, subject, adaptedWeeks, checked, toggle
           ))}
         </div>
         <div style={{ display: 'flex', gap: '5px' }}>
+          {onPractice && <button onClick={onPractice} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 11px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: subject.color, fontWeight: 700 }}>🎯 Practice</button>}
           <button onClick={onFlashcards} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 11px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: C.text2 }}>🃏 Cards</button>
           <button onClick={onLibrary} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 11px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: C.text2 }}>📚 Library</button>
         </div>
