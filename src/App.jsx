@@ -38,7 +38,7 @@ export default function App() {
       setScreen('home');
     };
 
-    if (screen === 'picker') return <SubjectPicker initial={data.selectedIds} onSave={handlePickerSave} />;
+    if (screen === 'picker') return <SubjectPicker initial={data.selectedIds} existingPlans={data.planSettings} onSave={handlePickerSave} />;
 
     const mySubjects = data.selectedIds && data.selectedIds.length > 0 ? SUBJECTS.filter(s => data.selectedIds.includes(s.id)) : SUBJECTS;
     const subject = mySubjects.find(s => s.id === activeSubjectId) || mySubjects[0];
@@ -80,12 +80,13 @@ export default function App() {
         />
       );
     }
-    if (screen === 'account') return <AccountPage user={data.user} onBack={() => setScreen('home')} onLogout={data.signOut} onProgressReset={data.resetProgress} />;
+    if (screen === 'account') return <AccountPage user={data.user} username={data.username} onBack={() => setScreen('home')} onLogout={data.signOut} onProgressReset={data.resetProgress} />;
     if (screen === 'library') return <LibraryMode onBack={() => setScreen('study')} />;
-    if (screen === 'flashcards') return <FlashcardMode subject={subject} mySubjects={mySubjects} onBack={() => setScreen('study')} onSubject={setActiveSubjectId} />;
+    if (screen === 'flashcards') return <FlashcardMode key={subject.id} subject={subject} mySubjects={mySubjects} onBack={() => setScreen('study')} onSubject={setActiveSubjectId} />;
 
     return (
       <StudyPage
+        key={subject.id}
         user={data.user}
         subject={subject}
         adaptedWeeks={adaptedWeeks}

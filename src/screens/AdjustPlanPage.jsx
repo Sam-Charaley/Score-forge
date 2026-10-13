@@ -1,9 +1,47 @@
+import { useState, useEffect } from 'react'
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { EXAM_DATES_CONFIRMED } from '../data/subjects'
 import { adaptPlanToWindow, getExamCountdown, todayLocalIsoDate } from '../utils/planEngine'
 
 const DEFAULT_PLAN_DAYS = 42
+const MIN_PLAN_DAYS = 1
+const MAX_PLAN_DAYS = 730
+
+function parsePlanDays(text) {
+  const days = parseInt(text, 10);
+  if (!Number.isFinite(days)) return null;
+  return Math.min(Math.max(days, MIN_PLAN_DAYS), MAX_PLAN_DAYS);
+}
+
+// Edits a draft and saves on Enter or when focus leaves. Saving on every
+// keystroke meant clearing the box to type "60" first saved a 1-day plan.
+function PlanDurationInput({ subject, savedDays, startDate, onCommit }) {
+  const shownDays = savedDays ?? DEFAULT_PLAN_DAYS;
+  const [draft, setDraft] = useState(String(shownDays));
+  useEffect(() => setDraft(String(shownDays)), [shownDays]);
+
+  const commit = async () => {
+    const days = parsePlanDays(draft);
+    if (days === null) { setDraft(String(shownDays)); return; }
+    setDraft(String(days));
+    if (days === savedDays) return;
+    const saved = await onCommit(days);
+    if (!saved) setDraft(String(shownDays));
+  };
+
+  const previewDays = parsePlanDays(draft) ?? shownDays;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <input type="number" min={MIN_PLAN_DAYS} max={MAX_PLAN_DAYS} value={draft}
+        onChange={e => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
+        style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: subject.color, background: `${subject.color}10`, border: `2px solid ${subject.color}25`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
+      <span style={{ color: C.muted, fontSize: '12px' }}>days · {adaptPlanToWindow(subject, previewDays, startDate).length} phases</span>
+    </div>
+  );
+}
 
 export default function AdjustPlanPage({ mySubjects, planSettings, onSavePlanSetting, onClose }) {
   return (
@@ -33,15 +71,12 @@ export default function AdjustPlanPage({ mySubjects, planSettings, onSavePlanSet
                 <span style={{ fontSize: '10px', color: C.muted }}>Exam date TBA</span>
               )}
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || DEFAULT_PLAN_DAYS}
-                onChange={async e => {
-                  const v = Math.max(1, parseInt(e.target.value) || 1);
-                  await onSavePlanSetting(s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || todayLocalIsoDate() });
-                }}
-                style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}25`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
-              <span style={{ color: C.muted, fontSize: '12px' }}>days · {adaptPlanToWindow(s, planSettings[s.id]?.durationDays || DEFAULT_PLAN_DAYS, planSettings[s.id]?.startDate).length} phases</span>
-            </div>
+            <PlanDurationInput
+              subject={s}
+              savedDays={planSettings[s.id]?.durationDays}
+              startDate={planSettings[s.id]?.startDate}
+              onCommit={days => onSavePlanSetting(s.id, { durationDays: days, startDate: planSettings[s.id]?.startDate || todayLocalIsoDate() })}
+            />
           </div>
         ))}
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>

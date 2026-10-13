@@ -3,7 +3,7 @@ import { C } from '../theme'
 import Btn from '../components/Btn'
 import { Auth } from '../services/auth'
 
-export default function AccountPage({ user, profile, onBack, onLogout, onProgressReset }) {
+export default function AccountPage({ user, username, onBack, onLogout, onProgressReset }) {
   const [tab, setTab] = useState('profile');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
@@ -18,7 +18,7 @@ export default function AccountPage({ user, profile, onBack, onLogout, onProgres
   };
 
   const inp = { background: C.bg, border: `1.5px solid ${C.border}`, borderRadius: '8px', color: C.text, fontSize: '12px', padding: '9px 13px', fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box' };
-  const displayName = profile?.username || user?.email?.split('@')[0] || 'User';
+  const displayName = username || user?.email?.split('@')[0] || 'User';
 
   return (
     <div style={{ height: '100vh', background: C.bg, display: 'flex', flexDirection: 'column' }}>

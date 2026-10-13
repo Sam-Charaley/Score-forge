@@ -4,21 +4,25 @@ import Btn from '../components/Btn'
 import { SUBJECTS, EXAM_DATES_CONFIRMED } from '../data/subjects'
 import { fmtDate, addDays, getExamCountdown, todayLocalIsoDate } from '../utils/planEngine'
 
-export default function SubjectPicker({ user, initial, onSave }) {
+const DEFAULT_PLAN_DAYS = 42
+
+export default function SubjectPicker({ initial, existingPlans = {}, onSave }) {
   const [selected, setSelected] = useState(() => initial || SUBJECTS.map(s => s.id));
   const [step, setStep] = useState('pick');
-  const [globalDays, setGlobalDays] = useState(42);
-  const [perSubject, setPerSubject] = useState(() => { const i = {}; SUBJECTS.forEach(s => { i[s.id] = 42; }); return i; });
+  const [globalDays, setGlobalDays] = useState(DEFAULT_PLAN_DAYS);
+  const [perSubject, setPerSubject] = useState(() => { const i = {}; SUBJECTS.forEach(s => { i[s.id] = DEFAULT_PLAN_DAYS; }); return i; });
   const [usePerSubject, setUsePerSubject] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const toggle = id => setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   const selectedSubjects = SUBJECTS.filter(s => selected.includes(s.id));
+  // Subjects that already have a plan keep it; only newly added ones need a duration.
+  const subjectsNeedingPlan = selectedSubjects.filter(s => !existingPlans[s.id]);
   const today = todayLocalIsoDate();
 
   const handleSave = async () => {
     setSaving(true);
-    const finalSettings = selectedSubjects.reduce((acc, s) => {
+    const finalSettings = subjectsNeedingPlan.reduce((acc, s) => {
       acc[s.id] = { durationDays: usePerSubject ? perSubject[s.id] : globalDays, startDate: today };
       return acc;
     }, {});
@@ -34,7 +38,7 @@ export default function SubjectPicker({ user, initial, onSave }) {
           <p style={{ color: C.muted, fontSize: '13px' }}>Set how many days you have. Your plan adapts automatically.</p>
         </div>
 
-        {selectedSubjects.length > 1 && (
+        {subjectsNeedingPlan.length > 1 && (
           <div style={{ display: 'flex', background: C.bg3, borderRadius: '99px', padding: '4px', marginBottom: '24px', width: 'fit-content', margin: '0 auto 24px', border: `1px solid ${C.border}` }}>
             {[['Same for all', false], ['Per subject', true]].map(([lbl, val]) => (
               <button key={String(val)} onClick={() => setUsePerSubject(val)} style={{ background: usePerSubject === val ? C.white : 'transparent', border: 'none', borderRadius: '99px', padding: '7px 18px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '12px', fontWeight: usePerSubject === val ? 600 : 400, color: usePerSubject === val ? C.text : C.muted }}>{lbl}</button>
@@ -57,7 +61,7 @@ export default function SubjectPicker({ user, initial, onSave }) {
               {[7, 14, 30, 60, 90].map(d => (
                 <button key={d} onClick={() => setGlobalDays(d)} style={{ background: globalDays === d ? C.redLight : C.bg2, border: `1px solid ${globalDays === d ? C.red : C.border}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: globalDays === d ? C.red : C.muted, fontWeight: globalDays === d ? 700 : 400 }}>{d}d</button>
               ))}
-              {EXAM_DATES_CONFIRMED ? selectedSubjects.map(s => {
+              {EXAM_DATES_CONFIRMED ? subjectsNeedingPlan.map(s => {
                 const { days: d } = getExamCountdown(s.examDate);
                 return <button key={s.id} onClick={() => setGlobalDays(Math.max(1, d))} style={{ background: globalDays === d ? `${s.color}15` : C.bg2, border: `1px solid ${globalDays === d ? s.color : C.border}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: globalDays === d ? s.color : C.muted, fontWeight: globalDays === d ? 700 : 400 }}>🎯 {s.shortName} ({Math.max(1, d)}d)</button>;
               }) : (
@@ -67,7 +71,7 @@ export default function SubjectPicker({ user, initial, onSave }) {
           </div>
         )}
 
-        {usePerSubject && selectedSubjects.map(s => (
+        {usePerSubject && subjectsNeedingPlan.map(s => (
           <div key={s.id} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '16px', padding: '20px 24px', marginBottom: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
               <div style={{ width: '32px', height: '32px', background: `${s.color}15`, border: `1px solid ${s.color}30`, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>{s.icon}</div>
@@ -131,7 +135,9 @@ export default function SubjectPicker({ user, initial, onSave }) {
           <span style={{ color: C.muted, fontSize: '12px' }}>{selected.length === 0 ? 'Select at least one' : `${selected.length} selected`}</span>
           <div style={{ display: 'flex', gap: '8px' }}>
             {selected.length !== SUBJECTS.length && <Btn onClick={() => setSelected(SUBJECTS.map(s => s.id))} variant="ghost" style={{ fontSize: '11px', padding: '8px 16px' }}>Select All</Btn>}
-            <Btn onClick={() => selected.length > 0 && setStep('plan')}>{initial ? 'Save Changes →' : 'Next: Set Duration →'}</Btn>
+            <Btn onClick={() => { if (selected.length === 0) return; if (subjectsNeedingPlan.length === 0) handleSave(); else setStep('plan'); }} disabled={saving}>
+              {saving ? 'Saving...' : subjectsNeedingPlan.length === 0 ? 'Save Changes →' : 'Next: Set Duration →'}
+            </Btn>
           </div>
         </div>
       </div>
