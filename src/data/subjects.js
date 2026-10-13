@@ -5162,9 +5162,8 @@ export const SUBJECTS = [
         frq:null,
         tip:"The night before May 11: if taking both Physics C exams, prepare for a long day. Eat a good dinner, sleep 8+ hours, plan a nutritious breakfast and lunch. Mental stamina for two consecutive 90-minute calculus-based physics exams requires physical preparation as much as academic.",
       },
-      { id:8, dates:"Apr 27 – May 3", label:"Week 9 — Pre-Exam", examWeight:"All units", color:"#312e81",
+      { id:8, dates:"Apr 27 – May 3", label:"Week 9 — Pre-Exam", theme:"Pre-Exam Review", examWeight:"All units", color:"#312e81",
         overview:"Final days before exam.",
-        dates:"Apr 27 – May 3",
         days:[
           { day:"Apr 27–29", tasks:["5 MCQs per day","Daily: write Gauss's law and RC circuit key steps from memory (5 min)","Light review only"] },
           { day:"Apr 30 – May 3", tasks:["Rest — minimal studying","Confirm exam location for May 11 afternoon","Sleep 8+ hours each night"] },
