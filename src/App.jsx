@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SUBJECTS } from './data/subjects'
-import { adaptPlanToWindow } from './utils/planEngine'
+import { adaptPlanToWindow, withOriginalTaskRefs } from './utils/planEngine'
 import { useUserData } from './hooks/useUserData'
 import LoadingScreen from './components/LoadingScreen'
 import AuthPage from './screens/AuthPage'
@@ -40,15 +40,14 @@ export default function App() {
   const subjectPlan = data.planSettings[subject.id];
   const planDays = subjectPlan?.durationDays || null;
   const planStart = subjectPlan?.startDate || null;
-  const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : subject.weeks;
+  const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : withOriginalTaskRefs(subject.weeks);
 
   const navigate = (dest, subjectId) => {
     if (subjectId) setActiveSubjectId(subjectId);
     setScreen(dest);
   };
   const openPlanEditor = () => setAdjustingPlan(true);
-  const getTaskKey = (weekId, dayIdx, taskIdx) => `${activeSubjectId}-${weekId}-${dayIdx}-${taskIdx}`;
-  const toggleTask = (weekId, dayIdx, taskIdx) => data.toggleTask(activeSubjectId, weekId, dayIdx, taskIdx);
+  const toggleTask = taskRef => data.toggleTask(subject.id, taskRef);
 
   if (adjustingPlan) {
     return (
@@ -87,7 +86,6 @@ export default function App() {
       adaptedWeeks={adaptedWeeks}
       checked={data.checked}
       toggleTask={toggleTask}
-      getTaskKey={getTaskKey}
       planDays={planDays}
       planStart={planStart}
       onAdjustPlan={openPlanEditor}

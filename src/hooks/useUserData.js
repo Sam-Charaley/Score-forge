@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Auth } from '../services/auth'
 import { supabase } from '../services/supabase'
+import { taskKey } from '../utils/planEngine'
 
 // If Supabase hasn't answered by then, stop showing the loading screen and fall back to the auth page.
 const SESSION_TIMEOUT_MS = 4000
@@ -114,11 +115,11 @@ export function useUserData({ onSignedIn, onSignedOut }) {
     await refreshPlanSettings();
   };
 
-  const toggleTask = async (subjectId, weekId, dayIdx, taskIdx) => {
-    const key = `${subjectId}-${weekId}-${dayIdx}-${taskIdx}`;
+  const toggleTask = async (subjectId, taskRef) => {
+    const key = taskKey(subjectId, taskRef);
     const newDone = !checked[key];
     setChecked(prev => ({ ...prev, [key]: newDone }));
-    await Auth.toggleTask(user.id, subjectId, weekId, dayIdx, taskIdx, newDone);
+    await Auth.toggleTask(user.id, subjectId, taskRef.weekId, taskRef.dayIdx, taskRef.taskIdx, newDone);
     await recordStudyActivity(user.id);
   };
 

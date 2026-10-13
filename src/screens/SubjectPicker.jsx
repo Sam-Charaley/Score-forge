@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { SUBJECTS, EXAM_DATES_CONFIRMED } from '../data/subjects'
-import { fmtDate, addDays, getExamCountdown } from '../utils/planEngine'
+import { fmtDate, addDays, getExamCountdown, todayLocalIsoDate } from '../utils/planEngine'
 
 export default function SubjectPicker({ user, initial, onSave }) {
   const [selected, setSelected] = useState(() => initial || SUBJECTS.map(s => s.id));
@@ -14,7 +14,7 @@ export default function SubjectPicker({ user, initial, onSave }) {
 
   const toggle = id => setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   const selectedSubjects = SUBJECTS.filter(s => selected.includes(s.id));
-  const today = new Date().toISOString().split('T')[0];
+  const today = todayLocalIsoDate();
 
   const handleSave = async () => {
     setSaving(true);

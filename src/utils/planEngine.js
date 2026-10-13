@@ -1,5 +1,41 @@
 import { EXAM_DATES_CONFIRMED } from '../data/subjects';
 
+const MS_PER_DAY = 86400000;
+const DAYS_PER_WEEK = 7;
+const CRASH_COURSE_MAX_DAYS = 7;
+const CRASH_COURSE_TASKS_PER_WEEK = 5;
+const MAX_KEY_RULES_PER_PHASE = 8;
+const ISO_DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+// ─── DATES ──────────────────────────────────────────────────
+// Plan dates are stored as "YYYY-MM-DD" and mean a calendar day where the
+// student lives. `new Date("2026-10-12")` parses that as UTC midnight, which is
+// the previous evening anywhere west of UTC, so every plan date would show a
+// day early in Vancouver. These helpers keep plan dates in local time.
+
+export function parseLocalDate(value) {
+  if (value instanceof Date) return new Date(value.getFullYear(), value.getMonth(), value.getDate());
+  const match = ISO_DATE_PATTERN.exec(value ?? '');
+  if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  const parsed = new Date(value);
+  return new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+}
+
+export function toLocalIsoDate(date) {
+  const pad = n => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+export function todayLocalIsoDate(now = new Date()) {
+  return toLocalIsoDate(now);
+}
+
+// Whole calendar days from `from` to `to`. Rounds rather than floors so a
+// daylight-saving day (23 or 25 hours) still counts as one day.
+export function calendarDaysBetween(from, to) {
+  return Math.round((parseLocalDate(to) - parseLocalDate(from)) / MS_PER_DAY);
+}
+
 export function fmtDate(d) {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
@@ -16,25 +52,65 @@ export function addDays(date, n) {
 // this returns confirmed:false instead of a number, so the UI can show
 // "Dates TBA" rather than a stale or negative day count. Once the dates
 // are confirmed, every caller of this function resumes real countdowns
-// automatically — nothing else needs to change.
-export function getExamCountdown(examDate) {
+// automatically; nothing else needs to change.
+export function getExamCountdown(examDate, now = new Date()) {
   if (!EXAM_DATES_CONFIRMED) {
     return { confirmed: false, days: null, label: 'Dates TBA' };
   }
-  const days = Math.ceil((new Date(examDate) - new Date()) / 86400000);
+  const days = calendarDaysBetween(now, examDate);
   return { confirmed: true, days, label: `${days}d away` };
 }
 
+// ─── TASK IDENTITY ──────────────────────────────────────────
+// A task is identified by where it lives in the ORIGINAL subject data
+// (week id, day index, task index), never by where it lands in an adapted
+// plan. Adapted plans re-slice the same tasks differently for every plan
+// length, so a position-based key would point at a different task as soon
+// as the plan changed. Every adapted day carries `taskRefs`, parallel to
+// `tasks`; a null ref marks a generated task (e.g. a review checklist item)
+// that has no saved progress.
+
+export function taskKey(subjectId, ref) {
+  return `${subjectId}-${ref.weekId}-${ref.dayIdx}-${ref.taskIdx}`;
+}
+
+function refsForDay(weekId, dayIdx, tasks) {
+  return tasks.map((_, taskIdx) => ({ weekId, dayIdx, taskIdx }));
+}
+
+// Used when a subject has no plan: shows the original weeks as-is, with refs.
+export function withOriginalTaskRefs(weeks) {
+  return weeks.map(wk => ({
+    ...wk,
+    _coveredWeekIds: [wk.id],
+    _startOffsetDays: null,
+    days: wk.days.map((d, di) => ({ ...d, taskRefs: refsForDay(wk.id, di, d.tasks) })),
+  }));
+}
+
+// Every original task in a subject, for progress totals.
+export function allTaskRefs(subject) {
+  return subject.weeks.flatMap(wk => wk.days.flatMap((d, di) => refsForDay(wk.id, di, d.tasks)));
+}
+
+// ─── PLAN ADAPTATION ────────────────────────────────────────
+// Splits a subject's weeks into phases that fill exactly `durationDays`.
+// Phase count is derived from how the weeks actually group, so there are
+// never empty trailing phases leaving the end of the plan uncovered.
+function planShape(numOrigWeeks, durationDays) {
+  const requestedPhases = Math.min(Math.max(Math.floor(durationDays / DAYS_PER_WEEK), 1), numOrigWeeks);
+  const weeksPerPhase = Math.ceil(numOrigWeeks / requestedPhases);
+  const numPhases = Math.ceil(numOrigWeeks / weeksPerPhase);
+  const daysPerPhase = durationDays / numPhases;
+  return { weeksPerPhase, numPhases, daysPerPhase };
+}
+
 export function adaptPlanToWindow(subject, durationDays, startDateStr) {
-  const startDate = startDateStr ? new Date(startDateStr) : new Date();
+  const startDate = startDateStr ? parseLocalDate(startDateStr) : parseLocalDate(new Date());
   const origWeeks = subject.weeks;
   const numOrig = origWeeks.length;
-
-  const rawPhases = Math.floor(durationDays / 7);
-  const numPhases = Math.min(Math.max(rawPhases, 1), numOrig);
-  const daysPerPhase = durationDays / numPhases;
-  const weeksPerPhase = Math.ceil(numOrig / numPhases);
-  const isExpanded = durationDays >= numOrig * 7;
+  const { weeksPerPhase, numPhases, daysPerPhase } = planShape(numOrig, durationDays);
+  const isExpanded = durationDays >= numOrig * DAYS_PER_WEEK;
 
   const adapted = [];
 
@@ -42,25 +118,28 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
     const startWkIdx = p * weeksPerPhase;
     const endWkIdx = Math.min(startWkIdx + weeksPerPhase, numOrig);
     const covered = origWeeks.slice(startWkIdx, endWkIdx);
-    if (!covered.length) continue;
 
-    const phaseStart = addDays(startDate, Math.round(p * daysPerPhase));
+    const startOffsetDays = Math.round(p * daysPerPhase);
+    const phaseStart = addDays(startDate, startOffsetDays);
     const phaseEnd = addDays(startDate, Math.round((p + 1) * daysPerPhase) - 1);
     const slots = Math.max(1, Math.round(daysPerPhase));
 
     let mergedDays = [];
 
-    if (durationDays <= 7) {
+    if (durationDays <= CRASH_COURSE_MAX_DAYS) {
       covered.forEach((wk, wi) => {
-        const allTasks = wk.days.flatMap(d => d.tasks).slice(0, 5);
+        const allTasks = wk.days
+          .flatMap((d, di) => d.tasks.map((task, ti) => ({ task, ref: { weekId: wk.id, dayIdx: di, taskIdx: ti } })))
+          .slice(0, CRASH_COURSE_TASKS_PER_WEEK);
         mergedDays.push({
           day: `${fmtDate(addDays(phaseStart, wi))} — ${wk.theme}`,
-          tasks: allTasks,
+          tasks: allTasks.map(t => t.task),
+          taskRefs: allTasks.map(t => t.ref),
           _origWeekId: wk.id,
         });
       });
     } else if (numPhases < numOrig) {
-      const allOrigDays = covered.flatMap(wk => wk.days.map(d => ({ ...d, _origWeekId: wk.id })));
+      const allOrigDays = covered.flatMap(wk => wk.days.map((d, di) => ({ ...d, _origWeekId: wk.id, taskRefs: refsForDay(wk.id, di, d.tasks) })));
       const stride = allOrigDays.length / slots;
       const seen = new Set();
       for (let i = 0; i < slots; i++) {
@@ -80,24 +159,27 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
         mergedDays.push({
           ...d,
           day: `${fmtDate(addDays(phaseStart, di * gapDays))}`,
+          taskRefs: refsForDay(singleWk.id, di, d.tasks),
           _origWeekId: singleWk.id,
         });
       });
       if (isExpanded && daysPerPhase >= singleWk.days.length + 2) {
+        const reviewTasks = [
+          `Re-read your notes from ${singleWk.theme}`,
+          `Complete AP Classroom Progress Check for this unit`,
+          `Write out all Key Rules from memory, then check`,
+          `Do 10 mixed MCQs covering this phase's material`,
+        ];
         mergedDays.push({
           day: `${fmtDate(addDays(phaseEnd, -1))} — 📖 Review & Self-Test`,
-          tasks: [
-            `Re-read your notes from ${singleWk.theme}`,
-            `Complete AP Classroom Progress Check for this unit`,
-            `Write out all Key Rules from memory, then check`,
-            `Do 10 mixed MCQs covering this phase's material`,
-          ],
+          tasks: reviewTasks,
+          taskRefs: reviewTasks.map(() => null),
           _origWeekId: singleWk.id,
         });
       }
     }
 
-    const uniqueRules = [...new Set(covered.flatMap(wk => wk.keyRules || []))].slice(0, 8);
+    const uniqueRules = [...new Set(covered.flatMap(wk => wk.keyRules || []))].slice(0, MAX_KEY_RULES_PER_PHASE);
     const seenUrls = new Set();
     const uniqueResources = covered.flatMap(wk => wk.resources || []).filter(r => {
       if (seenUrls.has(r.url)) return false;
@@ -108,7 +190,7 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
     const tip = covered.map(wk => wk.tip).filter(Boolean).pop() || '';
 
     let phaseLabel;
-    if (durationDays <= 7) phaseLabel = 'Crash Course';
+    if (durationDays <= CRASH_COURSE_MAX_DAYS) phaseLabel = 'Crash Course';
     else if (numPhases === numOrig) phaseLabel = covered[0].label;
     else phaseLabel = `Phase ${p + 1}`;
 
@@ -135,18 +217,24 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
       frq,
       tip,
       _coveredLabels: covered.map(wk => wk.label),
+      _coveredWeekIds: covered.map(wk => wk.id),
+      _startOffsetDays: startOffsetDays,
     });
   }
 
   return adapted;
 }
-export function getCurrentPhaseId(adaptedWeeks, planStartDate) {
-  if (!planStartDate || !adaptedWeeks.length) return adaptedWeeks[0]?.id ?? 1;
-  const today = new Date();
-  const start = new Date(planStartDate);
-  const elapsed = Math.floor((today - start) / 86400000);
-  const total = adaptedWeeks.length;
-  const daysPerPhase = Math.max(1, Math.ceil(elapsed / total));
-  const currentIdx = Math.min(Math.floor(elapsed / daysPerPhase), total - 1);
-  return adaptedWeeks[Math.max(0, currentIdx)]?.id ?? 1;
+
+// The phase whose date range contains today. Before the plan starts this is
+// the first phase; after it ends, the last. Phases without a start offset
+// (a subject with no plan) default to the first.
+export function getCurrentPhaseId(adaptedWeeks, planStartDate, now = new Date()) {
+  if (!adaptedWeeks.length) return 1;
+  if (!planStartDate || adaptedWeeks[0]._startOffsetDays == null) return adaptedWeeks[0].id;
+  const elapsed = calendarDaysBetween(planStartDate, now);
+  let current = adaptedWeeks[0];
+  for (const phase of adaptedWeeks) {
+    if (phase._startOffsetDays <= elapsed) current = phase;
+  }
+  return current.id;
 }

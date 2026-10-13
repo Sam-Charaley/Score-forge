@@ -1,11 +1,9 @@
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { EXAM_DATES_CONFIRMED } from '../data/subjects'
-import { adaptPlanToWindow, getExamCountdown } from '../utils/planEngine'
+import { adaptPlanToWindow, getExamCountdown, todayLocalIsoDate } from '../utils/planEngine'
 
 const DEFAULT_PLAN_DAYS = 42
-
-const todayIsoDate = () => new Date().toISOString().split('T')[0];
 
 export default function AdjustPlanPage({ mySubjects, planSettings, onSavePlanSetting, onClose }) {
   return (
@@ -27,7 +25,7 @@ export default function AdjustPlanPage({ mySubjects, planSettings, onSavePlanSet
               {EXAM_DATES_CONFIRMED ? (
                 <button onClick={async () => {
                   const d = Math.max(1, getExamCountdown(s.examDate).days);
-                  await onSavePlanSetting(s.id, { durationDays: d, startDate: todayIsoDate() });
+                  await onSavePlanSetting(s.id, { durationDays: d, startDate: todayLocalIsoDate() });
                 }} style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '99px', padding: '4px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '10px', color: C.red, fontWeight: 600 }}>
                   🎯 Till exam ({Math.max(1, getExamCountdown(s.examDate).days)}d)
                 </button>
@@ -39,7 +37,7 @@ export default function AdjustPlanPage({ mySubjects, planSettings, onSavePlanSet
               <input type="number" min="1" max="730" value={planSettings[s.id]?.durationDays || DEFAULT_PLAN_DAYS}
                 onChange={async e => {
                   const v = Math.max(1, parseInt(e.target.value) || 1);
-                  await onSavePlanSetting(s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || todayIsoDate() });
+                  await onSavePlanSetting(s.id, { durationDays: v, startDate: planSettings[s.id]?.startDate || todayLocalIsoDate() });
                 }}
                 style={{ width: '80px', textAlign: 'center', fontSize: '22px', fontWeight: 800, color: s.color, background: `${s.color}10`, border: `2px solid ${s.color}25`, borderRadius: '8px', padding: '6px', fontFamily: 'inherit', outline: 'none' }} />
               <span style={{ color: C.muted, fontSize: '12px' }}>days · {adaptPlanToWindow(s, planSettings[s.id]?.durationDays || DEFAULT_PLAN_DAYS, planSettings[s.id]?.startDate).length} phases</span>

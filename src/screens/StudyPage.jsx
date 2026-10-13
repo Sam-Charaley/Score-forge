@@ -3,9 +3,9 @@ import { C } from '../theme'
 import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { Auth } from '../services/auth'
-import { getCurrentPhaseId, getExamCountdown } from '../utils/planEngine'
+import { getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs } from '../utils/planEngine'
 
-export default function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, getTaskKey, planDays, planStart, onAdjustPlan, onBack, onFlashcards, onLibrary, onSubject, mySubjects }) {
+export default function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, planDays, planStart, onAdjustPlan, onBack, onFlashcards, onLibrary, onSubject, mySubjects }) {
   const isMobile = useIsMobile();
   const [activeWeek, setActiveWeek] = useState(() => getCurrentPhaseId(adaptedWeeks, planStart));
   const [activeTab, setActiveTab] = useState('days');
@@ -22,21 +22,9 @@ export default function StudyPage({ user, subject, adaptedWeeks, checked, toggle
     if (user) await Auth.saveNote(user.id, subject.id, w.id, val);
   };
 
-  const weekProgress = wk => {
-    let total = 0, done = 0;
-    wk.days.forEach((day, di) => day.tasks.forEach((_, ti) => {
-      total++; if (checked[getTaskKey(wk.id, di, ti)]) done++;
-    }));
-    return total === 0 ? 0 : Math.round((done / total) * 100);
-  };
-
-  const subjectProgress = () => {
-    let total = 0, done = 0;
-    subject.weeks.forEach(wk => wk.days.forEach((day, di) => day.tasks.forEach((_, ti) => {
-      total++; if (checked[`${subject.id}-${wk.id}-${di}-${ti}`]) done++;
-    })));
-    return total === 0 ? 0 : Math.round((done / total) * 100);
-  };
+  const percentDone = refs => refs.length === 0 ? 0 : Math.round((refs.filter(ref => checked[taskKey(subject.id, ref)]).length / refs.length) * 100);
+  const weekProgress = wk => percentDone(wk.days.flatMap(day => day.taskRefs.filter(Boolean)));
+  const subjectProgress = () => percentDone(allTaskRefs(subject));
 
   const { confirmed: examConfirmed, days: examDays } = getExamCountdown(subject.examDate);
   const tabs = [
@@ -147,10 +135,16 @@ export default function StudyPage({ user, subject, adaptedWeeks, checked, toggle
                     <div key={di} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '14px', overflow: 'hidden' }}>
                       <div style={{ padding: '9px 16px', borderBottom: `1px solid ${C.border}`, color: w.color, fontSize: '11px', fontWeight: 700, background: `${w.color}06` }}>{day.day}</div>
                       {day.tasks.map((task, ti) => {
-                        const key = getTaskKey(w.id, di, ti);
-                        const done = !!checked[key];
+                        const ref = day.taskRefs[ti];
+                        if (!ref) return (
+                          <div key={ti} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 16px', borderBottom: ti < day.tasks.length - 1 ? `1px solid ${C.bg2}` : 'none' }}>
+                            <span style={{ width: '18px', minWidth: '18px', textAlign: 'center', color: w.color, fontWeight: 700 }}>•</span>
+                            <span style={{ fontSize: '13px', color: C.text, lineHeight: '1.6', fontWeight: 500 }}>{task}</span>
+                          </div>
+                        );
+                        const done = !!checked[taskKey(subject.id, ref)];
                         return (
-                          <div key={ti} onClick={() => toggleTask(w.id, di, ti)}
+                          <div key={ti} onClick={() => toggleTask(ref)}
                             style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', padding: '10px 16px', borderBottom: ti < day.tasks.length - 1 ? `1px solid ${C.bg2}` : 'none', cursor: 'pointer', background: done ? `${w.color}05` : 'transparent' }}>
                             <div style={{ width: '18px', height: '18px', minWidth: '18px', borderRadius: '6px', marginTop: '1px', border: `1.5px solid ${done ? w.color : C.border2}`, background: done ? w.color : C.white, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                               {done && <span style={{ color: 'white', fontSize: '9px', fontWeight: 900 }}>✓</span>}

@@ -3,15 +3,14 @@ import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { FLASHCARDS } from '../data/flashcards'
 import { EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from '../data/subjects'
-import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown } from '../utils/planEngine'
+import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs } from '../utils/planEngine'
 
 export default function HomePage({ username, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {
   const isMobile = useIsMobile();
   const allProgress = mySubjects.map(s => {
-    let total = 0, done = 0;
-    s.weeks.forEach(wk => wk.days.forEach((day, di) => day.tasks.forEach((_, ti) => {
-      total++; if (checked[`${s.id}-${wk.id}-${di}-${ti}`]) done++;
-    })));
+    const refs = allTaskRefs(s);
+    const total = refs.length;
+    const done = refs.filter(ref => checked[taskKey(s.id, ref)]).length;
     return { ...s, total, done, pct: total === 0 ? 0 : Math.round((done / total) * 100) };
   });
   const totalDone = allProgress.reduce((a, s) => a + s.done, 0);
