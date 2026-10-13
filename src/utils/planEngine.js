@@ -242,3 +242,28 @@ export function getCurrentPhaseId(adaptedWeeks, planStartDate, now = new Date())
   }
   return current.id;
 }
+
+// ─── FOCUS PICKING ──────────────────────────────────────────
+// How far a planned subject is behind schedule: the share of plan time used
+// minus the share of the plan's tasks done. Positive means behind.
+export function scheduleStatus(subject, plan, checked, now = new Date()) {
+  if (!plan?.durationDays || !plan.startDate) return null;
+  const refs = adaptPlanToWindow(subject, plan.durationDays, plan.startDate)
+    .flatMap(phase => phase.days.flatMap(day => day.taskRefs.filter(Boolean)));
+  if (refs.length === 0) return null;
+  const doneShare = refs.filter(ref => checked[taskKey(subject.id, ref)]).length / refs.length;
+  const elapsedDays = calendarDaysBetween(plan.startDate, now);
+  const timeShare = Math.min(Math.max(elapsedDays / plan.durationDays, 0), 1);
+  return { subject, plan, doneShare, timeShare, gap: timeShare - doneShare };
+}
+
+// The planned subject furthest behind schedule; on a tie, the earlier one in
+// the student's list. Null when no subject has a plan.
+export function pickFurthestBehind(subjects, planSettings, checked, now = new Date()) {
+  let furthest = null;
+  for (const subject of subjects) {
+    const status = scheduleStatus(subject, planSettings[subject.id], checked, now);
+    if (status && (!furthest || status.gap > furthest.gap)) furthest = status;
+  }
+  return furthest;
+}

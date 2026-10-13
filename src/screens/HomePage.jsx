@@ -3,7 +3,7 @@ import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { FLASHCARDS } from '../data/flashcards'
 import { EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from '../data/subjects'
-import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs } from '../utils/planEngine'
+import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs, pickFurthestBehind } from '../utils/planEngine'
 
 export default function HomePage({ username, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {
   const isMobile = useIsMobile();
@@ -24,7 +24,10 @@ export default function HomePage({ username, checked, mySubjects, planSettings, 
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
   const displayName = username || 'there';
 
-  const todayFocusSubject = nextExam;
+  // Next exam when dates are confirmed; until then, the planned subject furthest behind schedule.
+  const behind = nextExam ? null : pickFurthestBehind(mySubjects, planSettings, checked);
+  const todayFocusSubject = nextExam ?? behind?.subject;
+  const focusReason = behind ? `${Math.round(behind.doneShare * 100)}% of tasks done · ${Math.round(behind.timeShare * 100)}% of plan time used` : null;
   const todayFocusPlan = todayFocusSubject ? planSettings[todayFocusSubject.id] : null;
   const todayAdapted = todayFocusSubject && todayFocusPlan ? adaptPlanToWindow(todayFocusSubject, todayFocusPlan.durationDays, todayFocusPlan.startDate) : null;
   const currentPhaseId = todayAdapted ? getCurrentPhaseId(todayAdapted, todayFocusPlan?.startDate) : null;
@@ -81,6 +84,7 @@ export default function HomePage({ username, checked, mySubjects, planSettings, 
                 <div>
                   <div style={{ fontSize: '15px', fontWeight: 700, color: C.text, marginBottom: '2px' }}>{currentPhase.label}: {currentPhase.theme}</div>
                   <div style={{ fontSize: '12px', color: C.muted }}>{currentPhase.dates} · {currentPhase.examWeight} of exam</div>
+                  {focusReason && <div style={{ fontSize: '11px', color: behind.gap > 0 ? '#9A3412' : C.muted, marginTop: '4px', fontWeight: 600 }}>{behind.gap > 0 ? 'Furthest behind: ' : 'On track: '}{focusReason}</div>}
                 </div>
                 <button onClick={() => onNavigate('study', todayFocusSubject.id)} style={{ background: todayFocusSubject.color, border: 'none', borderRadius: '10px', color: 'white', fontSize: '12px', fontWeight: 600, padding: '9px 18px', cursor: 'pointer', fontFamily: 'inherit' }}>Continue →</button>
               </div>

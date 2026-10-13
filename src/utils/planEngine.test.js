@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { SUBJECTS } from '../data/subjects'
 import {
   adaptPlanToWindow, getCurrentPhaseId, withOriginalTaskRefs, allTaskRefs, taskKey,
-  parseLocalDate, todayLocalIsoDate, calendarDaysBetween, getExamCountdown,
+  parseLocalDate, todayLocalIsoDate, calendarDaysBetween, getExamCountdown, pickFurthestBehind, scheduleStatus,
 } from './planEngine'
 
 const PLAN_LENGTHS = Array.from({ length: 120 }, (_, i) => i + 1);
@@ -143,5 +143,36 @@ describe('getExamCountdown', () => {
     const { getExamCountdown: confirmedCountdown } = await import('./planEngine');
     expect(confirmedCountdown('2027-05-14', new Date(2027, 4, 4, 22, 0)).days).toBe(10);
     vi.doUnmock('../data/subjects');
+  });
+});
+
+describe('pickFurthestBehind', () => {
+  const csa = SUBJECTS.find(s => s.id === 'csa');
+  const psych = SUBJECTS.find(s => s.id === 'psych');
+  const plans = { csa: { durationDays: 40, startDate: '2026-10-01' }, psych: { durationDays: 40, startDate: '2026-10-01' } };
+  const day20 = parseLocalDate('2026-10-21');
+  const tickFirst = (subject, share) => {
+    const refs = adaptPlanToWindow(subject, 40, '2026-10-01').flatMap(p => p.days.flatMap(d => d.taskRefs.filter(Boolean)));
+    return Object.fromEntries(refs.slice(0, Math.round(refs.length * share)).map(r => [taskKey(subject.id, r), true]));
+  };
+
+  it('picks the subject with the biggest gap between time used and tasks done', () => {
+    const checked = { ...tickFirst(csa, 0.5), ...tickFirst(psych, 0.1) };
+    const pick = pickFurthestBehind([csa, psych], plans, checked, day20);
+    expect(pick.subject.id).toBe('psych');
+    expect(pick.timeShare).toBeCloseTo(0.5);
+    expect(pick.doneShare).toBeCloseTo(0.1, 1);
+  });
+  it('breaks ties by list order', () => {
+    expect(pickFurthestBehind([csa, psych], plans, {}, day20).subject.id).toBe('csa');
+    expect(pickFurthestBehind([psych, csa], plans, {}, day20).subject.id).toBe('psych');
+  });
+  it('ignores subjects without a plan and returns null when none are planned', () => {
+    expect(pickFurthestBehind([csa, psych], { psych: plans.psych }, {}, day20).subject.id).toBe('psych');
+    expect(pickFurthestBehind([csa, psych], {}, {}, day20)).toBeNull();
+  });
+  it('caps time used at 100% after the plan ends and 0% before it starts', () => {
+    expect(scheduleStatus(csa, plans.csa, {}, parseLocalDate('2027-03-01')).timeShare).toBe(1);
+    expect(scheduleStatus(csa, plans.csa, {}, parseLocalDate('2026-09-01')).timeShare).toBe(0);
   });
 });
