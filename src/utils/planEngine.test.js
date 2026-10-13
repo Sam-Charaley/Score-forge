@@ -13,28 +13,34 @@ function originalTaskText(subject, ref) {
 }
 
 describe('task identity in adapted plans', () => {
+  // These sweep every subject x every plan length, so they collect problems
+  // and assert once; thousands of individual expect() calls are slow.
   it.each(SUBJECTS.map(s => [s.id, s]))('%s: every shown task points at the original task with the same text, for every plan length', (_, subject) => {
+    const problems = [];
     for (const days of PLAN_LENGTHS) {
       for (const phase of adaptPlanToWindow(subject, days, START)) {
         for (const day of phase.days) {
-          expect(day.taskRefs).toHaveLength(day.tasks.length);
+          if (day.taskRefs.length !== day.tasks.length) problems.push(`${days}d: refs/tasks length mismatch on "${day.day}"`);
           day.tasks.forEach((task, i) => {
             const ref = day.taskRefs[i];
-            if (ref) expect(originalTaskText(subject, ref)).toBe(task);
+            if (ref && originalTaskText(subject, ref) !== task) problems.push(`${days}d: ${JSON.stringify(ref)} -> "${originalTaskText(subject, ref)}" but shows "${task}"`);
           });
         }
       }
     }
+    expect(problems).toEqual([]);
   });
 
   it('no task appears twice within one plan', () => {
+    const problems = [];
     for (const subject of SUBJECTS) {
       for (const days of PLAN_LENGTHS) {
         const keys = adaptPlanToWindow(subject, days, START)
           .flatMap(p => p.days.flatMap(d => d.taskRefs.filter(Boolean).map(r => taskKey(subject.id, r))));
-        expect(new Set(keys).size).toBe(keys.length);
+        if (new Set(keys).size !== keys.length) problems.push(`${subject.id} ${days}d`);
       }
     }
+    expect(problems).toEqual([]);
   });
 
   it('a tick keeps pointing at the same task when the plan length changes', () => {
@@ -65,17 +71,18 @@ describe('task identity in adapted plans', () => {
 
 describe('phase coverage', () => {
   it('phases never leave the end of the plan uncovered', () => {
+    const problems = [];
     for (const subject of SUBJECTS) {
       for (const days of PLAN_LENGTHS) {
         const phases = adaptPlanToWindow(subject, days, START);
-        expect(phases.length).toBeGreaterThan(0);
-        expect(phases.every(p => p.days.length > 0)).toBe(true);
+        if (phases.length === 0 || phases.some(p => p.days.length === 0)) { problems.push(`${subject.id} ${days}d: empty phase`); continue; }
         const lastStart = phases[phases.length - 1]._startOffsetDays;
         const phaseLength = days / phases.length;
         // The last phase starts one phase-length (give or take rounding) before the plan ends.
-        expect(Math.abs(lastStart + phaseLength - days)).toBeLessThanOrEqual(0.5);
+        if (Math.abs(lastStart + phaseLength - days) > 0.5) problems.push(`${subject.id} ${days}d: last phase starts day ${lastStart}`);
       }
     }
+    expect(problems).toEqual([]);
   });
 
   it('42-day plan for a 10-week course covers all 42 days', () => {

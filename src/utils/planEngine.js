@@ -36,8 +36,12 @@ export function calendarDaysBetween(from, to) {
   return Math.round((parseLocalDate(to) - parseLocalDate(from)) / MS_PER_DAY);
 }
 
+// Building a formatter is the expensive part of toLocaleDateString, and plans
+// format dozens of dates per render, so one shared instance is reused.
+const SHORT_DATE_FORMAT = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+
 export function fmtDate(d) {
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return SHORT_DATE_FORMAT.format(d);
 }
 
 export function addDays(date, n) {
