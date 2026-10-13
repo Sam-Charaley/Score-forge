@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { SUBJECT_INDEX } from './subjectIndex'
+import { SUBJECT_INDEX, EXAM_CYCLE_YEAR } from './subjectIndex'
 import { loadAllSubjects, loadSubject, SubjectLoadError } from './subjectLoader'
 import { FLASHCARDS } from './flashcards'
 
@@ -21,6 +21,15 @@ describe('subject index', () => {
     expect(new Set(ids).size).toBe(ids.length);
     SUBJECT_INDEX.forEach(meta => REQUIRED_INDEX_FIELDS.forEach(f => expect(meta[f], `${meta.id}.${f}`).toBeDefined()));
   });
+  it('exam dates match the cycle year and the date shown in examInfo', () => {
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const problems = SUBJECT_INDEX.filter(({ examDate, examInfo }) => {
+      const [year, month, day] = examDate.split('-').map(Number);
+      return year !== EXAM_CYCLE_YEAR || !examInfo.startsWith(`${MONTHS[month - 1]} ${day}, ${year} ·`);
+    }).map(s => `${s.id}: ${s.examDate} vs "${s.examInfo}"`);
+    expect(problems).toEqual([]);
+  });
+
   it('matches the content files one to one', () => {
     const fileIds = Object.keys(contentFiles).map(p => p.match(/\.\/subjects\/(.+)\.js$/)[1]).sort();
     expect(fileIds).toEqual(SUBJECT_INDEX.map(s => s.id).sort());

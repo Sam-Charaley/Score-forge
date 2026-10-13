@@ -135,8 +135,12 @@ describe('local dates', () => {
 });
 
 describe('getExamCountdown', () => {
-  it('reports TBA while dates are unconfirmed', () => {
-    expect(getExamCountdown('2027-05-14')).toEqual({ confirmed: false, days: null, label: 'Dates TBA' });
+  it('reports TBA while dates are unconfirmed', async () => {
+    vi.resetModules();
+    vi.doMock('../data/subjectIndex', () => ({ EXAM_DATES_CONFIRMED: false }));
+    const { getExamCountdown: unconfirmedCountdown } = await import('./planEngine');
+    expect(unconfirmedCountdown('2027-05-14')).toEqual({ confirmed: false, days: null, label: 'Dates TBA' });
+    vi.doUnmock('../data/subjectIndex');
   });
   it('counts calendar days once dates are confirmed', async () => {
     vi.resetModules();
