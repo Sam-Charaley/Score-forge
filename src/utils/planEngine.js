@@ -77,7 +77,6 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
       const singleWk = covered[0];
       const gapDays = Math.max(1, Math.floor(daysPerPhase / Math.max(singleWk.days.length, 1)));
       singleWk.days.forEach((d, di) => {
-        const origParts = d.day.split(' ').slice(1).join(' ');
         mergedDays.push({
           ...d,
           day: `${fmtDate(addDays(phaseStart, di * gapDays))}`,
