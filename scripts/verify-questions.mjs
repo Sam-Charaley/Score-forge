@@ -32,7 +32,8 @@ async function loadQuestions() {
 function runJava(code) {
   const dir = mkdtempSync(path.join(tmpdir(), 'sf-q-'));
   try {
-    const source = `public class Main {\n    public static void main(String[] args) {\n${code}\n    }\n}\n`;
+    // java.util covers ArrayList and friends; AP code assumes those imports.
+    const source = `import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n${code}\n    }\n}\n`;
     writeFileSync(path.join(dir, 'Main.java'), source);
     execFileSync('javac', ['Main.java'], { cwd: dir, stdio: 'pipe', timeout: RUN_TIMEOUT_MS });
     return execFileSync('java', ['-cp', dir, 'Main'], { cwd: dir, encoding: 'utf8', timeout: RUN_TIMEOUT_MS, stdio: ['ignore', 'pipe', 'pipe'] });
