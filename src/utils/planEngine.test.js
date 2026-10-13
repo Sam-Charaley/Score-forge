@@ -1,10 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
-import { SUBJECTS } from '../data/subjects'
+import { loadAllSubjects } from '../data/subjectLoader'
 import {
   adaptPlanToWindow, getCurrentPhaseId, withOriginalTaskRefs, allTaskRefs, taskKey,
   parseLocalDate, todayLocalIsoDate, calendarDaysBetween, getExamCountdown, pickFurthestBehind, scheduleStatus,
 } from './planEngine'
 
+const SUBJECTS = await loadAllSubjects();
 const PLAN_LENGTHS = Array.from({ length: 120 }, (_, i) => i + 1);
 const START = '2026-10-01';
 
@@ -139,10 +140,10 @@ describe('getExamCountdown', () => {
   });
   it('counts calendar days once dates are confirmed', async () => {
     vi.resetModules();
-    vi.doMock('../data/subjects', () => ({ EXAM_DATES_CONFIRMED: true }));
+    vi.doMock('../data/subjectIndex', () => ({ EXAM_DATES_CONFIRMED: true }));
     const { getExamCountdown: confirmedCountdown } = await import('./planEngine');
     expect(confirmedCountdown('2027-05-14', new Date(2027, 4, 4, 22, 0)).days).toBe(10);
-    vi.doUnmock('../data/subjects');
+    vi.doUnmock('../data/subjectIndex');
   });
 });
 

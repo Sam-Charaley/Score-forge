@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { C } from '../theme'
 import Btn from '../components/Btn'
-import { EXAM_DATES_CONFIRMED } from '../data/subjects'
+import { EXAM_DATES_CONFIRMED } from '../data/subjectIndex'
 import { adaptPlanToWindow, getExamCountdown, todayLocalIsoDate } from '../utils/planEngine'
 
 const DEFAULT_PLAN_DAYS = 42

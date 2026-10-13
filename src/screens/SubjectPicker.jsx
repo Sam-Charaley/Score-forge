@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { C } from '../theme'
 import Btn from '../components/Btn'
-import { SUBJECTS, EXAM_DATES_CONFIRMED } from '../data/subjects'
+import { SUBJECT_INDEX as SUBJECTS, EXAM_DATES_CONFIRMED } from '../data/subjectIndex'
 import { fmtDate, addDays, getExamCountdown, todayLocalIsoDate } from '../utils/planEngine'
 
 const DEFAULT_PLAN_DAYS = 42

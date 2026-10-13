@@ -2,7 +2,7 @@ import { C } from '../theme'
 import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { FLASHCARDS } from '../data/flashcards'
-import { EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from '../data/subjects'
+import { EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from '../data/subjectIndex'
 import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs, pickFurthestBehind } from '../utils/planEngine'
 
 export default function HomePage({ username, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {

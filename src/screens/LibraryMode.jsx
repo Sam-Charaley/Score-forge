@@ -1,20 +1,25 @@
 import { useState, useMemo } from 'react'
 import { C } from '../theme'
-import { SUBJECTS } from '../data/subjects'
+import { SUBJECT_INDEX as SUBJECTS } from '../data/subjectIndex'
+import { useSubjectContent } from '../hooks/useSubjectContent'
+
+const ALL_SUBJECT_IDS = SUBJECTS.map(meta => meta.id)
 
 export default function LibraryMode({ onBack }) {
   const [filterSubject, setFilterSubject] = useState('all');
   const [filterTag, setFilterTag] = useState('all');
   const [search, setSearch] = useState('');
+  // The library spans every subject, so it loads all content, but only when opened.
+  const content = useSubjectContent(ALL_SUBJECT_IDS);
 
   const allResources = useMemo(() => {
     const list = [];
-    SUBJECTS.forEach(sub => {
+    (content.subjects ?? []).forEach(sub => {
       (sub.globalResources || []).forEach(r => list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color }));
       sub.weeks.forEach(wk => (wk.resources || []).forEach(r => { if (!list.find(x => x.url === r.url)) list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color, tag: r.tag || 'Week' }); }));
     });
     return list;
-  }, []);
+  }, [content.subjects]);
 
   const allTags = useMemo(() => { const tags = new Set(allResources.map(r => r.tag).filter(Boolean)); return ['all', ...Array.from(tags).sort()]; }, [allResources]);
   const tagColor = { Official: '#2563eb', Free: '#16a34a', Practice: '#d97706', Video: '#db2777', Tool: '#7c3aed', Reference: '#ea580c', Week: C.muted };
@@ -51,7 +56,11 @@ export default function LibraryMode({ onBack }) {
               <button key={tag} onClick={() => setFilterTag(tag)} style={{ background: filterTag === tag ? `${tagColor[tag] || C.muted}15` : 'transparent', border: `1px solid ${filterTag === tag ? (tagColor[tag] || C.muted) : C.border}`, borderRadius: '10px', color: filterTag === tag ? (tagColor[tag] || C.text) : C.muted, fontSize: '10px', padding: '4px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{tag === 'all' ? 'All Types' : tag}</button>
             ))}
           </div>
-          {filtered.length === 0 ? (
+          {content.error ? (
+            <div style={{ color: C.red, fontSize: '13px', textAlign: 'center', padding: '40px' }}>{content.error.message} <button onClick={() => window.location.reload()} style={{ background: 'none', border: 'none', color: C.red, textDecoration: 'underline', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px' }}>Reload</button></div>
+          ) : !content.subjects ? (
+            <div style={{ color: C.muted, fontSize: '13px', textAlign: 'center', padding: '40px' }}>Loading resources…</div>
+          ) : filtered.length === 0 ? (
             <div style={{ color: C.muted, fontSize: '13px', textAlign: 'center', padding: '40px' }}>No resources match.</div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '10px' }}>

@@ -46,8 +46,9 @@ export function useUserData({ onSignedIn, onSignedOut }) {
     }
   };
 
+  // `user` is only set once everything else has arrived, so no screen ever sees
+  // a signed-in user with a half-loaded state (e.g. no subject list yet).
   const loadUserData = async (sessionUser) => {
-    setUser(sessionUser);
     setLoadError(null);
     try {
       const prof = await loadProfile(sessionUser);
@@ -57,6 +58,7 @@ export function useUserData({ onSignedIn, onSignedOut }) {
         Auth.getPlanSettings(sessionUser.id),
         Auth.getStreak(sessionUser.id),
       ]);
+      setUser(sessionUser);
       setProfile(prof);
       setUsername(prof?.username || fallbackUsername(sessionUser));
       setSelectedIds(subs);
@@ -65,6 +67,7 @@ export function useUserData({ onSignedIn, onSignedOut }) {
       setStreak(str);
       return { ok: true, hasPickedSubjects: Boolean(subs) };
     } catch (error) {
+      setUser(sessionUser);
       setLoadError(error.message);
       return { ok: false };
     }

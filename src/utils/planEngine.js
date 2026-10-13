@@ -1,4 +1,4 @@
-import { EXAM_DATES_CONFIRMED } from '../data/subjects';
+import { EXAM_DATES_CONFIRMED } from '../data/subjectIndex';
 
 const MS_PER_DAY = 86400000;
 const DAYS_PER_WEEK = 7;

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { Auth } from '../services/auth'
-import { SUBJECTS } from '../data/subjects'
+import { SUBJECT_INDEX as SUBJECTS } from '../data/subjectIndex'
 
 export default function AuthPage({ onAuth }) {
   const [tab, setTab] = useState('login');

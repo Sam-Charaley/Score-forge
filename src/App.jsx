@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { SUBJECTS } from './data/subjects'
+import { SUBJECT_INDEX } from './data/subjectIndex'
 import { adaptPlanToWindow, withOriginalTaskRefs } from './utils/planEngine'
 import { useUserData } from './hooks/useUserData'
+import { useSubjectContent } from './hooks/useSubjectContent'
 import LoadingScreen from './components/LoadingScreen'
 import LoadErrorScreen from './components/LoadErrorScreen'
 import SaveErrorBanner from './components/SaveErrorBanner'
@@ -15,6 +16,15 @@ import AccountPage from './screens/AccountPage'
 import AdjustPlanPage from './screens/AdjustPlanPage'
 
 const DEFAULT_SUBJECT_ID = 'csa'
+const KNOWN_SUBJECT_IDS = SUBJECT_INDEX.map(meta => meta.id)
+
+// The subjects whose content the current screen needs. Nothing loads before
+// sign-in or on the picker, which only needs the index.
+function subjectIdsToLoad(data, screen) {
+  if (!data.user || data.loadError || screen === 'picker') return [];
+  const selected = (data.selectedIds ?? []).filter(id => KNOWN_SUBJECT_IDS.includes(id));
+  return selected.length > 0 ? selected : KNOWN_SUBJECT_IDS;
+}
 
 export default function App() {
   const [screen, setScreen] = useState('home');
@@ -25,6 +35,7 @@ export default function App() {
     onSignedIn: hasPickedSubjects => setScreen(hasPickedSubjects ? 'home' : 'picker'),
     onSignedOut: () => setScreen('home'),
   });
+  const content = useSubjectContent(subjectIdsToLoad(data, screen));
 
   const renderScreen = () => {
     if (data.loading) return <LoadingScreen />;
@@ -40,7 +51,12 @@ export default function App() {
 
     if (screen === 'picker') return <SubjectPicker initial={data.selectedIds} existingPlans={data.planSettings} onSave={handlePickerSave} />;
 
-    const mySubjects = data.selectedIds && data.selectedIds.length > 0 ? SUBJECTS.filter(s => data.selectedIds.includes(s.id)) : SUBJECTS;
+    if (content.error) {
+      return <LoadErrorScreen message={`${content.error.message} ScoreForge may have just been updated.`} onRetry={() => window.location.reload()} onSignOut={data.signOut} />;
+    }
+    if (!content.subjects) return <LoadingScreen />;
+
+    const mySubjects = content.subjects;
     const subject = mySubjects.find(s => s.id === activeSubjectId) || mySubjects[0];
     const subjectPlan = data.planSettings[subject.id];
     const planDays = subjectPlan?.durationDays || null;
