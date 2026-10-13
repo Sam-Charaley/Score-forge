@@ -17,7 +17,9 @@ function hasJdk() {
 
 async function loadQuestions() {
   const all = [];
-  for (const subject of readdirSync(QUESTIONS_ROOT)) {
+  // Subject banks are the folders; files at this level (the loader, its tests) are skipped.
+  const subjects = readdirSync(QUESTIONS_ROOT, { withFileTypes: true }).filter(entry => entry.isDirectory()).map(entry => entry.name);
+  for (const subject of subjects) {
     for (const file of readdirSync(path.join(QUESTIONS_ROOT, subject))) {
       if (file === 'topics.js' || file.endsWith('.test.js') || !file.endsWith('.js')) continue;
       const module = await import(pathToFileURL(path.join(QUESTIONS_ROOT, subject, file)));
