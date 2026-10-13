@@ -1,26 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
-import { Auth } from '../services/auth'
+import { useWeekNote, NOTE_STATUS } from '../hooks/useWeekNote'
 import { getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs } from '../utils/planEngine'
 
-export default function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, planDays, planStart, onAdjustPlan, onBack, onFlashcards, onLibrary, onSubject, mySubjects }) {
+export default function StudyPage({ user, subject, adaptedWeeks, checked, toggleTask, onSaveNote, planDays, planStart, onAdjustPlan, onBack, onFlashcards, onLibrary, onSubject, mySubjects }) {
   const isMobile = useIsMobile();
   const [activeWeek, setActiveWeek] = useState(() => getCurrentPhaseId(adaptedWeeks, planStart));
   const [activeTab, setActiveTab] = useState('days');
-  const [noteText, setNoteText] = useState('');
   const w = adaptedWeeks.find(wk => wk.id === activeWeek) || adaptedWeeks[0];
 
-  useEffect(() => {
-    if (!user || !w) return;
-    Auth.getNote(user.id, subject.id, w.id).then(setNoteText);
-  }, [activeWeek, subject.id, user]);
-
-  const saveNote = async (val) => {
-    setNoteText(val);
-    if (user) await Auth.saveNote(user.id, subject.id, w.id, val);
-  };
+  // Notes belong to the first original week a phase covers, so they stay put when the plan length changes.
+  const noteWeekId = w?._coveredWeekIds?.[0] ?? w?.id;
+  const note = useWeekNote({ userId: user?.id, subjectId: subject.id, weekId: noteWeekId, saveNote: onSaveNote });
+  const noteStatusLabel = {
+    [NOTE_STATUS.loading]: 'loading…',
+    [NOTE_STATUS.idle]: '',
+    [NOTE_STATUS.saving]: 'saving…',
+    [NOTE_STATUS.saved]: '✓ saved',
+    [NOTE_STATUS.error]: '⚠ not saved',
+    [NOTE_STATUS.loadError]: "⚠ couldn't load",
+  }[note.status];
 
   const percentDone = refs => refs.length === 0 ? 0 : Math.round((refs.filter(ref => checked[taskKey(subject.id, ref)]).length / refs.length) * 100);
   const weekProgress = wk => percentDone(wk.days.flatMap(day => day.taskRefs.filter(Boolean)));
@@ -218,15 +219,15 @@ export default function StudyPage({ user, subject, adaptedWeeks, checked, toggle
                   <div style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '14px', overflow: 'hidden' }}>
                     <div style={{ padding: '10px 16px', borderBottom: `1px solid ${C.border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: C.bg }}>
                       <span style={{ fontSize: '11px', fontWeight: 700, color: C.text2 }}>📝 Notes for {w.label}</span>
-                      <span style={{ fontSize: '10px', color: C.muted }}>auto-saved</span>
+                      <span style={{ fontSize: '10px', color: note.status === NOTE_STATUS.error || note.status === NOTE_STATUS.loadError ? C.red : C.muted }}>{noteStatusLabel}</span>
                     </div>
-                    <textarea value={noteText} onChange={e => saveNote(e.target.value)}
-                      placeholder={`Write anything about ${w.theme}...`}
+                    <textarea value={note.text} onChange={e => note.updateText(e.target.value)} disabled={!note.canEdit}
+                      placeholder={note.status === NOTE_STATUS.loadError ? "Couldn't load your notes. Reopen this tab to try again." : `Write anything about ${w.theme}...`}
                       style={{ width: '100%', minHeight: '300px', padding: '16px', background: C.white, border: 'none', outline: 'none', fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: '13px', color: C.text, lineHeight: '1.8', resize: 'vertical' }} />
                   </div>
-                  {noteText.length > 0 && (
+                  {note.canEdit && note.text.length > 0 && (
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <button onClick={() => { if (window.confirm('Clear notes for this week?')) saveNote(''); }}
+                      <button onClick={() => { if (window.confirm('Clear notes for this week?')) note.updateText(''); }}
                         style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: C.muted }}>Clear notes</button>
                     </div>
                   )}

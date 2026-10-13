@@ -76,7 +76,7 @@ export default function AccountPage({ user, profile, onBack, onLogout, onProgres
               <div style={{ background: '#FEF2F2', border: `1px solid ${C.redMid}`, borderRadius: '14px', padding: '20px' }}>
                 <div style={{ color: C.red, fontSize: '11px', letterSpacing: '1.2px', textTransform: 'uppercase', fontWeight: 700, marginBottom: '12px' }}>⚠ Danger Zone</div>
                 <div style={{ color: C.text2, fontSize: '12px', marginBottom: '14px', lineHeight: '1.7' }}>Reset all study progress. Your account is not affected.</div>
-                <button onClick={async () => { if (!confirmReset) { setConfirmReset(true); return; } await Auth.resetProgress(user.id); onProgressReset(); setConfirmReset(false); }}
+                <button onClick={async () => { if (!confirmReset) { setConfirmReset(true); return; } await onProgressReset(); setConfirmReset(false); }}
                   style={{ background: confirmReset ? C.red : 'transparent', border: `1px solid ${C.red}`, borderRadius: '10px', color: confirmReset ? 'white' : C.red, fontSize: '12px', padding: '9px 20px', cursor: 'pointer', fontFamily: 'inherit', fontWeight: confirmReset ? 700 : 400 }}>
                   {confirmReset ? '⚠ Click again to confirm' : 'Reset All Progress'}
                 </button>

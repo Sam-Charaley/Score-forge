@@ -1,23 +1,36 @@
 import { supabase } from './supabase'
 
-export const Auth = {
-  async getSession() {
-    const { data } = await supabase.auth.getSession()
-    return data.session?.user ?? null
-  },
+const USERNAME_MIN_LENGTH = 2;
+const USERNAME_PATTERN = /^[a-zA-Z0-9_]+$/;
 
-  async onAuthChange(callback) {
-    supabase.auth.onAuthStateChange((_event, session) => {
-      callback(session?.user ?? null)
+// Every data call goes through this, so a failed request surfaces as an
+// exception the UI can report instead of looking like an empty result.
+function unwrap({ data, error }, action) {
+  if (error) throw new Error(`Couldn't ${action}. ${error.message}`);
+  return data;
+}
+
+export const Auth = {
+  // Returns an unsubscribe function. The callback is deferred a tick because
+  // Supabase holds its auth lock while notifying listeners, and making
+  // Supabase calls inside that window can deadlock (see supabase-js docs).
+  onAuthChange(callback) {
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      setTimeout(() => callback(session?.user ?? null), 0)
     })
+    return () => data.subscription.unsubscribe()
   },
 
   async signup(email, password, username) {
-    if (!username || username.length < 2) return { ok: false, error: 'Username must be at least 2 characters.' }
-    if (!/^[a-zA-Z0-9_]+$/.test(username)) return { ok: false, error: 'Username can only contain letters, numbers, and underscores.' }
-    const { data: existing } = await supabase.from('profiles').select('id').eq('username', username).single()
+    if (!username || username.length < USERNAME_MIN_LENGTH) return { ok: false, error: `Username must be at least ${USERNAME_MIN_LENGTH} characters.` }
+    if (!USERNAME_PATTERN.test(username)) return { ok: false, error: 'Username can only contain letters, numbers, and underscores.' }
+    const { data: existing, error: lookupError } = await supabase.from('profiles').select('id').eq('username', username).maybeSingle()
+    if (lookupError) return { ok: false, error: lookupError.message }
     if (existing) return { ok: false, error: 'Username already taken.' }
-    const { data, error } = await supabase.auth.signUp({ email, password })
+    // The username also rides along in user_metadata: with email confirmation
+    // on there's no session yet, so the profile insert below can be refused by
+    // RLS, and first login rebuilds the profile from this.
+    const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { username } } })
     if (error) return { ok: false, error: error.message }
     await supabase.from('profiles').insert({ id: data.user.id, username })
     return { ok: true, user: data.user, username }
@@ -43,8 +56,11 @@ export const Auth = {
   },
 
   async getProfile(userId) {
-    const { data } = await supabase.from('profiles').select('*').eq('id', userId).single()
-    return data
+    return unwrap(await supabase.from('profiles').select('*').eq('id', userId).maybeSingle(), 'load your profile')
+  },
+
+  async createProfile(userId, username) {
+    return unwrap(await supabase.from('profiles').insert({ id: userId, username }).select().single(), 'create your profile')
   },
 
   async updatePassword(newPassword) {
@@ -54,25 +70,25 @@ export const Auth = {
   },
 
   async getSubjects(userId) {
-    const { data } = await supabase.from('selected_subjects').select('subject_ids').eq('user_id', userId).single()
+    const data = unwrap(await supabase.from('selected_subjects').select('subject_ids').eq('user_id', userId).maybeSingle(), 'load your subjects')
     return data?.subject_ids ?? null
   },
 
   async saveSubjects(userId, ids) {
-    await supabase.from('selected_subjects').upsert({ user_id: userId, subject_ids: ids, updated_at: new Date() })
+    unwrap(await supabase.from('selected_subjects').upsert({ user_id: userId, subject_ids: ids, updated_at: new Date() }), 'save your subjects')
   },
 
   async getChecked(userId) {
-    const { data } = await supabase.from('progress').select('*').eq('user_id', userId)
+    const data = unwrap(await supabase.from('progress').select('*').eq('user_id', userId), 'load your progress')
     const result = {}
-    data?.forEach(row => {
+    data.forEach(row => {
       if (row.done) result[`${row.subject_id}-${row.week_id}-${row.day_index}-${row.task_index}`] = true
     })
     return result
   },
 
   async toggleTask(userId, subjectId, weekId, dayIndex, taskIndex, done) {
-    await supabase.from('progress').upsert({
+    unwrap(await supabase.from('progress').upsert({
       user_id: userId,
       subject_id: String(subjectId),
       week_id: parseInt(weekId),
@@ -80,41 +96,41 @@ export const Auth = {
       task_index: parseInt(taskIndex),
       done,
       updated_at: new Date()
-    })
+    }), 'save that task')
   },
 
   async resetProgress(userId) {
-    await supabase.from('progress').delete().eq('user_id', userId)
+    unwrap(await supabase.from('progress').delete().eq('user_id', userId), 'reset your progress')
   },
 
   async getPlanSettings(userId) {
-    const { data } = await supabase.from('plan_settings').select('*').eq('user_id', userId)
+    const data = unwrap(await supabase.from('plan_settings').select('*').eq('user_id', userId), 'load your study plans')
     const result = {}
-    data?.forEach(row => {
+    data.forEach(row => {
       result[row.subject_id] = { durationDays: row.duration_days, startDate: row.start_date }
     })
     return result
   },
 
   async savePlanSetting(userId, subjectId, setting) {
-    await supabase.from('plan_settings').upsert({
+    unwrap(await supabase.from('plan_settings').upsert({
       user_id: userId, subject_id: subjectId,
       duration_days: setting.durationDays, start_date: setting.startDate,
       updated_at: new Date()
-    })
+    }), 'save your study plan')
   },
 
   async getNote(userId, subjectId, weekId) {
-    const { data } = await supabase.from('notes').select('content').eq('user_id', userId).eq('subject_id', subjectId).eq('week_id', weekId).single()
+    const data = unwrap(await supabase.from('notes').select('content').eq('user_id', userId).eq('subject_id', subjectId).eq('week_id', weekId).maybeSingle(), 'load your notes')
     return data?.content ?? ''
   },
 
   async saveNote(userId, subjectId, weekId, content) {
-    await supabase.from('notes').upsert({ user_id: userId, subject_id: subjectId, week_id: weekId, content, updated_at: new Date() })
+    unwrap(await supabase.from('notes').upsert({ user_id: userId, subject_id: subjectId, week_id: weekId, content, updated_at: new Date() }), 'save your notes')
   },
 
   async getStreak(userId) {
-    const { data } = await supabase.from('streaks').select('*').eq('user_id', userId).single()
+    const data = unwrap(await supabase.from('streaks').select('*').eq('user_id', userId).maybeSingle(), 'load your streak')
     return data ?? { count: 0, last_date: null }
   },
 
@@ -124,7 +140,7 @@ export const Auth = {
     if (streak.last_date === today) return streak
     const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1)
     const newCount = streak.last_date === yesterday.toDateString() ? streak.count + 1 : 1
-    await supabase.from('streaks').upsert({ user_id: userId, count: newCount, last_date: today })
+    unwrap(await supabase.from('streaks').upsert({ user_id: userId, count: newCount, last_date: today }), 'update your streak')
     return { count: newCount, last_date: today }
   },
 }
