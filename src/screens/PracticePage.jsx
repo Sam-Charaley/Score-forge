@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import { Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft } from 'lucide-react'
+import { RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
 import EmptyState from '../components/ui/EmptyState'
@@ -9,12 +9,15 @@ import { useQuestionBank } from '../hooks/useQuestionBank'
 import { pickNextQuestion, createVisibleTimer, choiceDisplayOrder } from '../utils/practice'
 import { pickSmartQuestion } from '../utils/priority'
 import { masteryLevel, chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
+import { missedQuestionIds, MISSED_SCOPE } from '../utils/progress'
 import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D'];
 const ALL_UNITS = 'all';
 // Default scope: topic by priority, question at the target difficulty.
 const SMART = 'smart';
+// Questions whose latest answer was wrong; each leaves once answered right.
+const MISSED = MISSED_SCOPE;
 const DIFFICULTY_LABELS = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
 const MAX_DIFFICULTY = 3;
 // Enter only answers when focus is on the page or the question itself, so
@@ -70,10 +73,13 @@ function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onC
   );
 }
 
-export default function PracticePage({ user, subject, practiceSubjects = [], onSubject, onSaveError }) {
+export default function PracticePage({ user, subject, practiceSubjects = [], initialScope = SMART, onSubject, onSaveError, onScopeUsed }) {
   const bank = useQuestionBank(subject.id);
   const history = usePracticeHistory({ userId: user.id, subjectId: subject.id, onSaveError });
-  const [scope, setScope] = useState(SMART);
+  const [scope, setScope] = useState(initialScope);
+  // The starting scope is a one-time request (from Progress); clear it once
+  // used. Mount-only on purpose: later renders must not clear it again.
+  useEffect(() => { onScopeUsed?.(); }, []);
   const [question, setQuestion] = useState(null);
   const [reason, setReason] = useState(null);
   // chosenIndex is always the authored index into question.choices;
@@ -86,10 +92,13 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
   const sheetRef = useRef(null);
 
   const topicById = useMemo(() => new Map((bank.topics ?? []).map(t => [t.id, t])), [bank.topics]);
+  const missedIds = useMemo(() => new Set(missedQuestionIds(history.attempts ?? [])), [history.attempts]);
   const pool = useMemo(() => {
     if (bank.status !== 'ready') return [];
+    if (scope === MISSED) return bank.questions.filter(q => missedIds.has(q.id));
     return scope === ALL_UNITS || scope === SMART ? bank.questions : bank.questions.filter(q => topicById.get(q.topic)?.unit === scope);
-  }, [bank, scope, topicById]);
+  }, [bank, scope, topicById, missedIds]);
+  const missedCount = bank.status === 'ready' ? bank.questions.filter(q => missedIds.has(q.id)).length : 0;
   const unitsWithQuestions = useMemo(() => (bank.units ?? []).filter(u => (bank.questions ?? []).some(q => topicById.get(q.topic)?.unit === u.id)), [bank, topicById]);
   const topicsInScope = useMemo(() => (bank.topics ?? []).filter(t => pool.some(q => q.topic === t.id)), [bank.topics, pool]);
 
@@ -190,6 +199,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
   const scopes = [
     { id: SMART, label: 'Smart', icon: Sparkles },
     { id: ALL_UNITS, label: 'Mixed', icon: Shuffle },
+    ...(missedCount > 0 || scope === MISSED ? [{ id: MISSED, label: `Missed (${missedCount})`, icon: RetryIcon }] : []),
     ...unitsWithQuestions.map(u => ({ id: u.id, label: `${u.id.toUpperCase()}: ${u.name}` })),
   ];
 
@@ -251,7 +261,11 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
               </div>
             </section>
           ) : (
-            <div className="card"><EmptyState icon={Target} title="Nothing to practice here">No questions match this scope yet. Try Smart or Mixed.</EmptyState></div>
+            <div className="card">
+              {scope === MISSED
+                ? <EmptyState icon={RetryIcon} title="Nothing left to fix" action={<Button variant="secondary" icon={Sparkles} onClick={() => setScope(SMART)}>Back to Smart practice</Button>}>Every question you missed has since been answered right.</EmptyState>
+                : <EmptyState icon={Target} title="Nothing to practice here">No questions match this scope yet. Try Smart or Mixed.</EmptyState>}
+            </div>
           )}
         </div>
 

@@ -16,6 +16,7 @@ import LibraryMode from './screens/LibraryMode'
 import AccountPage from './screens/AccountPage'
 import AdjustPlanPage from './screens/AdjustPlanPage'
 import PracticePage from './screens/PracticePage'
+import ProgressPage from './screens/ProgressPage'
 import { hasQuestionBank } from './data/questions/questionLoader'
 
 const DEFAULT_SUBJECT_ID = 'csa'
@@ -34,6 +35,8 @@ export default function App() {
   const [screen, setScreen] = useState('home');
   const [activeSubjectId, setActiveSubjectId] = useState(DEFAULT_SUBJECT_ID);
   const [adjustingPlan, setAdjustingPlan] = useState(false);
+  // A scope Practice should open in once (Progress's "Retry missed").
+  const [practiceStartScope, setPracticeStartScope] = useState(null);
 
   const data = useUserData({
     onSignedIn: hasPickedSubjects => setScreen(hasPickedSubjects ? 'home' : 'picker'),
@@ -79,11 +82,12 @@ export default function App() {
     const planStart = subjectPlan?.startDate || null;
     const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : withOriginalTaskRefs(subject.weeks);
 
-    const navigate = (dest, subjectId) => {
+    const navigate = (dest, subjectId, { practiceScope = null } = {}) => {
       setAdjustingPlan(dest === PLANS);
       if (dest === PLANS) return;
+      setPracticeStartScope(dest === 'practice' ? practiceScope : null);
       if (subjectId) setActiveSubjectId(subjectId);
-      else if (dest === 'practice' && practiceSubject) setActiveSubjectId(practiceSubject.id);
+      else if ((dest === 'practice' || dest === 'progress') && practiceSubject) setActiveSubjectId(practiceSubject.id);
       setScreen(dest);
       window.scrollTo(0, 0);
     };
@@ -126,8 +130,22 @@ export default function App() {
             user={data.user}
             subject={practiceSubject}
             practiceSubjects={practiceSubjects}
+            initialScope={practiceStartScope ?? undefined}
+            onScopeUsed={() => setPracticeStartScope(null)}
             onSubject={setActiveSubjectId}
             onSaveError={data.reportSaveError}
+          />
+        );
+      }
+      if (screen === 'progress' && practiceSubject) {
+        return (
+          <ProgressPage
+            key={practiceSubject.id}
+            user={data.user}
+            subject={practiceSubject}
+            practiceSubjects={practiceSubjects}
+            onSubject={setActiveSubjectId}
+            onPractice={(options) => navigate('practice', practiceSubject.id, options)}
           />
         );
       }
@@ -154,7 +172,8 @@ export default function App() {
       );
     };
 
-    const activeNav = adjustingPlan ? PLANS : (screen === 'practice' && !practiceSubject ? 'study' : screen);
+    const needsBank = screen === 'practice' || screen === 'progress';
+    const activeNav = adjustingPlan ? PLANS : (needsBank && !practiceSubject ? 'study' : screen);
     return (
       <AppShell
         active={activeNav}

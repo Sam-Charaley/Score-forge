@@ -1,16 +1,19 @@
 import { useEffect, useRef } from 'react'
-import { House, CalendarCheck, Target, Layers, LibraryBig, CalendarDays, Flame } from 'lucide-react'
+import { House, CalendarCheck, Target, Layers, LibraryBig, CalendarDays, Flame, ChartLine } from 'lucide-react'
 import LogoMark from './LogoMark'
 
-// The destinations in the main navigation, in order. Practice only shows
-// when one of the student's subjects has a question bank.
+// The destinations in the main navigation, in order. Practice and Progress
+// only show when one of the student's subjects has a question bank.
 export const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: House },
   { id: 'study', label: 'Study plan', shortLabel: 'Plan', icon: CalendarCheck },
   { id: 'practice', label: 'Practice', icon: Target },
+  { id: 'progress', label: 'Progress', icon: ChartLine },
   { id: 'flashcards', label: 'Flashcards', shortLabel: 'Cards', icon: Layers },
   { id: 'library', label: 'Library', icon: LibraryBig },
 ];
+
+const NEEDS_QUESTION_BANK = ['practice', 'progress'];
 
 function initialOf(name) {
   return (name || '?').trim().charAt(0).toUpperCase() || '?';
@@ -20,7 +23,7 @@ function initialOf(name) {
 // active: the NAV_ITEMS id of the current screen, or null.
 // onNavigate(id) is called with a NAV_ITEMS id, 'account' or 'plans'.
 export default function AppShell({ active, username, streakDays, canPractice, onNavigate, children }) {
-  const items = NAV_ITEMS.filter(item => item.id !== 'practice' || canPractice);
+  const items = NAV_ITEMS.filter(item => canPractice || !NEEDS_QUESTION_BANK.includes(item.id));
   const mainRef = useRef(null);
   const previousActive = useRef(active);
 

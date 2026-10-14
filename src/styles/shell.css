@@ -24,7 +24,7 @@
 .app-nav { display: flex; align-items: stretch; gap: 2px; height: 100%; margin-right: auto; }
 .app-nav-item {
   position: relative; display: inline-flex; align-items: center; gap: 7px;
-  padding: 0 12px; font-size: 14.5px; font-weight: 600; color: var(--lead);
+  padding: 0 12px; font-size: 14.5px; font-weight: 600; color: var(--lead); white-space: nowrap;
   transition: color .15s ease;
 }
 .app-nav-item svg { width: 17px; height: 17px; }
@@ -59,9 +59,13 @@
 
 .mobile-nav { display: none; }
 
-@media (max-width: 960px) {
+@media (max-width: 1180px) {
   .app-nav-item { padding: 0 9px; font-size: 14px; }
   .streak-unit { display: none; }
+}
+@media (max-width: 1000px) {
+  .app-nav-item svg { display: none; }
+  .app-header-inner { gap: 16px; }
 }
 
 @media (max-width: 768px) {
