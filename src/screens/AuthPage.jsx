@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import LogoMark from '../components/LogoMark'
 import { C } from '../theme'
 import Btn from '../components/Btn'
 import { Auth } from '../services/auth'
@@ -56,7 +57,7 @@ export default function AuthPage({ onAuth }) {
 
       <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '420px', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div style={{ width: '64px', height: '64px', margin: '0 auto 16px', background: `linear-gradient(135deg, ${C.redLight}, #FFF7ED)`, border: `1.5px solid ${C.redMid}`, borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', boxShadow: '0 4px 24px rgba(185,28,28,0.1)' }}>⚒️</div>
+          <div style={{ margin: '0 auto 16px', width: '64px' }}><LogoMark size={64} motion="once" title="ScoreForge" /></div>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '30px', fontWeight: 700, color: C.text, letterSpacing: '-0.02em', marginBottom: '6px' }}>
             Score <span style={{ color: C.red }}>Forge</span>
           </div>
