@@ -30,9 +30,11 @@ export const Auth = {
   async signup(email, password, username) {
     if (!username || username.length < USERNAME_MIN_LENGTH) return { ok: false, error: `Username must be at least ${USERNAME_MIN_LENGTH} characters.` }
     if (!USERNAME_PATTERN.test(username)) return { ok: false, error: 'Username can only contain letters, numbers, and underscores.' }
-    const { data: existing, error: lookupError } = await supabase.from('profiles').select('id').eq('username', username).maybeSingle()
+    // Profiles are private, so the check goes through a function that only
+    // answers yes or no (see supabase/migrations, username_taken).
+    const { data: taken, error: lookupError } = await supabase.rpc('username_taken', { candidate: username })
     if (lookupError) return { ok: false, error: lookupError.message }
-    if (existing) return { ok: false, error: 'Username already taken.' }
+    if (taken) return { ok: false, error: 'Username already taken.' }
     // The username also rides along in user_metadata: with email confirmation
     // on there's no session yet, so the profile insert below can be refused by
     // RLS, and first login rebuilds the profile from this.

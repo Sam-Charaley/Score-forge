@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { readFileSync, readdirSync } from 'node:fs'
 
 // A fake Supabase that records upserts and answers the streak lookup.
 const upsert = vi.fn(async () => ({ data: null, error: null }));
@@ -9,21 +10,23 @@ const from = vi.fn(table => ({
 vi.mock('./supabase', () => ({ supabase: { from: table => from(table) } }));
 const { Auth, UPSERT_KEYS } = await import('./auth');
 
-// The unique constraints in the live database (checked against Supabase on 2026-10-13).
-const LIVE_UNIQUE_KEYS = {
-  selected_subjects: 'user_id',
-  progress: 'user_id,subject_id,week_id,day_index,task_index',
-  plan_settings: 'user_id,subject_id',
-  notes: 'user_id,subject_id,week_id',
-  streaks: 'user_id',
-};
+// The unique keys as the schema files in supabase/migrations declare them,
+// so the app and the database cannot drift apart unnoticed.
+const MIGRATIONS_DIR = new URL('../../supabase/migrations/', import.meta.url);
+const schemaSql = readdirSync(MIGRATIONS_DIR).filter(f => f.endsWith('.sql')).map(f => readFileSync(new URL(f, MIGRATIONS_DIR), 'utf8')).join('\n');
+const SCHEMA_UNIQUE_KEYS = Object.fromEntries(
+  [...schemaSql.matchAll(/ensure_unique\('(\w+)', '\w+', array\[([^\]]+)\]\)/g)]
+    .map(([, table, cols]) => [table, cols.split(',').map(c => c.trim().replace(/'/g, '')).join(',')])
+);
+const LIVE_UNIQUE_KEYS = Object.fromEntries(Object.keys(UPSERT_KEYS).map(table => [table, SCHEMA_UNIQUE_KEYS[table]]));
 
 const upsertFor = table => upsert.mock.calls.find(([t]) => t === table);
 
 describe('Auth upserts', () => {
   beforeEach(() => upsert.mockClear());
 
-  it('name the same conflict columns as the live unique constraints', () => {
+  it('name the same conflict columns as the unique keys in the schema', () => {
+    expect(Object.keys(SCHEMA_UNIQUE_KEYS).length).toBeGreaterThan(0);
     expect(UPSERT_KEYS).toEqual(LIVE_UNIQUE_KEYS);
   });
 
