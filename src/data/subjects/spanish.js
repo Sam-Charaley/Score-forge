@@ -1,5 +1,5 @@
 // AP Spanish Language and Culture: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"spanish",
   globalResources:[
@@ -140,7 +140,7 @@ export default {
       frq:null,
       tip:"On exam day, if you don't know a word during speaking, describe it in Spanish immediately — don't pause and search. 'El concepto de...' / 'La idea relacionada con...' / 'Lo que los hispanohablantes llaman...' — circumlocution in the moment earns credit.",
     },
-    { id:10, dates:"May 4 – May 14", label:"Exam Week", theme:"🎯 AP Spanish Exam", examWeight:"All sections", color:"#dc2626", isExamWeek:true,
+    { id:10, dates:"May 4 – May 14", label:"Exam Week", theme:"AP Spanish Exam", examWeight:"All sections", color:"#dc2626", isExamWeek:true,
       overview:"Exam is May 14. Light review and rest.",
       days:[
         { day:"May 4–7", tasks:["15 min Spanish audio per day — keep ear active","10 MCQs per day — no full practice exams","Brief review of cultural comparison themes"] },

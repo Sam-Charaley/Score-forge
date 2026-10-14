@@ -1,5 +1,5 @@
 // AP English Literature & Composition: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "englit",
   globalResources: [
@@ -163,7 +163,7 @@ export default {
       frq:null,
       tip:"The night before: re-read key passages from your FRQ 3 texts. Not to memorize, but to have specific scenes fresh in your mind. Specific scene analysis beats vague theme discussion every time.",
     },
-    { id:10, dates:"May 4 – May 6", label:"Exam Week", theme:"🎯 AP Eng Lit Exam", examWeight:"All components", color:"#7c3aed", isExamWeek:true,
+    { id:10, dates:"May 4 – May 6", label:"Exam Week", theme:"AP Eng Lit Exam", examWeight:"All components", color:"#7c3aed", isExamWeek:true,
       overview:"Exam is May 6. Light review only. Trust your preparation.",
       days:[
         { day:"May 4", tasks:["10 MCQs — no full practice exams","Review your FRQ 3 texts one final time","Sleep by 10pm"] },

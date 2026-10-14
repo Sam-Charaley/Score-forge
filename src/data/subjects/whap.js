@@ -1,5 +1,5 @@
 // AP World History: Modern: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "whap",
   globalResources: [
@@ -165,7 +165,7 @@ export default {
       frq:null,
       tip:"The night before: review your 'evidence bank' — 10 specific examples from different regions and periods that are flexible enough to appear in any LEQ or DBQ. Having those examples ready to deploy transforms exam performance.",
     },
-    { id:10, dates:"May 4 – May 14", label:"Exam Week", theme:"🎯 AP World History Exam", examWeight:"All units", color:"#065f46", isExamWeek:true,
+    { id:10, dates:"May 4 – May 14", label:"Exam Week", theme:"AP World History Exam", examWeight:"All units", color:"#065f46", isExamWeek:true,
       overview:"Exam is May 14. Light review only. Trust your preparation.",
       days:[
         { day:"May 4–7", tasks:["10 MCQs per day — mixed units","Review your most flexible LEQ examples","Sleep 8+ hours each night"] },

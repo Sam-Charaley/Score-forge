@@ -1,5 +1,5 @@
 // AP Psychology: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "psych",
   globalResources: [
@@ -156,7 +156,7 @@ export default {
       frq:null,
       tip:"The exam often asks you to match a therapy approach with its underlying psychological perspective. Systematic desensitization = behavioral. Cognitive restructuring = cognitive. Free association = psychoanalytic. Know these pairings cold.",
     },
-    { id:9, dates:"Apr 27 – May 7", label:"Week 9 + Exam", theme:"Full Review & 🎯 AP Exam", examWeight:"All units", color:"#ea580c", isExamWeek:true,
+    { id:9, dates:"Apr 27 – May 7", label:"Week 9 + Exam", theme:"Full Review & AP Exam", examWeight:"All units", color:"#ea580c", isExamWeek:true,
       overview:"Exam is May 7. This week is full review, practice tests, and light consolidation. The AP Psychology exam is 100 MCQ (70 minutes) + 2 FRQ (50 minutes).",
       days:[
         { day:"Apr 27–28", tasks:["Take Full Practice Test 1 (100 MCQ, 70 minutes) from Khan Academy or Albert.io","Score and categorize: which unit had the most errors?","Review top 3 weakest units using Knowt flashcards"] },

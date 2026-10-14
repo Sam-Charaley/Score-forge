@@ -1,5 +1,5 @@
 // AP Calculus BC: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"calcbc",
   globalResources:[
@@ -134,7 +134,7 @@ export default {
       frq:null,
       tip:"Calculator-active FRQ problems: set up the equation or integral by hand (showing your work), then use the calculator for the numerical answer. The setup earns points — not just the final number.",
     },
-    { id:10, dates:"May 5", label:"Exam Day", theme:"🎯 AP Calculus BC Exam", examWeight:"All units", color:"#7c2d12", isExamWeek:true,
+    { id:10, dates:"May 5", label:"Exam Day", theme:"AP Calculus BC Exam", examWeight:"All units", color:"#7c2d12", isExamWeek:true,
       overview:"AP Calculus BC Exam — May 5.",
       days:[
         { day:"May 5 — Exam Day", tasks:["Eat breakfast","MCQ Part A (no calc, 30 Q, 60 min): show scratch work; careful algebra","MCQ Part B (calc, 15 Q, 45 min): use Desmos for intersections and numerical integration","FRQ Part A (calc, 2 Q, 30 min): set up by hand; compute numerically","FRQ Part B (no calc, 4 Q, 60 min): show ALL calculus steps","Series FRQ: state test → verify conditions → compute → conclude explicitly","Taylor FRQ: write general term + first 4 terms; substitute for derived series","You've prepared. Walk in knowing your calculus."] },

@@ -1,5 +1,5 @@
 // AP Physics C: Electricity & Magnetism: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"physem",
   globalResources:[
@@ -127,7 +127,7 @@ export default {
       frq:null,
       tip:"By May 8, your preparation is complete. Trust the work you've done. The exam tests the same techniques every year — Gauss's law, RC circuits, Ampere's law. You've practiced these dozens of times. Walk into the afternoon exam knowing what's coming.",
     },
-    { id:10, dates:"May 11", label:"Exam Day", theme:"🎯 AP Physics C E&M Exam", examWeight:"All units", color:"#312e81", isExamWeek:true,
+    { id:10, dates:"May 11", label:"Exam Day", theme:"AP Physics C E&M Exam", examWeight:"All units", color:"#312e81", isExamWeek:true,
       overview:"AP Physics C Electricity & Magnetism Exam — May 11 (afternoon).",
       days:[
         { day:"May 11 — Exam Day (Afternoon)", tasks:["Eat lunch (you've likely just finished Physics C Mech this morning)","MCQ (35 questions, 45 min): use dimensional analysis to check answers; eliminate options that violate physical laws","FRQ (3 questions, 45 min = 15 min each): write the key equation or DE first","Gauss's law FRQ: state symmetry → choose surface → set up flux integral → find Q_enc → solve for E → integrate for V","RC circuit FRQ: loop rule → ODE → separate variables → integrate → apply IC → q(t) → I(t) → energy","Ampere's law FRQ: state symmetry → choose Amperian loop → set up line integral → find I_enc → solve for B → Faraday for EMF","Show ALL calculus steps — no work = no credit","No formula sheet — all equations from memory","You've mastered calculus-based electromagnetism. Walk in confident."] },

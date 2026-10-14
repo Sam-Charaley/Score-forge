@@ -1,5 +1,5 @@
 // AP Environmental Science: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"apes",
   globalResources:[
@@ -136,7 +136,7 @@ export default {
       frq:null,
       tip:"May 8 morning: eat well, review your notes briefly, then stop. Heavy studying in the final hours backfires. Your preparation is done.",
     },
-    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"🎯 AP Enviro Science Exam", examWeight:"All units", color:"#166534", isExamWeek:true,
+    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"AP Enviro Science Exam", examWeight:"All units", color:"#166534", isExamWeek:true,
       overview:"Exam is May 8. Light review and rest.",
       days:[
         { day:"May 4–7", tasks:["5 MCQs per day — no full practice exams","Review energy calculation procedure once more","Sleep 8+ hours each night"] },

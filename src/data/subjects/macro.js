@@ -1,5 +1,5 @@
 // AP Macroeconomics: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "macro",
   globalResources: [
@@ -173,7 +173,7 @@ export default {
       frq:{ type:"Long FRQ Full Practice", prompt:"Do the long FRQ from any past AP Macro exam (2019–2024) in 25 minutes. It will ask for an AD-AS graph, a monetary or fiscal policy analysis, and possibly an exchange rate chain.", rubricTip:"The long FRQ is half the FRQ section. Do NOT spend all 60 minutes on it. Allocate 25 minutes to the long FRQ, then split remaining 35 minutes across the two short FRQs." },
       tip:"Graph-drawing should be a reflex by now. On exam day, the first thing you do for any FRQ involving a market — draw the graph, label everything, THEN read the questions.",
     },
-    { id:10, dates:"May 4 – May 15", label:"Exam Week", theme:"🎯 AP Macro Exam", examWeight:"All units", color:"#7c3aed", isExamWeek:true,
+    { id:10, dates:"May 4 – May 15", label:"Exam Week", theme:"AP Macro Exam", examWeight:"All units", color:"#7c3aed", isExamWeek:true,
       overview:"Exam is May 15 (afternoon). Last week: consolidate, rest, and walk in ready.",
       days:[
         { day:"May 4–7", tasks:["10–15 mixed MCQs per day — no new topics","Review all 4 major graph types from memory: AD-AS, Money Market, Loanable Funds, Phillips Curve","Review all policy chain sequences one more time","Sleep 8+ hours every night"] },

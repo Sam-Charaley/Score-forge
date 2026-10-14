@@ -1,5 +1,5 @@
 // AP US Government & Politics: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"usgov",
   globalResources:[
@@ -137,7 +137,7 @@ export default {
       frq:null,
       tip:"On SCOTUS comparison FRQs: if you don't immediately recognize which required case to use, think about the constitutional provision at issue — 1st Amendment? Use Tinker or Engel. Commerce Clause? Use US v. Lopez. 14th Amendment? Use Brown or McDonald.",
     },
-    { id:10, dates:"May 4 – May 5", label:"Exam Week", theme:"🎯 AP US Gov Exam", examWeight:"All units", color:"#1e40af", isExamWeek:true,
+    { id:10, dates:"May 4 – May 5", label:"Exam Week", theme:"AP US Gov Exam", examWeight:"All units", color:"#1e40af", isExamWeek:true,
       overview:"Exam is May 5. Rest and trust your preparation.",
       days:[
         { day:"May 4", tasks:["Rest — no heavy studying","Brief review of required SCOTUS cases (read your reference chart)","Confirm exam location and logistics","Sleep by 10pm"] },

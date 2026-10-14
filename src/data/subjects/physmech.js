@@ -1,5 +1,5 @@
 // AP Physics C: Mechanics: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"physmech",
   globalResources:[
@@ -127,7 +127,7 @@ export default {
       frq:null,
       tip:"Morning of May 11: eat a protein-rich breakfast. Physics C Mechanics requires intense algebraic and calculus reasoning — your brain needs fuel. Arrive 15 minutes early.",
     },
-    { id:10, dates:"May 11", label:"Exam Day", theme:"🎯 AP Physics C Mech Exam", examWeight:"All units", color:"#1e3a5f", isExamWeek:true,
+    { id:10, dates:"May 11", label:"Exam Day", theme:"AP Physics C Mech Exam", examWeight:"All units", color:"#1e3a5f", isExamWeek:true,
       overview:"AP Physics C Mechanics Exam — May 11 (morning).",
       days:[
         { day:"May 11 — Exam Day (Morning)", tasks:["Eat breakfast","MCQ (35 questions, 45 min): use units to check answers; eliminate options that violate physical laws or dimensional analysis","FRQ (3 questions, 45 min = 15 min each): write the differential equation or key equation FIRST, then solve","Variable force FRQ: separate variables → integrate → apply initial condition","Rolling FRQ: two FBDs → ΣF = ma → Στ = Iα → rolling constraint → solve","SHM FRQ: Newton's 2nd → DE → ω → x(t) → v(t) or energy","No formula sheet — all equations from memory","You've mastered calculus-based mechanics. Walk in confident."] },

@@ -1,0 +1,44 @@
+/* ScoreForge design tokens. Shared with the landing page: paper, graphite
+   and a pencil-yellow accent, after a filled-in answer sheet. */
+:root {
+  --paper: #F4F5F1;
+  --paper-deep: #EBECE6;
+  --sheet: #FFFFFF;
+  --graphite: #22252A;
+  --lead: #5B606A;
+  --lead-light: #858A93;
+  --rule: #D9DBD3;
+  --rule-soft: #E9EAE4;
+  --pencil: #F2B705;
+  --pencil-deep: #E3A800;
+  --pencil-soft: #FBEBB5;
+  --pencil-wash: #FDF6DC;
+  --red-pen: #C8372D;
+  --red-soft: #FBEFEE;
+  --pass: #1F7A4D;
+  --pass-soft: #EEF7F1;
+
+  --font-sans: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-small: 6px;
+  --radius: 10px;
+  --radius-sheet: 14px;
+  --radius-pill: 999px;
+
+  --shadow-hard: 6px 6px 0 var(--graphite);
+  --shadow-hard-small: 4px 4px 0 var(--graphite);
+  --shadow-lift: 0 1px 0 var(--rule), 0 8px 24px -12px rgba(34, 37, 42, .18);
+
+  --ease-out: cubic-bezier(.3, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.45, 0, .3, 1);
+
+  --header-height: 60px;
+  --mobile-nav-height: 64px;
+  --content-width: 1120px;
+  --gutter: 28px;
+}
+
+@media (max-width: 768px) {
+  :root { --gutter: 16px; --header-height: 56px; }
+}

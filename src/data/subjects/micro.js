@@ -1,5 +1,5 @@
 // AP Microeconomics: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "micro",
   globalResources: [
@@ -173,7 +173,7 @@ export default {
       frq:{ type:"Long FRQ Full Simulation", prompt:"Do the long FRQ from any AP Micro exam between 2019–2024 in 20 minutes. It will typically involve a market diagram, profit/loss analysis, a market failure or factor market component, and a policy question.", rubricTip:"The long FRQ is worth ~50% of the FRQ section. Spend 20 minutes on it maximum, then 20 minutes on each short FRQ. Students who over-invest in the long FRQ sacrifice easy short FRQ points." },
       tip:"Review your 5 core AP Micro diagrams until drawing each one is a 60-second automatic reflex: supply/demand, cost curves, perfectly competitive firm, monopoly, externality. If a diagram takes more than 90 seconds, you need more practice.",
     },
-    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"🎯 AP Micro Exam", examWeight:"All units", color:"#d97706", isExamWeek:true,
+    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"AP Micro Exam", examWeight:"All units", color:"#d97706", isExamWeek:true,
       overview:"Exam is May 8 (morning). Keep your routine, sleep well, and go in confident. You have covered the entire AP Micro curriculum over the past 9 weeks.",
       days:[
         { day:"May 4–5", tasks:["10–15 mixed MCQs per day — no new topics, only reinforcement","Graph drill: draw all 5 major diagrams from memory in under 8 minutes total","Review your top 10 most-missed MCQ concepts from practice tests","Sleep 8+ hours every night"] },

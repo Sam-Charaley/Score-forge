@@ -3,7 +3,7 @@ import { SUBJECT_INDEX, EXAM_CYCLE_YEAR } from './subjectIndex'
 import { loadAllSubjects, loadSubject, SubjectLoadError } from './subjectLoader'
 import { FLASHCARDS } from './flashcards'
 
-const REQUIRED_INDEX_FIELDS = ['id', 'name', 'shortName', 'color', 'examDate', 'icon', 'examInfo'];
+const REQUIRED_INDEX_FIELDS = ['id', 'name', 'shortName', 'color', 'examDate', 'code', 'examInfo'];
 const REQUIRED_WEEK_FIELDS = ['id', 'label', 'theme', 'examWeight', 'color', 'overview', 'days'];
 // Metadata lives only in the index so there's one place to edit exam dates.
 const INDEX_ONLY_FIELDS = REQUIRED_INDEX_FIELDS.filter(f => f !== 'id');
@@ -20,6 +20,14 @@ describe('subject index', () => {
     const ids = SUBJECT_INDEX.map(s => s.id);
     expect(new Set(ids).size).toBe(ids.length);
     SUBJECT_INDEX.forEach(meta => REQUIRED_INDEX_FIELDS.forEach(f => expect(meta[f], `${meta.id}.${f}`).toBeDefined()));
+  });
+  it('has tile codes short enough to print on a subject tile', () => {
+    const MAX_WORDS = 2, MAX_WORD_LENGTH = 5;
+    const tooLong = SUBJECT_INDEX.filter(({ code }) => {
+      const words = code.split(' ');
+      return words.length > MAX_WORDS || words.some(w => w.length === 0 || w.length > MAX_WORD_LENGTH);
+    }).map(s => `${s.id}: "${s.code}"`);
+    expect(tooLong).toEqual([]);
   });
   it('exam dates match the cycle year and the date shown in examInfo', () => {
     const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

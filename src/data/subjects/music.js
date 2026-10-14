@@ -1,5 +1,5 @@
 // AP Music Theory: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "music",
   globalResources: [
@@ -174,7 +174,7 @@ export default {
       frq:{ type:"Sight-Singing (live on exam)", prompt:"Practice sight-singing every single day this week. Use solfège or scale degrees. Record yourself on your phone and listen critically. Focus on maintaining tempo — stopping is penalized.", rubricTip:"On exam day, you sing sight-singing into a recording device. You will not be penalized for pauses mid-melody, but you must maintain a steady tempo and pitch." },
       tip:"Sing intervals every day using reference songs. Sing scales in both major and natural minor on a neutral syllable (la, da) to build pitch memory. Your ear builds skill only through daily repetition.",
     },
-    { id:10, dates:"May 4 – May 12", label:"Exam Week", theme:"🎯 AP Music Theory Exam", examWeight:"All topics", color:"#db2777", isExamWeek:true,
+    { id:10, dates:"May 4 – May 12", label:"Exam Week", theme:"AP Music Theory Exam", examWeight:"All topics", color:"#db2777", isExamWeek:true,
       overview:"Exam is May 12. Your goal this week is to rest, lightly review, and arrive confident. Do ear training daily to keep your ear sharp.",
       days:[
         { day:"May 4–6", tasks:["10 minutes of sight-singing per day — keep your ear calibrated","Review: circle of fifths, cadence types, diatonic chord qualities — the non-negotiables","Do 15 MCQs per day from AP Classroom, mixed topics","Sleep 8+ hours every night"] },

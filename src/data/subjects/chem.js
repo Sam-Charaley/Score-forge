@@ -1,5 +1,5 @@
 // AP Chemistry: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"chem",
   globalResources:[
@@ -135,7 +135,7 @@ export default {
       frq:null,
       tip:"May 4 morning: eat a protein and complex-carb breakfast. AP Chem is cognitively demanding — your brain needs fuel. Arrive 15 minutes early.",
     },
-    { id:10, dates:"May 4", label:"Exam Day", theme:"🎯 AP Chemistry Exam", examWeight:"All units", color:"#0e7490", isExamWeek:true,
+    { id:10, dates:"May 4", label:"Exam Day", theme:"AP Chemistry Exam", examWeight:"All units", color:"#0e7490", isExamWeek:true,
       overview:"AP Chemistry Exam — May 4.",
       days:[
         { day:"May 4 — Exam Day", tasks:["Eat a real breakfast","MCQ (60 questions, 90 min): use formula sheet freely; 1.5 min per question","FRQ (7 questions, 105 min): show ALL work for partial credit; attempt every part","Rate law FRQ: determine orders from data only — never from balanced equation","Buffer FRQ: identify what reacts → calculate moles remaining → apply H-H → explain mechanism","Electrochemistry: E°cell = E°cathode - E°anode, then ΔG = -nFE°","You've prepared. Walk in knowing your chemistry."] },

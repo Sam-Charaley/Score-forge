@@ -1,5 +1,5 @@
 // AP English Language & Composition: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "englang",
   globalResources: [
@@ -162,7 +162,7 @@ export default {
       frq:null,
       tip:"The synthesis essay gives you 15 minutes of reading time — use it fully. Map each source's main argument and decide which 3+ you'll use before you start writing. Students who skip the planning write weaker essays.",
     },
-    { id:10, dates:"May 4 – May 13", label:"Exam Week", theme:"🎯 AP Eng Lang Exam", examWeight:"All components", color:"#0369a1", isExamWeek:true,
+    { id:10, dates:"May 4 – May 13", label:"Exam Week", theme:"AP Eng Lang Exam", examWeight:"All components", color:"#0369a1", isExamWeek:true,
       overview:"Exam is May 13. Light review only. Trust your preparation.",
       days:[
         { day:"May 4–7", tasks:["10 MCQs per day","Read one opinion article and identify 3 rhetorical strategies","Review thesis-writing technique each morning (5 minutes)"] },

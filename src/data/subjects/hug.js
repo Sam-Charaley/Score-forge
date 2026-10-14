@@ -1,5 +1,5 @@
 // AP Human Geography: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "hug",
   globalResources: [
@@ -167,7 +167,7 @@ export default {
       frq:null,
       tip:"The night before: review all model diagrams (DTM, von Thünen, urban models, Rostow). These are the visual anchors for most FRQ answers — if you can draw them from memory, you can answer the question.",
     },
-    { id:10, dates:"May 4 – May 6", label:"Exam Week", theme:"🎯 AP Human Geography Exam", examWeight:"All units", color:"#0f766e", isExamWeek:true,
+    { id:10, dates:"May 4 – May 6", label:"Exam Week", theme:"AP Human Geography Exam", examWeight:"All units", color:"#0f766e", isExamWeek:true,
       overview:"Exam is May 6 (morning). Light review only. Trust your preparation.",
       days:[
         { day:"May 4", tasks:["10 mixed MCQs — no full practice tests","Review the major geographic models one final time","Sleep by 10pm — cognitive performance is everything on exam day"] },

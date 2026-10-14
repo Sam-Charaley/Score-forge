@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
-import { C } from '../theme'
-import Btn from './Btn'
+import { Lock, Check, Sparkles } from 'lucide-react'
+import Button from './ui/Button'
+import ProgressBar from './ui/ProgressBar'
+import SubjectMark from './ui/SubjectMark'
 import { useQuestionBank } from '../hooks/useQuestionBank'
 import { usePracticeHistory } from '../hooks/usePracticeHistory'
 import { rankTopics, predictApScore } from '../utils/priority'
@@ -9,26 +11,38 @@ const TOP_TOPICS_SHOWN = 3;
 const percent = share => `${Math.round(share * 100)}%`;
 const ignoreSaveErrors = () => {};  // this card only reads history
 
-function PredictionBox({ prediction, color }) {
+function Requirement({ met, children }) {
+  return (
+    <li className={met ? 'is-met' : undefined}>
+      <span className="requirement-mark" aria-hidden="true">{met && <Check />}</span>
+      <span>{children}</span>
+      <span className="sr-only">{met ? '(done)' : '(not yet)'}</span>
+    </li>
+  );
+}
+
+function PredictionPanel({ prediction }) {
   if (prediction.ready) {
-    const range = prediction.lowScore === prediction.highScore ? `${prediction.likelyScore}` : `${prediction.lowScore}–${prediction.highScore}`;
+    const range = prediction.lowScore === prediction.highScore ? `${prediction.likelyScore}` : `${prediction.lowScore} to ${prediction.highScore}`;
     return (
-      <div style={{ textAlign: 'right' }}>
-        <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted }}>Predicted AP score</div>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '30px', fontWeight: 700, color, lineHeight: 1.1 }}>{prediction.likelyScore}</div>
-        <div style={{ fontSize: '10px', color: C.muted }}>likely range {range} · estimate from practice MCQs</div>
+      <div className="prediction" data-prediction="ready">
+        <span className="label">Predicted AP score</span>
+        <span className="prediction-score" aria-label={`Predicted score ${prediction.likelyScore}`}>{prediction.likelyScore}</span>
+        <span className="prediction-note">Likely range {range}. An estimate from your practice answers.</span>
       </div>
     );
   }
-  const coverageDone = prediction.coverage >= prediction.needCoverage;
-  const answersDone = prediction.attempts >= prediction.needAttempts;
   return (
-    <div style={{ textAlign: 'right', maxWidth: '220px' }}>
-      <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: '2px' }}>Predicted AP score 🔒</div>
-      <div style={{ fontSize: '11px', color: C.text2, lineHeight: 1.5 }}>
-        Unlocks with questions on {percent(prediction.needCoverage)} of the exam {coverageDone ? '✓' : `(now ${percent(prediction.coverage)})`}
-        {' '}and {prediction.needAttempts} answers {answersDone ? '✓' : `(now ${prediction.attempts})`}.
-      </div>
+    <div className="prediction is-locked" data-prediction="locked">
+      <span className="label"><Lock aria-hidden="true" />Predicted AP score</span>
+      <ul className="requirements">
+        <Requirement met={prediction.coverage >= prediction.needCoverage}>
+          Practice {percent(prediction.needCoverage)} of the exam <span className="muted">(now {percent(prediction.coverage)})</span>
+        </Requirement>
+        <Requirement met={prediction.attempts >= prediction.needAttempts}>
+          Answer {prediction.needAttempts} questions <span className="muted">(now {prediction.attempts})</span>
+        </Requirement>
+      </ul>
     </div>
   );
 }
@@ -50,32 +64,30 @@ export default function StudyNextCard({ user, subject, onPractice }) {
   const topPriority = insight.ranked[0]?.priority || 1;
 
   return (
-    <div data-study-next={subject.id} style={{ background: C.white, border: `1px solid ${C.border}`, borderLeft: `4px solid ${subject.color}`, borderRadius: '16px', padding: '18px 22px', marginBottom: '20px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap', marginBottom: '12px' }}>
-        <div>
-          <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted }}>🎯 Study next · {subject.shortName}</div>
-          <div style={{ fontSize: '12px', color: C.muted, marginTop: '2px' }}>Ranked by exam weight × your chance of missing</div>
-        </div>
-        <PredictionBox prediction={insight.prediction} color={subject.color} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
-        {insight.ranked.map((r, i) => (
-          <div key={r.topic.id} data-study-next-topic={r.topic.id}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', fontSize: '12px', marginBottom: '3px' }}>
-              <span style={{ color: C.text, fontWeight: 600 }}>{i + 1}. {r.topic.name}</span>
-              <span style={{ color: C.muted, whiteSpace: 'nowrap' }}>
-                ≈{percent(r.weight)} of exam · {r.attempts === 0 ? 'not practiced yet' : `you're at ${percent(r.chance)}`}
-              </span>
-            </div>
-            <div style={{ height: '4px', background: C.bg3, borderRadius: '99px', overflow: 'hidden' }}>
-              <div style={{ height: '100%', width: `${Math.round((r.priority / topPriority) * 100)}%`, background: subject.color, opacity: 0.75, borderRadius: '99px' }} />
-            </div>
+    <section className="card study-next" data-study-next={subject.id} style={{ '--subject': subject.color }} aria-labelledby={`study-next-${subject.id}`}>
+      <div className="study-next-main">
+        <div className="study-next-head">
+          <SubjectMark subject={subject} size="small" />
+          <div>
+            <h2 id={`study-next-${subject.id}`}>Study next in {subject.shortName}</h2>
+            <p>Ranked by how much of the exam a topic covers and how likely you are to miss it.</p>
           </div>
-        ))}
+        </div>
+        <ol className="rank-list">
+          {insight.ranked.map((r, i) => (
+            <li key={r.topic.id} data-study-next-topic={r.topic.id}>
+              <span className="rank-pos" aria-hidden="true">{i + 1}</span>
+              <span className="rank-name">{r.topic.name}</span>
+              <span className="rank-meta">
+                about {percent(r.weight)} of the exam, {r.attempts === 0 ? 'not practiced yet' : `you're at ${percent(r.chance)}`}
+              </span>
+              <ProgressBar share={r.priority / topPriority} color={i === 0 ? 'var(--red-pen)' : undefined} thin className="rank-bar" label={`${r.topic.name} priority`} />
+            </li>
+          ))}
+        </ol>
+        <Button icon={Sparkles} onClick={onPractice}>Smart practice</Button>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Btn onClick={onPractice}>Smart practice →</Btn>
-      </div>
-    </div>
+      <PredictionPanel prediction={insight.prediction} />
+    </section>
   );
 }

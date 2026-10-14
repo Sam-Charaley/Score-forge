@@ -109,6 +109,19 @@ function planShape(numOrigWeeks, durationDays) {
   return { weeksPerPhase, numPhases, daysPerPhase };
 }
 
+const MAX_MERGED_THEME_LENGTH = 65;
+
+// Cuts at the last whole word that fits and marks the cut, instead of
+// slicing mid-word ("Methods" became "Metho").
+export function shortenAtWord(text, maxLength) {
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength - 1);
+  const endsOnWord = text[cut.length] === ' ';
+  const lastSpace = cut.lastIndexOf(' ');
+  const wordSafe = endsOnWord || lastSpace <= 0 ? cut : cut.slice(0, lastSpace);
+  return `${wordSafe.replace(/[\s·,&]+$/, '')}…`;
+}
+
 export function adaptPlanToWindow(subject, durationDays, startDateStr) {
   const startDate = startDateStr ? parseLocalDate(startDateStr) : parseLocalDate(new Date());
   const origWeeks = subject.weeks;
@@ -175,7 +188,7 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
           `Do 10 mixed MCQs covering this phase's material`,
         ];
         mergedDays.push({
-          day: `${fmtDate(addDays(phaseEnd, -1))} — 📖 Review & Self-Test`,
+          day: `${fmtDate(addDays(phaseEnd, -1))}: Review and self-test`,
           tasks: reviewTasks,
           taskRefs: reviewTasks.map(() => null),
           _origWeekId: singleWk.id,
@@ -200,11 +213,10 @@ export function adaptPlanToWindow(subject, durationDays, startDateStr) {
 
     const theme = covered.length === 1
       ? covered[0].theme
-      : covered.map(wk => wk.theme.replace(/[🎯]/g, '').trim()).join(' · ').slice(0, 65);
+      : shortenAtWord(covered.map(wk => wk.theme.trim()).join(' · '), MAX_MERGED_THEME_LENGTH);
 
-    const examWeight = covered.length === 1
-      ? covered[0].examWeight
-      : covered.map(w => w.examWeight).join(' + ');
+    // Two weeks of the same unit would otherwise read "Unit 1 · 15-25% + Unit 1 · 15-25%".
+    const examWeight = [...new Set(covered.map(w => w.examWeight))].join(' + ');
 
     adapted.push({
       id: p + 1,

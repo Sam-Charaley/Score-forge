@@ -1,5 +1,5 @@
 // AP Computer Science Principles: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "csp",
   globalResources: [
@@ -165,7 +165,7 @@ export default {
       frq:null,
       tip:"On exam day, the Create Task is already done — focus entirely on MCQ. If you see an unfamiliar scenario, map it to the nearest concept you know. AP CSP rewards conceptual reasoning over memorization.",
     },
-    { id:10, dates:"May 4 – May 14", label:"Exam Week", theme:"🎯 AP CSP Exam", examWeight:"All units", color:"#0891b2", isExamWeek:true,
+    { id:10, dates:"May 4 – May 14", label:"Exam Week", theme:"AP CSP Exam", examWeight:"All units", color:"#0891b2", isExamWeek:true,
       overview:"Exam is May 14. Light review only. Your Create Task is already submitted and counts for 30% — the remaining 70% is today's MCQ exam.",
       days:[
         { day:"May 4–7", tasks:["10 mixed MCQs per day — no new topics","Review pseudocode tracing one more time","Sleep 8+ hours every night"] },

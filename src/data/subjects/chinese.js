@@ -1,5 +1,5 @@
 // AP Chinese Language and Culture: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"chinese",
   globalResources:[
@@ -134,7 +134,7 @@ export default {
       frq:null,
       tip:"The day before the exam: confirm that you can type Chinese characters efficiently on the exam computer using the provided input method. This is the single most preventable source of lost points in AP Chinese.",
     },
-    { id:10, dates:"May 4 – May 7", label:"Exam Week", theme:"🎯 AP Chinese Exam", examWeight:"All sections", color:"#991b1b", isExamWeek:true,
+    { id:10, dates:"May 4 – May 7", label:"Exam Week", theme:"AP Chinese Exam", examWeight:"All sections", color:"#991b1b", isExamWeek:true,
       overview:"Exam is May 7. Computer-based. Light review and rest.",
       days:[
         { day:"May 4–6", tasks:["15 min Chinese audio per day — keep ear active","5 MCQs per day — no full exams","Rest and sleep 8+ hours each night"] },

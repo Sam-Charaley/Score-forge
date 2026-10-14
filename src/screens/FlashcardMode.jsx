@@ -1,96 +1,149 @@
-import { useState } from 'react'
-import { C } from '../theme'
-import Btn from '../components/Btn'
-import { useIsMobile } from '../hooks/useIsMobile'
+import { useState, useEffect, useCallback } from 'react'
+import { Eye, Shuffle, RotateCcw, ChevronLeft, ChevronRight, Check, X, Layers, CircleCheck, Repeat } from 'lucide-react'
+import Button from '../components/ui/Button'
+import IconButton from '../components/ui/IconButton'
+import EmptyState from '../components/ui/EmptyState'
+import SubjectSwitcher from '../components/SubjectSwitcher'
 import { FLASHCARDS } from '../data/flashcards'
+import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
 
-export default function FlashcardMode({ subject, mySubjects, onBack, onSubject }) {
-  const isMobile = useIsMobile();
+const KNOWN = 'known';
+const LEARNING = 'learning';
+
+// Fisher-Yates: sort(() => Math.random() - 0.5) is biased toward the original order.
+function shuffled(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+export default function FlashcardMode({ subject, mySubjects, onSubject }) {
   const cards = FLASHCARDS[subject.id] || [];
-  const [deck, setDeck] = useState(() => [...cards]);
-  const [idx, setIdx] = useState(0);
+  // The deck holds indexes into cards, so results survive reshuffles.
+  const [deck, setDeck] = useState(() => cards.map((_, i) => i));
+  const [position, setPosition] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [known, setKnown] = useState(new Set());
-  const [unknown, setUnknown] = useState(new Set());
+  const [results, setResults] = useState({});
   const [finished, setFinished] = useState(false);
 
-  const card = deck[idx];
-  const progress = deck.length > 0 ? Math.round(((known.size + unknown.size) / Math.max(cards.length, 1)) * 100) : 0;
-  const shuffle = () => { setDeck([...cards].sort(() => Math.random() - 0.5)); setIdx(0); setFlipped(false); setKnown(new Set()); setUnknown(new Set()); setFinished(false); };
-  const reviewUnknown = () => { const missed = cards.filter((_, i) => unknown.has(i)); if (!missed.length) return; setDeck(missed.sort(() => Math.random() - 0.5)); setIdx(0); setFlipped(false); setKnown(new Set()); setUnknown(new Set()); setFinished(false); };
-  const mark = (isKnown) => {
-    const cardIdx = cards.indexOf(card);
-    if (isKnown) setKnown(prev => new Set([...prev, cardIdx]));
-    else setUnknown(prev => new Set([...prev, cardIdx]));
-    if (idx + 1 >= deck.length) setFinished(true);
-    else { setIdx(i => i + 1); setFlipped(false); }
+  const cardIndex = deck[position];
+  const card = cards[cardIndex];
+  const knownCount = deck.filter(i => results[i] === KNOWN).length;
+  const learningIndexes = deck.filter(i => results[i] === LEARNING);
+
+  const startDeck = indexes => {
+    setDeck(indexes); setPosition(0); setFlipped(false); setResults({}); setFinished(false);
   };
+  const reshuffleAll = () => startDeck(shuffled(cards.map((_, i) => i)));
+  const reviewLearning = () => { if (learningIndexes.length > 0) startDeck(shuffled(learningIndexes)); };
+
+  const goTo = useCallback(nextPosition => {
+    setPosition(Math.min(Math.max(nextPosition, 0), deck.length - 1));
+    setFlipped(false);
+  }, [deck.length]);
+
+  const mark = useCallback(result => {
+    setResults(prev => ({ ...prev, [cardIndex]: result }));
+    if (position + 1 >= deck.length) setFinished(true);
+    else goTo(position + 1);
+  }, [cardIndex, position, deck.length, goTo]);
+
+  useEffect(() => {
+    if (finished || !card) return undefined;
+    const onKey = e => {
+      if (hasModifier(e) || isTypingTarget(e.target)) return;
+      if (e.key === ' ' || e.key === 'Enter') {
+        if (!mayTakeActivationKey(e.target, '[data-flashcard]')) return;
+        e.preventDefault(); setFlipped(f => !f);
+      }
+      else if (e.key === 'ArrowRight') goTo(position + 1);
+      else if (e.key === 'ArrowLeft') goTo(position - 1);
+      else if (flipped && e.key === '1') mark(LEARNING);
+      else if (flipped && e.key === '2') mark(KNOWN);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [finished, card, flipped, position, goTo, mark]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: C.bg }}>
-      <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, padding: '0 20px', height: '54px', display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: C.text2 }}>← Back</button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: subject.color }} />
-          <span style={{ color: subject.color, fontSize: '13px', fontWeight: 700 }}>🃏 {subject.shortName} Flashcards</span>
-          <span style={{ color: C.muted, fontSize: '11px' }}>· {cards.length} cards</span>
+    <div className="page flashcards" style={{ '--subject': subject.color }}>
+      <SubjectSwitcher subjects={mySubjects} activeId={subject.id} onSelect={onSubject} />
+      <header className="page-head">
+        <div>
+          <h1>{subject.shortName} flashcards</h1>
+          <p>{cards.length > 0 ? `${cards.length} cards. Say it out loud before you flip.` : 'Quick recall for the facts that show up every year.'}</p>
         </div>
-        <div style={{ display: 'flex', gap: '5px', marginLeft: '10px' }}>
-          {mySubjects.map(s => (
-            <button key={s.id} onClick={() => onSubject(s.id)} style={{ background: s.id === subject.id ? `${s.color}12` : 'transparent', border: `1px solid ${s.id === subject.id ? s.color : C.border}`, borderRadius: '8px', padding: '3px 9px', cursor: 'pointer', color: s.id === subject.id ? s.color : C.muted, fontSize: '10px', fontFamily: 'inherit', fontWeight: s.id === subject.id ? 700 : 400 }}>{s.shortName}</button>
-          ))}
-        </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: '6px' }}>
-          <button onClick={shuffle} style={{ background: 'transparent', border: `1px solid ${subject.color}40`, borderRadius: '10px', color: subject.color, fontSize: '11px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit' }}>⟳ Shuffle</button>
-          {unknown.size > 0 && <button onClick={reviewUnknown} style={{ background: C.redLight, border: `1px solid ${C.redMid}`, borderRadius: '10px', color: C.red, fontSize: '11px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit' }}>Review Missed ({unknown.size})</button>}
-        </div>
-      </div>
+        {cards.length > 0 && <Button variant="quiet" size="small" icon={Shuffle} onClick={reshuffleAll}>Shuffle</Button>}
+      </header>
 
-      <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '16px 12px' : '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingBottom: isMobile ? '80px' : '28px' }}>
-        <div style={{ width: '100%', maxWidth: '620px', marginBottom: '18px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-            <span style={{ color: C.muted, fontSize: '11px' }}>{Math.min(idx + 1, deck.length)} / {deck.length}</span>
-            <span style={{ fontSize: '11px' }}><span style={{ color: '#166534' }}>✓ {known.size}</span> · <span style={{ color: C.red }}>✗ {unknown.size}</span></span>
-          </div>
-          <div style={{ height: '5px', background: C.bg3, borderRadius: '99px', overflow: 'hidden', border: `1px solid ${C.border}` }}>
-            <div style={{ height: '100%', width: `${progress}%`, background: subject.color, borderRadius: '99px' }} />
+      {cards.length === 0 ? (
+        <div className="card"><EmptyState icon={Layers} title="No cards for this subject yet">Flashcards for {subject.name} are on the way. Your study plan and resources are ready in the meantime.</EmptyState></div>
+      ) : finished ? (
+        <div className="sheet deck-done">
+          <span className="empty-state-icon"><CircleCheck aria-hidden="true" /></span>
+          <h2>Deck complete</h2>
+          <p><b>{knownCount}</b> known, <b>{learningIndexes.length}</b> still learning.</p>
+          <div className="deck-done-actions">
+            {learningIndexes.length > 0 && <Button icon={Repeat} onClick={reviewLearning}>Review the {learningIndexes.length} you missed</Button>}
+            <Button variant={learningIndexes.length > 0 ? 'quiet' : 'primary'} icon={RotateCcw} onClick={reshuffleAll}>Shuffle and restart</Button>
           </div>
         </div>
-
-        {finished ? (
-          <div style={{ maxWidth: '620px', width: '100%', background: C.white, border: `1px solid ${C.border}`, borderRadius: '20px', padding: '40px 32px', textAlign: 'center' }}>
-            <div style={{ fontSize: '36px', marginBottom: '12px' }}>🎉</div>
-            <div style={{ fontFamily: "'Playfair Display', serif", color: subject.color, fontSize: '20px', fontWeight: 700, marginBottom: '8px' }}>Deck Complete!</div>
-            <div style={{ color: C.muted, fontSize: '13px', marginBottom: '24px' }}><span style={{ color: '#166534' }}>✓ {known.size} known</span> · <span style={{ color: C.red }}>✗ {unknown.size} need review</span></div>
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-              <Btn onClick={shuffle} variant="ghost">Reshuffle All</Btn>
-              {unknown.size > 0 && <Btn onClick={reviewUnknown} variant="soft">Review {unknown.size} Missed</Btn>}
-            </div>
+      ) : (
+        <div className="deck">
+          <div className="deck-status">
+            <span className="deck-count"><b>{position + 1}</b> of {deck.length}</span>
+            <span className="deck-tally">
+              <span className="tally tally-known"><Check aria-hidden="true" />{knownCount}<span className="sr-only"> known</span></span>
+              <span className="tally tally-learning"><Repeat aria-hidden="true" />{learningIndexes.length}<span className="sr-only"> still learning</span></span>
+            </span>
           </div>
-        ) : card ? (
-          <>
-            <div onClick={() => setFlipped(f => !f)} style={{ width: '100%', maxWidth: '620px', minHeight: '220px', background: flipped ? `${subject.color}08` : C.white, border: `1.5px solid ${flipped ? subject.color + '50' : C.border}`, borderRadius: '20px', padding: '32px 36px', cursor: 'pointer', transition: 'all 0.2s ease', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 2px 12px rgba(28,16,9,0.06)' }}>
-              <div style={{ color: C.muted, fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 600, marginBottom: '16px' }}>{flipped ? '✦ ANSWER' : 'QUESTION — tap to flip'}</div>
-              <div style={{ color: flipped ? subject.color : C.text, fontSize: '15px', lineHeight: '1.8', flex: 1, display: 'flex', alignItems: 'center', fontWeight: flipped ? 400 : 500 }}>{flipped ? card.back : card.front}</div>
-              {!flipped && <div style={{ color: C.muted, fontSize: '11px', marginTop: '20px', textAlign: 'center' }}>tap anywhere to reveal</div>}
+          <div className="deck-track" role="group" aria-label="Cards">
+            {deck.map((index, i) => (
+              <button
+                key={`${index}-${i}`} type="button" aria-label={`Card ${i + 1}`} aria-current={i === position ? 'true' : undefined}
+                className={`deck-segment${results[index] ? ` is-${results[index]}` : ''}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button" data-flashcard className={`flashcard${flipped ? ' is-flipped' : ''}`}
+            onClick={() => setFlipped(f => !f)} aria-label={flipped ? 'Show the question' : 'Show the answer'}
+          >
+            <span className="flashcard-inner">
+              <span className="flashcard-face flashcard-front" aria-hidden={flipped}>
+                <span className="flashcard-side">Question</span>
+                <span className="flashcard-text">{card.front}</span>
+                <span className="flashcard-hint">Tap or press space to flip</span>
+              </span>
+              <span className="flashcard-face flashcard-back" aria-hidden={!flipped}>
+                <span className="flashcard-side">Answer</span>
+                <span className="flashcard-text">{card.back}</span>
+                <span className="flashcard-hint">How did you do?</span>
+              </span>
+            </span>
+          </button>
+
+          <div className="deck-controls">
+            <IconButton icon={ChevronLeft} label="Previous card" outlined onClick={() => goTo(position - 1)} disabled={position === 0} />
+            <div className="deck-grade">
+              {flipped ? (
+                <>
+                  <Button variant="quiet" icon={X} onClick={() => mark(LEARNING)} className="grade-learning">Still learning <kbd>1</kbd></Button>
+                  <Button icon={Check} onClick={() => mark(KNOWN)}>Got it <kbd>2</kbd></Button>
+                </>
+              ) : (
+                <Button variant="secondary" icon={Eye} onClick={() => setFlipped(true)}>Show answer <kbd>Space</kbd></Button>
+              )}
             </div>
-            {flipped && (
-              <div style={{ display: 'flex', gap: '12px', marginTop: '16px', width: '100%', maxWidth: '620px' }}>
-                <button onClick={() => mark(false)} style={{ flex: 1, background: C.redLight, border: `1.5px solid ${C.redMid}`, borderRadius: '12px', color: C.red, fontSize: '13px', padding: '12px', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600 }}>✗ Still learning</button>
-                <button onClick={() => mark(true)} style={{ flex: 1, background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '12px', color: '#166534', fontSize: '13px', padding: '12px', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600 }}>✓ Got it</button>
-              </div>
-            )}
-            <div style={{ display: 'flex', gap: '4px', marginTop: '18px', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '620px' }}>
-              {deck.map((_, i) => {
-                const origIdx = cards.indexOf(deck[i]);
-                return <div key={i} onClick={() => { setIdx(i); setFlipped(false); }} style={{ width: i === idx ? '18px' : '8px', height: '8px', borderRadius: '4px', background: i === idx ? subject.color : known.has(origIdx) ? '#4ADE8060' : unknown.has(origIdx) ? `${C.red}60` : C.bg3, cursor: 'pointer' }} />;
-              })}
-            </div>
-          </>
-        ) : (
-          <div style={{ color: C.muted, fontSize: '13px' }}>No flashcards for {subject.name} yet.</div>
-        )}
-      </div>
+            <IconButton icon={ChevronRight} label="Next card" outlined onClick={() => goTo(position + 1)} disabled={position === deck.length - 1} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

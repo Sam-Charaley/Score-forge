@@ -6,6 +6,7 @@ import { useSubjectContent } from './hooks/useSubjectContent'
 import LoadingScreen from './components/LoadingScreen'
 import LoadErrorScreen from './components/LoadErrorScreen'
 import SaveErrorBanner from './components/SaveErrorBanner'
+import AppShell from './components/AppShell'
 import AuthPage from './screens/AuthPage'
 import SubjectPicker from './screens/SubjectPicker'
 import HomePage from './screens/HomePage'
@@ -19,6 +20,7 @@ import { hasQuestionBank } from './data/questions/questionLoader'
 
 const DEFAULT_SUBJECT_ID = 'csa'
 const KNOWN_SUBJECT_IDS = SUBJECT_INDEX.map(meta => meta.id)
+const PLANS = 'plans'
 
 // The subjects whose content the current screen needs. Nothing loads before
 // sign-in or on the picker, which only needs the index.
@@ -35,7 +37,7 @@ export default function App() {
 
   const data = useUserData({
     onSignedIn: hasPickedSubjects => setScreen(hasPickedSubjects ? 'home' : 'picker'),
-    onSignedOut: () => setScreen('home'),
+    onSignedOut: () => { setScreen('home'); setAdjustingPlan(false); },
   });
   const content = useSubjectContent(subjectIdsToLoad(data, screen));
 
@@ -51,7 +53,17 @@ export default function App() {
       setScreen('home');
     };
 
-    if (screen === 'picker') return <SubjectPicker initial={data.selectedIds} existingPlans={data.planSettings} onSave={handlePickerSave} />;
+    if (screen === 'picker') {
+      const isEditing = (data.selectedIds ?? []).length > 0;
+      return (
+        <SubjectPicker
+          initial={data.selectedIds}
+          existingPlans={data.planSettings}
+          onSave={handlePickerSave}
+          onCancel={isEditing ? () => setScreen('home') : null}
+        />
+      );
+    }
 
     if (content.error) {
       return <LoadErrorScreen message={`${content.error.message} ScoreForge may have just been updated.`} onRetry={() => window.location.reload()} onSignOut={data.signOut} />;
@@ -60,69 +72,99 @@ export default function App() {
 
     const mySubjects = content.subjects;
     const subject = mySubjects.find(s => s.id === activeSubjectId) || mySubjects[0];
+    const practiceSubjects = mySubjects.filter(s => hasQuestionBank(s.id));
+    const practiceSubject = hasQuestionBank(subject.id) ? subject : practiceSubjects[0];
     const subjectPlan = data.planSettings[subject.id];
     const planDays = subjectPlan?.durationDays || null;
     const planStart = subjectPlan?.startDate || null;
     const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : withOriginalTaskRefs(subject.weeks);
 
     const navigate = (dest, subjectId) => {
+      setAdjustingPlan(dest === PLANS);
+      if (dest === PLANS) return;
       if (subjectId) setActiveSubjectId(subjectId);
+      else if (dest === 'practice' && practiceSubject) setActiveSubjectId(practiceSubject.id);
       setScreen(dest);
+      window.scrollTo(0, 0);
     };
-    const openPlanEditor = () => setAdjustingPlan(true);
+    const openPlanEditor = () => navigate(PLANS);
     const toggleTask = taskRef => data.toggleTask(subject.id, taskRef);
 
-    if (adjustingPlan) {
-      return (
-        <AdjustPlanPage
-          mySubjects={mySubjects}
-          planSettings={data.planSettings}
-          onSavePlanSetting={data.savePlanSetting}
-          onClose={() => setAdjustingPlan(false)}
-        />
-      );
-    }
+    const page = () => {
+      if (adjustingPlan) {
+        return (
+          <AdjustPlanPage
+            mySubjects={mySubjects}
+            planSettings={data.planSettings}
+            onSavePlanSetting={data.savePlanSetting}
+            onClose={() => setAdjustingPlan(false)}
+          />
+        );
+      }
+      if (screen === 'home') {
+        return (
+          <HomePage
+            user={data.user}
+            username={data.username}
+            checked={data.checked}
+            mySubjects={mySubjects}
+            planSettings={data.planSettings}
+            onNavigate={navigate}
+            onToggleTask={data.toggleTask}
+            onEditSubjects={() => setScreen('picker')}
+            onAdjustPlan={openPlanEditor}
+          />
+        );
+      }
+      if (screen === 'account') {
+        return <AccountPage user={data.user} username={data.username} onLogout={data.signOut} onProgressReset={data.resetProgress} onEditSubjects={() => setScreen('picker')} />;
+      }
+      if (screen === 'practice' && practiceSubject) {
+        return (
+          <PracticePage
+            key={practiceSubject.id}
+            user={data.user}
+            subject={practiceSubject}
+            practiceSubjects={practiceSubjects}
+            onSubject={setActiveSubjectId}
+            onSaveError={data.reportSaveError}
+          />
+        );
+      }
+      if (screen === 'library') return <LibraryMode mySubjectIds={mySubjects.map(s => s.id)} />;
+      if (screen === 'flashcards') return <FlashcardMode key={subject.id} subject={subject} mySubjects={mySubjects} onSubject={setActiveSubjectId} />;
 
-    if (screen === 'home') {
       return (
-        <HomePage
+        <StudyPage
+          key={subject.id}
           user={data.user}
-          username={data.username}
+          subject={subject}
+          adaptedWeeks={adaptedWeeks}
           checked={data.checked}
-          mySubjects={mySubjects}
-          planSettings={data.planSettings}
-          streak={data.streak}
-          onNavigate={navigate}
-          onLogout={data.signOut}
-          onEditSubjects={() => setScreen('picker')}
+          toggleTask={toggleTask}
+          onSaveNote={data.saveNote}
+          planDays={planDays}
+          planStart={planStart}
           onAdjustPlan={openPlanEditor}
+          onPractice={hasQuestionBank(subject.id) ? () => navigate('practice', subject.id) : null}
+          onFlashcards={() => navigate('flashcards', subject.id)}
+          onSubject={setActiveSubjectId}
+          mySubjects={mySubjects}
         />
       );
-    }
-    if (screen === 'account') return <AccountPage user={data.user} username={data.username} onBack={() => setScreen('home')} onLogout={data.signOut} onProgressReset={data.resetProgress} />;
-    if (screen === 'practice' && hasQuestionBank(subject.id)) return <PracticePage key={subject.id} user={data.user} subject={subject} onBack={() => setScreen('study')} onSaveError={data.reportSaveError} />;
-    if (screen === 'library') return <LibraryMode onBack={() => setScreen('study')} />;
-    if (screen === 'flashcards') return <FlashcardMode key={subject.id} subject={subject} mySubjects={mySubjects} onBack={() => setScreen('study')} onSubject={setActiveSubjectId} />;
+    };
 
+    const activeNav = adjustingPlan ? PLANS : (screen === 'practice' && !practiceSubject ? 'study' : screen);
     return (
-      <StudyPage
-        key={subject.id}
-        user={data.user}
-        subject={subject}
-        adaptedWeeks={adaptedWeeks}
-        checked={data.checked}
-        toggleTask={toggleTask}
-        onSaveNote={data.saveNote}
-        planDays={planDays}
-        planStart={planStart}
-        onAdjustPlan={openPlanEditor}
-        onBack={() => setScreen('home')}
-        onPractice={hasQuestionBank(subject.id) ? () => setScreen('practice') : null}
-        onFlashcards={() => setScreen('flashcards')}
-        onLibrary={() => setScreen('library')}
-        onSubject={setActiveSubjectId}
-        mySubjects={mySubjects}
-      />
+      <AppShell
+        active={activeNav}
+        username={data.username || data.user.email}
+        streakDays={data.streak?.count ?? 0}
+        canPractice={practiceSubjects.length > 0}
+        onNavigate={navigate}
+      >
+        {page()}
+      </AppShell>
     );
   };
 

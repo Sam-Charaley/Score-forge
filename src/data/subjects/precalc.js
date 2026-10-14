@@ -1,5 +1,5 @@
 // AP Precalculus: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "precalc",
   globalResources: [
@@ -156,7 +156,7 @@ export default {
       frq:{ type:"All FRQ types — mixed review", prompt:"Attempt all 4 past FRQs from a single year in 75 minutes total. Focus on: writing units on all answers, showing all algebraic steps, and reading what each part is actually asking.", rubricTip:"AP Precalculus FRQ scoring rewards showing work and correct reasoning even when the final answer is wrong. Never skip a step." },
       tip:"The no-calculator MCQ section rewards unit circle fluency and log-law speed. Practice these constantly without Desmos. Use Desmos only in the calculator section to check — not to discover — answers.",
     },
-    { id:9, dates:"May 4 – May 5", label:"Exam Week", theme:"🎯 AP Precalculus Exam", examWeight:"All units", color:"#2563eb", isExamWeek:true,
+    { id:9, dates:"May 4 – May 5", label:"Exam Week", theme:"AP Precalculus Exam", examWeight:"All units", color:"#2563eb", isExamWeek:true,
       overview:"Exam is May 5 (morning). Light review only. Trust your preparation.",
       days:[
         { day:"May 4", tasks:["Review unit circle one final time from memory","Read over your top 10 most-missed rules from the past 8 weeks","No full practice tests — rest your mind","Pack pencils, eraser, and approved calculator. Sleep by 10pm."] },

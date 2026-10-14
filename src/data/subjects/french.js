@@ -1,5 +1,5 @@
 // AP French Language and Culture: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "french",
   globalResources: [
@@ -166,7 +166,7 @@ export default {
       frq:null,
       tip:"On exam day, if you don't know a word, describe it in French rather than leaving silence. 'Je ne me souviens pas du mot exact, mais c'est quelque chose qui...' (I don't remember the exact word, but it's something that...) — fluency through circumlocution earns credit.",
     },
-    { id:10, dates:"May 4 – May 13", label:"Exam Week", theme:"🎯 AP French Exam", examWeight:"All sections", color:"#1d4ed8", isExamWeek:true,
+    { id:10, dates:"May 4 – May 13", label:"Exam Week", theme:"AP French Exam", examWeight:"All sections", color:"#1d4ed8", isExamWeek:true,
       overview:"Exam is May 13. Keep your French ear active with light daily listening. Arrive rested and confident.",
       days:[
         { day:"May 4–7", tasks:["15 minutes of French audio per day — news or podcast","10 MCQs per day — no full practice exams","Review cultural comparison topics you know best","Sleep 8+ hours every night"] },

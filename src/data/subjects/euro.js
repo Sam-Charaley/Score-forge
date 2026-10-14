@@ -1,5 +1,5 @@
 // AP European History: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "euro",
   globalResources: [
@@ -165,7 +165,7 @@ export default {
       frq:null,
       tip:"The night before: review your DBQ notes — contextualization, sourcing, and complexity strategies. These are the hardest points to earn spontaneously. Knowing exactly how you'll approach each rubric element is worth more than reviewing one more historical period.",
     },
-    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"🎯 AP Euro History Exam", examWeight:"All periods", color:"#b45309", isExamWeek:true,
+    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"AP Euro History Exam", examWeight:"All periods", color:"#b45309", isExamWeek:true,
       overview:"Exam is May 8. Light review only. Trust your preparation.",
       days:[
         { day:"May 4–5", tasks:["10 MCQs per day — mixed periods","Review DBQ and LEQ strategies one final time","Sleep 8+ hours each night"] },

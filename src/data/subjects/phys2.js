@@ -1,5 +1,5 @@
 // AP Physics 2: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"phys2",
   globalResources:[

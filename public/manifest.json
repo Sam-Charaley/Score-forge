@@ -1,11 +1,11 @@
 {
-  "name": "Score Forge",
-  "short_name": "Score Forge",
-  "description": "Forge your AP exam scores",
+  "name": "ScoreForge",
+  "short_name": "ScoreForge",
+  "description": "Adaptive AP exam prep",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FDFAF5",
-  "theme_color": "#B91C1C",
+  "background_color": "#F4F5F1",
+  "theme_color": "#F4F5F1",
   "orientation": "portrait",
   "icons": [
     {

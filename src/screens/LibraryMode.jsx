@@ -1,87 +1,126 @@
 import { useState, useMemo } from 'react'
-import { C } from '../theme'
+import { Search, ExternalLink, RotateCcw } from 'lucide-react'
+import Button from '../components/ui/Button'
+import EmptyState from '../components/ui/EmptyState'
 import { SUBJECT_INDEX as SUBJECTS } from '../data/subjectIndex'
 import { useSubjectContent } from '../hooks/useSubjectContent'
 
 const ALL_SUBJECT_IDS = SUBJECTS.map(meta => meta.id)
+const MY_SUBJECTS = 'mine'
+const ALL_SUBJECTS = 'all'
+const ALL_TAGS = 'all'
+const WEEK_TAG = 'Week'
 
-export default function LibraryMode({ onBack }) {
-  const [filterSubject, setFilterSubject] = useState('all');
-  const [filterTag, setFilterTag] = useState('all');
+const TAG_BADGE_CLASS = { Official: 'badge-dark', Free: 'badge-pass', Practice: 'badge-pencil' };
+
+function hostOf(url) {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+}
+
+export default function LibraryMode({ mySubjectIds = [] }) {
+  const [subjectFilter, setSubjectFilter] = useState(mySubjectIds.length > 0 ? MY_SUBJECTS : ALL_SUBJECTS);
+  const [tagFilter, setTagFilter] = useState(ALL_TAGS);
   const [search, setSearch] = useState('');
   // The library spans every subject, so it loads all content, but only when opened.
   const content = useSubjectContent(ALL_SUBJECT_IDS);
 
   const allResources = useMemo(() => {
-    const list = [];
+    // One entry per subject and link: a site shared by two subjects shows up
+    // under either subject's filter, and once in combined views (see below).
+    const bySubjectAndUrl = new Map();
     (content.subjects ?? []).forEach(sub => {
-      (sub.globalResources || []).forEach(r => list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color }));
-      sub.weeks.forEach(wk => (wk.resources || []).forEach(r => { if (!list.find(x => x.url === r.url)) list.push({ ...r, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color, tag: r.tag || 'Week' }); }));
+      const add = (r, fallbackTag) => {
+        const key = `${sub.id}|${r.url}`;
+        if (!bySubjectAndUrl.has(key)) bySubjectAndUrl.set(key, { ...r, tag: r.tag || fallbackTag, subjectId: sub.id, subjectName: sub.shortName, subjectColor: sub.color });
+      };
+      (sub.globalResources || []).forEach(r => add(r, null));
+      sub.weeks.forEach(wk => (wk.resources || []).forEach(r => add(r, WEEK_TAG)));
     });
-    return list;
+    return [...bySubjectAndUrl.values()];
   }, [content.subjects]);
 
-  const allTags = useMemo(() => { const tags = new Set(allResources.map(r => r.tag).filter(Boolean)); return ['all', ...Array.from(tags).sort()]; }, [allResources]);
-  const tagColor = { Official: '#2563eb', Free: '#16a34a', Practice: '#d97706', Video: '#db2777', Tool: '#7c3aed', Reference: '#ea580c', Week: C.muted };
-  const seen = new Set();
+  const tags = useMemo(() => [...new Set(allResources.map(r => r.tag).filter(Boolean))].sort(), [allResources]);
+
+  const query = search.trim().toLowerCase();
+  const shownUrls = new Set();
   const filtered = allResources.filter(r => {
-    const matchSub = filterSubject === 'all' || r.subjectId === filterSubject;
-    const matchTag = filterTag === 'all' || r.tag === filterTag;
-    const q = search.toLowerCase();
-    const matchSearch = !q || r.name.toLowerCase().includes(q) || (r.desc || '').toLowerCase().includes(q);
-    if (!matchSub || !matchTag || !matchSearch) return false;
-    if (seen.has(r.url)) return false;
-    seen.add(r.url); return true;
+    if (subjectFilter === MY_SUBJECTS && !mySubjectIds.includes(r.subjectId)) return false;
+    if (subjectFilter !== MY_SUBJECTS && subjectFilter !== ALL_SUBJECTS && r.subjectId !== subjectFilter) return false;
+    if (tagFilter !== ALL_TAGS && r.tag !== tagFilter) return false;
+    if (query && !r.name.toLowerCase().includes(query) && !(r.desc || '').toLowerCase().includes(query)) return false;
+    if (shownUrls.has(r.url)) return false;
+    shownUrls.add(r.url);
+    return true;
   });
 
+  const clearFilters = () => { setSearch(''); setTagFilter(ALL_TAGS); setSubjectFilter(ALL_SUBJECTS); };
+
+  let results;
+  if (content.error) {
+    results = <div className="card"><EmptyState icon={RotateCcw} title="Couldn't load the library" action={<Button variant="secondary" onClick={() => window.location.reload()}>Reload</Button>}>{content.error.message}</EmptyState></div>;
+  } else if (!content.subjects) {
+    results = <div className="card library-loading" role="status">Loading resources</div>;
+  } else if (filtered.length === 0) {
+    results = <div className="card"><EmptyState icon={Search} title="Nothing matches" action={<Button variant="secondary" onClick={clearFilters}>Clear filters</Button>}>Try a different word, or search every subject.</EmptyState></div>;
+  } else {
+    results = (
+      <ul className="resource-list library-grid">
+        {filtered.map(r => (
+          <li key={r.url}>
+            <a className="card resource-link library-item" href={r.url} target="_blank" rel="noopener noreferrer">
+              <span className="resource-text">
+                <span className="library-tags">
+                  <span className="badge badge-outline" style={{ '--subject': r.subjectColor }}><span className="chip-dot" aria-hidden="true" />{r.subjectName}</span>
+                  {r.tag && <span className={`badge ${TAG_BADGE_CLASS[r.tag] ?? ''}`}>{r.tag === WEEK_TAG ? 'From the plan' : r.tag}</span>}
+                </span>
+                <span className="resource-name">{r.name}</span>
+                {r.desc && <span className="resource-desc">{r.desc}</span>}
+                <span className="resource-host">{hostOf(r.url)}</span>
+              </span>
+              <ExternalLink aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: C.bg }}>
-      <div style={{ background: C.white, borderBottom: `1px solid ${C.border}`, padding: '0 24px', height: '54px', display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', color: C.text2 }}>← Back</button>
-        <span style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: C.text }}>📚 Resource Library</span>
-        <span style={{ color: C.muted, fontSize: '11px' }}>· {filtered.length} resources</span>
-      </div>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
-        <div style={{ maxWidth: '920px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search resources..." style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '8px', color: C.text, fontSize: '12px', padding: '7px 12px', fontFamily: 'inherit', outline: 'none', minWidth: '180px' }} />
-            {['all', ...SUBJECTS.map(s => s.id)].map(id => {
-              const sub = SUBJECTS.find(s => s.id === id);
-              const active = filterSubject === id;
-              return <button key={id} onClick={() => setFilterSubject(id)} style={{ background: active ? (sub ? `${sub.color}15` : C.redLight) : 'transparent', border: `1px solid ${active ? (sub ? sub.color : C.red) : C.border}`, borderRadius: '10px', color: active ? (sub ? sub.color : C.red) : C.muted, fontSize: '10px', padding: '4px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{sub ? `${sub.icon} ${sub.shortName}` : 'All'}</button>;
-            })}
-          </div>
-          <div style={{ display: 'flex', gap: '5px', marginBottom: '20px', flexWrap: 'wrap' }}>
-            {allTags.map(tag => (
-              <button key={tag} onClick={() => setFilterTag(tag)} style={{ background: filterTag === tag ? `${tagColor[tag] || C.muted}15` : 'transparent', border: `1px solid ${filterTag === tag ? (tagColor[tag] || C.muted) : C.border}`, borderRadius: '10px', color: filterTag === tag ? (tagColor[tag] || C.text) : C.muted, fontSize: '10px', padding: '4px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{tag === 'all' ? 'All Types' : tag}</button>
-            ))}
-          </div>
-          {content.error ? (
-            <div style={{ color: C.red, fontSize: '13px', textAlign: 'center', padding: '40px' }}>{content.error.message} <button onClick={() => window.location.reload()} style={{ background: 'none', border: 'none', color: C.red, textDecoration: 'underline', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px' }}>Reload</button></div>
-          ) : !content.subjects ? (
-            <div style={{ color: C.muted, fontSize: '13px', textAlign: 'center', padding: '40px' }}>Loading resources…</div>
-          ) : filtered.length === 0 ? (
-            <div style={{ color: C.muted, fontSize: '13px', textAlign: 'center', padding: '40px' }}>No resources match.</div>
-          ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '10px' }}>
-              {filtered.map((r, i) => (
-                <a key={i} href={r.url} target="_blank" rel="noopener noreferrer"
-                  style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: '14px', padding: '16px 18px', textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = r.subjectColor + '50'}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
-                  <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                    {r.tag && <span style={{ fontSize: '10px', border: `1px solid ${(tagColor[r.tag] || C.muted)}30`, borderRadius: '99px', padding: '1px 6px', color: tagColor[r.tag] || C.muted }}>{r.tag}</span>}
-                    <span style={{ fontSize: '10px', border: `1px solid ${r.subjectColor}25`, borderRadius: '99px', padding: '1px 6px', color: r.subjectColor }}>{r.subjectName}</span>
-                  </div>
-                  <div style={{ color: C.text, fontSize: '12px', fontWeight: 600 }}>{r.name}</div>
-                  <div style={{ color: C.muted, fontSize: '11px', lineHeight: '1.5', flex: 1 }}>{r.desc}</div>
-                  <div style={{ color: r.subjectColor, fontSize: '10px' }}>↗ Open resource</div>
-                </a>
-              ))}
-            </div>
-          )}
+    <div className="page library">
+      <header className="page-head">
+        <div>
+          <h1>Resource library</h1>
+          <p>Every link from every plan, in one place.</p>
         </div>
+        {content.subjects && <span className="badge badge-outline" aria-live="polite">{filtered.length} resource{filtered.length === 1 ? '' : 's'}</span>}
+      </header>
+
+      <div className="library-filters">
+        <label className="input-with-icon library-search">
+          <Search aria-hidden="true" />
+          <span className="sr-only">Search resources</span>
+          <input className="input" type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name or topic" />
+        </label>
+        <label className="library-subject">
+          <span className="sr-only">Subject</span>
+          <select className="input select" value={subjectFilter} onChange={e => setSubjectFilter(e.target.value)}>
+            {mySubjectIds.length > 0 && <option value={MY_SUBJECTS}>My subjects</option>}
+            <option value={ALL_SUBJECTS}>All subjects</option>
+            {SUBJECTS.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+          </select>
+        </label>
       </div>
+      {tags.length > 0 && (
+        <div className="chips library-types" role="group" aria-label="Resource type">
+          <button type="button" className="chip" aria-pressed={tagFilter === ALL_TAGS} onClick={() => setTagFilter(ALL_TAGS)}>All types</button>
+          {tags.map(tag => (
+            <button key={tag} type="button" className="chip" aria-pressed={tagFilter === tag} onClick={() => setTagFilter(tag)}>{tag === WEEK_TAG ? 'From the plan' : tag}</button>
+          ))}
+        </div>
+      )}
+
+      {results}
     </div>
   );
 }

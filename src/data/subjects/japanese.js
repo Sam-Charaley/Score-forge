@@ -1,5 +1,5 @@
 // AP Japanese Language and Culture: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"japanese",
   globalResources:[
@@ -134,7 +134,7 @@ export default {
       frq:null,
       tip:"The day before the exam: confirm that you can type Japanese characters efficiently using the IME on the exam computer. If you're taking the exam at your school, ask to practice on the actual exam machine the day before if possible.",
     },
-    { id:10, dates:"May 4 – May 7", label:"Exam Week", theme:"🎯 AP Japanese Exam", examWeight:"All sections", color:"#be185d", isExamWeek:true,
+    { id:10, dates:"May 4 – May 7", label:"Exam Week", theme:"AP Japanese Exam", examWeight:"All sections", color:"#be185d", isExamWeek:true,
       overview:"Exam is May 7. Computer-based. Light review and rest.",
       days:[
         { day:"May 4–6", tasks:["15 min Japanese audio per day — keep ear active","5 MCQs per day — no full exams","Rest and sleep 8+ hours each night"] },

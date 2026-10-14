@@ -1,5 +1,5 @@
 // AP Biology: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"bio",
   globalResources:[
@@ -136,7 +136,7 @@ export default {
       frq:null,
       tip:"The night before: briefly review the major pathways and the Hardy-Weinberg formula. Don't study anything new — consolidate what you know.",
     },
-    { id:10, dates:"May 4 – May 11", label:"Exam Week", theme:"🎯 AP Biology Exam", examWeight:"All units", color:"#15803d", isExamWeek:true,
+    { id:10, dates:"May 4 – May 11", label:"Exam Week", theme:"AP Biology Exam", examWeight:"All units", color:"#15803d", isExamWeek:true,
       overview:"Exam is May 11. Rest and trust your preparation.",
       days:[
         { day:"May 4–7", tasks:["5 MCQs per day","Review FRQ vocabulary: describe, explain, justify, predict","Sleep 8+ hours"] },

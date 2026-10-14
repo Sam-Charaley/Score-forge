@@ -1,5 +1,5 @@
 // AP Computer Science A: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 // Follows the revised course (first tested May 2026): 4 units, no inheritance,
 // text files and data sets added. Unit weights are College Board's ranges.
 export default {
@@ -171,7 +171,7 @@ export default {
       frq:{ type:"All 4 FRQ types", prompt:"Do all 4 FRQs from one released exam in 90 minutes: Q1 Methods and Control Structures, Q2 Class Design, Q3 Data Analysis with ArrayList, Q4 2D Array.", rubricTip:"Spend about 22 minutes each. If you're stuck on a part, write what you can and move on. Partial credit is real." },
       tip:"Score your practice exams honestly with the official guidelines. A generous self-grade hides exactly the weaknesses you have time to fix.",
     },
-    { id:10, dates:"Exam week", label:"Exam Week", theme:"🎯 AP CS A Exam", examWeight:"All units", color:"#16a34a", isExamWeek:true,
+    { id:10, dates:"Exam week", label:"Exam Week", theme:"AP CS A Exam", examWeight:"All units", color:"#16a34a", isExamWeek:true,
       overview:"Light review, steady routine, good sleep. The exam is fully digital in the Bluebook app, so make sure you've practiced in it.",
       days:[
         { day:"Early in the week", tasks:["Light review only: 10 MCQs per day at most","Review the Java Quick Reference inside Bluebook","Re-read your notes on your two weakest topics"] },

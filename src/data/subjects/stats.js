@@ -1,5 +1,5 @@
 // AP Statistics: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "stats",
   globalResources: [
@@ -174,7 +174,7 @@ export default {
       frq:{ type:"Investigative Task Practice", prompt:"Do the investigative task from the 2022 AP Statistics exam. It is a 6-part problem. Budget 30 seconds to read each part before starting. Don't skip parts — partial credit is substantial.", rubricTip:"The investigative task is graded holistically. You can earn points on later parts even if earlier parts are wrong. Never leave a part blank — write your statistical reasoning even if unsure of the exact procedure." },
       tip:"The investigative task consistently intimidates students who over-focus on short FRQs during preparation. Practice at least 3 full investigative tasks before exam day. The format becomes much less scary once you've seen it a few times.",
     },
-    { id:10, dates:"May 4 – May 13", label:"Exam Week", theme:"🎯 AP Statistics Exam", examWeight:"All units", color:"#65a30d", isExamWeek:true,
+    { id:10, dates:"May 4 – May 13", label:"Exam Week", theme:"AP Statistics Exam", examWeight:"All units", color:"#65a30d", isExamWeek:true,
       overview:"Exam is May 13 (afternoon). AP Statistics rewards careful, clear statistical communication. Your 9 weeks of work in context, conditions, and procedure are exactly what the exam rewards.",
       days:[
         { day:"May 4–7", tasks:["15 mixed MCQs per day — all 8 inference procedures represented","Review: the 8 procedures and when to use each — write the conditions for each from memory","Review: SOCS for distributions, DOFS for scatterplots, BINS for binomial","Sleep 8+ hours every night — statistical reasoning requires a well-rested brain"] },

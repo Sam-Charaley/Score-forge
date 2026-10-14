@@ -57,7 +57,7 @@ describe('task identity in adapted plans', () => {
 
   it('generated review tasks have no ref, so they never collide with real progress', () => {
     const csa = SUBJECTS.find(s => s.id === 'csa');
-    const review = adaptPlanToWindow(csa, 120, START).flatMap(p => p.days).find(d => d.day.includes('Review & Self-Test'));
+    const review = adaptPlanToWindow(csa, 120, START).flatMap(p => p.days).find(d => d.day.includes('Review and self-test'));
     expect(review).toBeDefined();
     expect(review.taskRefs.every(r => r === null)).toBe(true);
   });
@@ -179,5 +179,16 @@ describe('pickFurthestBehind', () => {
   it('caps time used at 100% after the plan ends and 0% before it starts', () => {
     expect(scheduleStatus(csa, plans.csa, {}, parseLocalDate('2027-03-01')).timeShare).toBe(1);
     expect(scheduleStatus(csa, plans.csa, {}, parseLocalDate('2026-09-01')).timeShare).toBe(0);
+  });
+});
+
+describe('merged phase labels', () => {
+  it('shortenAtWord cuts on a word boundary with an ellipsis', async () => {
+    const { shortenAtWord } = await import('./planEngine');
+    expect(shortenAtWord('short', 65)).toBe('short');
+    const out = shortenAtWord('Primitive Types, Expressions & Casting · Objects, Strings & Methods', 50);
+    expect(out.length).toBeLessThanOrEqual(50);
+    expect(out.endsWith('…')).toBe(true);
+    expect(out).toBe('Primitive Types, Expressions & Casting · Objects…');
   });
 });

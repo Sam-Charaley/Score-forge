@@ -1,5 +1,5 @@
 // AP Calculus AB: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "calcab",
   globalResources: [
@@ -174,7 +174,7 @@ export default {
       frq:{ type:"Full 6-FRQ simulation", prompt:"Do all 6 FRQs from any recent past AP Calc AB exam — 2 with calculator (30 min), 4 without (60 min). Score with official rubrics. Count justification-language points separately — they're the easiest to recover.", rubricTip:"On the AP exam, 'justify your answer' is a specific instruction requiring a theorem name + conditions verified + conclusion. Students who write 'because f' changes sign' without naming the First Derivative Test consistently lose 1 point per justification." },
       tip:"AP Calc AB FRQs reward mathematical communication as much as computation. Write complete sentences for justifications. Name the theorem. State its conditions. Draw the conclusion. Graders read quickly — make your reasoning unmistakably clear.",
     },
-    { id:10, dates:"May 4 – May 5", label:"Exam Week", theme:"🎯 AP Calculus AB Exam", examWeight:"All units", color:"#dc2626", isExamWeek:true,
+    { id:10, dates:"May 4 – May 5", label:"Exam Week", theme:"AP Calculus AB Exam", examWeight:"All units", color:"#dc2626", isExamWeek:true,
       overview:"Exam is May 5 (morning). Your mathematical instincts are already built. These two days are about rest, calm, and staying sharp.",
       days:[
         { day:"May 4", tasks:["Light review only — 10 mixed MCQs, no full tests","Review the 5 justification phrases you must know cold (MVT, FDT, FTC, IVT, EVT)","Review: d/dx formulas for sin, cos, eˣ, ln(x) and their antiderivatives","Sleep by 10pm — more valuable than any last-minute review"] },

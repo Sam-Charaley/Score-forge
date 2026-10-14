@@ -1,5 +1,5 @@
 // AP Physics 1: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "phys1",
   globalResources: [
@@ -173,7 +173,7 @@ export default {
       frq:{ type:"Paragraph Argument FRQ", prompt:"You will be asked to write a paragraph explaining a physics phenomenon using principles and equations. Practice: 'Explain why a figure skater spins faster when she pulls her arms in. Use equations to support your reasoning.'", rubricTip:"AP rubric for paragraph FRQs: identify the principle (conservation of angular momentum), write the relevant equation (L = Iω), explain the physical change (I decreases), and state the result (ω increases). Each element earns a point." },
       tip:"AP Physics 1 is a writing-heavy exam compared to other science APs. The paragraph argument FRQ and qualitative analysis questions require physics reasoning in clear prose. Practice writing one 4-sentence physics explanation every day this week.",
     },
-    { id:10, dates:"May 4 – May 11", label:"Exam Week", theme:"🎯 AP Physics 1 Exam", examWeight:"All units", color:"#16a34a", isExamWeek:true,
+    { id:10, dates:"May 4 – May 11", label:"Exam Week", theme:"AP Physics 1 Exam", examWeight:"All units", color:"#16a34a", isExamWeek:true,
       overview:"Exam is May 11. Rest, keep your physics instincts sharp with light daily review, and go in confident. You've covered every major unit over 9 weeks.",
       days:[
         { day:"May 4–7", tasks:["10–15 mixed MCQs per day — no new content","Redraw all major diagrams once per day from memory: FBD, energy bar chart, momentum bar chart, circuit","Review the equation sheet — for each equation, state in words what it means physically","Sleep 8+ hours every night"] },

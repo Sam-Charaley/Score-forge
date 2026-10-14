@@ -1,5 +1,5 @@
 // AP Art History: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id:"arthistory",
   globalResources:[
@@ -133,7 +133,7 @@ export default {
       frq:null,
       tip:"On exam day for unfamiliar works in FRQs: start with what you can definitively see (medium, scale, subject, formal organization), then move to what you can reasonably infer from style. You don't need to know the work's title to earn most FRQ points.",
     },
-    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"🎯 AP Art History Exam", examWeight:"All units", color:"#92400e", isExamWeek:true,
+    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"AP Art History Exam", examWeight:"All units", color:"#92400e", isExamWeek:true,
       overview:"Exam is May 8. Light review and rest.",
       days:[
         { day:"May 4–7", tasks:["10-minute daily flashcard review — most-missed works only","5 MCQs per day — no full practice exams","Rest and sleep 8+ hours each night"] },

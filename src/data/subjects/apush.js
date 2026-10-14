@@ -1,5 +1,5 @@
 // AP United States History: study plan content.
-// Name, color, icon and exam date live in ../subjectIndex.js.
+// Name, color, code and exam date live in ../subjectIndex.js.
 export default {
   id: "apush",
   globalResources: [
@@ -165,7 +165,7 @@ export default {
       frq:null,
       tip:"The night before: review your 5 most common APUSH essay topics — New Deal, Civil Rights, westward expansion, industrialization, and Cold War. For each, have a clear thesis, 3 specific examples, and one complexity argument ready to deploy.",
     },
-    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"🎯 APUSH Exam", examWeight:"All periods", color:"#1e3a5f", isExamWeek:true,
+    { id:10, dates:"May 4 – May 8", label:"Exam Week", theme:"APUSH Exam", examWeight:"All periods", color:"#1e3a5f", isExamWeek:true,
       overview:"Exam is May 8 (morning). Light review only. Trust your preparation.",
       days:[
         { day:"May 4–5", tasks:["10 MCQs per day — mixed periods","Review DBQ and SAQ strategies one final time","Sleep 8+ hours each night"] },
