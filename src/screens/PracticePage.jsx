@@ -6,7 +6,7 @@ import EmptyState from '../components/ui/EmptyState'
 import SubjectSwitcher from '../components/SubjectSwitcher'
 import { usePracticeHistory } from '../hooks/usePracticeHistory'
 import { useQuestionBank } from '../hooks/useQuestionBank'
-import { pickNextQuestion, createVisibleTimer } from '../utils/practice'
+import { pickNextQuestion, createVisibleTimer, choiceDisplayOrder } from '../utils/practice'
 import { pickSmartQuestion } from '../utils/priority'
 import { masteryLevel, chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
 import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
@@ -54,7 +54,7 @@ function DifficultyPips({ difficulty }) {
   );
 }
 
-function Choice({ index, text, chosen, submitted, isAnswer, onChoose }) {
+function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onChoose }) {
   const result = !submitted ? '' : isAnswer ? 'is-right' : chosen ? 'is-wrong' : 'is-faded';
   return (
     <button
@@ -63,7 +63,7 @@ function Choice({ index, text, chosen, submitted, isAnswer, onChoose }) {
       {...{ [SHORTCUT_TARGET_ATTR]: '' }}
     >
       <span className="bubble" aria-hidden="true">{CHOICE_LETTERS[index]}</span>
-      <span className={`choice-text${looksLikeCode(text) ? ' mono' : ''}`}><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{text}</span>
+      <span className={`choice-text${isPrintedOutput || looksLikeCode(text) ? ' mono' : ''}`}><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{text}</span>
       {submitted && isAnswer && <span className="choice-mark"><Check aria-hidden="true" /><span className="sr-only">Correct answer</span></span>}
       {submitted && chosen && !isAnswer && <span className="choice-mark"><X aria-hidden="true" /><span className="sr-only">Your answer</span></span>}
     </button>
@@ -76,7 +76,10 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
   const [scope, setScope] = useState(SMART);
   const [question, setQuestion] = useState(null);
   const [reason, setReason] = useState(null);
+  // chosenIndex is always the authored index into question.choices;
+  // displayOrder maps on-screen positions (A, B, C, D) to authored indexes.
   const [chosenIndex, setChosenIndex] = useState(null);
+  const [displayOrder, setDisplayOrder] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [session, setSession] = useState({ answered: 0, correct: 0 });
   const timer = useRef(null);
@@ -94,6 +97,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
     timer.current?.stop();
     timer.current = next ? createVisibleTimer() : null;
     setQuestion(next);
+    setDisplayOrder(next ? choiceDisplayOrder(next) : []);
     setReason(why);
     setChosenIndex(null);
     setSubmitted(false);
@@ -140,7 +144,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
       if (!submitted && question) {
         const digit = ['1', '2', '3', '4'].indexOf(e.key);
         const index = digit >= 0 ? digit : CHOICE_LETTERS.indexOf(e.key.toUpperCase());
-        if (index >= 0 && index < question.choices.length) { e.preventDefault(); setChosenIndex(index); return; }
+        if (index >= 0 && index < displayOrder.length) { e.preventDefault(); setChosenIndex(displayOrder[index]); return; }
       }
       if (e.key === 'Enter' && mayTakeActivationKey(e.target, `[${SHORTCUT_TARGET_ATTR}]`)) {
         e.preventDefault();
@@ -149,7 +153,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [submitted, question, submit, next]);
+  }, [submitted, question, displayOrder, submit, next]);
 
   const header = (
     <>
@@ -220,17 +224,18 @@ export default function PracticePage({ user, subject, practiceSubjects = [], onS
                   </p>
                 )}
                 <p className="prompt">{question.prompt}</p>
+                {question.setup && <pre className="code-block code-setup" aria-label="Code given for this question">{question.setup}</pre>}
                 {question.code && <pre className="code-block">{question.code}</pre>}
 
                 <div role="radiogroup" aria-label="Answer choices" className="choices">
-                  {question.choices.map((choice, i) => (
-                    <Choice key={i} index={i} text={choice} chosen={chosenIndex === i} submitted={submitted} isAnswer={i === question.answer} onChoose={() => setChosenIndex(i)} />
+                  {displayOrder.map((authored, position) => (
+                    <Choice key={authored} index={position} text={question.choices[authored]} chosen={chosenIndex === authored} submitted={submitted} isAnswer={authored === question.answer} isPrintedOutput={question.verify === 'output'} onChoose={() => setChosenIndex(authored)} />
                   ))}
                 </div>
 
                 {submitted && (
                   <div className={`feedback ${wasCorrect ? 'is-right' : 'is-wrong'}`} role="status">
-                    <b>{wasCorrect ? 'Correct.' : `Not quite. The answer is ${CHOICE_LETTERS[question.answer]}.`}</b>
+                    <b>{wasCorrect ? 'Correct.' : `Not quite. The answer is ${CHOICE_LETTERS[displayOrder.indexOf(question.answer)]}.`}</b>
                     <p>{question.explanation}</p>
                   </div>
                 )}

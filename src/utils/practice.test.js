@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { pickNextQuestion, createVisibleTimer, MAX_ATTEMPT_MS } from './practice'
+import { pickNextQuestion, createVisibleTimer, MAX_ATTEMPT_MS, choiceDisplayOrder } from './practice'
 
 const pool = ['a', 'b', 'c', 'd'].map(id => ({ id }));
 const first = () => 0;
@@ -53,5 +53,20 @@ describe('createVisibleTimer', () => {
     expect(timer.elapsedMs()).toBe(MAX_ATTEMPT_MS);
     timer.stop();
     expect(doc.listenerCount()).toBe(0);
+  });
+});
+
+describe('choiceDisplayOrder', () => {
+  const question = { choices: ['a', 'b', 'c', 'd'] };
+  it('is a permutation of every choice', () => {
+    for (let n = 0; n < 50; n++) expect([...choiceDisplayOrder(question)].sort()).toEqual([0, 1, 2, 3]);
+  });
+  it('puts the authored answer in every position over many showings', () => {
+    const positions = new Set();
+    for (let n = 0; n < 200; n++) positions.add(choiceDisplayOrder(question).indexOf(0));
+    expect([...positions].sort()).toEqual([0, 1, 2, 3]);
+  });
+  it('keeps the authored order when fixedOrder is set', () => {
+    expect(choiceDisplayOrder({ ...question, fixedOrder: true }, () => 0)).toEqual([0, 1, 2, 3]);
   });
 });

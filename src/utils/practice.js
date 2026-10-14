@@ -37,3 +37,19 @@ export function createVisibleTimer(doc = document, now = () => performance.now()
     stop() { doc.removeEventListener('visibilitychange', onVisibilityChange); },
   };
 }
+
+// The order a question's choices are shown in, as indexes into q.choices.
+// Shuffled per showing so the right answer's letter carries no signal (the
+// authored banks lean toward A and B). Saved attempts keep the authored
+// index, so ratings and history never depend on the display order.
+// A question with fixedOrder: true (say "I only / II only / I and II") keeps
+// its authored order.
+export function choiceDisplayOrder(question, random = Math.random) {
+  const order = question.choices.map((_, i) => i);
+  if (question.fixedOrder) return order;
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}

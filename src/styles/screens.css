@@ -550,3 +550,4 @@ kbd svg { width: 12px; height: 12px; }
   .code-block { font-size: 12.5px; padding: 12px; }
   .choice-text.mono { font-size: 13.5px; }
 }
+.code-setup { margin-bottom: 10px; background: var(--sheet); border-style: dashed; }

@@ -29,11 +29,23 @@ async function loadQuestions() {
   return all;
 }
 
-function runJava(code) {
+// A question's setup is the code it shows before the snippet: either whole
+// classes (placed beside Main, since only Main may be public) or methods and
+// fields (placed inside Main, so the snippet can call them directly).
+const CLASS_DECLARATION = /^\s*(public\s+)?(abstract\s+)?class\s/m;
+
+export function buildJavaSource(code, setup = '') {
+  const declaresClasses = CLASS_DECLARATION.test(setup);
+  const topLevel = declaresClasses ? setup.replace(/^(\s*)public\s+(?=(abstract\s+)?class\s)/gm, '$1') : '';
+  const members = declaresClasses ? '' : setup;
+  // java.util covers ArrayList and friends; AP code assumes those imports.
+  return `import java.util.*;\n\n${topLevel}\n\npublic class Main {\n${members}\n    public static void main(String[] args) {\n${code}\n    }\n}\n`;
+}
+
+function runJava(code, setup) {
   const dir = mkdtempSync(path.join(tmpdir(), 'sf-q-'));
   try {
-    // java.util covers ArrayList and friends; AP code assumes those imports.
-    const source = `import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n${code}\n    }\n}\n`;
+    const source = buildJavaSource(code, setup);
     writeFileSync(path.join(dir, 'Main.java'), source);
     execFileSync('javac', ['Main.java'], { cwd: dir, stdio: 'pipe', timeout: RUN_TIMEOUT_MS });
     return execFileSync('java', ['-cp', dir, 'Main'], { cwd: dir, encoding: 'utf8', timeout: RUN_TIMEOUT_MS, stdio: ['ignore', 'pipe', 'pipe'] });
@@ -52,7 +64,7 @@ let failures = 0;
 for (const q of questions) {
   let printed;
   try {
-    printed = runJava(q.code).trim();
+    printed = runJava(q.code, q.setup).trim();
   } catch (error) {
     failures++;
     console.log(`✗ ${q.id} (${q.file}): did not compile or run\n${String(error.stderr || error.message).trim()}\n`);

@@ -42,6 +42,8 @@ describe('question bank format', () => {
       if (typeof q.reviewed !== 'boolean') problems.push(`${where}: reviewed must be true or false`);
       if (q.verify !== undefined && q.verify !== 'output') problems.push(`${where}: verify must be 'output' or absent`);
       if (q.verify === 'output' && !q.code?.trim()) problems.push(`${where}: verify 'output' needs code`);
+      if (q.setup !== undefined && (typeof q.setup !== 'string' || !q.setup.trim())) problems.push(`${where}: setup must be non-empty code if present`);
+      if (q.fixedOrder !== undefined && q.fixedOrder !== true) problems.push(`${where}: fixedOrder must be true or absent`);
     });
     expect(problems).toEqual([]);
   });
