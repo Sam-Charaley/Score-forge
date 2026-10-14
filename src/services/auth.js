@@ -3,7 +3,17 @@ import { unwrap } from './unwrap'
 
 const USERNAME_MIN_LENGTH = 2;
 const USERNAME_PATTERN = /^[a-zA-Z0-9_]+$/;
-const PLAN_SETTINGS_KEY = 'user_id,subject_id';
+// Every table has its own id primary key, and the row's real identity is a
+// separate unique constraint. Upserts must name that constraint's columns:
+// without onConflict they match on id, try to insert a second row and fail.
+export const UPSERT_KEYS = {
+  selected_subjects: 'user_id',
+  progress: 'user_id,subject_id,week_id,day_index,task_index',
+  plan_settings: 'user_id,subject_id',
+  notes: 'user_id,subject_id,week_id',
+  streaks: 'user_id',
+};
+const upsertRow = (table, row) => supabase.from(table).upsert(row, { onConflict: UPSERT_KEYS[table] });
 
 
 export const Auth = {
@@ -71,7 +81,7 @@ export const Auth = {
   },
 
   async saveSubjects(userId, ids) {
-    unwrap(await supabase.from('selected_subjects').upsert({ user_id: userId, subject_ids: ids, updated_at: new Date() }), 'save your subjects')
+    unwrap(await upsertRow('selected_subjects', { user_id: userId, subject_ids: ids, updated_at: new Date() }), 'save your subjects')
   },
 
   async getChecked(userId) {
@@ -84,7 +94,7 @@ export const Auth = {
   },
 
   async toggleTask(userId, subjectId, weekId, dayIndex, taskIndex, done) {
-    unwrap(await supabase.from('progress').upsert({
+    unwrap(await upsertRow('progress', {
       user_id: userId,
       subject_id: String(subjectId),
       week_id: parseInt(weekId),
@@ -109,15 +119,11 @@ export const Auth = {
   },
 
   async savePlanSetting(userId, subjectId, setting) {
-    // The table's primary key is its own id; one plan per subject is enforced
-    // by a unique (user_id, subject_id) constraint. Without onConflict the
-    // upsert matched on id, so changing an existing plan tried to insert a
-    // second row and hit that constraint.
-    unwrap(await supabase.from('plan_settings').upsert({
+    unwrap(await upsertRow('plan_settings', {
       user_id: userId, subject_id: subjectId,
       duration_days: setting.durationDays, start_date: setting.startDate,
       updated_at: new Date()
-    }, { onConflict: PLAN_SETTINGS_KEY }), 'save your study plan')
+    }), 'save your study plan')
   },
 
   async getNote(userId, subjectId, weekId) {
@@ -126,7 +132,7 @@ export const Auth = {
   },
 
   async saveNote(userId, subjectId, weekId, content) {
-    unwrap(await supabase.from('notes').upsert({ user_id: userId, subject_id: subjectId, week_id: weekId, content, updated_at: new Date() }), 'save your notes')
+    unwrap(await upsertRow('notes', { user_id: userId, subject_id: subjectId, week_id: weekId, content, updated_at: new Date() }), 'save your notes')
   },
 
   async getStreak(userId) {
@@ -140,7 +146,7 @@ export const Auth = {
     if (streak.last_date === today) return streak
     const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1)
     const newCount = streak.last_date === yesterday.toDateString() ? streak.count + 1 : 1
-    unwrap(await supabase.from('streaks').upsert({ user_id: userId, count: newCount, last_date: today }), 'update your streak')
+    unwrap(await upsertRow('streaks', { user_id: userId, count: newCount, last_date: today }), 'update your streak')
     return { count: newCount, last_date: today }
   },
 }
