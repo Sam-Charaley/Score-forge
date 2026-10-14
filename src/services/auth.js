@@ -3,6 +3,7 @@ import { unwrap } from './unwrap'
 
 const USERNAME_MIN_LENGTH = 2;
 const USERNAME_PATTERN = /^[a-zA-Z0-9_]+$/;
+const PLAN_SETTINGS_KEY = 'user_id,subject_id';
 
 
 export const Auth = {
@@ -108,11 +109,15 @@ export const Auth = {
   },
 
   async savePlanSetting(userId, subjectId, setting) {
+    // The table's primary key is its own id; one plan per subject is enforced
+    // by a unique (user_id, subject_id) constraint. Without onConflict the
+    // upsert matched on id, so changing an existing plan tried to insert a
+    // second row and hit that constraint.
     unwrap(await supabase.from('plan_settings').upsert({
       user_id: userId, subject_id: subjectId,
       duration_days: setting.durationDays, start_date: setting.startDate,
       updated_at: new Date()
-    }), 'save your study plan')
+    }, { onConflict: PLAN_SETTINGS_KEY }), 'save your study plan')
   },
 
   async getNote(userId, subjectId, weekId) {
