@@ -58,6 +58,8 @@ function DifficultyPips({ difficulty }) {
 }
 
 function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onChoose }) {
+  // Choices that are whole code segments keep their line breaks and indentation.
+  const isMultiline = text.includes('\n');
   const result = !submitted ? '' : isAnswer ? 'is-right' : chosen ? 'is-wrong' : 'is-faded';
   return (
     <button
@@ -66,7 +68,7 @@ function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onC
       {...{ [SHORTCUT_TARGET_ATTR]: '' }}
     >
       <span className="bubble" aria-hidden="true">{CHOICE_LETTERS[index]}</span>
-      <span className={`choice-text${isPrintedOutput || looksLikeCode(text) ? ' mono' : ''}`}><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{text}</span>
+      <span className={`choice-text${isMultiline ? ' is-multiline mono' : isPrintedOutput || looksLikeCode(text) ? ' mono' : ''}`}><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{text}</span>
       {submitted && isAnswer && <span className="choice-mark"><Check aria-hidden="true" /><span className="sr-only">Correct answer</span></span>}
       {submitted && chosen && !isAnswer && <span className="choice-mark"><X aria-hidden="true" /><span className="sr-only">Your answer</span></span>}
     </button>

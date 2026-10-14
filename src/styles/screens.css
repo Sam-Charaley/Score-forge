@@ -608,3 +608,5 @@ kbd svg { width: 12px; height: 12px; }
 @media (max-width: 400px) {
   .mobile-nav-item { font-size: 10px; }
 }
+.choice-text.is-multiline { white-space: pre-wrap; font-size: 13.5px; line-height: 1.55; }
+.choice:has(.is-multiline) { align-items: flex-start; }
