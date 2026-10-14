@@ -2,11 +2,12 @@ import { C } from '../theme'
 import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { hasQuestionBank } from '../data/questions/questionLoader'
+import StudyNextCard from '../components/StudyNextCard'
 import { FLASHCARDS } from '../data/flashcards'
 import { EXAM_DATES_CONFIRMED, EXAM_CYCLE_YEAR } from '../data/subjectIndex'
 import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs, pickFurthestBehind } from '../utils/planEngine'
 
-export default function HomePage({ username, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {
+export default function HomePage({ user, username, checked, mySubjects, planSettings, streak, onNavigate, onLogout, onEditSubjects, onAdjustPlan }) {
   const isMobile = useIsMobile();
   const allProgress = mySubjects.map(s => {
     const refs = allTaskRefs(s);
@@ -118,6 +119,10 @@ export default function HomePage({ username, checked, mySubjects, planSettings, 
               <Btn onClick={onAdjustPlan} style={{ whiteSpace: 'nowrap' }}>Set up plans →</Btn>
             </div>
           )}
+
+          {user && mySubjects.filter(s => hasQuestionBank(s.id)).map(s => (
+            <StudyNextCard key={s.id} user={user} subject={s} onPractice={() => onNavigate('practice', s.id)} />
+          ))}
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
             <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted }}>My Subjects ({mySubjects.length})</div>

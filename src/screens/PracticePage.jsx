@@ -3,29 +3,20 @@ import { C } from '../theme'
 import Btn from '../components/Btn'
 import { useIsMobile } from '../hooks/useIsMobile'
 import { usePracticeHistory } from '../hooks/usePracticeHistory'
-import { loadQuestionBank, loadTopicMap } from '../data/questions/questionLoader'
+import { useQuestionBank } from '../hooks/useQuestionBank'
 import { pickNextQuestion, createVisibleTimer } from '../utils/practice'
+import { pickSmartQuestion } from '../utils/priority'
 import { masteryLevel, chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D'];
 const ALL_UNITS = 'all';
+// Phase 3 default: topic by priority, question at the target difficulty.
+const SMART = 'smart';
 const CORRECT_GREEN = '#166534';
 const CORRECT_BG = '#F0FDF4';
 const CORRECT_BORDER = '#86EFAC';
 const MONO_FONT = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 const DIFFICULTY_LABELS = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
-
-function useQuestionBank(subjectId) {
-  const [bank, setBank] = useState({ status: 'loading' });
-  useEffect(() => {
-    let isCurrent = true;
-    Promise.all([loadQuestionBank(subjectId), loadTopicMap(subjectId)])
-      .then(([questions, { units, topics }]) => { if (isCurrent) setBank({ status: 'ready', questions, units, topics }); })
-      .catch(error => { if (isCurrent) setBank({ status: 'error', message: error.message }); });
-    return () => { isCurrent = false; };
-  }, [subjectId]);
-  return bank;
-}
 
 function MasteryRow({ name, stats }) {
   const level = masteryLevel(stats);
@@ -54,8 +45,9 @@ export default function PracticePage({ user, subject, onBack, onSaveError }) {
   const isMobile = useIsMobile();
   const bank = useQuestionBank(subject.id);
   const history = usePracticeHistory({ userId: user.id, subjectId: subject.id, onSaveError });
-  const [scope, setScope] = useState(ALL_UNITS);
+  const [scope, setScope] = useState(SMART);
   const [question, setQuestion] = useState(null);
+  const [reason, setReason] = useState(null);
   const [chosenIndex, setChosenIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [session, setSession] = useState({ answered: 0, correct: 0 });
@@ -64,22 +56,33 @@ export default function PracticePage({ user, subject, onBack, onSaveError }) {
   const topicById = useMemo(() => new Map((bank.topics ?? []).map(t => [t.id, t])), [bank.topics]);
   const pool = useMemo(() => {
     if (bank.status !== 'ready') return [];
-    return scope === ALL_UNITS ? bank.questions : bank.questions.filter(q => topicById.get(q.topic)?.unit === scope);
+    return scope === ALL_UNITS || scope === SMART ? bank.questions : bank.questions.filter(q => topicById.get(q.topic)?.unit === scope);
   }, [bank, scope, topicById]);
   const unitsWithQuestions = useMemo(() => (bank.units ?? []).filter(u => (bank.questions ?? []).some(q => topicById.get(q.topic)?.unit === u.id)), [bank, topicById]);
   const topicsInScope = useMemo(() => (bank.topics ?? []).filter(t => pool.some(q => q.topic === t.id)), [bank.topics, pool]);
 
-  const showQuestion = useCallback((next) => {
+  const showQuestion = useCallback((next, why = null) => {
     timer.current?.stop();
     timer.current = next ? createVisibleTimer() : null;
     setQuestion(next);
+    setReason(why);
     setChosenIndex(null);
     setSubmitted(false);
   }, []);
 
+  const chooseNext = useCallback((previousQuestionId = null) => {
+    const attempts = history.attempts ?? [];
+    if (scope === SMART) {
+      const pick = pickSmartQuestion({ units: bank.units, topics: bank.topics, questions: bank.questions, attempts, mastery: history.mastery, previousQuestionId });
+      showQuestion(pick?.question ?? null, pick?.reason ?? null);
+    } else {
+      showQuestion(pickNextQuestion(pool, attempts, previousQuestionId));
+    }
+  }, [scope, bank, pool, history.attempts, history.mastery, showQuestion]);
+
   // First question once both the bank and the history are in, and whenever the scope changes.
   useEffect(() => {
-    if (bank.status === 'ready' && history.attempts) showQuestion(pickNextQuestion(pool, history.attempts));
+    if (bank.status === 'ready' && history.attempts) chooseNext();
   }, [bank.status, scope, history.attempts === null]);
 
   useEffect(() => () => timer.current?.stop(), []);
@@ -94,9 +97,7 @@ export default function PracticePage({ user, subject, onBack, onSaveError }) {
     await history.record({ questionId: question.id, topicId: question.topic, difficulty: question.difficulty, chosenIndex, correct, timeMs });
   }, [question, chosenIndex, submitted, history]);
 
-  const next = useCallback(() => {
-    showQuestion(pickNextQuestion(pool, history.attempts ?? [], question?.id));
-  }, [pool, history.attempts, question, showQuestion]);
+  const next = useCallback(() => chooseNext(question?.id), [chooseNext, question]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -155,9 +156,9 @@ export default function PracticePage({ user, subject, onBack, onSaveError }) {
         <div style={{ maxWidth: '1040px', margin: '0 auto', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px', alignItems: 'flex-start' }}>
           <div style={{ flex: 1, minWidth: 0, width: '100%' }}>
             <div style={{ display: 'flex', gap: '4px', marginBottom: '14px', flexWrap: 'wrap' }}>
-              {[{ id: ALL_UNITS, name: 'Mixed' }, ...unitsWithQuestions].map(u => (
+              {[{ id: SMART, name: 'Smart' }, { id: ALL_UNITS, name: 'Mixed' }, ...unitsWithQuestions].map(u => (
                 <button key={u.id} onClick={() => setScope(u.id)} style={{ background: scope === u.id ? `${subject.color}12` : 'transparent', border: `1px solid ${scope === u.id ? subject.color : C.border}`, borderRadius: '8px', padding: '5px 12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '11px', fontWeight: scope === u.id ? 700 : 500, color: scope === u.id ? subject.color : C.muted }}>
-                  {u.id === ALL_UNITS ? 'Mixed' : `${u.id.toUpperCase()}: ${u.name}`}
+                  {u.id === SMART ? '✨ Smart' : u.id === ALL_UNITS ? 'Mixed' : `${u.id.toUpperCase()}: ${u.name}`}
                 </button>
               ))}
             </div>
@@ -169,6 +170,12 @@ export default function PracticePage({ user, subject, onBack, onSaveError }) {
                   <span style={{ fontSize: '10px', color: C.muted }}>· {DIFFICULTY_LABELS[question.difficulty]}</span>
                   {!question.reviewed && <span title="Only visible in local development until reviewed" style={{ fontSize: '10px', fontWeight: 700, color: '#9A3412', background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: '99px', padding: '1px 8px' }}>DRAFT · {question.id}</span>}
                 </div>
+                {reason && (
+                  <div style={{ fontSize: '11px', color: C.text2, background: C.bg2, border: `1px solid ${C.border}`, borderRadius: '8px', padding: '6px 10px', margin: '-4px 0 14px' }}>
+                    <b>Why this question:</b> {reason.topic.name} is about {Math.round(reason.weight * 100)}% of the exam
+                    {reason.attempts === 0 ? " and you haven't practiced it yet." : ` and you're at about ${Math.round(reason.chance * 100)}% on it.`}
+                  </div>
+                )}
                 <div style={{ fontSize: '14px', fontWeight: 600, color: C.text, lineHeight: 1.6, marginBottom: question.code ? '12px' : '18px' }}>{question.prompt}</div>
                 {question.code && (
                   <pre style={{ margin: '0 0 18px', padding: '14px 16px', background: C.bg2, border: `1px solid ${C.border}`, borderRadius: '10px', fontFamily: MONO_FONT, fontSize: '13px', lineHeight: 1.6, color: C.text, overflowX: 'auto', whiteSpace: 'pre' }}>{question.code}</pre>

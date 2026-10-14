@@ -86,6 +86,7 @@ export default function App() {
     if (screen === 'home') {
       return (
         <HomePage
+          user={data.user}
           username={data.username}
           checked={data.checked}
           mySubjects={mySubjects}
