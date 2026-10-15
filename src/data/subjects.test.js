@@ -7,6 +7,14 @@ const REQUIRED_WEEK_FIELDS = ['id', 'label', 'theme', 'examWeight', 'color', 'ov
 // Metadata lives only in the index so there's one place to edit exam dates.
 const INDEX_ONLY_FIELDS = REQUIRED_INDEX_FIELDS.filter(f => f !== 'id');
 
+// Week ids a rewritten plan has given up. Saved progress and notes are keyed
+// by (subject, week id, day, task), so reusing one would put old checkmarks
+// on new tasks. When you rewrite a plan, give it fresh ids and add the old
+// ones here.
+const RETIRED_WEEK_IDS = {
+  phys1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+};
+
 const contentFiles = import.meta.glob('./subjects/*.js', { eager: true });
 const SUBJECTS = await loadAllSubjects();
 
@@ -53,6 +61,9 @@ describe('subject content files', () => {
   it.each(SUBJECTS.map(s => [s.id, s]))('%s has every required week field', (_, subject) => {
     const weekIds = subject.weeks.map(w => w.id);
     expect(new Set(weekIds).size, `${subject.id} week ids unique`).toBe(weekIds.length);
+    weekIds.forEach(id => expect(Number.isInteger(id), `${subject.id} week id ${id} must be an integer (stored in an integer column)`).toBe(true));
+    const retired = new Set(RETIRED_WEEK_IDS[subject.id] ?? []);
+    expect(weekIds.filter(id => retired.has(id)), `${subject.id} reuses retired week ids`).toEqual([]);
     for (let i = 0; i < subject.weeks.length; i++) expect(subject.weeks[i], `${subject.id} weeks[${i}]`).toBeTruthy();
     subject.weeks.forEach(week => {
       REQUIRED_WEEK_FIELDS.forEach(f => expect(week[f], `${subject.id} week ${week.id}.${f}`).toBeDefined());
