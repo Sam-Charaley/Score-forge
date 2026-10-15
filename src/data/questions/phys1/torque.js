@@ -1,0 +1,70 @@
+// AP Physics 1, Unit 5: rotational kinematics, torque and equilibrium.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+const DEGREES = Math.PI / 180;
+
+export default [
+  {
+    id: 'phys1-torque-001',
+    topic: 'torque',
+    difficulty: 1,
+    prompt: 'Where and in which direction should you push on a door to open it with the smallest force?',
+    choices: [
+      'Near the hinge, perpendicular to the door',
+      'At the edge farthest from the hinge, perpendicular to the door',
+      'At the edge farthest from the hinge, pushing toward the hinge',
+      'In the middle of the door, at 45° to it',
+    ],
+    answer: 1,
+    explanation: 'Torque is τ = rF sin θ. You get the most turning effect from a given force by making r as large as possible (far from the hinge) and θ = 90° (perpendicular). Pushing toward the hinge gives θ = 0° and no torque at all.',
+    reviewed: false,
+  },
+  {
+    id: 'phys1-torque-002',
+    topic: 'torque',
+    difficulty: 2,
+    prompt: 'A 20 N force is applied 0.40 m from a door\'s hinge, at an angle of 30° to the door. What torque does it produce about the hinge?',
+    choices: ['8.0 N·m', '6.9 N·m', '4.0 N·m', '50 N·m'],
+    answer: 2,
+    explanation: 'τ = rF sin θ = 0.40 × 20 × sin 30° = 4.0 N·m. Only the force component perpendicular to the door turns it. 6.9 N·m uses cos 30°, and 8.0 N·m treats the force as perpendicular.',
+    verify: 'numeric',
+    solve: () => 0.40 * 20 * Math.sin(30 * DEGREES),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-torque-003',
+    topic: 'torque',
+    difficulty: 2,
+    prompt: 'A wheel starts from rest and speeds up uniformly to 12 rad/s in 4.0 s. Through what angle does it turn in that time?',
+    choices: ['48 rad', '24 rad', '12 rad', '3.0 rad'],
+    answer: 1,
+    explanation: 'Rotational kinematics works like linear kinematics: the angle is the average angular velocity times the time, ½(0 + 12)(4.0) = 24 rad. 48 rad uses the final angular velocity as the average, and 3.0 rad/s² is the angular acceleration.',
+    verify: 'numeric',
+    solve: () => 0.5 * (0 + 12) * 4.0,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-torque-004',
+    topic: 'torque',
+    difficulty: 3,
+    prompt: 'A 30 kg child sits 2.0 m from the pivot of a seesaw. How far from the pivot, on the other side, must a 40 kg child sit to balance it? (Ignore the seesaw\'s own mass.)',
+    choices: ['2.7 m', '2.0 m', '1.0 m', '1.5 m'],
+    answer: 3,
+    explanation: 'Balance means the torques about the pivot are equal: (30g)(2.0) = (40g)d, so d = 60/40 = 1.5 m. The heavier child sits closer to the pivot. 2.7 m comes from flipping the ratio.',
+    verify: 'numeric',
+    solve: () => (30 * 2.0) / 40,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-torque-005',
+    topic: 'torque',
+    difficulty: 2,
+    prompt: 'A wheel of radius 0.30 m turns at 5.0 rad/s. How fast is a point on its rim moving?',
+    choices: ['1.5 m/s', '17 m/s', '0.060 m/s', '0.75 m/s'],
+    answer: 0,
+    explanation: 'A point at radius r moves at v = rω = 0.30 × 5.0 = 1.5 m/s. 17 m/s divides ω by r instead of multiplying.',
+    verify: 'numeric',
+    solve: () => 0.30 * 5.0,
+    reviewed: false,
+  },
+];

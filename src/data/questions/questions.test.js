@@ -39,8 +39,10 @@ describe.each(SUBJECTS)('%s question bank', subjectId => {
         }
         if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= QUESTION_CHOICE_COUNT) problems.push(`${where}: answer must be a choice index 0-3`);
         if (typeof q.reviewed !== 'boolean') problems.push(`${where}: reviewed must be true or false`);
-        if (q.verify !== undefined && q.verify !== 'output') problems.push(`${where}: verify must be 'output' or absent`);
+        if (q.verify !== undefined && q.verify !== 'output' && q.verify !== 'numeric') problems.push(`${where}: verify must be 'output', 'numeric' or absent`);
         if (q.verify === 'output' && !q.code?.trim()) problems.push(`${where}: verify 'output' needs code`);
+        if (q.verify === 'numeric' && typeof q.solve !== 'function') problems.push(`${where}: verify 'numeric' needs a solve() function`);
+        if (q.solve !== undefined && q.verify !== 'numeric') problems.push(`${where}: solve() is only checked with verify: 'numeric'`);
         if (q.setup !== undefined && (typeof q.setup !== 'string' || !q.setup.trim())) problems.push(`${where}: setup must be non-empty code if present`);
         if (q.fixedOrder !== undefined && q.fixedOrder !== true) problems.push(`${where}: fixedOrder must be true or absent`);
       });
