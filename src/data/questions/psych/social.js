@@ -46,10 +46,10 @@ export default [
     id: 'psych-social-005',
     topic: 'social',
     difficulty: 3,
-    prompt: 'In Milgram\'s obedience studies, which change caused the biggest drop in how many participants obeyed?',
+    prompt: 'In Milgram\'s obedience studies, which of these changes caused the biggest drop in how many participants obeyed?',
     choices: ['The participants were women instead of men', 'The learner was in a separate room', 'The experimenter gave instructions by phone instead of in person', 'The shock levels were labelled with voltages'],
     answer: 2,
-    explanation: 'When the experimenter was not physically present, full obedience fell to about a fifth of participants. Women obeyed at about the same rate as men, and in the standard version the learner was already in a separate room.',
+    explanation: 'When the experimenter was not physically present, full obedience fell to about a fifth of participants. Women obeyed at about the same rate as men. The other two options weren\'t changes at all: in the standard version the learner was already in a separate room and the switches were already labelled with voltages.',
     reviewed: true,
   },
   {

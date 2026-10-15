@@ -9,7 +9,7 @@ export default [
     prompt: 'An infant keeps looking for a toy after it is hidden under a blanket. According to Piaget, she has developed',
     choices: ['conservation', 'egocentrism', 'abstract reasoning', 'object permanence'],
     answer: 3,
-    explanation: 'Object permanence is understanding that things still exist when they are out of sight. Piaget placed it at the end of the sensorimotor stage. Before it develops, a hidden toy seems to stop existing for the infant.',
+    explanation: 'Object permanence is understanding that things still exist when they are out of sight. Piaget said it develops during the sensorimotor stage, from around 8 months (later research suggests even earlier). Before it develops, a hidden toy seems to stop existing for the infant.',
     reviewed: true,
   },
   {
