@@ -89,7 +89,9 @@ const CHECK_HELPER = `
     }
 `;
 const frqs = [];
-for (const file of readdirSync(FRQ_ROOT).filter(f => f.endsWith('.js') && !f.endsWith('.test.js'))) {
+// Only FRQ sets: the loader uses Vite's import.meta.glob and can't run under plain Node.
+const FRQ_SET_FILE = /^(?!frqLoader\.js$)[a-z0-9-]+\.js$/;
+for (const file of readdirSync(FRQ_ROOT).filter(f => FRQ_SET_FILE.test(f))) {
   const module = await import(pathToFileURL(path.join(FRQ_ROOT, file)));
   frqs.push(...module.default);
 }
