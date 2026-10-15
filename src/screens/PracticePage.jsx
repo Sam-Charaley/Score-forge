@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import { RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft } from 'lucide-react'
+import { Flag, PenLine, RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
 import EmptyState from '../components/ui/EmptyState'
@@ -11,6 +11,9 @@ import { pickSmartQuestion } from '../utils/priority'
 import { masteryLevel, chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
 import { missedQuestionIds, MISSED_SCOPE } from '../utils/progress'
 import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
+import Tabs, { TabPanel } from '../components/ui/Tabs'
+import FrqPractice from '../components/FrqPractice'
+import { hasFrqs } from '../data/frqs/frqLoader'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D'];
 const ALL_UNITS = 'all';
@@ -20,6 +23,9 @@ const SMART = 'smart';
 const MISSED = MISSED_SCOPE;
 const DIFFICULTY_LABELS = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
 const MAX_DIFFICULTY = 3;
+const MULTIPLE_CHOICE = 'mc';
+const FREE_RESPONSE = 'frq';
+const MODE_TABS = [{ id: MULTIPLE_CHOICE, label: 'Multiple choice', icon: Target }, { id: FREE_RESPONSE, label: 'Free response', icon: PenLine }];
 // Enter only answers when focus is on the page or the question itself, so
 // Enter on a scope chip or a nav link still does that control's job.
 const SHORTCUT_TARGET_ATTR = 'data-practice-keys';
@@ -75,7 +81,9 @@ function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onC
   );
 }
 
-export default function PracticePage({ user, subject, practiceSubjects = [], initialScope = SMART, onSubject, onSaveError, onScopeUsed }) {
+export default function PracticePage({ user, subject, practiceSubjects = [], initialScope = SMART, initialMode = MULTIPLE_CHOICE, onSubject, onSaveError, onScopeUsed, onReport }) {
+  const showModes = hasFrqs(subject.id);
+  const [mode, setMode] = useState(showModes ? initialMode : MULTIPLE_CHOICE);
   const bank = useQuestionBank(subject.id);
   const history = usePracticeHistory({ userId: user.id, subjectId: subject.id, onSaveError });
   const [scope, setScope] = useState(initialScope);
@@ -150,6 +158,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
   }, [chooseNext, question]);
 
   useEffect(() => {
+    if (mode !== MULTIPLE_CHOICE) return undefined;
     const onKey = (e) => {
       if (hasModifier(e) || isTypingTarget(e.target)) return;
       if (!submitted && question) {
@@ -164,7 +173,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [submitted, question, displayOrder, submit, next]);
+  }, [mode, submitted, question, displayOrder, submit, next]);
 
   const header = (
     <>
@@ -172,17 +181,31 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
       <header className="page-head practice-head">
         <div>
           <h1>{subject.shortName} practice</h1>
-          <p>Questions picked for where you'll gain the most. Ratings update after every answer.</p>
+          <p>{mode === FREE_RESPONSE
+            ? 'Write the code, then score it yourself against the rubric, the way exam readers do.'
+            : "Questions picked for where you'll gain the most. Ratings update after every answer."}</p>
         </div>
-        {session.answered > 0 && (
+        {mode === MULTIPLE_CHOICE && session.answered > 0 && (
           <div className="session-score" aria-live="polite">
             <span className="label">This session</span>
             <span className="session-score-value"><b>{session.correct}</b> of {session.answered}</span>
           </div>
         )}
       </header>
+      {showModes && <Tabs tabs={MODE_TABS} active={mode} onChange={setMode} idPrefix="practice-mode" label="Question type" className="practice-modes" />}
     </>
   );
+
+  if (mode === FREE_RESPONSE) {
+    return (
+      <div className="page practice" style={{ '--subject': subject.color }}>
+        {header}
+        <TabPanel idPrefix="practice-mode" id={FREE_RESPONSE} className="practice-mode-panel">
+          <FrqPractice user={user} subject={subject} onSaveError={onSaveError} onReport={onReport ? frq => onReport(frq) : null} />
+        </TabPanel>
+      </div>
+    );
+  }
 
   const statusPage = (body) => (
     <div className="page practice" style={{ '--subject': subject.color }}>
@@ -208,6 +231,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
   return (
     <div className="page practice" style={{ '--subject': subject.color }}>
       {header}
+      <TabPanel idPrefix="practice-mode" id={MULTIPLE_CHOICE} className="practice-mode-panel">
       <div className="practice-layout">
         <div className="practice-main">
           <div className="chips practice-scopes" role="group" aria-label="Question scope">
@@ -253,6 +277,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
                 )}
 
                 <div className="practice-actions">
+                  {onReport && <button type="button" className="report-link" onClick={() => onReport(question)}><Flag aria-hidden="true" />Report a problem</button>}
                   <span className="key-hint" aria-hidden="true">
                     <kbd>1</kbd>-<kbd>4</kbd> to choose, <kbd><CornerDownLeft /></kbd> to {submitted ? 'continue' : 'check'}
                   </span>
@@ -280,6 +305,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
           <p className="mastery-note">Harder questions count for more. A level appears after {MIN_ATTEMPTS_FOR_LEVEL} answers on a topic.</p>
         </aside>
       </div>
+      </TabPanel>
     </div>
   );
 }

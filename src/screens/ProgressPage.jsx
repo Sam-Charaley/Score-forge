@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Target, RotateCcw, Lock, ChartLine, Sparkles } from 'lucide-react'
+import { Target, RotateCcw, Lock, ChartLine, Sparkles, PenLine } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
 import EmptyState from '../components/ui/EmptyState'
@@ -7,7 +7,9 @@ import SubjectSwitcher from '../components/SubjectSwitcher'
 import LevelChart from '../components/LevelChart'
 import { useQuestionBank } from '../hooks/useQuestionBank'
 import { usePracticeHistory } from '../hooks/usePracticeHistory'
-import { dailyProgress, byDifficulty, topicMap, recentlyMissed, MIN_DAYS_FOR_TREND, MIN_ANSWERS_FOR_RATE, MISSED_SCOPE } from '../utils/progress'
+import { useFrqSet } from '../hooks/useFrqSet'
+import { hasFrqs } from '../data/frqs/frqLoader'
+import { dailyProgress, byDifficulty, topicMap, recentlyMissed, frqScores, MIN_DAYS_FOR_TREND, MIN_ANSWERS_FOR_RATE, MISSED_SCOPE } from '../utils/progress'
 import { chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
 import { predictApScore } from '../utils/priority'
 import { parseLocalDate, fmtDate, toLocalIsoDate } from '../utils/planEngine'
@@ -44,6 +46,37 @@ function PredictionStat({ prediction, history }) {
     ? `${prediction.likelyScore > firstScored.predictedScore ? 'Up' : 'Down'} from ${firstScored.predictedScore} on ${fmtDate(parseLocalDate(firstScored.day))}`
     : `Likely range ${prediction.lowScore} to ${prediction.highScore}`;
   return <Stat label="Predicted AP score" value={prediction.likelyScore} detail={change} />;
+}
+
+function FrqSummary({ user, subject, onPractice }) {
+  const set = useFrqSet({ userId: user.id, subjectId: subject.id, onSaveError: ignoreSaveErrors });
+  if (set.status !== 'ready' || set.frqs.length === 0) return null;
+  const scores = frqScores(set.attempts);
+  const tried = set.frqs.filter(f => scores.has(f.id));
+  return (
+    <section className="card card-pad" aria-labelledby="frq-summary-title">
+      <div className="section-title">
+        <h2 id="frq-summary-title">Free response<span className="count">{tried.length} of {set.frqs.length} tried</span></h2>
+        <Button size="small" variant="secondary" icon={PenLine} onClick={() => onPractice({ practiceMode: 'frq' })}>Practice free response</Button>
+      </div>
+      {tried.length === 0
+        ? <p className="muted">Free-response questions are a third of the exam score. Try one, then score it against the rubric.</p>
+        : (
+          <ul className="frq-score-list">
+            {tried.map(frq => {
+              const { best, tries } = scores.get(frq.id);
+              return (
+                <li key={frq.id}>
+                  <span className="frq-score-name">{frq.title}<span className="muted"> {set.types[frq.type]}</span></span>
+                  <ProgressBar share={best.points_earned / best.points_possible} thin label={`${frq.title} best score`} />
+                  <span className="frq-score-value">{best.points_earned}/{best.points_possible}{tries > 1 ? `, ${tries} tries` : ''}</span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+    </section>
+  );
 }
 
 function TopicTile({ entry }) {
@@ -138,6 +171,8 @@ export default function ProgressPage({ user, subject, practiceSubjects, onSubjec
             ))}
           </div>
         </section>
+
+        {hasFrqs(subject.id) && <FrqSummary user={user} subject={subject} onPractice={onPractice} />}
 
         <div className="progress-columns">
           <section className="card card-pad" aria-labelledby="difficulty-title">

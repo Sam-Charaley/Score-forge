@@ -7,6 +7,7 @@ import LoadingScreen from './components/LoadingScreen'
 import LoadErrorScreen from './components/LoadErrorScreen'
 import SaveErrorBanner from './components/SaveErrorBanner'
 import AppShell from './components/AppShell'
+import FeedbackDialog from './components/FeedbackDialog'
 import AuthPage from './screens/AuthPage'
 import SubjectPicker from './screens/SubjectPicker'
 import HomePage from './screens/HomePage'
@@ -37,6 +38,9 @@ export default function App() {
   const [adjustingPlan, setAdjustingPlan] = useState(false);
   // A scope Practice should open in once (Progress's "Retry missed").
   const [practiceStartScope, setPracticeStartScope] = useState(null);
+  const [practiceStartMode, setPracticeStartMode] = useState(null);
+  // What the feedback form is about while it is open; null when closed.
+  const [feedbackRequest, setFeedbackRequest] = useState(null);
 
   const data = useUserData({
     onSignedIn: hasPickedSubjects => setScreen(hasPickedSubjects ? 'home' : 'picker'),
@@ -82,10 +86,11 @@ export default function App() {
     const planStart = subjectPlan?.startDate || null;
     const adaptedWeeks = planDays ? adaptPlanToWindow(subject, planDays, planStart) : withOriginalTaskRefs(subject.weeks);
 
-    const navigate = (dest, subjectId, { practiceScope = null } = {}) => {
+    const navigate = (dest, subjectId, { practiceScope = null, practiceMode = null } = {}) => {
       setAdjustingPlan(dest === PLANS);
       if (dest === PLANS) return;
       setPracticeStartScope(dest === 'practice' ? practiceScope : null);
+      setPracticeStartMode(dest === 'practice' ? practiceMode : null);
       if (subjectId) setActiveSubjectId(subjectId);
       else if ((dest === 'practice' || dest === 'progress') && practiceSubject) setActiveSubjectId(practiceSubject.id);
       setScreen(dest);
@@ -131,7 +136,9 @@ export default function App() {
             subject={practiceSubject}
             practiceSubjects={practiceSubjects}
             initialScope={practiceStartScope ?? undefined}
-            onScopeUsed={() => setPracticeStartScope(null)}
+            initialMode={practiceStartMode ?? undefined}
+            onScopeUsed={() => { setPracticeStartScope(null); setPracticeStartMode(null); }}
+            onReport={question => setFeedbackRequest({ screen: 'practice', itemId: question.id, itemLabel: `question ${question.id}` })}
             onSubject={setActiveSubjectId}
             onSaveError={data.reportSaveError}
           />
@@ -181,8 +188,10 @@ export default function App() {
         streakDays={data.streak?.count ?? 0}
         canPractice={practiceSubjects.length > 0}
         onNavigate={navigate}
+        onFeedback={() => setFeedbackRequest({ screen: adjustingPlan ? PLANS : screen })}
       >
         {page()}
+        <FeedbackDialog request={feedbackRequest} onClose={() => setFeedbackRequest(null)} />
       </AppShell>
     );
   };

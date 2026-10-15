@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { House, CalendarCheck, Target, Layers, LibraryBig, CalendarDays, Flame, ChartLine } from 'lucide-react'
+import { House, CalendarCheck, Target, Layers, LibraryBig, CalendarDays, Flame, ChartLine, MessageSquarePlus } from 'lucide-react'
+import IconButton from './ui/IconButton'
 import LogoMark from './LogoMark'
 
 // The destinations in the main navigation, in order. Practice and Progress
@@ -22,7 +23,7 @@ function initialOf(name) {
 // Header, main navigation and the phone tab bar around every signed-in screen.
 // active: the NAV_ITEMS id of the current screen, or null.
 // onNavigate(id) is called with a NAV_ITEMS id, 'account' or 'plans'.
-export default function AppShell({ active, username, streakDays, canPractice, onNavigate, children }) {
+export default function AppShell({ active, username, streakDays, canPractice, onNavigate, onFeedback, children }) {
   const items = NAV_ITEMS.filter(item => canPractice || !NEEDS_QUESTION_BANK.includes(item.id));
   const mainRef = useRef(null);
   const previousActive = useRef(active);
@@ -65,6 +66,7 @@ export default function AppShell({ active, username, streakDays, canPractice, on
               <CalendarDays aria-hidden="true" />
               Plans
             </button>
+            <IconButton icon={MessageSquarePlus} label="Send feedback" outlined className="header-feedback" onClick={onFeedback} />
             <button type="button" className="avatar-btn" aria-label="Account" title="Account" aria-current={active === 'account' ? 'page' : undefined} onClick={() => onNavigate('account')}>
               {initialOf(username)}
             </button>

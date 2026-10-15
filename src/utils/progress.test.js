@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { dailyProgress, byDifficulty, topicMap, missedQuestionIds, recentlyMissed, MIN_ANSWERS_FOR_RATE } from './progress'
+import { dailyProgress, byDifficulty, topicMap, missedQuestionIds, recentlyMissed, frqScores, MIN_ANSWERS_FOR_RATE } from './progress'
 import { computeMastery } from './mastery'
 
 const units = [{ id: 'u1', name: 'One', weight: '40–60%' }, { id: 'u2', name: 'Two', weight: '40–60%' }];
@@ -67,5 +67,18 @@ describe('missed questions', () => {
     const result = recentlyMissed(attempts, questions);
     expect(result.total).toBe(2);
     expect(result.shown.map(m => [m.question.id, m.timesMissed])).toEqual([['q2', 2], ['q3', 1]]);
+  });
+});
+
+describe('frqScores', () => {
+  it('keeps the best and latest score per FRQ', () => {
+    const scores = frqScores([
+      { frq_id: 'f1', points_earned: 3, points_possible: 7 },
+      { frq_id: 'f1', points_earned: 6, points_possible: 7 },
+      { frq_id: 'f1', points_earned: 5, points_possible: 7 },
+      { frq_id: 'f2', points_earned: 2, points_possible: 5 },
+    ]);
+    expect(scores.get('f1')).toMatchObject({ tries: 3, best: { points_earned: 6 }, latest: { points_earned: 5 } });
+    expect(scores.get('f2').best.points_earned).toBe(2);
   });
 });

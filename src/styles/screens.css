@@ -610,3 +610,44 @@ kbd svg { width: 12px; height: 12px; }
 }
 .choice-text.is-multiline { white-space: pre-wrap; font-size: 13.5px; line-height: 1.55; }
 .choice:has(.is-multiline) { align-items: flex-start; }
+.report-link { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--lead); padding: 4px 0; }
+.report-link svg { width: 14px; height: 14px; }
+.report-link:hover { color: var(--red-pen); }
+.practice-actions .btn { margin-left: auto; }
+
+/* ═══ Free response ════════════════════════════════════════ */
+.practice-modes { margin-bottom: 18px; }
+.practice-mode-panel:focus-visible { outline-offset: 6px; }
+.frq-groups { display: grid; gap: 22px; }
+.frq-type-title { font-size: 16px; margin-bottom: 10px; }
+.frq-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.frq-card-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 16px 18px; }
+.frq-card-item h3 { font-size: 16px; }
+.frq-card-item p { font-size: 13px; color: var(--lead); margin-top: 3px; }
+.frq-card-side { display: grid; justify-items: end; gap: 6px; }
+.frq-workspace { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 860px; }
+.frq-workspace .back-link { margin-bottom: 0; justify-self: start; }
+.frq-head { display: grid; gap: 4px; }
+.frq-head h2 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 900; letter-spacing: -0.035em; }
+.frq-draft { margin-left: 8px; }
+.frq-intro { color: #3A3E45; font-size: 15.5px; line-height: 1.65; max-width: 70ch; }
+.frq-part { display: grid; gap: 12px; }
+.frq-part h3 { font-size: 17px; }
+.frq-prompt { white-space: pre-wrap; font-size: 15px; line-height: 1.65; }
+.frq-header { display: block; padding: 8px 12px; border-radius: var(--radius); background: var(--pencil-wash); border: 1.5px solid var(--pencil-soft); font-size: 13.5px; font-weight: 500; overflow-x: auto; white-space: pre; }
+.code-answer { min-height: 220px; resize: vertical; font-size: 13.5px; line-height: 1.6; tab-size: 4; white-space: pre; overflow-x: auto; }
+.frq-solution { display: grid; gap: 6px; }
+.frq-solution .code-block { margin: 0; background: var(--pass-soft); border-color: #C5E3D1; }
+.rubric { display: grid; gap: 6px; }
+.rubric-points { list-style: none; border: 1.5px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.rubric-points > li + li { border-top: 1px solid var(--rule-soft); }
+.rubric-point.is-done .task-text { text-decoration: none; color: var(--graphite); }
+.frq-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+.frq-actions .report-link { margin-right: auto; }
+.frq-saved { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.frq-score-list { list-style: none; display: grid; gap: 12px; }
+.frq-score-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; align-items: center; }
+.frq-score-list .progress { grid-column: 1 / -1; grid-row: 2; }
+.frq-score-name { font-weight: 700; font-size: 14px; }
+.frq-score-name .muted { font-weight: 500; font-size: 12.5px; margin-left: 6px; }
+.frq-score-value { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }

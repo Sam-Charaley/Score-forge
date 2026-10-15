@@ -106,3 +106,16 @@ export function recentlyMissed(attempts, questions, limit = MISSED_SHOWN) {
     shown: ids.slice(0, limit).map(id => ({ question: byId.get(id), timesMissed: timesMissed.get(id), lastTried: lastTried.get(id) })),
   };
 }
+
+// Best and latest score for each FRQ, from oldest-first attempts.
+export function frqScores(attempts) {
+  const byFrq = new Map();
+  for (const a of attempts) {
+    const entry = byFrq.get(a.frq_id) ?? { best: null, latest: null, tries: 0 };
+    entry.tries += 1;
+    entry.latest = a;
+    if (!entry.best || a.points_earned / a.points_possible > entry.best.points_earned / entry.best.points_possible) entry.best = a;
+    byFrq.set(a.frq_id, entry);
+  }
+  return byFrq;
+}

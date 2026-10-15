@@ -34,18 +34,18 @@ async function loadQuestions() {
 // fields (placed inside Main, so the snippet can call them directly).
 const CLASS_DECLARATION = /^\s*(public\s+)?(abstract\s+)?class\s/m;
 
-export function buildJavaSource(code, setup = '') {
+export function buildJavaSource(code, setup = '', extraMembers = '') {
   const declaresClasses = CLASS_DECLARATION.test(setup);
   const topLevel = declaresClasses ? setup.replace(/^(\s*)public\s+(?=(abstract\s+)?class\s)/gm, '$1') : '';
-  const members = declaresClasses ? '' : setup;
+  const members = (declaresClasses ? '' : setup) + extraMembers;
   // java.util covers ArrayList and friends; AP code assumes those imports.
   return `import java.util.*;\n\n${topLevel}\n\npublic class Main {\n${members}\n    public static void main(String[] args) {\n${code}\n    }\n}\n`;
 }
 
-function runJava(code, setup) {
+function runJava(code, setup, extraMembers) {
   const dir = mkdtempSync(path.join(tmpdir(), 'sf-q-'));
   try {
-    const source = buildJavaSource(code, setup);
+    const source = buildJavaSource(code, setup, extraMembers);
     writeFileSync(path.join(dir, 'Main.java'), source);
     execFileSync('javac', ['Main.java'], { cwd: dir, stdio: 'pipe', timeout: RUN_TIMEOUT_MS });
     return execFileSync('java', ['-cp', dir, 'Main'], { cwd: dir, encoding: 'utf8', timeout: RUN_TIMEOUT_MS, stdio: ['ignore', 'pipe', 'pipe'] });
@@ -79,4 +79,33 @@ for (const q of questions) {
   }
 }
 console.log(`\n${questions.length - failures}/${questions.length} answer keys confirmed by running the code.`);
-process.exit(failures === 0 ? 0 : 1);
+
+// Free-response sample solutions: each part's solution goes in place of its
+// "// part (x)" line, and the FRQ's test must print ALL PASS.
+const FRQ_ROOT = path.resolve('src/data/frqs');
+const CHECK_HELPER = `
+    static void check(boolean ok, String what) {
+        if (!ok) throw new AssertionError("failed: " + what);
+    }
+`;
+const frqs = [];
+for (const file of readdirSync(FRQ_ROOT).filter(f => f.endsWith('.js') && !f.endsWith('.test.js'))) {
+  const module = await import(pathToFileURL(path.join(FRQ_ROOT, file)));
+  frqs.push(...module.default);
+}
+let frqFailures = 0;
+for (const frq of frqs) {
+  const classes = frq.parts.reduce((source, part) => source.replace(`// part (${part.id})`, part.solution.trim()), frq.setup);
+  let printed;
+  try {
+    printed = runJava(`${frq.verify}\nSystem.out.println("ALL PASS");`, classes, CHECK_HELPER).trim();
+  } catch (error) {
+    frqFailures++;
+    console.log(`✗ ${frq.id}: sample solution failed\n${String(error.stderr || error.message).trim()}\n`);
+    continue;
+  }
+  if (printed === 'ALL PASS') console.log(`✓ ${frq.id}  sample solution passes its tests`);
+  else { frqFailures++; console.log(`✗ ${frq.id}: printed ${JSON.stringify(printed)}`); }
+}
+console.log(`${frqs.length - frqFailures}/${frqs.length} free-response sample solutions pass their tests.`);
+process.exit(failures === 0 && frqFailures === 0 ? 0 : 1);

@@ -27,7 +27,7 @@ export const SUBJECT_INDEX = [
   { id: "csa", name: "AP Computer Science A", shortName: "CS A", color: "#16a34a", examDate: "2027-05-12", code: "CSA", examInfo: "May 12, 2027 · 3h · 42 MCQ + 4 FRQ" },
   { id: "music", name: "AP Music Theory", shortName: "Music", color: "#db2777", examDate: "2027-05-10", code: "Music", examInfo: "May 10, 2027 · ~3h · 75 MCQ + Sight-Singing + 6 FRQs" },
   { id: "precalc", name: "AP Precalculus", shortName: "PreCalc", color: "#2563eb", examDate: "2027-05-11", code: "Pre Calc", examInfo: "May 11, 2027 · ~3h · 40 MCQ + 4 FRQ" },
-  { id: "psych", name: "AP Psychology", shortName: "Psych", color: "#ea580c", examDate: "2027-05-14", code: "Psych", examInfo: "May 14, 2027 · ~2h · 100 MCQ + 2 FRQ" },
+  { id: "psych", name: "AP Psychology", shortName: "Psych", color: "#ea580c", examDate: "2027-05-14", code: "Psych", examInfo: "May 14, 2027 · ~2h40m · 75 MCQ + 2 FRQ (AAQ, EBQ)" },
   { id: "macro", name: "AP Macroeconomics", shortName: "Macro", color: "#7c3aed", examDate: "2027-05-07", code: "Macro", examInfo: "May 7, 2027 · ~2h10m · 60 MCQ + 3 FRQ" },
   { id: "micro", name: "AP Microeconomics", shortName: "Micro", color: "#d97706", examDate: "2027-05-04", code: "Micro", examInfo: "May 4, 2027 · ~2h10m · 60 MCQ + 3 FRQ" },
   { id: "calcab", name: "AP Calculus AB", shortName: "Calc AB", color: "#dc2626", examDate: "2027-05-10", code: "Calc AB", examInfo: "May 10, 2027 · ~3h15m · 45 MCQ + 6 FRQ" },
