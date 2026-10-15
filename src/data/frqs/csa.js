@@ -74,7 +74,7 @@ check(WordGame.countVowels("aeiou") == 5, "aeiou");
 check(WordGame.mostVowels(new String[]{"cat", "audio", "queue"}).equals("audio"), "tie keeps first");
 check(WordGame.mostVowels(new String[]{"sky"}).equals("sky"), "single word");
 check(WordGame.mostVowels(new String[]{"dog", "idea"}).equals("idea"), "later word wins");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-methods-002',
@@ -143,7 +143,7 @@ check(StepChallenge.pointsForDay(14999) == 3, "14999");
 check(StepChallenge.pointsForDay(20000) == 5, "20000");
 check(StepChallenge.weekPoints(new int[]{5000, 6000, 10000, 5000, 5000, 5000, 15000}) == 1 + 1 + 3 + 1 + 1 + 1 + 4 + 5, "bonus week");
 check(StepChallenge.weekPoints(new int[]{4999, 6000, 10000, 5000, 5000, 5000, 15000}) == 0 + 1 + 3 + 1 + 1 + 1 + 4, "no bonus");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-class-001',
@@ -214,7 +214,7 @@ check(new BusPass(80).getRidesLeft() == 50, "constructor capped");
 BusPass other = new BusPass(48);
 other.reload(1);
 check(other.getRidesLeft() == 49, "small reload");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-class-002',
@@ -297,7 +297,7 @@ bottom.lower();
 check(bottom.getTarget() == 10, "lower capped");
 bottom.raise();
 check(bottom.getTarget() == 11, "raise works");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-arraylist-001',
@@ -365,7 +365,7 @@ check(p.removeShort(60) == 3, "three removed, including two in a row");
 check(p.getSongs().size() == 2, "two left");
 check(p.getSongs().get(0).getTitle().equals("c") && p.getSongs().get(1).getTitle().equals("e"), "order kept");
 check(p.removeShort(10) == 0, "none removed");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-arraylist-002',
@@ -433,7 +433,7 @@ Survey s = new Survey(list);
 check(Math.abs(s.averageFor("food") - 13.0 / 3) < 1e-9, "food average is not integer division");
 check(s.averageFor("speed") == 2.0, "single match");
 check(s.averageFor("price") == 0.0, "no match");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-2d-001',
@@ -497,7 +497,7 @@ check(t.firstRowWithBlock(3) == 2, "three in row 2");
 check(t.firstRowWithBlock(4) == -1, "no block of four");
 String[][] split = {{null, null, "X"}, {null, "Y", "Z"}};
 check(new Theater(split).firstRowWithBlock(3) == -1, "a run does not carry over to the next row");`,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csa-frq-2d-002',
@@ -555,6 +555,6 @@ check(new HeatMap(grid).countHotSpots() == 4, "corners 5, 4, 9, 8");
 check(new HeatMap(new int[][]{{7}}).countHotSpots() == 1, "single cell");
 check(new HeatMap(new int[][]{{3, 3}}).countHotSpots() == 0, "ties are not hot spots");
 check(new HeatMap(new int[][]{{1, 2, 1}, {2, 9, 2}}).countHotSpots() == 1, "middle peak");`,
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -10,7 +10,7 @@ export default [
     choices: ['NREM stage 3 (deep sleep)', 'REM sleep', 'NREM stage 1', 'the hypnagogic state while falling asleep'],
     answer: 1,
     explanation: 'REM sleep brings rapid eye movements, brain activity close to waking, and the most vivid, story-like dreams. The muscles are mostly paralysed, which stops people acting out their dreams.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-sleep-sensation-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['REM sleep', 'NREM stage 1', 'the moments just after waking', 'NREM stage 3 (deep sleep)'],
     answer: 3,
     explanation: 'Sleepwalking and night terrors happen in deep NREM-3 sleep, mostly early in the night, which is also why people rarely remember them. They are not acted-out dreams, because the body is paralysed during REM.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-sleep-sensation-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['REM periods get longer and deep NREM-3 sleep becomes shorter or disappears', 'REM periods get shorter and NREM-3 sleep gets longer', 'Every 90-minute cycle has the same amount of REM and NREM-3', 'REM sleep stops completely after the first two cycles'],
     answer: 0,
     explanation: 'Deep NREM-3 sleep is concentrated early in the night. Later cycles have little or no NREM-3 and longer REM periods, which is why the longest dreams tend to come just before waking.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-sleep-sensation-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['difference threshold', 'point of sensory adaptation', 'absolute threshold', 'point of transduction'],
     answer: 2,
     explanation: 'The absolute threshold is the weakest stimulus detected half the time. The difference threshold (just noticeable difference) is the smallest change between two stimuli that a person can notice.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-sleep-sensation-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['2 grams', '4 grams', '1 gram', '200 grams'],
     answer: 1,
     explanation: 'Weber\'s law says the just noticeable difference is a constant proportion of the original stimulus, not a fixed amount. 2 grams is 2% of 100 grams, so for 200 grams the change needs to be about 2%, which is 4 grams.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-sleep-sensation-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['Trichromatic theory', 'Place theory', 'Signal detection theory', 'Opponent-process theory'],
     answer: 3,
     explanation: 'Opponent-process theory says some visual cells work in opposing pairs, such as red and green. Staring at red tires the red response, so the opposing green response shows up as an afterimage. Trichromatic theory explains colour at the level of the three cone types but not afterimages.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

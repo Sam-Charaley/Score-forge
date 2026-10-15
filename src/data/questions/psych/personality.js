@@ -10,7 +10,7 @@ export default [
     choices: ['ego', 'id', 'superego', 'collective unconscious'],
     answer: 1,
     explanation: 'The id demands immediate satisfaction of urges. The ego works on the reality principle and balances the id\'s demands against reality, and the superego is the internalized sense of right and wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-personality-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['Projection', 'Reaction formation', 'Sublimation', 'Displacement'],
     answer: 3,
     explanation: 'Displacement is redirecting feelings toward a safer target than the real one. Projection is seeing your own unacceptable feelings in other people, and sublimation is channelling urges into socially valued activities.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-personality-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['unconditional positive regard', 'conditions of worth', 'a peak experience', 'an inferiority complex'],
     answer: 0,
     explanation: 'Unconditional positive regard is acceptance that does not depend on behaving a certain way. Rogers believed it helps people grow toward self-actualization, while conditions of worth make acceptance depend on meeting others\' standards.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-personality-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['Agreeableness', 'Openness to experience', 'Conscientiousness', 'Extraversion'],
     answer: 2,
     explanation: 'Conscientiousness covers organization, self-discipline and reliability. Agreeableness is about being kind and cooperative, and openness about curiosity and liking new experiences.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-personality-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['personality is set by unconscious conflicts in early childhood', 'behavior, personal factors and the environment all influence one another', 'traits stay the same no matter what situation a person is in', 'behavior is controlled only by reinforcement from the environment'],
     answer: 1,
     explanation: 'In reciprocal determinism, influence runs in every direction. For example, a person\'s confidence shapes which activities they choose, those activities shape their environment, and the environment shapes their confidence.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-personality-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['they cannot be given to adults', 'they ask too many true-or-false questions', 'they measure only what people do, not what they think', 'their scoring is subjective, so their reliability and validity tend to be low'],
     answer: 3,
     explanation: 'Different examiners can score the same answers differently, which hurts reliability, and the scores predict behavior poorly, which hurts validity. Objective tests such as the MMPI use standardized questions and scoring instead.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

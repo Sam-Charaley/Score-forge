@@ -10,7 +10,7 @@ export default [
     choices: ['elaborative rehearsal', 'chunking', 'maintenance rehearsal', 'the method of loci'],
     answer: 2,
     explanation: 'Maintenance rehearsal keeps information active in short-term memory by repeating it, but it does little for long-term storage. Elaborative rehearsal links new information to meaning or to things you already know.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-memory-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['serial position effect', 'spacing effect', 'proactive interference', 'encoding specificity principle'],
     answer: 0,
     explanation: 'The first items get more rehearsal and reach long-term memory (primacy), and the last items are still in short-term memory (recency). The middle items get neither advantage.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-memory-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['retroactive interference', 'proactive interference', 'source amnesia', 'repression'],
     answer: 1,
     explanation: 'Proactive interference is old learning getting in the way of new learning. Retroactive interference works the other way: new learning makes old memories harder to recall. A tip: proactive acts forward in time.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-memory-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['relies on shallow processing of how the words look', 'uses maintenance rehearsal', 'relies on automatic processing of where the words appeared', 'encourages deep, meaningful processing, as in the self-reference effect'],
     answer: 3,
     explanation: 'Information processed for meaning, especially meaning that connects to ourselves, is remembered better than information processed only for how it looks or sounds. That is the self-reference effect, a form of deep processing.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-memory-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['anterograde amnesia', 'the serial position effect', 'the misinformation effect', 'state-dependent memory'],
     answer: 2,
     explanation: 'The misinformation effect is misleading information after an event changing the memory of it. Memory is reconstructed each time it is recalled, so the wording of a question can add details that never happened.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-memory-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['implicit, procedural memories can form even when new explicit memories cannot', 'she has retrograde amnesia rather than anterograde amnesia', 'the hippocampus is the main site of skill learning', 'her short-term memory has been completely restored'],
     answer: 0,
     explanation: 'Explicit memory (facts and events) depends heavily on the hippocampus, while procedural skills rely on other areas such as the cerebellum and basal ganglia. That is why skills can still be learned without any memory of the learning.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

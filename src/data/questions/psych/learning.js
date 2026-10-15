@@ -10,7 +10,7 @@ export default [
     choices: ['unconditioned stimulus', 'conditioned stimulus', 'unconditioned response', 'neutral stimulus'],
     answer: 0,
     explanation: 'An unconditioned stimulus naturally triggers a response without learning. The tone started out neutral and became the conditioned stimulus after being paired with food. Salivating to food is the unconditioned response.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-learning-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['stimulus discrimination', 'extinction', 'spontaneous recovery', 'stimulus generalization'],
     answer: 3,
     explanation: 'Generalization is responding to stimuli that are similar to the conditioned stimulus. Discrimination would be learning to respond to the drill but not to the blender.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-learning-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['positive reinforcement', 'negative reinforcement', 'negative punishment', 'positive punishment'],
     answer: 1,
     explanation: 'Reinforcement increases a behavior and punishment decreases it. "Negative" means something is taken away. Here an unpleasant thing, the nagging, is removed and cleaning increases, so it is negative reinforcement, not punishment.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-learning-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['Fixed-ratio', 'Fixed-interval', 'Variable-ratio', 'Variable-interval'],
     answer: 2,
     explanation: 'On a variable-ratio schedule, a reward comes after an unpredictable number of responses, so every response might be the one that pays off. Fixed schedules produce pauses after each reward, because the next one is predictable.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-learning-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['classical conditioning', 'observational learning', 'latent learning', 'shaping'],
     answer: 1,
     explanation: 'Bandura showed that children learn by watching others, without being reinforced themselves. They copied the specific aggressive actions they had seen the adult model.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-learning-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['biological predispositions make some associations easier to learn than others', 'classical conditioning only works when the stimuli are seconds apart', 'operant conditioning, not classical conditioning, explains taste aversion', 'rats cannot learn associations involving lights and sounds'],
     answer: 0,
     explanation: 'Garcia\'s work showed that animals are prepared to link taste with nausea, even with hours between them, but not lights with nausea. Learning is shaped by biology, so not every pairing is equally easy to learn.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

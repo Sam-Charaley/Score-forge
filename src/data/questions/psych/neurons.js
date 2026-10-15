@@ -10,7 +10,7 @@ export default [
     choices: ['Reuptake', 'The refractory period', 'The all-or-none principle', 'Synaptic pruning'],
     answer: 2,
     explanation: 'A neuron either fires completely or not at all. A stronger stimulus makes it fire more often, not harder. Reuptake is a neurotransmitter being reabsorbed, and the refractory period is the short rest after firing.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-neurons-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['blocking the reabsorption of serotonin, so more of it stays in the synapse', 'making the axon terminal produce more serotonin', 'blocking serotonin receptors on the receiving neuron', 'speeding up the breakdown of serotonin in the synapse'],
     answer: 0,
     explanation: 'Reuptake is the sending neuron taking back neurotransmitter from the synapse. Inhibiting it leaves serotonin in the synapse longer, so it keeps acting on receptors. SSRIs do not increase production.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-neurons-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['an acetylcholine agonist', 'an acetylcholine reuptake inhibitor', 'a GABA agonist', 'an acetylcholine antagonist'],
     answer: 3,
     explanation: 'An antagonist blocks a neurotransmitter\'s effect. Curare sits in the receptor without activating it, so acetylcholine cannot trigger muscle contraction. An agonist would mimic or strengthen acetylcholine instead.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-neurons-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['GABA', 'Dopamine', 'Acetylcholine', 'Norepinephrine'],
     answer: 1,
     explanation: 'Many addictive drugs raise dopamine activity in reward pathways, which strengthens the urge to use them again. GABA is the main inhibitory neurotransmitter, and acetylcholine is involved in muscle movement and memory.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-neurons-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['always makes people feel sad', 'completely blocks the release of dopamine', 'increases GABA activity and slows down nervous system functioning', 'speeds up neural firing in the brainstem'],
     answer: 2,
     explanation: '"Depressant" describes slowed nervous system activity, not mood. Alcohol boosts the inhibitory effect of GABA, which slows reactions and judgment. Many people feel cheerful at first while drinking, which is why the mood answer is a trap.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-neurons-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['Opioids, such as morphine', 'Stimulants, such as cocaine', 'Depressants, such as alcohol', 'Hallucinogens, such as LSD'],
     answer: 0,
     explanation: 'Endorphins are the body\'s natural opioids: they bind to the same receptors as morphine and reduce pain. That is also why opioid drugs are such strong painkillers.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

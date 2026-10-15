@@ -10,7 +10,7 @@ export default [
     choices: ['psychodynamic therapy', 'humanistic therapy', 'cognitive therapy', 'biomedical therapy'],
     answer: 2,
     explanation: 'Cognitive therapies, including cognitive-behavioral therapy, target distorted or irrational thinking. Psychodynamic therapy looks for unconscious conflicts, and humanistic therapy focuses on growth and self-acceptance.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-treatment-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['relaxation with gradually more frightening situations involving the feared object', 'punishment with the feared object', 'medication with talking about childhood', 'rewards with avoiding the feared object'],
     answer: 0,
     explanation: 'Based on classical conditioning, it replaces fear with relaxation step by step, moving up a fear hierarchy from mildly to highly anxiety-provoking situations. Rewarding avoidance would make the phobia stronger.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-treatment-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['free association and dream analysis', 'homework assignments that test irrational beliefs', 'token economies that reward desired behavior', 'active listening, genuineness and unconditional positive regard'],
     answer: 3,
     explanation: 'Rogers believed people grow when the therapist creates an accepting, empathic relationship, so the therapist reflects and clarifies rather than directs. Free association belongs to psychoanalysis, and token economies to behavior therapy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-treatment-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['SSRIs', 'Antipsychotics', 'Benzodiazepines', 'Lithium'],
     answer: 1,
     explanation: 'Antipsychotics reduce hallucinations and delusions by blocking dopamine activity. SSRIs treat depression and anxiety, benzodiazepines treat anxiety, and lithium treats bipolar disorder.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-treatment-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['survey people who completed the therapy about how much it helped', 'ask therapists how much their clients improved', 'randomly assign people to the therapy or to a control group, such as a wait-list, and compare the outcomes', 'measure the same clients only before and after the therapy'],
     answer: 2,
     explanation: 'Because some people improve anyway, before-and-after measures or satisfied clients cannot separate the therapy\'s effect from natural recovery and placebo effects. Random assignment to a control group can.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-treatment-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['schizophrenia', 'bipolar disorder', 'generalized anxiety disorder', 'ADHD'],
     answer: 1,
     explanation: 'Lithium is a mood stabilizer that reduces the highs and lows of bipolar disorder. Schizophrenia is mainly treated with antipsychotics, anxiety with SSRIs or other anti-anxiety medications, and ADHD often with stimulants.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -10,7 +10,7 @@ export default [
     choices: ['conservation', 'egocentrism', 'abstract reasoning', 'object permanence'],
     answer: 3,
     explanation: 'Object permanence is understanding that things still exist when they are out of sight. Piaget placed it at the end of the sensorimotor stage. Before it develops, a hidden toy seems to stop existing for the infant.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-cognitive-language-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['object permanence', 'conservation', 'abstract reasoning', 'assimilation'],
     answer: 1,
     explanation: 'Conservation is understanding that an amount stays the same when its shape changes. Children in the preoperational stage focus on one feature, here the height, and miss that nothing was added.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-cognitive-language-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['accommodation', 'egocentrism', 'assimilation', 'scaffolding'],
     answer: 2,
     explanation: 'Assimilation is fitting new experiences into an existing schema. When he later learns that cows are different and creates a new category, that change to his schema will be accommodation.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-cognitive-language-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['scaffolding', 'accommodation', 'telegraphic speech', 'conservation'],
     answer: 0,
     explanation: 'Scaffolding is temporary support that lets a child do what they could not do alone, within their zone of proximal development. As the child becomes more able, the support is gradually removed.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-cognitive-language-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['babbling', 'overgeneralization', 'the one-word stage', 'telegraphic speech'],
     answer: 3,
     explanation: 'Telegraphic speech uses mostly nouns and verbs in the right order, like an old telegram. It follows the one-word stage at around age 2.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-cognitive-language-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['conservation', 'theory of mind', 'object permanence', 'formal operational thought'],
     answer: 1,
     explanation: 'Theory of mind is understanding that other people have their own beliefs, which can be false. Sally did not see the marble move, so she should look in the basket. Children usually pass this test around age 4 or 5.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

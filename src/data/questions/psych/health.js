@@ -10,7 +10,7 @@ export default [
     choices: ['Alarm, resistance, exhaustion', 'Resistance, alarm, exhaustion', 'Alarm, exhaustion, recovery', 'Shock, denial, acceptance'],
     answer: 0,
     explanation: 'In the alarm stage the body mobilizes, in the resistance stage it keeps coping with the stressor, and if the stress goes on long enough, exhaustion sets in and the body\'s resources run down.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-health-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['an avoidance-avoidance conflict', 'an approach-avoidance conflict', 'an approach-approach conflict', 'a multiple approach-avoidance conflict'],
     answer: 2,
     explanation: 'Both choices are attractive, so it is approach-approach. Avoidance-avoidance is choosing between two unpleasant options, and approach-avoidance is one option that has both good and bad sides.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-health-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['emotion-focused coping', 'problem-focused coping', 'learned helplessness', 'catharsis'],
     answer: 1,
     explanation: 'Problem-focused coping tackles the cause of the stress directly. Emotion-focused coping manages the feelings instead, for example by talking to a friend or exercising, and fits better when the situation cannot be changed.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-health-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['permanently increases the number of white blood cells', 'lowers the heart rate', 'stops the release of adrenaline', 'suppresses the immune system'],
     answer: 3,
     explanation: 'Short bursts of stress hormones help us respond to danger, but long-term high cortisol weakens the immune response. That makes it easier to catch illnesses and slower to heal.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-health-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['resilience', 'flow', 'learned helplessness', 'posttraumatic growth'],
     answer: 1,
     explanation: 'Flow is complete absorption in an activity that matches your skills to a challenge. Resilience is recovering from difficulty, and learned helplessness is giving up after repeatedly feeling unable to control what happens.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-health-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['Competitiveness', 'A sense of time urgency', 'Hostility and anger', 'High achievement'],
     answer: 2,
     explanation: 'Research found that the hostile, quick-to-anger part of Type A behavior predicts heart disease best. Competitiveness and time urgency on their own are much weaker predictors.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

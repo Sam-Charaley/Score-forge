@@ -10,7 +10,7 @@ export default [
     choices: ['explain the causes of each disorder', 'choose which medication to prescribe', 'measure a person\'s intelligence', 'classify and diagnose psychological disorders by their symptoms'],
     answer: 3,
     explanation: 'The DSM describes disorders and the symptoms needed for a diagnosis, so that clinicians diagnose consistently. It deliberately does not explain causes or prescribe treatments.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-disorders-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['panic disorder', 'generalized anxiety disorder', 'specific phobia', 'obsessive-compulsive disorder'],
     answer: 0,
     explanation: 'Panic disorder involves sudden, intense panic attacks and worry about having more of them. Generalized anxiety disorder is ongoing worry about many things, not sudden attacks.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-disorders-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['negative symptoms', 'mood symptoms', 'positive symptoms', 'dissociative symptoms'],
     answer: 2,
     explanation: '"Positive" here means added to normal experience, not good. Negative symptoms are things taken away, such as flat emotion or lack of motivation.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-disorders-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['A steady low mood that lasts for at least two years', 'Episodes of mania, with elevated mood, little need for sleep and risky behavior, usually along with episodes of depression', 'Two or more distinct identities that take control at different times', 'Intrusive, unwanted thoughts that are relieved by repeated rituals'],
     answer: 1,
     explanation: 'Bipolar I is defined by manic episodes, and most people with it also have depressive episodes. A long-lasting low mood describes persistent depressive disorder, and the last option describes OCD.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-disorders-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['a person has the right genes, regardless of their experiences', 'a person faces enough stress, regardless of their vulnerability', 'a behavior is reinforced often enough', 'an underlying vulnerability, such as a genetic predisposition, combines with stressful experiences'],
     answer: 3,
     explanation: 'The model combines biology and environment: a vulnerability (diathesis) sets the risk, and stress can trigger the disorder. Many people with a vulnerability never develop the disorder if they do not face major stress.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-disorders-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['a compulsion', 'an obsession', 'a delusion', 'a phobia'],
     answer: 0,
     explanation: 'In OCD, obsessions are the unwanted, persistent thoughts (that the stove is on), and compulsions are the repeated actions done to relieve the anxiety they cause (checking). A delusion is a firmly held false belief.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

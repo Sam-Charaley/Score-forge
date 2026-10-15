@@ -10,7 +10,7 @@ export default [
     choices: ['seek an optimal level of arousal, even when their needs are met', 'meet higher needs, such as esteem, before basic needs', 'reduce the tension caused by unmet physical needs and return to a balanced state', 'earn rewards and approval from others'],
     answer: 2,
     explanation: 'A physical need, such as hunger, creates a drive that pushes us to act until the need is met and the body returns to homeostasis. The optimal-arousal and hierarchy-of-needs ideas are different theories.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-motivation-emotion-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['a fairly low level of arousal', 'a very high level of arousal', 'no arousal at all', 'the same level that is best for an easy task'],
     answer: 0,
     explanation: 'Performance rises with arousal up to a point and then falls. For difficult tasks, the best level is lower, because too much arousal disrupts careful thinking. Easy, well-practiced tasks are done best at higher arousal.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-motivation-emotion-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['intrinsic', 'instinctive', 'self-actualizing', 'extrinsic'],
     answer: 3,
     explanation: 'Extrinsic motivation comes from outside rewards or pressure. Intrinsic motivation is doing something because it is interesting or satisfying in itself.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-motivation-emotion-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['physical arousal alone', 'physical arousal together with a cognitive label for that arousal', 'arousal and emotion happening at the same moment, independently', 'facial expressions alone'],
     answer: 1,
     explanation: 'In the two-factor theory, we feel arousal and then explain it using the situation. The same racing heart could be labelled fear or excitement depending on what seems to be causing it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-motivation-emotion-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['You feel afraid at the same moment your heart starts pounding', 'You decide whether the arousal means fear or excitement', 'You feel afraid because you notice your body\'s reaction', 'Your fear is what made your heart start pounding'],
     answer: 2,
     explanation: 'James-Lange theory says the body reacts first and the emotion comes from noticing that reaction. Feeling it at the same time is Cannon-Bard, and labelling the arousal is Schachter-Singer.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-motivation-emotion-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['the facial feedback hypothesis', 'the Cannon-Bard theory', 'drive-reduction theory', 'opponent-process theory'],
     answer: 0,
     explanation: 'The facial feedback hypothesis says facial expressions can influence the emotions we feel, not just show them. The effects in these studies are small, and later replications have been mixed, which is worth knowing.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -10,7 +10,7 @@ export default [
     choices: ['Broca\'s area', 'Wernicke\'s area', 'the occipital lobe', 'the cerebellum'],
     answer: 0,
     explanation: 'Broca\'s area, in the left frontal lobe, controls speech production. Damage to Wernicke\'s area causes the opposite problem: fluent speech that makes little sense, with poor understanding.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-brain-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['The parasympathetic nervous system', 'The somatic nervous system', 'The cerebellum', 'The sympathetic nervous system'],
     answer: 3,
     explanation: 'The sympathetic division of the autonomic nervous system prepares the body for fight or flight. The parasympathetic division does the opposite, calming the body afterwards. The somatic system controls voluntary movement.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-brain-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['regulate hunger and body temperature', 'form new explicit memories, such as facts and events', 'keep balance and coordinate movement', 'see the colours of objects'],
     answer: 1,
     explanation: 'The hippocampus is essential for turning new experiences into lasting explicit memories. Hunger and temperature belong to the hypothalamus, and balance and coordination to the cerebellum.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-brain-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['Name the key, but be unable to pick it out with either hand', 'Name the key and pick it out with her right hand', 'Say she saw nothing, but pick out a key with her left hand', 'Be unable to name it or pick it out with either hand'],
     answer: 2,
     explanation: 'Information in the left visual field goes to the right hemisphere, which controls the left hand. With the corpus callosum cut, it cannot reach the left hemisphere, which handles speech in most people. So she cannot say what she saw, but her left hand can find the key.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-brain-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['genes account for part of the differences in personality', 'the environment has no effect on personality', 'shared family environment is the main cause of personality', 'fraternal twins share more genes than identical twins'],
     answer: 0,
     explanation: 'Identical twins share nearly all their genes and fraternal twins share about half. If identical twins raised apart are still more alike, genes must contribute. That does not mean the environment has no effect; heritability is never 100%.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-brain-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['EEG', 'CT scan', 'Lesioning', 'fMRI'],
     answer: 3,
     explanation: 'Functional MRI detects the extra oxygen-rich blood that flows to active brain areas, so it shows activity as well as structure. An EEG records electrical activity at the scalp, and a CT scan shows structure only.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

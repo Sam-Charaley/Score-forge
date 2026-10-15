@@ -10,7 +10,7 @@ export default [
     choices: ['the self-serving bias', 'the halo effect', 'the fundamental attribution error', 'the mere exposure effect'],
     answer: 2,
     explanation: 'The fundamental attribution error is over-explaining other people\'s behavior by their personality and underestimating the situation. The self-serving bias is about explaining your own successes and failures.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-social-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['foot-in-the-door phenomenon', 'door-in-the-face technique', 'bystander effect', 'social facilitation'],
     answer: 0,
     explanation: 'Agreeing to a small request makes people more likely to agree to a larger one later. The door-in-the-face technique works the other way: start with a large request that gets refused, then ask for the smaller one you wanted.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-social-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['obedience to authority', 'groupthink', 'deindividuation', 'conformity to group pressure'],
     answer: 3,
     explanation: 'Participants changed their answers to match the group, with no one ordering them to, which is conformity. Obedience, as in Milgram\'s studies, is following direct orders from an authority figure.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-social-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['a self-fulfilling prophecy', 'cognitive dissonance', 'social loafing', 'the just-world phenomenon'],
     answer: 1,
     explanation: 'Cognitive dissonance is the discomfort of holding beliefs that conflict with each other or with our actions. Changing a belief, or adding a comforting one, reduces that discomfort.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-social-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['The participants were women instead of men', 'The learner was in a separate room', 'The experimenter gave instructions by phone instead of in person', 'The shock levels were labelled with voltages'],
     answer: 2,
     explanation: 'When the experimenter was not physically present, full obedience fell to about a fifth of participants. Women obeyed at about the same rate as men, and in the standard version the learner was already in a separate room.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-social-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['a self-fulfilling prophecy', 'the fundamental attribution error', 'group polarization', 'cognitive dissonance'],
     answer: 0,
     explanation: 'The teachers\' expectations changed how they treated those students, which helped make the expectations come true. That is a self-fulfilling prophecy.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

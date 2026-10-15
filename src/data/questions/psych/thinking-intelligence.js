@@ -10,7 +10,7 @@ export default [
     choices: ['representativeness heuristic', 'availability heuristic', 'anchoring effect', 'framing effect'],
     answer: 1,
     explanation: 'The availability heuristic judges how likely something is by how easily examples come to mind. Vivid, heavily reported events feel more common than they are.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-thinking-intelligence-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['functional fixedness', 'confirmation bias', 'insight', 'a mental set'],
     answer: 3,
     explanation: 'A mental set is a tendency to approach problems in a way that has worked before, even when another approach is needed. Functional fixedness is narrower: seeing an object only in terms of its usual use.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-thinking-intelligence-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['the framing effect', 'the anchoring effect', 'belief perseverance', 'overconfidence'],
     answer: 0,
     explanation: 'Both descriptions give the same information, but the way it is presented, or framed, changes the decision. Anchoring is relying too heavily on the first number you hear.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-thinking-intelligence-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['validity', 'reliability', 'standardization', 'predictive validity'],
     answer: 1,
     explanation: 'Reliability is consistency: the same people get similar results each time. Validity is whether a test measures what it claims to measure. A test can be reliable without being valid.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-thinking-intelligence-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['stereotype threat', 'test-retest reliability', 'the Flynn effect', 'the normal curve'],
     answer: 2,
     explanation: 'The Flynn effect is the rise in average intelligence test scores over generations. Because it happened too quickly to be genetic, it points to environmental factors such as education and nutrition.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-thinking-intelligence-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['valid but not reliable', 'both reliable and valid', 'neither reliable nor valid', 'reliable but not valid'],
     answer: 3,
     explanation: 'Consistent scores mean the test is reliable. Failing to predict college grades, the thing it was built to predict, means it lacks predictive validity. Reliability does not guarantee validity.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -10,7 +10,7 @@ export default [
     choices: ['cross-sectional study', 'longitudinal study', 'case study', 'naturalistic observation'],
     answer: 1,
     explanation: 'A longitudinal study follows the same people over time. A cross-sectional study compares different people of different ages at a single point in time.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-development-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['last three months of pregnancy', 'first few days after birth', 'embryonic period, roughly weeks 2 to 8 of pregnancy', 'zygote stage only, before it implants'],
     answer: 2,
     explanation: 'Major organs and body structures form during the embryonic period, so harm then can disrupt how they form. Teratogens can still cause harm later, but large structural defects are most likely in this window.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-development-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['secure attachment', 'avoidant attachment', 'anxious-ambivalent attachment', 'disorganized attachment'],
     answer: 0,
     explanation: 'Securely attached children use the caregiver as a safe base, show distress at separation, and are easily comforted at reunion. Avoidant children show little response, and anxious-ambivalent children are hard to comfort.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-development-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['being fed', 'imprinting during a critical period', 'hearing the mother\'s voice', 'contact comfort'],
     answer: 3,
     explanation: 'If feeding created attachment, the monkeys would have preferred the wire mother that gave milk. They spent their time with the cloth mother instead, showing that physical comfort matters more.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-development-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['intimacy vs. isolation', 'identity vs. role confusion', 'industry vs. inferiority', 'generativity vs. stagnation'],
     answer: 1,
     explanation: 'Erikson describes adolescence as the time for building a stable sense of self, or identity. Intimacy vs. isolation follows in young adulthood, and industry vs. inferiority comes before, in the school years.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-development-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['longitudinal studies use far more participants', 'intelligence tests cannot measure older adults reliably', 'older and younger groups differ in education and life experience because of when they were born', 'cross-sectional studies follow people for longer periods'],
     answer: 2,
     explanation: 'Comparing different age groups at one time also compares people from different generations, a cohort effect. Older cohorts often had less schooling, which can exaggerate how much ability seems to decline with age.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -10,7 +10,7 @@ export default [
     choices: ['Proximity', 'Similarity', 'Figure-ground', 'Closure'],
     answer: 3,
     explanation: 'Closure is the tendency to fill in gaps to see a complete, whole figure. Proximity groups objects that are close together, and similarity groups objects that look alike.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-perception-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['top-down processing', 'bottom-up processing', 'feature detection', 'sensory adaptation'],
     answer: 0,
     explanation: 'Top-down processing uses expectations and experience to interpret what we sense, which can lead us to see what we expect. Bottom-up processing builds perception from the raw sensory details, which would have caught the misspelling.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-perception-003',
@@ -30,7 +30,7 @@ export default [
     choices: ['size constancy', 'retinal disparity', 'shape constancy', 'linear perspective'],
     answer: 2,
     explanation: 'Perceptual constancy keeps objects looking stable even as the image on the retina changes. Shape constancy covers changes in shape. Size constancy would apply if the door seemed to stay the same size as you walked away from it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-perception-004',
@@ -40,7 +40,7 @@ export default [
     choices: ['Interposition', 'Retinal disparity', 'Linear perspective', 'Relative size'],
     answer: 1,
     explanation: 'Each eye sees a slightly different image, and the brain uses that difference, retinal disparity, to judge depth. The other three are monocular cues that work even with one eye, which is how depth shows up in flat paintings.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-perception-005',
@@ -50,7 +50,7 @@ export default [
     choices: ['change blindness', 'the cocktail party effect', 'inattentional blindness', 'sensory adaptation'],
     answer: 2,
     explanation: 'Focusing attention on one task can leave us unaware of obvious things we are not attending to. Change blindness is failing to notice that something changed between moments, and the cocktail party effect is noticing your name in a conversation you were ignoring.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'psych-perception-006',
@@ -60,6 +60,6 @@ export default [
     choices: ['perception is shaped by experience and culture', 'perception is fixed at birth and the same for everyone', 'the illusion is caused only by the structure of the eye', 'people from these environments have sharper eyesight'],
     answer: 0,
     explanation: 'If the illusion depends on what people have experienced, then perception is partly learned. Eye structure is similar across cultures, so it cannot explain the difference by itself.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
