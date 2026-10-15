@@ -13,6 +13,7 @@ const INDEX_ONLY_FIELDS = REQUIRED_INDEX_FIELDS.filter(f => f !== 'id');
 // ones here.
 const RETIRED_WEEK_IDS = {
   phys1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  phys2: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 };
 
 const contentFiles = import.meta.glob('./subjects/*.js', { eager: true });
