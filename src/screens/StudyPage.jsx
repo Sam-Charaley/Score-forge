@@ -213,7 +213,7 @@ export default function StudyPage({ user, subject, adaptedWeeks, checked, toggle
           <span className="callout-title">No study plan yet</span>
           <div className="callout-body home-setup-body">
             <span>You're seeing the full course. Set how many days you have and it gets paced to fit.</span>
-            <Button size="small" onClick={onAdjustPlan}>Set up a plan</Button>
+            <Button variant="secondary" size="small" onClick={onAdjustPlan}>Set up a plan</Button>
           </div>
         </div>
       )}

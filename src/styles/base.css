@@ -1,13 +1,24 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+/* 1rem follows the reader's text size. On touch screens it starts at 17px,
+   the iOS body size; Safari then hands control to Dynamic Type. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (pointer: coarse) {
+  html { font-size: 106.25%; }
+  @supports (font: -apple-system-body) {
+    html { font: -apple-system-body; }
+  }
+}
+
 body {
   min-height: 100dvh;
   background: var(--paper);
   color: var(--graphite);
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.55;
+  font-family: var(--font-text);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  /* At the largest text sizes a single long word can be wider than a phone. */
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -19,7 +30,13 @@ button { cursor: pointer; background: none; border: 0; }
 button:disabled { cursor: default; }
 a { color: inherit; }
 img, svg { display: block; flex-shrink: 0; }
-h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance; }
+/* Icons scale with the text beside them unless a component sets a size. */
+svg.lucide { width: 1.15em; height: 1.15em; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 750; letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance;
+}
 p { text-wrap: pretty; }
 
 /* Ligatures would turn <= into a single arrow glyph and ++ into one shape:
@@ -30,7 +47,7 @@ code, pre, .mono {
   font-feature-settings: 'liga' 0, 'calt' 0;
 }
 
-:focus-visible { outline: 3px solid var(--graphite); outline-offset: 2px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; border-radius: 4px; }
 ::selection { background: var(--pencil-soft); color: var(--graphite); }
 
 [hidden] { display: none !important; }

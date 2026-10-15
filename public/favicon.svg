@@ -1,5 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="15" fill="#22252A"/>
+  <style>
+    .tile { fill: #22252A; }
+    .edge { fill: none; stroke: none; }
+    @media (prefers-color-scheme: dark) {
+      /* Dark browser chrome: keep the graphite tile, give it an edge so it doesn't dissolve. */
+      .edge { stroke: rgba(255, 255, 255, .28); }
+    }
+  </style>
+  <rect class="tile" width="64" height="64" rx="15"/>
+  <rect class="edge" x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" stroke-width="2.5"/>
   <clipPath id="bubble"><circle cx="32" cy="32" r="15"/></clipPath>
   <polygon points="10,40 54,27 54,54 10,54" fill="#F2B705" clip-path="url(#bubble)"/>
   <circle cx="32" cy="32" r="17" fill="none" stroke="#F4F5F1" stroke-width="5"/>

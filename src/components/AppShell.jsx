@@ -39,7 +39,7 @@ export default function AppShell({ active, username, streakDays, canPractice, on
   return (
     <div className="app">
       <a className="skip-link" href="#main">Skip to content</a>
-      <header className="app-header">
+      <header className="app-header glass">
         <div className="app-header-inner">
           <button type="button" className="wordmark" onClick={() => onNavigate('home')} aria-label="ScoreForge home">
             <LogoMark size={30} />
@@ -76,7 +76,7 @@ export default function AppShell({ active, username, streakDays, canPractice, on
 
       <main ref={mainRef} id="main" className="app-main" tabIndex={-1}>{children}</main>
 
-      <nav className="mobile-nav" aria-label="Main">
+      <nav className="mobile-nav glass glass-strong" aria-label="Main">
         {items.map(({ id, label, shortLabel, icon: Icon }) => (
           <button key={id} type="button" className="mobile-nav-item" aria-current={active === id ? 'page' : undefined} onClick={() => onNavigate(id)}>
             <Icon aria-hidden="true" />

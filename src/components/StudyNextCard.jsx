@@ -85,7 +85,7 @@ export default function StudyNextCard({ user, subject, onPractice }) {
             </li>
           ))}
         </ol>
-        <Button icon={Sparkles} onClick={onPractice}>Smart practice</Button>
+        <Button variant="secondary" icon={Sparkles} onClick={onPractice}>Smart practice</Button>
       </div>
       <PredictionPanel prediction={insight.prediction} />
     </section>

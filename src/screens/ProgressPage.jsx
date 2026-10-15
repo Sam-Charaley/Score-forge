@@ -197,7 +197,7 @@ export default function ProgressPage({ user, subject, practiceSubjects, onSubjec
           <section className="card card-pad" aria-labelledby="missed-title">
             <div className="section-title">
               <h2 id="missed-title">To fix<span className="count">{missed.total}</span></h2>
-              {missed.total > 0 && <Button size="small" icon={RotateCcw} onClick={() => onPractice({ practiceScope: MISSED_SCOPE })}>Retry missed</Button>}
+              {missed.total > 0 && <Button variant="secondary" size="small" icon={RotateCcw} onClick={() => onPractice({ practiceScope: MISSED_SCOPE })}>Retry missed</Button>}
             </div>
             {missed.total === 0
               ? <p className="muted">Nothing to fix. Every question you've missed has since been answered right.</p>

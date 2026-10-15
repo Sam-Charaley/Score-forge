@@ -243,7 +243,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
           </div>
 
           {question ? (
-            <section ref={sheetRef} className="sheet practice-sheet" tabIndex={-1} aria-label="Question" {...{ [SHORTCUT_TARGET_ATTR]: '' }} key={question.id}>
+            <section ref={sheetRef} className="sheet sheet-signature practice-sheet" tabIndex={-1} aria-label="Question" {...{ [SHORTCUT_TARGET_ATTR]: '' }} key={question.id}>
               <div className="sheet-head">
                 <span className="practice-topic">{topic?.name ?? question.topic}</span>
                 <span className="practice-tags">

@@ -220,7 +220,7 @@ export default function HomePage({ user, username, checked, mySubjects, planSett
           <span className="callout-title">Set up your study plans</span>
           <div className="callout-body home-setup-body">
             <span>Tell ScoreForge how many days you have for each subject and every unit is paced to fit.</span>
-            <Button size="small" icon={CalendarDays} onClick={onAdjustPlan}>Set up plans</Button>
+            <Button variant="secondary" size="small" icon={CalendarDays} onClick={onAdjustPlan}>Set up plans</Button>
           </div>
         </div>
       )}

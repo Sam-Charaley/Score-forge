@@ -33,7 +33,7 @@ function PickerFrame({ children, footer }) {
         <span className="wordmark"><LogoMark size={30} />ScoreForge</span>
       </header>
       <main className="page picker-page">{children}</main>
-      {footer && <div className="picker-footer"><div className="picker-footer-inner">{footer}</div></div>}
+      {footer && <div className="picker-footer glass glass-strong"><div className="picker-footer-inner">{footer}</div></div>}
     </div>
   );
 }

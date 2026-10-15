@@ -1,44 +1,179 @@
-/* ScoreForge design tokens. Shared with the landing page: paper, graphite
-   and a pencil-yellow accent, after a filled-in answer sheet. */
+/* ScoreForge design tokens, shared with the landing page.
+   The world is an answer sheet: paper, graphite and one pencil-yellow accent.
+   Every colour has a light and a dark value, and a stronger set when the
+   device asks for more contrast. Contrast figures are against the surface
+   each colour is used on; scratchpad check: redesign/check.mjs. */
 :root {
+  color-scheme: light dark;
+
+  /* Surfaces */
   --paper: #F4F5F1;
   --paper-deep: #EBECE6;
   --sheet: #FFFFFF;
-  --graphite: #22252A;
-  --lead: #5B606A;
-  --lead-light: #858A93;
-  --rule: #D9DBD3;
+
+  /* Content */
+  --graphite: #22252A;        /* primary text, 14.0:1 on paper */
+  --graphite-soft: #3A3E45;   /* long-form reading text, 10.7:1 on sheet */
+  --lead: #555A63;            /* secondary text, 6.3:1 on paper */
+  --lead-light: #676C75;      /* tertiary text, 4.8:1 on paper; never on paper-deep */
+  --control-line: #858A93;    /* outlines of inputs and empty bubbles, 3.5:1 on sheet */
+  --line-strong: #22252A;     /* the answer-sheet border and selected outlines */
+  --rule: #D9DBD3;            /* decorative dividers only */
   --rule-soft: #E9EAE4;
+
+  /* Accent: pencil. Primary action, the answer bubble, and status. */
   --pencil: #F2B705;
   --pencil-deep: #E3A800;
+  --on-pencil: #22252A;       /* 8.5:1 on pencil */
   --pencil-soft: #FBEBB5;
   --pencil-wash: #FDF6DC;
-  --red-pen: #C8372D;
-  --red-soft: #FBEFEE;
-  --pass: #1F7A4D;
-  --pass-soft: #EEF7F1;
+  --pencil-ink: #7A5A00;      /* pencil-coloured text, 5.9:1 on wash */
 
-  --font-sans: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Signals */
+  --red-pen: #B42D24;         /* 6.3:1 on sheet */
+  --red-soft: #FBEFEE;
+  --red-line: #F0C9C5;
+  --red-ink: #8E241C;         /* text on red-soft, 7.7:1 */
+  --pass: #1A6E44;            /* 6.3:1 on sheet */
+  --pass-soft: #EEF7F1;
+  --pass-line: #C5E3D1;
+
+  /* Fixed brand surfaces that stay dark in both appearances */
+  --brand-ink: #22252A;
+  --brand-paper: #F4F5F1;
+  --brand-muted: #A3A7AE;     /* 6.4:1 on brand-ink */
+  --brand-body: #D8DAD3;
+
+  /* Overlays and the functional (glass) layer */
+  --scrim: rgba(20, 22, 25, .45);
+  --glass-fill: rgba(244, 245, 241, .72);
+  --glass-fill-strong: rgba(255, 255, 255, .78);
+  --glass-solid: #F4F5F1;
+  --glass-solid-strong: #FFFFFF;
+  --glass-line: rgba(34, 37, 42, .1);
+  --glass-highlight: rgba(255, 255, 255, .7);
+  --inverse-muted: #D5D8DD;   /* secondary text on an inverted (graphite) chip */
+  --shadow-ink: #22252A;
+  --shadow-lift: 0 1px 2px rgba(20, 22, 25, .06), 0 8px 24px -12px rgba(20, 22, 25, .2);
+  --shadow-float: 0 2px 6px rgba(20, 22, 25, .08), 0 18px 48px -16px rgba(20, 22, 25, .28);
+  --focus-ring: #22252A;
+  --focus-halo: color-mix(in srgb, #22252A 14%, transparent);
+
+  /* Type. Display: Schibsted Grotesk for headings and big numbers.
+     Text: the system face for reading and every control.
+     Sizes are rem so they follow the reader's text-size setting; 1rem is
+     16px on desktop and 17px (iOS body) on touch screens, see base.css. */
+  --font-display: 'Schibsted Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-text: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
+  --text-caption-2: .6875rem;   /* 11 */
+  --text-caption: .75rem;       /* 12 */
+  --text-footnote: .8125rem;    /* 13 */
+  --text-subhead: .875rem;      /* 14 */
+  --text-callout: .9375rem;     /* 15 */
+  --text-body: 1rem;            /* 16 desktop, 17 touch */
+  --text-headline: 1.0625rem;   /* 17 */
+  --text-title-3: 1.25rem;      /* 20 */
+  --text-title-2: 1.375rem;     /* 22 */
+  --text-title-1: 1.75rem;      /* 28 */
+  --text-large-title: clamp(1.75rem, 1.35rem + 1.4vw, 2.125rem);   /* 28 to 34 */
+  --text-display: clamp(2rem, 1.3rem + 2.6vw, 2.875rem);           /* 32 to 46 */
+
+  /* Shape */
   --radius-small: 6px;
   --radius: 10px;
   --radius-sheet: 14px;
   --radius-pill: 999px;
+  --shadow-hard: 6px 6px 0 var(--shadow-ink);
+  --shadow-hard-small: 4px 4px 0 var(--shadow-ink);
 
-  --shadow-hard: 6px 6px 0 var(--graphite);
-  --shadow-hard-small: 4px 4px 0 var(--graphite);
-  --shadow-lift: 0 1px 0 var(--rule), 0 8px 24px -12px rgba(34, 37, 42, .18);
-
+  /* Motion */
   --ease-out: cubic-bezier(.3, .7, .2, 1);
   --ease-in-out: cubic-bezier(.45, 0, .3, 1);
 
+  /* Layout */
   --header-height: 60px;
   --mobile-nav-height: 64px;
   --content-width: 1120px;
   --gutter: 28px;
+  --target-min: 28px;           /* desktop minimum hit area */
 }
 
-@media (max-width: 768px) {
+/* Dark appearance follows the device; there is no in-app switch. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141619;
+    --paper-deep: #262A2F;
+    --sheet: #1D2024;
+
+    --graphite: #ECEDE8;        /* 15.4:1 on paper */
+    --graphite-soft: #D5D8DC;   /* 11.4:1 on sheet */
+    --lead: #B4B8BE;            /* 9.1:1 on paper */
+    --lead-light: #9399A1;      /* 6.3:1 on paper */
+    --control-line: #757B84;    /* 3.8:1 on sheet */
+    --line-strong: #8A9099;     /* 5.1:1 on sheet */
+    --rule: #3C4047;
+    --rule-soft: #2B2F35;
+
+    --on-pencil: #1A1C1F;       /* 9.4:1 on pencil */
+    --pencil-soft: #4A3F12;
+    --pencil-wash: #2B2614;
+    --pencil-ink: #F5C842;      /* 9.5:1 on wash */
+
+    --red-pen: #FF8A7F;         /* 7.2:1 on sheet */
+    --red-soft: #3A1E1C;
+    --red-line: #6B2F2A;
+    --red-ink: #FFB0A8;
+    --pass: #5CCB93;            /* 8.1:1 on sheet */
+    --pass-soft: #16301F;
+    --pass-line: #275C3D;
+
+    --scrim: rgba(0, 0, 0, .6);
+    --glass-fill: rgba(20, 22, 25, .7);
+    --glass-fill-strong: rgba(29, 32, 36, .76);
+    --glass-solid: #141619;
+    --glass-solid-strong: #1D2024;
+    --glass-line: rgba(255, 255, 255, .09);
+    --glass-highlight: rgba(255, 255, 255, .06);
+    --inverse-muted: #3C4047;
+    --shadow-ink: #000000;
+    --shadow-lift: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .6);
+    --shadow-float: 0 2px 6px rgba(0, 0, 0, .4), 0 18px 48px -16px rgba(0, 0, 0, .7);
+    --focus-ring: #F2B705;
+    --focus-halo: color-mix(in srgb, #F2B705 22%, transparent);
+  }
+}
+
+/* Increase Contrast: secondary text darkens toward primary, dividers and
+   control outlines become clearly visible. */
+@media (prefers-contrast: more) {
+  :root {
+    --lead: #3A3E45;
+    --lead-light: #484C54;
+    --control-line: #22252A;
+    --rule: #8F949C;
+    --rule-soft: #B5B9BF;
+    --pencil-ink: #5C4400;
+    --glass-line: rgba(34, 37, 42, .5);
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --lead: #D5D8DC;
+    --lead-light: #C3C7CC;
+    --control-line: #C3C7CC;
+    --line-strong: #ECEDE8;
+    --pencil-ink: #FFD666;
+    --rule: #6E747C;
+    --rule-soft: #50555D;
+    --glass-line: rgba(255, 255, 255, .45);
+  }
+}
+
+@media (max-width: 48em) {
   :root { --gutter: 16px; --header-height: 56px; }
+}
+@media (pointer: coarse) {
+  :root { --target-min: 44px; }
 }
