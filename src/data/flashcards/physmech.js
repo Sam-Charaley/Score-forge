@@ -1,0 +1,17 @@
+export default [
+  { front: "How are position, velocity and acceleration related with calculus?", back: "v = dx/dt and a = dv/dt. Going back: Δx = ∫v dt and Δv = ∫a dt. Displacement is the signed area under v(t); distance traveled uses |v|." },
+  { front: "How do you solve motion with a drag force F = −bv?", back: "Newton's second law gives m dv/dt = mg − bv. Terminal velocity is v_T = mg/b. Starting from rest, v(t) = v_T(1 − e^(−t/τ)) with time constant τ = m/b." },
+  { front: "How are a conservative force and potential energy related?", back: "F = −dU/dx, so the force points downhill on a U(x) graph. Equilibrium is where dU/dx = 0: stable at a minimum of U, unstable at a maximum." },
+  { front: "How do you find work done by a variable force?", back: "W = ∫F · dx, the area under a force-position graph. Only the component of force along the displacement does work. The work-energy theorem: W_net = ΔK." },
+  { front: "What is power, and how is it related to force?", back: "P = dW/dt, the rate of doing work. For a force acting on a moving object, P = F · v." },
+  { front: "How do you find the center of mass of a continuous object?", back: "x_cm = (1/M) ∫x dm. Write dm with a density, for example dm = λ dx for a rod. A rod whose density increases along its length has its center of mass shifted toward the dense end." },
+  { front: "How does impulse relate to a force that changes with time?", back: "J = ∫F dt = Δp, the area under a force-time graph. Momentum is conserved for a system when the net external force on it is zero." },
+  { front: "How do you find rotational inertia?", back: "I = Σmr² for point masses and I = ∫r² dm for continuous objects. To move the axis from the center of mass, use the parallel-axis theorem: I = I_cm + Md²." },
+  { front: "What is Newton's second law for rotation?", back: "Στ = Iα, with torque τ = rF sin θ. Draw the forces where they act, pick the axis, and use the same sign convention for torque and angular acceleration." },
+  { front: "What does rolling without slipping mean?", back: "The contact point is instantaneously at rest, so v_cm = Rω and a_cm = Rα. Kinetic energy is translational plus rotational: K = ½Mv² + ½Iω². Static friction does no work here." },
+  { front: "When is angular momentum conserved?", back: "When the net external torque about the chosen axis is zero. L = Iω for a rigid body and L = r × p for a particle, so a particle moving in a straight line can still have angular momentum." },
+  { front: "What are the equations for simple harmonic motion?", back: "x(t) = A cos(ωt + φ). Mass on a spring: ω = √(k/m). Simple pendulum: ω = √(g/L) for small angles. The period T = 2π/ω does not depend on the amplitude." },
+  { front: "What net force does uniform circular motion need?", back: "A net force toward the center of size mv²/r. It is not a new kind of force: tension, gravity, friction or the normal force supplies it. Draw the real forces, then set their inward sum equal to mv²/r." },
+  { front: "What is the gravitational potential energy between two masses?", back: "U = −GMm/r, taking U = 0 at infinite separation. Escape speed comes from setting ½mv² − GMm/r = 0. For a circular orbit, gravity provides the centripetal force: v = √(GM/r)." },
+  { front: "How do you solve a collision problem?", back: "Momentum is conserved in every collision when external forces are negligible. Kinetic energy is conserved only in elastic collisions. In a perfectly inelastic collision the objects stick together, and the most kinetic energy is lost." },
+];

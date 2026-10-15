@@ -1,0 +1,16 @@
+export default [
+  { front: "What is the spending multiplier formula?", back: "Spending multiplier = 1 / (1 − MPC) = 1 / MPS. If MPC = 0.8, multiplier = 5. Government spending × multiplier = total change in GDP." },
+  { front: "What is the tax multiplier, and how does it differ from the spending multiplier?", back: "Tax multiplier = −MPC / MPS. It is one less in absolute value than the spending multiplier because tax changes work through consumption, not directly." },
+  { front: "What shifts the Aggregate Demand (AD) curve?", back: "Shifters: Consumer confidence, Investment expectations, Government spending, Net exports (exchange rate). A rightward shift means more output demanded at every price level." },
+  { front: "What is the difference between the short-run and long-run AS curves?", back: "SRAS slopes upward (prices and output move together short-term). LRAS is vertical at full employment — in the long run, output returns to potential regardless of price level." },
+  { front: "What causes stagflation?", back: "A leftward shift of SRAS (negative supply shock — e.g., oil price spike). Causes both rising prices (inflation) and falling output (recession) simultaneously." },
+  { front: "What are the three tools of monetary policy?", back: "Open market operations (buying/selling bonds), discount rate (interest rate for banks borrowing from the Fed), reserve requirement (minimum deposits banks must hold)." },
+  { front: "What happens in the money market when the Fed buys bonds?", back: "Buying bonds injects money → money supply shifts RIGHT → interest rate falls → investment increases → AD shifts right. This is expansionary monetary policy." },
+  { front: "What is the money multiplier?", back: "Money multiplier = 1 / reserve requirement. If reserve requirement = 10%, multiplier = 10. A $100 deposit creates $1000 in total money supply." },
+  { front: "What is the difference between demand-pull and cost-push inflation?", back: "Demand-pull: AD shifts right, pulls prices up. Cost-push: SRAS shifts left, pushes prices up while output falls. Different causes require different policy responses." },
+  { front: "What is the crowding-out effect?", back: "Government borrowing increases demand for loanable funds → interest rates rise → private investment falls. Fiscal policy is partially offset by reduced private spending." },
+  { front: "How does a current account surplus relate to the capital/financial account?", back: "A current account surplus must be matched by a capital/financial account deficit. The balance of payments always sums to zero." },
+  { front: "What is the difference between the short-run and long-run Phillips Curve?", back: "SRPC shows a tradeoff: lower unemployment = higher inflation. LRPC is vertical at the natural rate of unemployment — no long-run tradeoff." },
+  { front: "What is GDP, and what are its four components?", back: "GDP = C + I + G + (X − M). Consumer spending + Investment + Government spending + Net exports. Measures total market value of final goods/services in a country in a year." },
+  { front: "What are automatic stabilizers?", back: "Tax and spending mechanisms that automatically counteract recessions/expansions without new legislation. Examples: progressive income tax, unemployment insurance, welfare payments." },
+];

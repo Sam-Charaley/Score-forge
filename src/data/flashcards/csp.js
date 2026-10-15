@@ -1,0 +1,17 @@
+export default [
+  { front: "What does n bits represent?", back: "2ⁿ different values. Example: 8 bits = 256 values (2⁸)." },
+  { front: "Lossless vs lossy compression", back: "Lossless: file perfectly reconstructed (ZIP). Lossy: some data permanently lost, smaller file (JPEG, MP3)." },
+  { front: "What is the difference between a syntax error and a logic error?", back: "Syntax error: code won't run at all. Logic error: code runs but produces wrong output." },
+  { front: "What does the MOD operator return?", back: "The remainder after division. 17 MOD 5 = 2. Used to check if a number is even (n MOD 2 = 0)." },
+  { front: "What is abstraction in programming?", back: "Managing complexity by hiding implementation details. Procedures/functions are the key mechanism — they hide HOW behind a name." },
+  { front: "Linear search vs binary search", back: "Linear: checks every element, O(n). Binary: halves search space each time, O(log n). Binary requires sorted data." },
+  { front: "What is the digital divide?", back: "Unequal access to computers and internet based on geography, income, age, or disability. Creates and reinforces socioeconomic inequality." },
+  { front: "What is metadata?", back: "Data about data — file size, creation date, GPS coordinates, author. Can reveal sensitive information even without the content." },
+  { front: "How does DNS work?", back: "Domain Name System translates human-readable domain names (google.com) to numeric IP addresses that computers use to route traffic." },
+  { front: "What is fault tolerance on the internet?", back: "The internet is designed with redundant paths so if one connection fails, packets automatically route through alternative paths. No single point of failure." },
+  { front: "What is an undecidable problem?", back: "A problem that cannot be solved by any algorithm for ALL possible inputs. The halting problem is the classic example." },
+  { front: "What is algorithmic bias?", back: "When algorithms reflect and amplify human biases present in training data. Produces discriminatory outputs in hiring, lending, facial recognition." },
+  { front: "What is a Creative Task procedure requirement?", back: "Must have at least one procedure with a parameter that actually changes the program's output. Procedures that ignore their parameters earn no abstraction credit." },
+  { front: "HTTPS vs HTTP", back: "HTTPS encrypts data using TLS/SSL. HTTP sends data in plain text. Always use HTTPS for sensitive information — HTTP is never secure." },
+  { front: "What is Creative Commons licensing?", back: "A form of open licensing that allows sharing with conditions like attribution (BY), non-commercial use (NC), or share-alike (SA). Alternative to full copyright." },
+];

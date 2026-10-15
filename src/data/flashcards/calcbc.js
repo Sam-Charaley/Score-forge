@@ -1,0 +1,18 @@
+export default [
+  { front: "What is the formula for integration by parts?", back: "∫u dv = uv − ∫v du. Choose u as the part that gets simpler when differentiated, often in the order logs, inverse trig, algebraic, trig, exponential (LIATE)." },
+  { front: "When do you use partial fractions?", back: "To integrate a rational function whose denominator factors into distinct linear factors: split it into A/(x − a) + B/(x − b), then each piece integrates to a natural log." },
+  { front: "How do you evaluate an improper integral?", back: "Replace the infinite limit, or the point where the function blows up, with a variable b and take the limit as b approaches it. If the limit is finite, the integral converges; otherwise it diverges." },
+  { front: "What does the logistic differential equation tell you?", back: "dP/dt = kP(1 − P/L). L is the carrying capacity, and P approaches L. The population grows fastest when P = L/2, which is the inflection point of the solution curve." },
+  { front: "How does Euler's method work?", back: "Step along tangent lines: y_new = y_old + (dy/dx) × Δx, evaluating dy/dx at the current point each step. It underestimates when the curve is concave up and overestimates when it is concave down." },
+  { front: "How do you find dy/dx and d²y/dx² for a parametric curve?", back: "dy/dx = (dy/dt) / (dx/dt). For the second derivative, differentiate dy/dx with respect to t, then divide by dx/dt again. Forgetting that last division is the classic mistake." },
+  { front: "How do you find the speed and distance traveled for a particle moving in the plane?", back: "Speed = √((dx/dt)² + (dy/dt)²). Total distance traveled is the integral of speed over the time interval, which is the same as the arc length of the path." },
+  { front: "What is the area inside a polar curve?", back: "A = ½ ∫ r² dθ from α to β. For the area between two polar curves, use ½ ∫ (R² − r²) dθ. Find the θ limits where the curves meet." },
+  { front: "What does the nth term test tell you?", back: "If the terms do not approach 0, the series diverges. If they do approach 0, the test says nothing: the harmonic series 1/n has terms going to 0 but still diverges." },
+  { front: "When does a geometric series converge, and to what?", back: "When |r| < 1, it converges to a/(1 − r), where a is the first term. If |r| ≥ 1, it diverges." },
+  { front: "When does a p-series converge?", back: "Σ 1/nᵖ converges when p > 1 and diverges when p ≤ 1. With p = 1 it is the harmonic series, which diverges." },
+  { front: "How does the ratio test work?", back: "Find L = lim |aₙ₊₁ / aₙ|. If L < 1, the series converges absolutely; if L > 1, it diverges; if L = 1, the test is inconclusive. It is the usual tool for a power series' radius of convergence." },
+  { front: "What is the alternating series error bound?", back: "For a convergent alternating series with terms decreasing to 0, the error after stopping at a term is at most the absolute value of the first term you left out." },
+  { front: "What are the coefficients of a Taylor polynomial centered at x = a?", back: "The coefficient of (x − a)ⁿ is f⁽ⁿ⁾(a) / n!. So f(a) is the constant term, f′(a) the coefficient of (x − a), f″(a)/2 the coefficient of (x − a)², and so on." },
+  { front: "Which Maclaurin series should you know by heart?", back: "eˣ = 1 + x + x²/2! + x³/3! + ... . sin x = x − x³/3! + x⁵/5! − ... . cos x = 1 − x²/2! + x⁴/4! − ... . 1/(1 − x) = 1 + x + x² + ... for |x| < 1." },
+  { front: "What does the Lagrange error bound say?", back: "The error of an nth-degree Taylor polynomial is at most max|f⁽ⁿ⁺¹⁾(z)| × |x − a|ⁿ⁺¹ / (n + 1)!, where the max is taken between a and x." },
+];

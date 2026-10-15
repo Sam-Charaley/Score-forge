@@ -179,7 +179,7 @@ export default function FrqPractice({ user, subject, onSaveError, onReport }) {
   const [openId, setOpenId] = useState(null);
 
   if (set.status === 'error') {
-    return <div className="card"><EmptyState icon={RotateCcw} title="Couldn't load free-response questions" action={<Button variant="secondary" onClick={set.retry}>Try again</Button>}>{set.message}</EmptyState></div>;
+    return <div className="card"><EmptyState icon={RotateCcw} title="Couldn't load free-response questions" action={<Button variant="secondary" onClick={() => window.location.reload()}>Reload</Button>}>{set.message}</EmptyState></div>;
   }
   if (set.status === 'loading') return <div className="card practice-loading" role="status"><span className="practice-loading-bubble" />Loading free-response questions</div>;
   if (set.frqs.length === 0) return <div className="card"><EmptyState icon={PenLine} title="No free-response questions yet">Free-response practice for {subject.shortName} is on the way.</EmptyState></div>;

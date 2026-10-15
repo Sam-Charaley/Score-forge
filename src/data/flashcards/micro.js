@@ -1,0 +1,17 @@
+export default [
+  { front: "What is opportunity cost?", back: "The value of the next best alternative given up. It's ONLY the best alternative — not the sum of all alternatives. Comparative advantage is based on who has a lower opportunity cost." },
+  { front: "What shifts the demand curve vs a movement along it?", back: "A change in PRICE causes movement along the demand curve. A change in anything else (income, tastes, related goods prices, buyer count, expectations) shifts the curve." },
+  { front: "What is the total revenue test for elasticity?", back: "Elastic demand: price and total revenue move OPPOSITE directions. Inelastic: price and TR move in the SAME direction. Unit elastic: TR doesn't change when price changes." },
+  { front: "What are the four factors that make demand more elastic?", back: "Many substitutes available, luxury good (vs necessity), large share of consumer income, long time horizon to adjust. Fewer of these = more inelastic demand." },
+  { front: "What is the profit-maximizing rule for all market structures?", back: "Always produce where MR = MC. This is true for perfect competition, monopoly, monopolistic competition, and oligopoly without exception." },
+  { front: "In perfect competition, what is the relationship between P, MR, and AR?", back: "P = MR = AR. The firm is a price taker with a perfectly elastic (horizontal) demand curve. It can sell any quantity at the market price." },
+  { front: "How is economic profit calculated graphically?", back: "Profit = (P − ATC) × Q*. It's the rectangle between the price line and ATC, from 0 to Q*. A loss = (ATC − P) × Q* when ATC > P." },
+  { front: "When should a firm shut down in the short run vs exit in the long run?", back: "Shut down if P < AVC (can't cover variable costs, better to produce zero). Exit in the long run if P < ATC (can't cover all costs over time)." },
+  { front: "Why is the monopoly MR curve below the demand curve?", back: "The monopolist must lower price on ALL units to sell one more. The MR from each additional unit is less than its price. MR has the same y-intercept as D but twice the slope." },
+  { front: "What is deadweight loss from a monopoly?", back: "The welfare triangle between the demand curve and MC, from monopoly output Q* to the competitive output (where D = MC). It represents output that would be welfare-improving but isn't produced." },
+  { front: "What is the utility-maximizing rule?", back: "Consume where MU_A/P_A = MU_B/P_B for all goods. If MU/P is higher for good A, spend more on A until the ratios equalize." },
+  { front: "What is a negative externality, and how is it corrected?", back: "MSC > MPC — market overproduces. Fixed by a Pigouvian tax equal to the external cost per unit, which shifts supply up to the social optimum." },
+  { front: "What is MRP, and what is its role in the labor market?", back: "Marginal Revenue Product = MR × MP. It is the firm's demand for labor. Hire where MRP = wage (in a competitive labor market). MRP is the value added by one more worker." },
+  { front: "What is the difference between a price ceiling and a price floor?", back: "Price ceiling: set BELOW equilibrium → shortage (Qd > Qs). Price floor: set ABOVE equilibrium → surplus (Qs > Qd). Examples: rent control (ceiling), minimum wage (floor)." },
+  { front: "What are the characteristics of perfect competition?", back: "Many buyers and sellers, identical (homogeneous) products, free entry and exit, perfect information, and all firms are price takers." },
+];

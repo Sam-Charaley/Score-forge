@@ -1,0 +1,16 @@
+export default [
+  { front: "What does SOCS stand for, and when do you use it?", back: "Shape, Outliers, Center, Spread. Use it every time you describe a distribution. Always mention all four components. Always connect statistics to the real-world context." },
+  { front: "What is the outlier rule using IQR?", back: "A value is an outlier if it is below Q1 − 1.5(IQR) or above Q3 + 1.5(IQR). This is the fence rule used to define outliers in AP Statistics." },
+  { front: "How does skewness affect the relationship between mean and median?", back: "Skewed right (tail extends right): mean > median. Skewed left: mean < median. Symmetric: mean ≈ median. The mean is pulled toward the tail." },
+  { front: "How do you interpret the slope of a LSRL in context?", back: "'For each additional [unit of x], the predicted [y] increases/decreases by [b₁] [units], on average.' Context and units are required for full credit." },
+  { front: "How do you interpret r²?", back: "'[r²×100]% of the variation in [y] is explained by the linear relationship with [x].' r² = 0.81 means 81% of variance in y is explained by the regression on x." },
+  { front: "What does a curved pattern in a residual plot indicate?", back: "That a linear model is NOT appropriate — a non-linear (e.g., exponential or quadratic) model would be a better fit. A random scatter indicates linearity is appropriate." },
+  { front: "What are the BINS conditions for a binomial distribution?", back: "Binary outcomes (success/failure). Independent trials. Fixed Number of trials n. Same probability p for each trial. Check all four explicitly on FRQs." },
+  { front: "What is the Central Limit Theorem?", back: "For large enough n (≥30), the sampling distribution of x̄ is approximately normal with mean μ and standard error σ/√n, regardless of the shape of the population." },
+  { front: "How do you correctly interpret a 95% confidence interval?", back: "'We are 95% confident that the true [parameter] for [population] is between [lower] and [upper].' WRONG: 'There is a 95% probability that p is in this interval.'" },
+  { front: "What is the difference between Type I and Type II errors?", back: "Type I (α): reject H₀ when it's true — false positive. Type II (β): fail to reject H₀ when it's false — false negative. Power = 1 − β = probability of correctly rejecting a false H₀." },
+  { front: "How do you correctly state the conclusion of a hypothesis test?", back: "'Since p-value [< or ≥] α, we [reject / fail to reject] H₀. There [is / is not] convincing evidence that [Hₐ in context].' NEVER say 'accept H₀'." },
+  { front: "What is the difference between the 1-proportion z-test formula and the confidence interval formula?", back: "Z-TEST uses p₀ (the null hypothesis value) in the standard error. INTERVAL uses p̂ (the sample proportion). Different formulas for different purposes." },
+  { front: "What are the chi-square degrees of freedom formulas?", back: "Goodness-of-fit: df = k − 1 (where k = number of categories). Test for association: df = (rows − 1)(columns − 1). Condition: all expected counts ≥ 5." },
+  { front: "How do you interpret a p-value?", back: "'Assuming H₀ is true, there is a [p-value] probability of observing a test statistic as extreme or more extreme than [observed value] by chance alone.' Context is required." },
+];

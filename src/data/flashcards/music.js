@@ -1,0 +1,17 @@
+export default [
+  { front: "What is the formula for a major scale?", back: "W W H W W W H (whole and half steps). Starting on C: C D E F G A B C." },
+  { front: "How do you find the relative minor of a major key?", back: "Start on scale degree 6 of the major scale. They share the same key signature. C major → A minor." },
+  { front: "What are the four cadence types?", back: "Authentic (V→I), Half (anything→V), Plagal (IV→I), Deceptive (V→vi). A Perfect Authentic Cadence (PAC) requires both chords root position and soprano on ^1." },
+  { front: "What makes a cadence a PAC vs IAC?", back: "PAC: V–I (or V7–I), BOTH chords in root position, AND soprano ends on scale degree 1. IAC: V–I but soprano not on ^1, or one chord is inverted." },
+  { front: "What are the diatonic chord qualities in a major key?", back: "I, IV, V = major. ii, iii, vi = minor. vii° = diminished. Memorize: 1-4-5 major, 2-3-6 minor, 7 dim." },
+  { front: "What is a passing tone?", back: "A non-chord tone that moves stepwise between two different chord tones. Usually on a weak beat. Labeled PT in analysis." },
+  { front: "What is a suspension?", back: "A chord tone held over a barline into the next chord, then resolved DOWN by step. Most common: 4–3 and 7–6 suspensions." },
+  { front: "What is a secondary dominant?", back: "A major or dominant 7th chord that tonicizes a non-tonic chord. V/V in C major = D major (raises ^4 by a half step). Written V/x or V7/x." },
+  { front: "What are the rules for parallel fifths and octaves?", back: "They are FORBIDDEN in SATB part-writing between any two voices. Check all 6 voice pairs: S-A, A-T, T-B, S-T, A-B, and S-B." },
+  { front: "What is the doubling rule for root-position triads in SATB?", back: "Double the root (bass note) in root position. In 1st inversion, double the soprano note. In 2nd inversion, double the 5th." },
+  { front: "How does the leading tone (^7) resolve in SATB?", back: "It must resolve UP to tonic (^1) in outer voices without exception. In inner voices, it may move down a third (in complete V7 chords) to avoid doubling issues." },
+  { front: "What is a period in music theory?", back: "Two phrases (antecedent + consequent) ending with HC then PAC. Parallel period: both phrases begin identically. Contrasting period: they begin differently." },
+  { front: "How do you identify a Cadential 6/4 chord?", back: "It always appears immediately before a V chord. Despite having a tonic bass note, it functions as a dominant preparation, not a tonic chord." },
+  { front: "What are the voice ranges for SATB?", back: "Soprano: C4–G5. Alto: G3–C5. Tenor: C3–G4. Bass: E2–C4. Voices cannot cross (alto never goes below tenor) and adjacent voices should stay within an octave." },
+  { front: "What is the difference between binary and ternary form?", back: "Binary (AB): two sections, B often tonicizes the dominant. Ternary (ABA): three sections, B provides contrast, returns to A. Ternary is distinguished by the return of A." },
+];

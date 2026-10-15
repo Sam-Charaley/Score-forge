@@ -1,0 +1,16 @@
+export default [
+  { front: "What is the average rate of change formula?", back: "[f(b) − f(a)] / (b − a) — this is the slope of the secant line between two points on the graph." },
+  { front: "How does f(x − h) shift the graph of f?", back: "Shifts RIGHT by h units. Counterintuitive: f(x − 2) moves the graph 2 units to the RIGHT. f(x + 2) shifts LEFT." },
+  { front: "What is the difference between a hole and a vertical asymptote?", back: "A hole occurs when a factor cancels in numerator and denominator — removable discontinuity. A VA occurs when the denominator = 0 but numerator ≠ 0 — not removable." },
+  { front: "What are the three horizontal asymptote cases for rational functions?", back: "Degree num < denom → HA at y=0. Degree equal → HA = leading coefficient ratio. Degree num > denom → no HA (oblique asymptote instead)." },
+  { front: "How do you verify two functions are inverses?", back: "Compute f(f⁻¹(x)) and f⁻¹(f(x)). Both must equal x. Also: domain of f = range of f⁻¹ and vice versa." },
+  { front: "What is the end behavior rule for polynomials?", back: "Even degree, positive leading → both ends up. Even, negative → both down. Odd, positive → down-left, up-right. Odd, negative → up-left, down-right." },
+  { front: "What does even multiplicity at a zero mean graphically?", back: "The graph touches the x-axis and bounces back without crossing — like a tangent point. Odd multiplicity means the graph crosses through." },
+  { front: "What is the constant ratio test for exponential functions?", back: "If f(x+1)/f(x) is constant for all equally spaced x-values, the relationship is exponential. For linear, the differences f(x+1) − f(x) would be constant instead." },
+  { front: "What is the change of base formula for logarithms?", back: "log_b(x) = ln(x)/ln(b) = log(x)/log(b). Used to evaluate any logarithm on a calculator." },
+  { front: "What is the Unit Circle value for sin(π/6)?", back: "sin(π/6) = 1/2. Full memorization required: sin and cos for 0, π/6, π/4, π/3, π/2 and their reflections into all four quadrants." },
+  { front: "What does the amplitude of y = A sin(Bx + C) represent?", back: "A is the amplitude — the maximum displacement from the midline. The graph reaches A and −A. The period is 2π/B." },
+  { front: "What is the difference between sin⁻¹(x) and 1/sin(x)?", back: "sin⁻¹(x) is the inverse function (arcsine) — it gives the angle whose sine is x. 1/sin(x) is the reciprocal function, which equals csc(x)." },
+  { front: "How do you convert between degrees and radians?", back: "Multiply degrees by π/180 to get radians. Multiply radians by 180/π to get degrees. 180° = π radians." },
+  { front: "What does the matrix inverse A⁻¹ represent?", back: "A⁻¹ is the matrix such that A·A⁻¹ = I (identity matrix). It exists only if det(A) ≠ 0. Used to solve matrix equations: Ax = b → x = A⁻¹b." },
+];

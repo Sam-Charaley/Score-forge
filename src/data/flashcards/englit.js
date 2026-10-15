@@ -1,0 +1,12 @@
+export default [
+  { front: "What is a defensible thesis in AP Lit?", back: "A specific, arguable claim about how literary elements create meaning. 'The poem uses imagery' = 0 points. 'Fragmented imagery and irregular syntax mirror the speaker's psychological disintegration' = 1 point." },
+  { front: "What earns the AP Lit sophistication point?", back: "Genuine literary insight — acknowledging complexity, tension, or ambiguity. Noticing something surprising or contradictory that a surface reader would miss. Not elaborate vocabulary." },
+  { front: "Free indirect discourse", back: "Narrative technique where a character's thoughts merge with the narrator's voice without quotation marks or 'he thought/she said.' Creates intimacy and narrative complexity." },
+  { front: "What is a volta in a sonnet?", back: "The 'turn' — a shift in argument, perspective, or tone. In Petrarchan sonnets: between octave and sestet (line 9). In Shakespearean: in the final couplet." },
+  { front: "Verbal vs situational vs dramatic irony", back: "Verbal: says opposite of what is meant. Situational: opposite of what is expected occurs. Dramatic: reader knows more than characters. All three can appear in AP Lit MCQs and essays." },
+  { front: "What is the evidence row on the AP Lit essay rubric?", back: "Worth 4 points — most valuable row. Requires specific quoted evidence AND commentary explaining how each quote supports the thesis. 1 point per quoted-and-analyzed evidence." },
+  { front: "Point of view effect on reader", back: "First person: limited perspective, potential unreliability, intimacy. Third person limited: selective knowledge, sympathy. Omniscient: broad knowledge, potential irony or distance." },
+  { front: "What texts work best for FRQ 3?", back: "Works with symbolic depth, moral ambiguity, or complex characters. 1984, Hamlet, King Lear, Beloved, The Great Gatsby, Their Eyes Were Watching God, Crime and Punishment." },
+  { front: "What is enjambment?", back: "When a line of poetry continues without pause to the next line. Creates tension, mimics breathlessness, or connects ideas. Contrast with end-stopped lines (pause at line end)." },
+  { front: "Anaphora vs chiasmus vs antithesis", back: "Anaphora: repetition at beginning of clauses ('I have a dream...'). Chiasmus: inverted parallelism ('ask not what your country can do for you'). Antithesis: contrasting ideas in parallel structure." },
+];

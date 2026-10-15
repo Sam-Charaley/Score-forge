@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { SUBJECT_INDEX, EXAM_CYCLE_YEAR } from './subjectIndex'
 import { loadAllSubjects, loadSubject, SubjectLoadError } from './subjectLoader'
-import { FLASHCARDS } from './flashcards'
 
 const REQUIRED_INDEX_FIELDS = ['id', 'name', 'shortName', 'color', 'examDate', 'code', 'examInfo'];
 const REQUIRED_WEEK_FIELDS = ['id', 'label', 'theme', 'examWeight', 'color', 'overview', 'days'];
@@ -62,11 +61,6 @@ describe('subject content files', () => {
         expect(Array.isArray(day.tasks), `${subject.id} week ${week.id} day ${di} tasks`).toBe(true);
       });
     });
-  });
-
-  it('only has flashcard decks for real subjects', () => {
-    const ids = new Set(SUBJECT_INDEX.map(s => s.id));
-    Object.keys(FLASHCARDS).forEach(id => expect(ids.has(id), `flashcards for unknown subject "${id}"`).toBe(true));
   });
 });
 

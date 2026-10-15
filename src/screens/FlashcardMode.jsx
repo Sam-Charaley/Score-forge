@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Eye, Shuffle, RotateCcw, ChevronLeft, ChevronRight, Check, X, Layers, CircleCheck, Repeat } from 'lucide-react'
+import { Eye, Shuffle, RotateCcw, ChevronLeft, ChevronRight, Check, X, Layers, CircleCheck, Repeat, TriangleAlert } from 'lucide-react'
 import Button from '../components/ui/Button'
 import IconButton from '../components/ui/IconButton'
 import EmptyState from '../components/ui/EmptyState'
 import SubjectSwitcher from '../components/SubjectSwitcher'
-import { FLASHCARDS } from '../data/flashcards'
+import { useFlashcardDeck } from '../hooks/useFlashcardDeck'
 import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
 
 const KNOWN = 'known';
@@ -20,8 +20,53 @@ function shuffled(items) {
   return copy;
 }
 
+function FlashcardsPage({ subject, mySubjects, onSubject, subtitle, action, children }) {
+  return (
+    <div className="page flashcards" style={{ '--subject': subject.color }}>
+      <SubjectSwitcher subjects={mySubjects} activeId={subject.id} onSelect={onSubject} />
+      <header className="page-head">
+        <div>
+          <h1>{subject.shortName} flashcards</h1>
+          <p>{subtitle}</p>
+        </div>
+        {action}
+      </header>
+      {children}
+    </div>
+  );
+}
+
+// Loads the subject's deck, then hands it to FlashcardDeck. Keyed by subject
+// in App, so switching subjects starts a fresh load and a fresh deck.
 export default function FlashcardMode({ subject, mySubjects, onSubject }) {
-  const cards = FLASHCARDS[subject.id] || [];
+  const deck = useFlashcardDeck(subject.id);
+  const page = { subject, mySubjects, onSubject };
+
+  if (deck.status === 'loading') {
+    return (
+      <FlashcardsPage {...page} subtitle="Loading the deck">
+        <div className="card practice-loading" role="status"><span className="practice-loading-bubble" />Loading flashcards</div>
+      </FlashcardsPage>
+    );
+  }
+  if (deck.status === 'error') {
+    return (
+      <FlashcardsPage {...page} subtitle="Quick recall for the facts that show up every year.">
+        <div className="card"><EmptyState icon={TriangleAlert} title="Couldn't load the deck" action={<Button variant="secondary" icon={RotateCcw} onClick={() => window.location.reload()}>Reload</Button>}>{deck.message}</EmptyState></div>
+      </FlashcardsPage>
+    );
+  }
+  if (deck.cards.length === 0) {
+    return (
+      <FlashcardsPage {...page} subtitle="Quick recall for the facts that show up every year.">
+        <div className="card"><EmptyState icon={Layers} title="No cards for this subject yet">Flashcards for {subject.name} are on the way. Your study plan and resources are ready in the meantime.</EmptyState></div>
+      </FlashcardsPage>
+    );
+  }
+  return <FlashcardDeck {...page} cards={deck.cards} />;
+}
+
+function FlashcardDeck({ subject, mySubjects, onSubject, cards }) {
   // The deck holds indexes into cards, so results survive reshuffles.
   const [deck, setDeck] = useState(() => cards.map((_, i) => i));
   const [position, setPosition] = useState(0);
@@ -69,19 +114,12 @@ export default function FlashcardMode({ subject, mySubjects, onSubject }) {
   }, [finished, card, flipped, position, goTo, mark]);
 
   return (
-    <div className="page flashcards" style={{ '--subject': subject.color }}>
-      <SubjectSwitcher subjects={mySubjects} activeId={subject.id} onSelect={onSubject} />
-      <header className="page-head">
-        <div>
-          <h1>{subject.shortName} flashcards</h1>
-          <p>{cards.length > 0 ? `${cards.length} cards. Say it out loud before you flip.` : 'Quick recall for the facts that show up every year.'}</p>
-        </div>
-        {cards.length > 0 && <Button variant="quiet" size="small" icon={Shuffle} onClick={reshuffleAll}>Shuffle</Button>}
-      </header>
-
-      {cards.length === 0 ? (
-        <div className="card"><EmptyState icon={Layers} title="No cards for this subject yet">Flashcards for {subject.name} are on the way. Your study plan and resources are ready in the meantime.</EmptyState></div>
-      ) : finished ? (
+    <FlashcardsPage
+      subject={subject} mySubjects={mySubjects} onSubject={onSubject}
+      subtitle={`${cards.length} cards. Say it out loud before you flip.`}
+      action={<Button variant="quiet" size="small" icon={Shuffle} onClick={reshuffleAll}>Shuffle</Button>}
+    >
+      {finished ? (
         <div className="sheet deck-done">
           <span className="empty-state-icon"><CircleCheck aria-hidden="true" /></span>
           <h2>Deck complete</h2>
@@ -144,6 +182,6 @@ export default function FlashcardMode({ subject, mySubjects, onSubject }) {
           </div>
         </div>
       )}
-    </div>
+    </FlashcardsPage>
   );
 }

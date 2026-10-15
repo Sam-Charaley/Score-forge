@@ -3,10 +3,10 @@ import { loadFrqs } from '../data/frqs/frqLoader'
 import { FrqAttempts } from '../services/frqAttempts'
 
 // A subject's free-response questions plus the student's saved self-checks.
-// { status: 'loading' | 'ready' | 'error', frqs, types, attempts, message, record, retry }
+// { status: 'loading' | 'ready' | 'error', frqs, types, attempts, message, record }
+// No retry: a failed FRQ chunk import stays failed until the page reloads.
 export function useFrqSet({ userId, subjectId, onSaveError }) {
   const [state, setState] = useState({ status: 'loading' });
-  const [request, setRequest] = useState(0);
 
   useEffect(() => {
     let isCurrent = true;
@@ -15,7 +15,7 @@ export function useFrqSet({ userId, subjectId, onSaveError }) {
       .then(([{ frqs, types }, attempts]) => { if (isCurrent) setState({ status: 'ready', frqs, types, attempts }); })
       .catch(error => { if (isCurrent) setState({ status: 'error', message: error.message }); });
     return () => { isCurrent = false; };
-  }, [userId, subjectId, request]);
+  }, [userId, subjectId]);
 
   const record = useCallback(async attempt => {
     try {
@@ -28,5 +28,5 @@ export function useFrqSet({ userId, subjectId, onSaveError }) {
     }
   }, [userId, subjectId, onSaveError]);
 
-  return { ...state, record, retry: () => setRequest(n => n + 1) };
+  return { ...state, record };
 }

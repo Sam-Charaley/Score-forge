@@ -1,0 +1,14 @@
+export default [
+  { front: "When do you use the subjunctive in French?", back: "After expressions of doubt, emotion, necessity, and desire: vouloir que, il faut que, bien que, pour que, à moins que, avant que." },
+  { front: "What is the difference between passé composé and imparfait?", back: "Passé composé: completed, specific event. Imparfait: ongoing state, habitual past, or background. 'J'ai mangé' (I ate once) vs 'Je mangeais' (I used to eat)." },
+  { front: "How do you use the relative pronoun 'dont'?", back: "'Dont' replaces 'de + noun'. Used after verbs/expressions that take 'de'. Le livre dont je parle = the book I'm talking about." },
+  { front: "What is on the redesigned AP French exam (first given May 2027)?", back: "Free response: a project presentation (3 min to prepare, 3 to present), a Q&A of 4 questions (40 s each), and an argumentative essay (55 min). Multiple choice: 25 listening and 30 reading questions. All in Bluebook." },
+  { front: "What are the six units of the revised AP French course?", back: "1 Families and Communities, 2 Language and Culture, 3 Art and Creativity, 4 Science and Technology, 5 Contemporary Life, 6 Global Contexts. The 2026-27 project theme comes from Unit 3: art and creativity, through music." },
+  { front: "Si-clause with conditionnel", back: "Si + imparfait → conditionnel présent. 'Si j'avais le temps, je voyagerais plus.' = If I had time, I would travel more." },
+  { front: "What is the course project?", back: "Research during the year, using French-language sources, on the year's theme. You submit an outline by April 30 and present from a printed copy on exam day, then answer 4 questions about it." },
+  { front: "How do you cite a source in an AP French essay?", back: "Selon la source 1... / D'après le document audio... / Comme l'indique le graphique... — cite each source at least once." },
+  { front: "Useful French transition words", back: "Cependant (however), de plus (furthermore), en revanche (on the other hand), par conséquent (consequently), néanmoins (nevertheless), ainsi (thus)." },
+  { front: "What is French laïcité?", back: "Official secularism — strict separation of religion from public/government life. Bans religious symbols in public schools. Central to French national identity and cultural debates." },
+  { front: "Circumlocution in French speaking", back: "When you forget a word, describe it: 'le truc qu'on utilise pour...' or 'quelque chose qui...' — AP speaking rewards circumlocution as a language skill." },
+  { front: "How do you answer a 40-second Q&A question well?", back: "Answer directly in your first sentence, then give one specific example from your research, then a reason (parce que, par exemple, c'est pourquoi). Keep speaking until time runs out; a quick self-correction is fine." },
+];

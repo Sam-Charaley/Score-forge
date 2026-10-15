@@ -1,0 +1,17 @@
+export default [
+  { front: "How do you find the electric field of a continuous charge distribution?", back: "Split it into pieces dq, write dE = k dq / r² for each, and integrate the components separately. Use symmetry first: for a ring or a centered rod, the sideways components cancel." },
+  { front: "What does Gauss's law say?", back: "The net electric flux through a closed surface is Φ = ∮E · dA = Q_enclosed / ε₀. It gives E directly only for symmetric charge: spheres, long cylinders and large planes." },
+  { front: "What is the electric field inside a conductor in equilibrium?", back: "Zero. Any excess charge sits on the outer surface, the whole conductor is at one potential, and the field just outside is perpendicular to the surface." },
+  { front: "How are electric potential and electric field related with calculus?", back: "ΔV = −∫E · dr, and E = −dV/dr. The field points toward decreasing potential. Potential is a scalar, so add the potentials from point charges (kq/r) without components." },
+  { front: "How does a dielectric change a capacitor?", back: "It multiplies the capacitance by κ. Inserted while connected to a battery, V stays fixed and Q increases. Inserted after disconnecting, Q stays fixed and V decreases." },
+  { front: "How do capacitors combine in series and in parallel?", back: "The opposite of resistors. Parallel: C_eq = C₁ + C₂. Series: 1/C_eq = 1/C₁ + 1/C₂, and series capacitors all carry the same charge." },
+  { front: "How does a capacitor charge in an RC circuit?", back: "q(t) = Q_max(1 − e^(−t/RC)), and the current dies away as I₀e^(−t/RC). The time constant τ = RC is the time to reach about 63% of the final charge." },
+  { front: "What determines a wire's resistance?", back: "R = ρL/A: longer or thinner wires resist more. Resistivity ρ is a property of the material and usually rises with temperature." },
+  { front: "What does the Biot-Savart law give for a long straight wire?", back: "B = μ₀I / (2πr), circling the wire. Point your right thumb along the current; your fingers curl the way the field circles." },
+  { front: "When is Ampère's law useful, and what does it give for a solenoid?", back: "∮B · dl = μ₀I_enclosed, useful for symmetric currents. Inside a long ideal solenoid, B = μ₀nI, where n is the number of turns per unit length, and the field outside is about zero." },
+  { front: "Do parallel currents attract or repel?", back: "Currents in the same direction attract; currents in opposite directions repel. The force per unit length is F/L = μ₀I₁I₂ / (2πd)." },
+  { front: "How do you find the emf from a changing magnetic flux?", back: "ε = −dΦ_B/dt, where Φ_B = ∫B · dA. Flux can change through B, the area, or the angle. For a rod sliding on rails, ε = BLv. Lenz's law sets the direction of the induced current." },
+  { front: "How does an inductor behave in an RL circuit?", back: "It opposes changes in current: ε = −L dI/dt. Right after the switch closes it acts like a break; long after, like a plain wire. Current grows as I = (ε/R)(1 − e^(−Rt/L)), with τ = L/R." },
+  { front: "How much energy does an inductor store?", back: "U = ½LI², stored in its magnetic field. Compare U = ½CV² for a capacitor, stored in its electric field." },
+  { front: "What is the magnetic force on a current-carrying wire?", back: "F = IL × B, so F = ILB sin θ. A rectangular loop in a uniform field feels no net force but can feel a torque, which is how a motor turns." },
+];

@@ -1,0 +1,16 @@
+export default [
+  { front: "What is the formal definition of the derivative?", back: "f'(x) = lim(h→0) [f(x+h) − f(x)] / h. Geometrically, it is the slope of the tangent line to the curve at x." },
+  { front: "State the Chain Rule.", back: "d/dx[f(g(x))] = f'(g(x)) · g'(x). Differentiate the outer function (leaving inner alone), then multiply by derivative of the inner function." },
+  { front: "State FTC Part 1 and Part 2.", back: "Part 1: d/dx[∫ₐˣ f(t)dt] = f(x). Part 2: ∫ₐᵇ f(x)dx = F(b) − F(a) where F is any antiderivative of f." },
+  { front: "What are the conditions for the Mean Value Theorem?", back: "f must be continuous on [a,b] and differentiable on (a,b). Conclusion: there exists c in (a,b) where f'(c) = [f(b)−f(a)]/(b−a)." },
+  { front: "What is the First Derivative Test?", back: "If f' changes from + to − at a critical point → local max. From − to + → local min. No sign change → neither. A local extremum requires a SIGN CHANGE." },
+  { front: "How do you find an inflection point?", back: "Find where f'' changes sign. f''(c) = 0 alone is NOT sufficient — you must verify that f'' actually changes sign at c. No sign change = no inflection point." },
+  { front: "What is L'Hôpital's Rule?", back: "If a limit gives 0/0 or ∞/∞ form, then lim f/g = lim f'/g'. ONLY applicable to these two indeterminate forms. Verify the form before applying." },
+  { front: "What is the displacement vs distance rule for particle motion?", back: "Displacement = ∫v(t)dt — can be negative. Total distance = ∫|v(t)|dt — always positive. Split the integral at points where v = 0 to compute distance." },
+  { front: "What is u-substitution and when is it used?", back: "Integration technique for composite functions. Choose u = inner function, find du, substitute to eliminate x, integrate in u, substitute back. Used when integrand has a function and its derivative." },
+  { front: "How do you solve a separable differential equation?", back: "Separate variables: g(y)dy = f(x)dx. Integrate both sides. Solve for C using the initial condition. State the particular solution." },
+  { front: "What is the formula for area between two curves?", back: "∫ₐᵇ [f(x) − g(x)]dx where f(x) ≥ g(x) on [a,b]. Find intersection points for limits. If curves cross, split the integral and track which is on top." },
+  { front: "What is the Intermediate Value Theorem (IVT)?", back: "If f is continuous on [a,b] and k is any value between f(a) and f(b), then there exists c in (a,b) with f(c) = k. Used to confirm a root exists on an interval." },
+  { front: "What is the disk method for volume?", back: "V = π∫ₐᵇ [R(x)]² dx when revolving one curve around the x-axis. Washer method: V = π∫ₐᵇ {[R(x)]² − [r(x)]²} dx for a region between two curves." },
+  { front: "What is the exponential growth/decay model?", back: "dy/dt = ky has solution y = Ce^(kt). k > 0: growth. k < 0: decay. C = y(0) is the initial value. Verify by differentiating and substituting back." },
+];

@@ -1,0 +1,16 @@
+export default [
+  { front: "What are the four kinematic equations (constant acceleration)?", back: "v = v₀ + at. x = x₀ + v₀t + ½at². v² = v₀² + 2aΔx. x = x₀ + ½(v₀+v)t. Only valid when acceleration is constant." },
+  { front: "How do you find displacement from a v-t graph?", back: "Displacement = area under the v-t curve (with sign). Area BELOW the t-axis = negative displacement. Speed is the magnitude of velocity — always positive." },
+  { front: "State Newton's Second Law and what it means.", back: "ΣF = ma. The NET force (sum of all forces) equals mass times acceleration. If net force = 0, acceleration = 0 (not necessarily at rest — could be constant velocity)." },
+  { front: "What is Newton's Third Law, and what are its conditions?", back: "For every action force, there is an equal and opposite reaction force. The forces act on DIFFERENT objects, are the same type (e.g., both normal), and are equal in magnitude." },
+  { front: "When can you use energy conservation instead of kinematics?", back: "When only conservative forces do work (no friction or air resistance). KE + PE = constant. Best when you want speed at a position without needing time." },
+  { front: "What is the Work-Energy Theorem?", back: "W_net = ΔKE = KE_f − KE_i. The net work done on an object equals its change in kinetic energy. Non-conservative forces (friction) reduce mechanical energy." },
+  { front: "What is the impulse-momentum theorem?", back: "J = FΔt = Δp = mv_f − mv_i. Impulse equals change in momentum. Impulse from a graph = area under the F-t curve." },
+  { front: "What is the difference between elastic and inelastic collisions?", back: "Elastic: both momentum AND kinetic energy are conserved. Inelastic: only momentum is conserved. Perfectly inelastic: objects stick together. Always verify by calculating KE before and after." },
+  { front: "What does torque depend on?", back: "τ = rF sin(θ). Maximized when force is perpendicular to the lever arm (θ=90°). Zero when force is directed along the lever arm (θ=0°). Choose pivot to eliminate unknowns." },
+  { front: "What are the conditions for static equilibrium?", back: "BOTH ΣF = 0 (translational) AND Στ = 0 (rotational). Neither condition alone is sufficient. State both explicitly in FRQ answers." },
+  { front: "What is conservation of angular momentum?", back: "L = Iω is conserved when net external torque = 0. If I decreases (arms pulled in), ω increases. Classic example: spinning figure skater." },
+  { front: "What are the period formulas for SHM?", back: "Mass-spring: T = 2π√(m/k). Pendulum: T = 2π√(L/g). Neither depends on amplitude. Pendulum period doesn't depend on mass. Spring period doesn't depend on g." },
+  { front: "What determines the buoyant force on an object?", back: "The weight of the fluid it pushes aside (Archimedes): F_b = ρ_fluid × V_displaced × g. It depends on the fluid's density, not the object's. A floating object displaces exactly its own weight of fluid." },
+  { front: "What do continuity and Bernoulli's equation say about flowing fluids?", back: "Continuity: A₁v₁ = A₂v₂, so fluid speeds up where a pipe narrows. Bernoulli: P + ρgy + ½ρv² is the same along a streamline, so at the same height, faster flow means lower pressure." },
+];

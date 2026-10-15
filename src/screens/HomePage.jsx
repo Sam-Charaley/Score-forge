@@ -6,7 +6,7 @@ import SubjectMark from '../components/ui/SubjectMark'
 import CheckBubble from '../components/ui/CheckBubble'
 import StudyNextCard from '../components/StudyNextCard'
 import { hasQuestionBank } from '../data/questions/questionLoader'
-import { FLASHCARDS } from '../data/flashcards'
+import { FLASHCARD_COUNTS } from '../data/flashcardCounts'
 import { EXAM_DATES_CONFIRMED } from '../data/subjectIndex'
 import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs, pickFurthestBehind } from '../utils/planEngine'
 
@@ -152,7 +152,7 @@ export default function HomePage({ user, username, checked, mySubjects, planSett
   });
   const totalDone = subjectsWithProgress.reduce((sum, s) => sum + s.done, 0);
   const totalTasks = subjectsWithProgress.reduce((sum, s) => sum + s.total, 0);
-  const totalCards = mySubjects.reduce((sum, s) => sum + (FLASHCARDS[s.id] || []).length, 0);
+  const totalCards = mySubjects.reduce((sum, s) => sum + (FLASHCARD_COUNTS[s.id] ?? 0), 0);
   const hasAnyPlan = Object.keys(planSettings ?? {}).length > 0;
 
   const nextExam = EXAM_DATES_CONFIRMED
