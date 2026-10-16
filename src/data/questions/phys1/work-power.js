@@ -2,6 +2,14 @@
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
 import { G } from './topics.js'
+import { areaUnder } from '../figureMath.js'
+
+const VARIABLE_PUSH = { type: 'graph', xLabel: 'x (m)', yLabel: 'F (N)', xMax: 5, xStep: 1, yMin: 0, yMax: 12, yStep: 2,
+  series: [{ points: [[0, 0], [2, 10], [5, 10]] }],
+  alt: 'Force-position graph. Force rises in a straight line from 0 at x = 0 to 10 N at x = 2 m, then stays at 10 N until x = 5 m.' };
+const SPRING_FORCE = { type: 'graph', xLabel: 'x (m)', yLabel: 'F (N)', xMax: 0.25, xStep: 0.05, yMin: 0, yMax: 50, yStep: 10,
+  series: [{ points: [[0, 0], [0.2, 40]] }],
+  alt: 'Graph of the force needed to stretch a spring against how far it is stretched: a straight line from 0 at x = 0 to 40 N at x = 0.20 m.' };
 
 export default [
   {
@@ -59,5 +67,31 @@ export default [
     answer: 2,
     explanation: 'Friction does negative work equal to the car\'s starting kinetic energy: f·d = ½mv². Kinetic energy grows with the square of speed, so doubling v gives four times the energy and, with the same friction force, four times the distance.',
     reviewed: true,
+  },
+  {
+    id: 'phys1-work-power-006',
+    topic: 'work-power',
+    difficulty: 2,
+    prompt: 'The graph shows the force on a box as it moves 5.0 m. How much work does the force do?',
+    figure: VARIABLE_PUSH,
+    choices: ['50 J', '40 J', '30 J', '20 J'],
+    answer: 1,
+    explanation: 'Work is the area under a force-position graph: a triangle ½(2)(10) = 10 J plus a rectangle (3)(10) = 30 J, a total of 40 J. 50 J treats the force as 10 N for the whole 5 m.',
+    verify: 'numeric',
+    solve: () => areaUnder(VARIABLE_PUSH.series[0].points, 0, 5),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-work-power-007',
+    topic: 'work-power',
+    difficulty: 3,
+    prompt: 'The graph shows the force needed to stretch a spring. How much energy is stored in the spring when it is stretched 0.20 m?',
+    figure: SPRING_FORCE,
+    choices: ['8.0 J', '200 J', '4.0 J', '0.40 J'],
+    answer: 2,
+    explanation: 'The energy stored equals the work done stretching it, the area under the line: ½(0.20 m)(40 N) = 4.0 J. That matches ½kx² with k = 40/0.20 = 200 N/m. 8.0 J multiplies force by distance as if the force were 40 N the whole way.',
+    verify: 'numeric',
+    solve: () => areaUnder(SPRING_FORCE.series[0].points, 0, 0.2),
+    reviewed: false,
   },
 ];

@@ -2,6 +2,11 @@
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
 import { G } from './topics.js'
+// Vertical velocity of a ball thrown upward at 15 m/s; the line's slope is −g.
+const VERTICAL_LAUNCH_SPEED = 15;
+const VERTICAL_VELOCITY = { type: 'graph', xLabel: 't (s)', yLabel: 'v_y (m/s)', xMax: 3, xStep: 0.5, yMin: -15, yMax: 15, yStep: 5,
+  series: [{ points: [[0, VERTICAL_LAUNCH_SPEED], [3, VERTICAL_LAUNCH_SPEED - G * 3]] }],
+  alt: 'Graph of vertical velocity against time. A straight line from +15 m/s at t = 0 down to about −14.4 m/s at t = 3 s, crossing zero a little after 1.5 s.' };
 
 const DEGREES = Math.PI / 180;
 
@@ -66,5 +71,18 @@ export default [
     verify: 'numeric',
     solve: () => 20 - 1.5,
     reviewed: true,
+  },
+  {
+    id: 'phys1-projectiles-006',
+    topic: 'projectiles',
+    difficulty: 2,
+    prompt: 'The graph shows the vertical velocity of a ball launched upward at an angle. At about what time does the ball reach its highest point? (g = 9.8 m/s²)',
+    figure: VERTICAL_VELOCITY,
+    choices: ['3.0 s', '1.5 s', '0.65 s', '15 s'],
+    answer: 1,
+    explanation: 'At the highest point the vertical velocity is zero, which is where the line crosses the time axis: t = 15/9.8 ≈ 1.5 s. 3.0 s is the end of the graph, roughly when the ball lands back at its starting height.',
+    verify: 'numeric',
+    solve: () => VERTICAL_LAUNCH_SPEED / G,
+    reviewed: false,
   },
 ];

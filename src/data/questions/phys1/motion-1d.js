@@ -4,6 +4,22 @@
 // verify: 'numeric' questions carry solve(), which recomputes the key from
 // the givens; questions.test.js checks it against the marked choice.
 import { G } from './topics.js'
+import { slopeAt, areaUnder, absoluteAreaUnder } from '../figureMath.js'
+
+// Shared by questions 006 and 007: one trip, read two ways.
+const CAR_TRIP = { type: 'graph', xLabel: 't (s)', yLabel: 'v (m/s)', xMax: 10, xStep: 2, yMin: 0, yMax: 10, yStep: 2,
+  series: [{ points: [[0, 0], [4, 8], [8, 8], [10, 0]] }],
+  alt: 'Velocity-time graph. Velocity rises in a straight line from 0 at t = 0 to 8 m/s at t = 4 s, stays at 8 m/s until t = 8 s, then falls in a straight line to 0 at t = 10 s.' };
+const THROW_BACK = { type: 'graph', xLabel: 't (s)', yLabel: 'v (m/s)', xMax: 6, xStep: 1, yMin: -8, yMax: 8, yStep: 2,
+  series: [{ points: [[0, 6], [3, 0], [6, -6]] }],
+  alt: 'Velocity-time graph. A straight line from +6 m/s at t = 0 down through 0 at t = 3 s to −6 m/s at t = 6 s.' };
+const WALKER = { type: 'graph', xLabel: 't (s)', yLabel: 'x (m)', xMax: 7, xStep: 1, yMin: 0, yMax: 8, yStep: 2,
+  series: [{ points: [[0, 0], [2, 6], [5, 6], [7, 0]] }],
+  alt: 'Position-time graph. Position rises in a straight line from 0 at t = 0 to 6 m at t = 2 s, stays at 6 m until t = 5 s, then falls in a straight line back to 0 at t = 7 s.' };
+const PUSHED_CART = { type: 'graph', xLabel: 't (s)', yLabel: 'a (m/s²)', xMax: 5, xStep: 1, yMin: 0, yMax: 4, yStep: 1,
+  series: [{ points: [[0, 3], [4, 3], [4, 0], [5, 0]] }],
+  alt: 'Acceleration-time graph. Acceleration is constant at 3 m/s² from t = 0 to t = 4 s, then drops to 0 and stays at 0 until t = 5 s.' };
+const CART_START_SPEED = 2.0;
 
 export default [
   {
@@ -71,5 +87,81 @@ export default [
     verify: 'numeric',
     solve: () => (40 ** 2) / (2 * 5.0),
     reviewed: true,
+  },
+  {
+    id: 'phys1-motion-1d-006',
+    topic: 'motion-1d',
+    difficulty: 1,
+    prompt: 'The graph shows a car\'s velocity over 10 s. What is its acceleration during the first 4 s?',
+    figure: CAR_TRIP,
+    choices: ['8.0 m/s²', '2.0 m/s²', '0.50 m/s²', '32 m/s²'],
+    answer: 1,
+    explanation: 'Acceleration is the slope of a velocity-time graph: (8 m/s − 0)/(4 s − 0) = 2.0 m/s². 8.0 m/s² reads the velocity instead of the slope, and 0.50 m/s² divides the wrong way.',
+    verify: 'numeric',
+    solve: () => slopeAt(CAR_TRIP.series[0].points, 2),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-motion-1d-007',
+    topic: 'motion-1d',
+    difficulty: 2,
+    prompt: 'Using the same graph, how far does the car travel in the full 10 s?',
+    figure: CAR_TRIP,
+    choices: ['80 m', '64 m', '56 m', '48 m'],
+    answer: 2,
+    explanation: 'Displacement is the area under a velocity-time graph. Split it into a triangle, a rectangle and a triangle: ½(4)(8) + (4)(8) + ½(2)(8) = 16 + 32 + 8 = 56 m. 80 m treats the whole trip as 8 m/s for 10 s.',
+    verify: 'numeric',
+    solve: () => areaUnder(CAR_TRIP.series[0].points, 0, 10),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-motion-1d-008',
+    topic: 'motion-1d',
+    difficulty: 2,
+    prompt: 'The graph shows an object\'s velocity. What total distance does it travel from t = 0 to t = 6 s?',
+    figure: THROW_BACK,
+    choices: ['0 m', '18 m', '36 m', '9.0 m'],
+    answer: 1,
+    explanation: 'It moves forward for 3 s (area ½ × 3 × 6 = 9 m), stops, then moves backward for 3 s (another 9 m). Distance adds both: 18 m. 0 m is the displacement, because the two areas cancel when their signs are kept.',
+    verify: 'numeric',
+    solve: () => absoluteAreaUnder(THROW_BACK.series[0].points, 0, 6),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-motion-1d-009',
+    topic: 'motion-1d',
+    difficulty: 2,
+    prompt: 'The graph shows a person\'s position along a hallway. What is the person\'s velocity from t = 5 s to t = 7 s?',
+    figure: WALKER,
+    choices: ['3.0 m/s', '−3.0 m/s', '0 m/s', '−6.0 m/s'],
+    answer: 1,
+    explanation: 'Velocity is the slope of a position-time graph: (0 − 6 m)/(7 s − 5 s) = −3.0 m/s. The negative sign means the person is walking back toward the start. −6.0 m/s forgets to divide by the 2 s.',
+    verify: 'numeric',
+    solve: () => slopeAt(WALKER.series[0].points, 6),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-motion-1d-010',
+    topic: 'motion-1d',
+    difficulty: 2,
+    prompt: 'A cart moving at 2.0 m/s has the acceleration shown in the graph. What is its speed at t = 4 s?',
+    figure: PUSHED_CART,
+    choices: ['12 m/s', '14 m/s', '3.0 m/s', '5.0 m/s'],
+    answer: 1,
+    explanation: 'The area under an acceleration-time graph is the change in velocity: 3 m/s² × 4 s = 12 m/s. Add it to the starting speed: 2.0 + 12 = 14 m/s. 12 m/s is the change alone.',
+    verify: 'numeric',
+    solve: () => CART_START_SPEED + areaUnder(PUSHED_CART.series[0].points, 0, 4),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-motion-1d-011',
+    topic: 'motion-1d',
+    difficulty: 1,
+    prompt: 'The graph shows a person\'s position along a hallway. During which interval is the person standing still?',
+    figure: WALKER,
+    choices: ['From 0 to 2 s', 'From 2 s to 5 s', 'From 5 s to 7 s', 'At no time'],
+    answer: 1,
+    explanation: 'A flat line on a position-time graph means the position isn\'t changing, so the velocity is zero. From 2 s to 5 s the person stays at 6 m.',
+    reviewed: false,
   },
 ];

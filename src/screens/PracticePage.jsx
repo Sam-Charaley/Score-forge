@@ -13,6 +13,7 @@ import { missedQuestionIds, MISSED_SCOPE } from '../utils/progress'
 import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
 import Tabs, { TabPanel } from '../components/ui/Tabs'
 import FrqPractice from '../components/FrqPractice'
+import QuestionFigure from '../components/QuestionFigure'
 import { hasFrqs } from '../data/frqs/frqLoader'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D'];
@@ -260,6 +261,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
                   </p>
                 )}
                 <p className="prompt">{question.prompt}</p>
+                <QuestionFigure figure={question.figure} />
                 {question.setup && <pre className="code-block code-setup" aria-label="Code given for this question">{question.setup}</pre>}
                 {question.code && <pre className="code-block">{question.code}</pre>}
 

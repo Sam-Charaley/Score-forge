@@ -1,6 +1,16 @@
 // AP Physics 1, Unit 4: momentum, impulse and force-time graphs.
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
+import { areaUnder } from '../figureMath.js'
+
+const BAT_HIT = { type: 'graph', xLabel: 't (s)', yLabel: 'F (N)', xMax: 0.04, xStep: 0.01, yMin: 0, yMax: 600, yStep: 100,
+  series: [{ points: [[0, 0], [0.01, 500], [0.03, 500], [0.04, 0]] }],
+  alt: 'Force-time graph. Force rises in a straight line from 0 to 500 N over the first 0.01 s, stays at 500 N until 0.03 s, then falls in a straight line to 0 at 0.04 s.' };
+const PUSH_AND_PULL = { type: 'graph', xLabel: 't (s)', yLabel: 'F (N)', xMax: 4, xStep: 1, yMin: -4, yMax: 4, yStep: 1,
+  series: [{ points: [[0, 0], [1, 4], [2, 0], [3, -2], [4, 0]] }],
+  alt: 'Force-time graph. Force rises from 0 to +4 N at t = 1 s and back to 0 at t = 2 s, then dips to −2 N at t = 3 s and returns to 0 at t = 4 s, all in straight lines.' };
+const CART_MASS = 2.0;
+const CART_START_VELOCITY = 1.0;
 export default [
   {
     id: 'phys1-impulse-001',
@@ -67,5 +77,31 @@ export default [
     answer: 2,
     explanation: 'Each egg goes from the same speed to rest, so each has the same change in momentum and receives the same impulse. The pillow stretches the stop over a longer time, so the average force F = Δp/Δt is smaller.',
     reviewed: true,
+  },
+  {
+    id: 'phys1-impulse-006',
+    topic: 'impulse',
+    difficulty: 2,
+    prompt: 'A 0.30 kg ball at rest is hit by a bat. The graph shows the force on the ball. How fast does the ball leave the bat?',
+    figure: BAT_HIT,
+    choices: ['67 m/s', '50 m/s', '15 m/s', '33 m/s'],
+    answer: 1,
+    explanation: 'Impulse is the area under the force-time graph: two triangles of ½(0.01)(500) = 2.5 N·s each plus a rectangle of (0.02)(500) = 10 N·s, a total of 15 N·s. From rest, v = J/m = 15/0.30 = 50 m/s. 67 m/s treats the force as 500 N for the full 0.04 s.',
+    verify: 'numeric',
+    solve: () => areaUnder(BAT_HIT.series[0].points, 0, 0.04) / 0.30,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-impulse-007',
+    topic: 'impulse',
+    difficulty: 3,
+    prompt: 'A 2.0 kg cart moves at +1.0 m/s on a frictionless track. The graph shows the net force on it over 4 s. What is its velocity at t = 4 s?',
+    figure: PUSH_AND_PULL,
+    choices: ['+4.0 m/s', '+3.0 m/s', '+2.0 m/s', '+1.0 m/s'],
+    answer: 2,
+    explanation: 'The impulse is the signed area: +4 N·s above the axis and −2 N·s below, a net +2.0 N·s. That changes the velocity by 2.0/2.0 = +1.0 m/s, so v = 1.0 + 1.0 = +2.0 m/s. +4.0 m/s counts the area below the axis as positive.',
+    verify: 'numeric',
+    solve: () => CART_START_VELOCITY + areaUnder(PUSH_AND_PULL.series[0].points, 0, 4) / CART_MASS,
+    reviewed: false,
   },
 ];

@@ -2,6 +2,17 @@
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
 import { G } from './topics.js'
+import { netForce } from '../figureMath.js'
+
+const PUSHED_BOX = { type: 'forces', object: '5 kg',
+  forces: [{ label: 'F 30 N', value: 30, angle: 0 }, { label: 'f 10 N', value: 10, angle: 180 }, { label: 'F_N 49 N', value: 49, angle: 90 }, { label: 'F_g 49 N', value: 49, angle: 270 }],
+  alt: 'Free-body diagram of a 5 kg box: a 30 N push to the right, a 10 N friction force to the left, a 49 N normal force up and a 49 N gravitational force down.' };
+const PULLED_SLED = { type: 'forces', object: '10 kg',
+  forces: [{ label: 'T 20 N', value: 20, angle: 30 }, { label: 'F_N 88 N', value: 88, angle: 90 }, { label: 'F_g 98 N', value: 98, angle: 270 }],
+  alt: 'Free-body diagram of a 10 kg sled on frictionless ice: a 20 N rope tension pointing 30° above the horizontal to the right, an 88 N normal force up and a 98 N gravitational force down.' };
+const BALANCED_CRATE = { type: 'forces', object: 'crate',
+  forces: [{ label: 'F 40 N', value: 40, angle: 0 }, { label: 'f 40 N', value: 40, angle: 180 }, { label: 'F_N 50 N', value: 50, angle: 90 }, { label: 'F_g 50 N', value: 50, angle: 270 }],
+  alt: 'Free-body diagram of a crate: a 40 N push to the right, a 40 N friction force to the left, a 50 N normal force up and a 50 N gravitational force down.' };
 
 const DEGREES = Math.PI / 180;
 
@@ -71,5 +82,42 @@ export default [
     verify: 'numeric',
     solve: () => ((0.60 * G) / 200) * 100,
     reviewed: true,
+  },
+  {
+    id: 'phys1-newtons-laws-007',
+    topic: 'newtons-laws',
+    difficulty: 1,
+    prompt: 'The free-body diagram shows every force on a 5.0 kg box. What is the box\'s acceleration?',
+    figure: PUSHED_BOX,
+    choices: ['6.0 m/s²', '8.0 m/s²', '4.0 m/s²', '2.0 m/s²'],
+    answer: 2,
+    explanation: 'The vertical forces cancel. Horizontally the net force is 30 − 10 = 20 N to the right, so a = 20 N/5.0 kg = 4.0 m/s². 6.0 m/s² ignores friction, and 8.0 m/s² adds the two horizontal forces instead of subtracting.',
+    verify: 'numeric',
+    solve: () => netForce(PUSHED_BOX.forces).magnitude / 5.0,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-newtons-laws-008',
+    topic: 'newtons-laws',
+    difficulty: 2,
+    prompt: 'A 10 kg sled is pulled across frictionless ice by a rope at 30° above the horizontal. The free-body diagram shows every force on it. What is its acceleration?',
+    figure: PULLED_SLED,
+    choices: ['2.0 m/s²', '1.0 m/s²', '1.7 m/s²', '8.8 m/s²'],
+    answer: 2,
+    explanation: 'Only the horizontal part of the tension accelerates the sled: 20 cos 30° = 17.3 N, so a = 17.3/10 = 1.7 m/s². Vertically, the normal force (88 N) plus the tension\'s upward part (10 N) balance the 98 N weight. 2.0 m/s² uses the whole tension, and 1.0 m/s² uses sin 30°.',
+    verify: 'numeric',
+    solve: () => netForce(PULLED_SLED.forces).x / 10,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-newtons-laws-009',
+    topic: 'newtons-laws',
+    difficulty: 2,
+    prompt: 'The free-body diagram shows every force on a crate. Which statement about the crate\'s motion must be true?',
+    figure: BALANCED_CRATE,
+    choices: ['It is at rest', 'It is moving to the right and slowing down', 'It is at rest or moving at constant velocity', 'It is speeding up to the right'],
+    answer: 2,
+    explanation: 'The forces balance in both directions, so the net force and the acceleration are zero. Zero acceleration fits being at rest or moving at constant velocity, and the diagram can\'t tell which. The 40 N push doesn\'t mean the crate must be moving.',
+    reviewed: false,
   },
 ];

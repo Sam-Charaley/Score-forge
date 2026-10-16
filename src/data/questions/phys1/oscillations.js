@@ -2,6 +2,12 @@
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
 import { G } from './topics.js'
+// A mass on a spring: x(t) = A cos(2πt/T), drawn as a smooth curve.
+const SPRING_AMPLITUDE = 0.10;
+const SPRING_PERIOD = 0.80;
+const SPRING_MOTION = { type: 'graph', xLabel: 't (s)', yLabel: 'x (m)', xMax: 1.6, xStep: 0.2, yMin: -0.15, yMax: 0.15, yStep: 0.05,
+  series: [{ points: Array.from({ length: 65 }, (_, i) => { const t = (i * 1.6) / 64; return [t, SPRING_AMPLITUDE * Math.cos((2 * Math.PI * t) / SPRING_PERIOD)]; }) }],
+  alt: 'Position-time graph of a mass on a spring: a cosine curve starting at +0.10 m at t = 0, reaching −0.10 m at t = 0.4 s and returning to +0.10 m at t = 0.8 s, then repeating once more by t = 1.6 s.' };
 
 export default [
   {
@@ -64,5 +70,18 @@ export default [
     verify: 'numeric',
     solve: () => 0.050 * Math.sqrt(160 / 0.40),
     reviewed: true,
+  },
+  {
+    id: 'phys1-oscillations-006',
+    topic: 'oscillations',
+    difficulty: 2,
+    prompt: 'The graph shows the position of a mass oscillating on a spring. What is the frequency of the oscillation?',
+    figure: SPRING_MOTION,
+    choices: ['0.80 Hz', '1.25 Hz', '2.5 Hz', '0.10 Hz'],
+    answer: 1,
+    explanation: 'One full cycle, from +0.10 m back to +0.10 m, takes 0.80 s, so the period is 0.80 s and the frequency is 1/0.80 = 1.25 Hz. 0.80 is the period, not the frequency, and 0.10 m is the amplitude.',
+    verify: 'numeric',
+    solve: () => 1 / SPRING_PERIOD,
+    reviewed: false,
   },
 ];

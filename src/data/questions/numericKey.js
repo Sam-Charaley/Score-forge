@@ -1,7 +1,7 @@
 // Reading numbers out of answer choices like "4.0 m/s", "200,000 N" or
 // "−3.0 m/s²", for checking numeric answer keys (see numeric.test.js).
 
-const LEADING_NUMBER = /^\s*([−-]?)(\d[\d,]*)(?:\.(\d+))?/;
+const LEADING_NUMBER = /^\s*([−+-]?)(\d[\d,]*)(?:\.(\d+))?/;
 // A shown value is only accepted if it is also this close in relative terms,
 // so "200,000 N" can't vouch for 240,000 just because its zeros are vague.
 const MAX_RELATIVE_ERROR = 0.03;
@@ -22,7 +22,7 @@ export function parseChoiceNumber(text) {
     const trailingZeros = digits === '0' ? 0 : digits.length - digits.replace(/0+$/, '').length;
     place = 10 ** trailingZeros;
   }
-  return { value: sign ? -magnitude : magnitude, place };
+  return { value: sign === '−' || sign === '-' ? -magnitude : magnitude, place };
 }
 
 // True when `value` would be displayed as `shown`: within half of its last

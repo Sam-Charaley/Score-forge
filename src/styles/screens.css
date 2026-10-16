@@ -659,3 +659,20 @@ kbd svg { width: .75rem; height: .75rem; }
 .frq-score-name { font-weight: 700; font-size: var(--text-subhead); }
 .frq-score-name .muted { font-weight: 500; font-size: var(--text-caption); margin-left: 6px; }
 .frq-score-value { font-size: var(--text-footnote); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ═══ Question figures (graphs and force diagrams) ══════════ */
+/* Sized in rem so the figure, and its labels, grow with the reader's text size. */
+.q-figure { margin: 0 0 18px; padding: 10px 12px; max-width: 26rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); }
+.q-figure-svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-text); }
+.q-figure-forces { max-width: 20rem; margin: 0 auto; }
+.fig-grid line { stroke: var(--rule); stroke-width: 1; }
+.fig-axis line { stroke: var(--lead); stroke-width: 1.5; }
+.fig-tick-label text { fill: var(--lead); font-size: 11px; font-variant-numeric: tabular-nums; }
+.fig-axis-label, .fig-series-label { fill: var(--graphite); font-size: 12px; font-weight: 600; }
+.fig-line { fill: none; stroke: var(--graphite); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.fig-object { fill: var(--paper-deep); stroke: var(--graphite); stroke-width: 1.5; }
+.fig-object-label { fill: var(--graphite); font-size: 11px; font-weight: 700; }
+.fig-force { stroke: var(--graphite); stroke-width: 2.25; stroke-linecap: round; }
+.fig-arrowhead { fill: var(--graphite); }
+.fig-force-label { fill: var(--graphite); font-size: 12px; font-weight: 600; }
+.fig-sub { font-size: 0.75em; }
