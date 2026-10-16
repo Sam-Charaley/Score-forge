@@ -14,7 +14,7 @@ export default [
     explanation: 'When the force points along the displacement, W = Fd = 40 N × 5.0 m = 200 J. 8.0 J comes from dividing instead of multiplying.',
     verify: 'numeric',
     solve: () => 40 * 5.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-work-power-002',
@@ -24,7 +24,7 @@ export default [
     choices: ['Zero', 'Positive, equal to the box\'s weight times the distance', 'Negative, because the box pushes down on the student', 'Positive, equal to the box\'s kinetic energy'],
     answer: 0,
     explanation: 'Work is Fd cos θ. The student\'s force is vertical and the displacement is horizontal, so θ = 90° and the work is zero. That fits the work-energy theorem too: the box\'s speed and height don\'t change.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-work-power-003',
@@ -36,7 +36,7 @@ export default [
     explanation: 'By the work-energy theorem, W_net = ΔK = ½(0.50)(8.0²) − ½(0.50)(4.0²) = 16 − 4.0 = 12 J. 16 J is the final kinetic energy, not the change.',
     verify: 'numeric',
     solve: () => 0.5 * 0.50 * 8.0 ** 2 - 0.5 * 0.50 * 4.0 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-work-power-004',
@@ -48,7 +48,7 @@ export default [
     explanation: 'At constant speed the motor\'s force equals the weight, so it does work mgh = 50 × 9.8 × 10 = 4900 J. Power is work divided by time: 4900 J/8.0 s ≈ 610 W. 4900 W forgets to divide by the time, and 61 W leaves out g.',
     verify: 'numeric',
     solve: () => (50 * G * 10) / 8.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-work-power-005',
@@ -58,6 +58,6 @@ export default [
     choices: ['The same distance', 'Twice as far', 'Four times as far', 'Eight times as far'],
     answer: 2,
     explanation: 'Friction does negative work equal to the car\'s starting kinetic energy: f·d = ½mv². Kinetic energy grows with the square of speed, so doubling v gives four times the energy and, with the same friction force, four times the distance.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

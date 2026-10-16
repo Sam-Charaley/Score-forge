@@ -16,7 +16,7 @@ export default [
     explanation: 'With constant acceleration from rest, the distance is the average velocity times the time: ½(0 + 24 m/s)(6.0 s) = 72 m. 144 m comes from using the final speed as if it were the average, and 4.0 m/s² is the acceleration, not a distance.',
     verify: 'numeric',
     solve: () => 0.5 * (0 + 24) * 6.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-002',
@@ -31,7 +31,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The slope of a v-t graph is the acceleration, and this one is constant: (−6 − 6)/4.0 = −3 m/s². At t = 2.0 s the velocity crosses zero, so the object is momentarily at rest while still accelerating. The areas above and below the axis cancel, so the displacement is zero, and it slows down for the first 2 s before speeding up.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-003',
@@ -43,7 +43,7 @@ export default [
     explanation: 'From rest, h = ½gt², so t = √(2h/g) = √(40/9.8) = 2.0 s. 4.1 s is 2h/g without the square root, and 1.4 s comes from leaving out the factor of 2.',
     verify: 'numeric',
     solve: () => Math.sqrt((2 * 20) / G),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-004',
@@ -58,7 +58,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The slope of a position-time graph is the velocity. A positive slope means motion in the positive direction, and a slope that grows steeper means the velocity is increasing, so the object is speeding up.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-005',
@@ -70,6 +70,6 @@ export default [
     explanation: 'From v² = v₀² − 2ad with v = 0, the stopping distance is v₀²/(2a), so it grows with the square of the speed. Doubling the speed gives four times the distance: (40)²/(2 × 5.0) = 160 m. 80 m assumes distance is proportional to speed.',
     verify: 'numeric',
     solve: () => (40 ** 2) / (2 * 5.0),
-    reviewed: false,
+    reviewed: true,
   },
 ];

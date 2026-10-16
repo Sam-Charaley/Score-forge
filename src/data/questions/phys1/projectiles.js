@@ -14,7 +14,7 @@ export default [
     choices: ['Ball A, because it is moving faster', 'Ball B, because it travels a shorter path', 'They land at the same time', 'It depends on how fast ball A is moving'],
     answer: 2,
     explanation: 'Horizontal and vertical motion are independent. Both balls start with zero vertical velocity and have the same downward acceleration g, so they fall the same height in the same time. Ball A\'s horizontal speed only changes where it lands.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-projectiles-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 'The fall time comes from the vertical motion alone: t = √(2h/g) = √(2 × 4.9/9.8) = 1.0 s. Horizontally the speed is constant, so x = 15 m/s × 1.0 s = 15 m. 74 m comes from multiplying the speed by the height.',
     verify: 'numeric',
     solve: () => 15 * Math.sqrt((2 * 4.9) / G),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-projectiles-003',
@@ -41,7 +41,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Only the vertical component of velocity becomes zero at the top; the horizontal component never changes, so the ball is still moving sideways. Gravity acts the whole time, so the acceleration is g downward even at the top.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-projectiles-004',
@@ -53,7 +53,7 @@ export default [
     explanation: 'The vertical launch speed is 20 sin 30° = 10 m/s. Rising to the top takes 10/9.8 ≈ 1.0 s, and coming back down takes the same, so the total is 2(10)/9.8 = 2.0 s. 1.0 s is only the trip up, and 3.5 s uses the horizontal component (20 cos 30°) by mistake.',
     verify: 'numeric',
     solve: () => (2 * 20 * Math.sin(30 * DEGREES)) / G,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-projectiles-005',
@@ -65,6 +65,6 @@ export default [
     explanation: 'Velocities relative to different frames add as vectors: the passenger\'s velocity relative to the ground is +20 m/s + (−1.5 m/s) = +18.5 m/s, still forward. 21.5 m/s would be right if the passenger walked toward the front.',
     verify: 'numeric',
     solve: () => 20 - 1.5,
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -14,7 +14,7 @@ export default [
     explanation: 'Gravitational potential energy turns into kinetic energy: mgh = ½mv², so v = √(2gh) = √(2 × 9.8 × 5.0) = 9.9 m/s. The mass cancels. 7.0 m/s leaves out the factor of 2.',
     verify: 'numeric',
     solve: () => Math.sqrt(2 * G * 5.0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-energy-conservation-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 'The spring\'s stored energy, ½kx² = ½(400)(0.10)² = 2.0 J, all becomes kinetic energy: ½(0.25)v² = 2.0 J, so v = 4.0 m/s. 2.8 m/s comes from forgetting the ½ in ½mv².',
     verify: 'numeric',
     solve: () => Math.sqrt((400 * 0.10 ** 2) / 0.25),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-energy-conservation-003',
@@ -41,7 +41,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Gravitational potential energy belongs to a system of interacting objects, here the ball and Earth. With Earth outside the system, gravity is an external force, and its work changes the ball\'s kinetic energy. Both choices give the same answer if applied consistently.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-energy-conservation-004',
@@ -53,7 +53,7 @@ export default [
     explanation: 'The sled-Earth system starts with mgh = 2.0 × 9.8 × 10 = 196 J and ends with ½mv² = ½(2.0)(12)² = 144 J of kinetic energy. The missing 196 − 144 = 52 J became thermal energy.',
     verify: 'numeric',
     solve: () => 2.0 * G * 10 - 0.5 * 2.0 * 12 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-energy-conservation-005',
@@ -63,6 +63,6 @@ export default [
     choices: ['At the release point', 'Halfway between the release point and the bottom', 'At the lowest point of the swing', 'It is the same everywhere'],
     answer: 2,
     explanation: 'With no friction, the total mechanical energy stays constant. The bob is lowest at the bottom of the swing, so the gravitational potential energy is smallest there and the kinetic energy, and speed, are greatest.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -10,7 +10,7 @@ export default [
     choices: ['Hoop, cylinder, sphere', 'Sphere, cylinder, hoop', 'All at the same time', 'Cylinder, sphere, hoop'],
     answer: 1,
     explanation: 'Each starts with the same potential energy per kilogram, shared between translational and rotational kinetic energy. The more of an object\'s mass sits far from its axis, the more energy goes into spinning and the less into moving forward. The sphere has the least mass near its rim, so it is fastest; the hoop has all of it there, so it is slowest.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotating-systems-002',
@@ -22,7 +22,7 @@ export default [
     explanation: 'Rolling means both kinds of kinetic energy: ½mv² = 9.0 J for moving forward plus ½Iω² = ½(½mR²)(v/R)² = ¼mv² = 4.5 J for spinning, a total of 13.5 J. 9.0 J leaves out the rotation.',
     verify: 'numeric',
     solve: () => 0.5 * 2.0 * 3.0 ** 2 + 0.5 * (0.5 * 2.0) * 3.0 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotating-systems-003',
@@ -37,7 +37,7 @@ export default [
     ],
     answer: 1,
     explanation: 'No external torque acts, so L = Iω stays constant. Pulling her arms in lowers I, so ω increases. Rotational kinetic energy, ½Iω² = L²/(2I), increases as I decreases; her muscles do the work that provides it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotating-systems-004',
@@ -49,7 +49,7 @@ export default [
     explanation: 'Angular momentum is conserved: I₁ω₁ = I₂ω₂, so ω₂ = (4.0 × 2.0)/1.6 = 5.0 rev/s. 0.80 rev/s comes from flipping the ratio of the inertias.',
     verify: 'numeric',
     solve: () => (4.0 * 2.0) / 1.6,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotating-systems-005',
@@ -64,6 +64,6 @@ export default [
     ],
     answer: 1,
     explanation: 'Gravity points toward Earth, so it exerts no torque about Earth\'s center, and the satellite\'s angular momentum stays constant. At the closest and farthest points the velocity is perpendicular to r, so L = mvr there: where r is smallest, v must be largest. Energy agrees too: it trades potential energy for kinetic energy on the way in.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

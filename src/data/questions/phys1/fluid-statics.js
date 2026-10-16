@@ -17,7 +17,7 @@ export default [
     explanation: 'Gauge pressure is the pressure from the water alone: ρgh = 1000 × 9.8 × 10 = 98,000 Pa. 199,000 Pa is the absolute pressure, which also includes the atmosphere\'s 101,000 Pa.',
     verify: 'numeric',
     solve: () => WATER_DENSITY * G * 10,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-statics-002',
@@ -29,7 +29,7 @@ export default [
     explanation: 'A floating object displaces its own weight of water: ρ_ice·V·g = ρ_water·V_sub·g, so V_sub/V = 917/1000 = 92%. Only 8% sits above the surface.',
     verify: 'numeric',
     solve: () => (ICE_DENSITY / WATER_DENSITY) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-statics-003',
@@ -39,7 +39,7 @@ export default [
     choices: ['Greatest in the wide tank', 'Greatest in the narrow tube', 'Greatest in the cone', 'The same in all three'],
     answer: 3,
     explanation: 'Pressure in a fluid at rest depends only on the depth and the fluid\'s density: P = P₀ + ρgh. The amount of water and the container\'s shape don\'t matter.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-statics-004',
@@ -51,7 +51,7 @@ export default [
     explanation: 'The rock\'s weight is 2.0 × 9.8 = 19.6 N. The buoyant force is ρVg = 1000 × 8.0 × 10⁻⁴ × 9.8 = 7.8 N upward, so the scale only has to supply 19.6 − 7.8 = 12 N. 7.8 N is the buoyant force itself.',
     verify: 'numeric',
     solve: () => 2.0 * G - WATER_DENSITY * 8.0e-4 * G,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-statics-005',
@@ -61,6 +61,6 @@ export default [
     choices: ['It increases, because pressure increases with depth', 'It decreases', 'It stays the same', 'It becomes zero at the bottom'],
     answer: 2,
     explanation: 'Buoyant force equals the weight of the water displaced, ρ_fluid·V·g, and the block displaces the same volume at any depth. Pressure does increase with depth, but on both the top and bottom faces, so the difference between them stays the same.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

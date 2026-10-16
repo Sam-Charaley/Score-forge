@@ -15,7 +15,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The passenger\'s momentum changes from the same value to zero either way, so the impulse FΔt is the same. Spreading that change over a longer time Δt means a smaller average force F.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-impulse-002',
@@ -27,7 +27,7 @@ export default [
     explanation: 'Taking the direction toward the wall as positive, Δp = (0.20)(−15) − (0.20)(20) = −7.0 N·s. The reversal means the speeds add: 1.0 N·s comes from subtracting them as if the ball kept going.',
     verify: 'numeric',
     solve: () => Math.abs(0.20 * -15 - 0.20 * 20),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-impulse-003',
@@ -39,7 +39,7 @@ export default [
     explanation: 'Impulse is the area under the force-time graph: ½ × 0.020 s × 400 N = 4.0 N·s. Starting from rest, v = J/m = 4.0/0.50 = 8.0 m/s. 16 m/s treats the area as a rectangle, and 4.0 is the impulse itself.',
     verify: 'numeric',
     solve: () => (0.5 * 0.020 * 400) / 0.50,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-impulse-004',
@@ -51,7 +51,7 @@ export default [
     explanation: 'The average force equals the change in momentum divided by the time: F = (1000 × 20)/0.10 = 200,000 N. The short stopping time is what makes the force so large.',
     verify: 'numeric',
     solve: () => (1000 * 20) / 0.10,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-impulse-005',
@@ -66,6 +66,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Each egg goes from the same speed to rest, so each has the same change in momentum and receives the same impulse. The pillow stretches the stop over a longer time, so the average force F = Δp/Δt is smaller.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

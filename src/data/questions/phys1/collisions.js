@@ -12,7 +12,7 @@ export default [
     explanation: 'Momentum is conserved: (2.0)(3.0) = (2.0 + 1.0)v, so v = 6.0/3.0 = 2.0 m/s. The carts share the original momentum, so they move slower than the first cart did.',
     verify: 'numeric',
     solve: () => (2.0 * 3.0) / (2.0 + 1.0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-collisions-002',
@@ -24,7 +24,7 @@ export default [
     explanation: 'Before: ½(2.0)(3.0)² = 9.0 J. After: ½(3.0)(2.0)² = 6.0 J. The 3.0 J difference became thermal energy and deformation; kinetic energy is never conserved when objects stick together.',
     verify: 'numeric',
     solve: () => 0.5 * 2.0 * 3.0 ** 2 - 0.5 * 3.0 * 2.0 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-collisions-003',
@@ -39,7 +39,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Both momentum and kinetic energy must be conserved. For equal masses the only way to do both is for the balls to swap velocities. Moving off together at half speed conserves momentum but loses half the kinetic energy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-collisions-004',
@@ -51,7 +51,7 @@ export default [
     explanation: 'The total momentum starts at zero and stays zero, so the two momenta are equal and opposite: 60 × 2.0 = 40v, giving v = 3.0 m/s. The lighter skater moves faster.',
     verify: 'numeric',
     solve: () => (60 * 2.0) / 40,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-collisions-005',
@@ -66,6 +66,6 @@ export default [
     ],
     answer: 1,
     explanation: 'The explosion forces are internal, so total momentum is conserved and the center of mass keeps moving as before. Chemical energy turns into kinetic energy, so the total kinetic energy increases.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -14,7 +14,7 @@ export default [
     choices: ['The tension is greater than the weight', 'The tension equals the weight', 'The tension is less than the weight', 'It depends on how fast the elevator is moving'],
     answer: 1,
     explanation: 'Constant velocity means zero acceleration, so by Newton\'s second law the net force is zero and the upward tension exactly balances the weight. The speed doesn\'t matter; tension is greater than the weight only while the elevator is speeding up going upward.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 'Friction is μF_N = 0.25 × 4.0 × 9.8 = 9.8 N, so the net force is 30 − 9.8 = 20.2 N and a = 20.2/4.0 = 5.1 m/s². 7.5 m/s² ignores friction, and 2.5 m/s² divides the friction force alone by the mass.',
     verify: 'numeric',
     solve: () => (30 - 0.25 * 4.0 * G) / 4.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-003',
@@ -36,7 +36,7 @@ export default [
     choices: ['The truck exerts a larger force', 'The car exerts a larger force', 'The forces are equal in size and opposite in direction', 'The truck exerts a force, but the car exerts none'],
     answer: 2,
     explanation: 'These forces are a Newton\'s third law pair, so they are always equal in size and opposite in direction. The car is damaged more because the same force on its smaller mass gives it a much larger acceleration.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-004',
@@ -48,7 +48,7 @@ export default [
     explanation: 'Only the component of gravity along the ramp, mg sin θ, is unbalanced, so a = g sin 30° = 4.9 m/s², whatever the mass. 8.5 m/s² uses cos θ, which is the component into the ramp that the normal force balances.',
     verify: 'numeric',
     solve: () => G * Math.sin(30 * DEGREES),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-005',
@@ -58,7 +58,7 @@ export default [
     choices: ['F/3', 'F/2', '2F/3', 'F'],
     answer: 2,
     explanation: 'Treating both blocks as one system, a = F/(3m). The only horizontal force on the 2m block is the push from the other block, so that push is (2m)(F/3m) = 2F/3. It must be less than F, because F also accelerates the block of mass m.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-006',
@@ -70,6 +70,6 @@ export default [
     explanation: 'At rest the spring force balances the weight: kx = mg, so x = (0.60 × 9.8)/200 = 0.029 m = 2.9 cm. 0.30 cm comes from leaving out g, and 29 cm is a unit conversion slip.',
     verify: 'numeric',
     solve: () => ((0.60 * G) / 200) * 100,
-    reviewed: false,
+    reviewed: true,
   },
 ];

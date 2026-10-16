@@ -10,7 +10,7 @@ export default [
     choices: ['The solid disk', 'The hoop', 'Both are equally hard', 'It depends on how fast they spin'],
     answer: 1,
     explanation: 'Rotational inertia depends on how far the mass is from the axis (I = Σmr²). All of the hoop\'s mass is at the rim, while much of the disk\'s mass is close to the center, so the hoop has the larger rotational inertia.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotational-dynamics-002',
@@ -22,7 +22,7 @@ export default [
     explanation: 'Newton\'s second law for rotation is α = τ/I = 6.0/2.0 = 3.0 rad/s², just as a = F/m for straight-line motion.',
     verify: 'numeric',
     solve: () => 6.0 / 2.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotational-dynamics-003',
@@ -34,7 +34,7 @@ export default [
     explanation: 'For point masses, I = Σmr² = (1.0)(0.50)² + (1.0)(0.50)² = 0.50 kg·m². 1.0 kg·m² comes from using r instead of r².',
     verify: 'numeric',
     solve: () => 2 * 1.0 * 0.50 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotational-dynamics-004',
@@ -49,7 +49,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A pulley with rotational inertia needs a net torque to speed up its rotation, and that torque comes from the difference between the two tensions. Since it turns toward the heavier block, the tension on that side must be larger. Equal tensions only work for a massless pulley.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotational-dynamics-005',
@@ -61,6 +61,6 @@ export default [
     explanation: 'By the parallel-axis theorem, I = I_cm + Md², where d = 0.50 m is the distance from the center to the end: (1/12)(2.0)(1.0)² + (2.0)(0.50)² = 0.17 + 0.50 = 0.67 kg·m². 2.2 kg·m² uses the full length for d.',
     verify: 'numeric',
     solve: () => (1 / 12) * 2.0 * 1.0 ** 2 + 2.0 * 0.50 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
 ];

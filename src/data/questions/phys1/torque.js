@@ -17,7 +17,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Torque is τ = rF sin θ. You get the most turning effect from a given force by making r as large as possible (far from the hinge) and θ = 90° (perpendicular). Pushing toward the hinge gives θ = 0° and no torque at all.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-torque-002',
@@ -29,7 +29,7 @@ export default [
     explanation: 'τ = rF sin θ = 0.40 × 20 × sin 30° = 4.0 N·m. Only the force component perpendicular to the door turns it. 6.9 N·m uses cos 30°, and 8.0 N·m treats the force as perpendicular.',
     verify: 'numeric',
     solve: () => 0.40 * 20 * Math.sin(30 * DEGREES),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-torque-003',
@@ -41,7 +41,7 @@ export default [
     explanation: 'Rotational kinematics works like linear kinematics: the angle is the average angular velocity times the time, ½(0 + 12)(4.0) = 24 rad. 48 rad uses the final angular velocity as the average, and 3.0 rad/s² is the angular acceleration.',
     verify: 'numeric',
     solve: () => 0.5 * (0 + 12) * 4.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-torque-004',
@@ -53,7 +53,7 @@ export default [
     explanation: 'Balance means the torques about the pivot are equal: (30g)(2.0) = (40g)d, so d = 60/40 = 1.5 m. The heavier child sits closer to the pivot. 2.7 m comes from flipping the ratio.',
     verify: 'numeric',
     solve: () => (30 * 2.0) / 40,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-torque-005',
@@ -65,6 +65,6 @@ export default [
     explanation: 'A point at radius r moves at v = rω = 0.30 × 5.0 = 1.5 m/s. 17 m/s divides ω by r instead of multiplying.',
     verify: 'numeric',
     solve: () => 0.30 * 5.0,
-    reviewed: false,
+    reviewed: true,
   },
 ];

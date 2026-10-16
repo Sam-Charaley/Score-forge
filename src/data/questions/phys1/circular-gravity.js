@@ -12,7 +12,7 @@ export default [
     choices: ['It keeps moving in a circle', 'It moves straight outward, away from the center', 'It moves in a straight line along the tangent to the circle', 'It spirals outward'],
     answer: 2,
     explanation: 'The string\'s pull toward the center was the only thing bending the path. Once it is gone, there is no horizontal force, so the ball keeps the velocity it had at that instant, which points along the tangent (Newton\'s first law).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-circular-gravity-002',
@@ -24,7 +24,7 @@ export default [
     explanation: 'On a flat curve, static friction is the only force toward the center, so it must equal mv²/r = 1200 × 15²/50 = 5400 N. 360 N uses v instead of v², and 11,800 N is the car\'s weight.',
     verify: 'numeric',
     solve: () => (1200 * 15 ** 2) / 50,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-circular-gravity-003',
@@ -34,7 +34,7 @@ export default [
     choices: ['It becomes half as large', 'It becomes one quarter as large', 'It becomes twice as large', 'It stays the same'],
     answer: 1,
     explanation: 'Gravitational force follows an inverse square law, F = GMm/r². Doubling the distance from the center (2R to 4R) divides the force by 2² = 4.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-circular-gravity-004',
@@ -46,7 +46,7 @@ export default [
     explanation: 'At the top, gravity minus the normal force supplies mv²/r toward the center. The car is about to leave the road when the normal force reaches zero, so mg = mv²/r and v = √(gr) = √(9.8 × 20) = 14 m/s. 196 m/s is gr without the square root.',
     verify: 'numeric',
     solve: () => Math.sqrt(G * 20),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-circular-gravity-005',
@@ -56,6 +56,6 @@ export default [
     choices: ['It is greater than the weight', 'It equals the weight', 'It is less than the weight', 'It is zero'],
     answer: 0,
     explanation: 'At the bottom the net force must point up, toward the center of the circle, so the normal force must be larger than the weight: N − mg = mv²/r. That is why riders feel heavier at the bottom of a dip.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
