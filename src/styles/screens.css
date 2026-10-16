@@ -678,3 +678,39 @@ kbd svg { width: .75rem; height: .75rem; }
 .fig-arrowhead { fill: var(--graphite); }
 .fig-force-label { fill: var(--graphite); font-size: 12px; font-weight: 600; }
 .fig-sub { font-size: 0.75em; }
+
+/* Formulas */
+.formula-search { margin-bottom: 14px; }
+.formula-search .input::-webkit-search-cancel-button { display: none; }
+.formula-source { color: var(--lead); font-size: var(--text-subhead); margin-bottom: 14px; max-width: 68ch; }
+.formula-source a { color: var(--graphite); font-weight: 600; display: inline-flex; align-items: center; gap: .25em; }
+.formula-source a svg { width: .9em; height: .9em; }
+.formula-jump { margin-bottom: 8px; }
+.formula-jump .chip { text-decoration: none; color: inherit; }
+.formula-section { scroll-margin-top: 5.5rem; padding-top: 18px; }
+.formula-section h2 { font-size: var(--text-title-3); font-weight: 750; letter-spacing: -0.015em; margin-bottom: 12px; scroll-margin-top: 5.5rem; }
+.formula-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 12px; }
+.formula-card { padding: 1rem 1.125rem 1.125rem; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.formula-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.formula-head h3 { font-size: var(--text-callout); font-weight: 700; line-height: 1.3; }
+.formula-tags { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.formula-subject { color: var(--graphite); }
+/* Long equations scroll sideways inside their own box, never the page. */
+.formula-math { overflow-x: auto; overflow-y: hidden; padding: 4px 2px; border-radius: var(--radius-small); color: var(--graphite); }
+.formula-math:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.formula-math .katex-display { margin: .25em 0; }
+.formula-math .katex { font-size: 1.12em; }
+.formula-vars { display: grid; gap: 3px; font-size: var(--text-footnote); color: var(--graphite-soft); }
+.formula-vars > div { display: flex; gap: .5em; align-items: baseline; }
+.formula-vars dt { flex-shrink: 0; min-width: 2.25rem; color: var(--graphite); }
+.formula-vars dt .katex { font-size: 1.05em; }
+.formula-unit { color: var(--lead); }
+.formula-note { font-size: var(--text-footnote); color: var(--lead); border-top: 1px solid var(--rule-soft); padding-top: 8px; margin-top: auto; }
+.formula-count { color: var(--lead); font-size: var(--text-subhead); margin-bottom: 12px; }
+.formula-loading { padding: 48px 20px; text-align: center; color: var(--lead); font-weight: 600; }
+@media (max-width: 35em) {
+  .formula-jump { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(var(--gutter) * -1) 6px; padding: 2px var(--gutter); scrollbar-width: none; }
+  .formula-jump::-webkit-scrollbar { display: none; }
+  .formula-jump .chip { flex-shrink: 0; }
+  .formula-card { padding: .875rem 1rem 1rem; }
+}

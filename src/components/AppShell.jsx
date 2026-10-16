@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { House, CalendarCheck, Target, Layers, LibraryBig, CalendarDays, Flame, ChartLine, MessageSquarePlus } from 'lucide-react'
+import { House, CalendarCheck, Target, Layers, Sigma, LibraryBig, CalendarDays, Flame, ChartLine, MessageSquarePlus } from 'lucide-react'
 import IconButton from './ui/IconButton'
 import LogoMark from './LogoMark'
 
@@ -11,6 +11,7 @@ export const NAV_ITEMS = [
   { id: 'practice', label: 'Practice', icon: Target },
   { id: 'progress', label: 'Progress', icon: ChartLine },
   { id: 'flashcards', label: 'Flashcards', shortLabel: 'Cards', icon: Layers },
+  { id: 'formulas', label: 'Formulas', shortLabel: 'Formulas', icon: Sigma },
   { id: 'library', label: 'Library', icon: LibraryBig },
 ];
 
@@ -47,10 +48,12 @@ export default function AppShell({ active, username, streakDays, canPractice, on
           </button>
 
           <nav className="app-nav" aria-label="Main">
-            {items.map(({ id, label, icon: Icon }) => (
+            {items.map(({ id, label, shortLabel, icon: Icon }) => (
               <button key={id} type="button" className="app-nav-item" aria-current={active === id ? 'page' : undefined} onClick={() => onNavigate(id)}>
                 <Icon aria-hidden="true" />
-                {label}
+                {shortLabel && shortLabel !== label
+                  ? <><span className="nav-label-full">{label}</span><span className="nav-label-short" aria-hidden="true">{shortLabel}</span></>
+                  : label}
               </button>
             ))}
           </nav>

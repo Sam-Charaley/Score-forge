@@ -92,16 +92,24 @@
 
 .mobile-nav { display: none; }
 
+/* The full label is what screen readers hear; the short one is visual only. */
+.nav-label-short { display: none; }
+
 @media (max-width: 73.75em) {
   .app-nav-item { padding: 0 .5625rem; }
+  /* Seven destinations: "Plan" and "Cards" keep the header on one line. */
+  .nav-label-full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .nav-label-short { display: inline; }
   .streak-unit { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
-@media (max-width: 62.5em) {
+@media (max-width: 66em) {
   .app-nav-item svg { display: none; }
   .app-header-inner { gap: 1rem; }
 }
 
-@media (max-width: 48em) {
+/* The tab bar takes over from the header nav below 960 px: with seven
+   destinations the header can't fit them on a portrait tablet. */
+@media (max-width: 60em) {
   .app-header-inner { gap: .75rem; }
   .app-nav, .header-plans { display: none; }
   .app-header-tools { margin-left: auto; }
@@ -148,7 +156,13 @@
 @media (max-width: 22.5em) {
   .app-header .wordmark > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
-@media (max-width: 48em) and ((prefers-reduced-transparency: reduce) or (prefers-contrast: more)) {
+/* Seven tabs on the narrowest phones (320 px): iOS's own 10 px tab label size,
+   so "Progress" and "Formulas" fit without being cut off. */
+@media (max-width: 21.25em) {
+  .mobile-nav { padding-left: max(2px, env(safe-area-inset-left)); padding-right: max(2px, env(safe-area-inset-right)); }
+  .mobile-nav-item { font-size: 10px; letter-spacing: -0.01em; }
+}
+@media (max-width: 60em) and ((prefers-reduced-transparency: reduce) or (prefers-contrast: more)) {
   .mobile-nav::before { display: none; }
 }
 

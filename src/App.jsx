@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { SUBJECT_INDEX } from './data/subjectIndex'
 import { adaptPlanToWindow, withOriginalTaskRefs } from './utils/planEngine'
 import { useUserData } from './hooks/useUserData'
@@ -19,6 +19,10 @@ import AdjustPlanPage from './screens/AdjustPlanPage'
 import PracticePage from './screens/PracticePage'
 import ProgressPage from './screens/ProgressPage'
 import { hasQuestionBank } from './data/questions/questionLoader'
+import ScreenErrorBoundary from './components/ScreenErrorBoundary'
+
+// KaTeX is large, so the Formulas screen and its math renderer load only when opened.
+const FormulasPage = lazy(() => import('./screens/FormulasPage'))
 
 const DEFAULT_SUBJECT_ID = 'csa'
 const KNOWN_SUBJECT_IDS = SUBJECT_INDEX.map(meta => meta.id)
@@ -157,6 +161,15 @@ export default function App() {
         );
       }
       if (screen === 'library') return <LibraryMode mySubjectIds={mySubjects.map(s => s.id)} />;
+      if (screen === 'formulas') {
+        return (
+          <ScreenErrorBoundary>
+            <Suspense fallback={<div className="page"><div className="card formula-loading" role="status">Loading formulas</div></div>}>
+              <FormulasPage mySubjectIds={mySubjects.map(s => s.id)} initialSubjectId={subject.id} />
+            </Suspense>
+          </ScreenErrorBoundary>
+        );
+      }
       if (screen === 'flashcards') return <FlashcardMode key={subject.id} subject={subject} mySubjects={mySubjects} onSubject={setActiveSubjectId} />;
 
       return (
