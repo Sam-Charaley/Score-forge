@@ -97,7 +97,7 @@ export default {
         { id: 'period-frequency', name: 'Period and frequency', tex: tex`T = \dfrac{1}{f}`, vars: [['T', 'period', 's'], ['f', 'frequency', 'Hz']], note: 'Period is seconds per cycle, frequency is cycles per second.' },
         { id: 'spring-period', name: 'Period of a mass on a spring', tex: tex`T_s = 2\pi\sqrt{\dfrac{m}{k}}`, vars: [['T_s', 'period', 's'], ['m', 'mass', 'kg'], ['k', 'spring constant', 'N/m']], note: 'Does not depend on amplitude or on g, so it is the same on the Moon.' },
         { id: 'pendulum-period', name: 'Period of a simple pendulum', tex: tex`T_p = 2\pi\sqrt{\dfrac{\ell}{g}}`, vars: [['T_p', 'period', 's'], ['\\ell', 'length', 'm'], ['g', 'gravitational field strength', 'N/kg']], note: 'Does not depend on mass. Only accurate for small swings.' },
-        { id: 'shm-position', name: 'Position in simple harmonic motion', tex: tex`x = A\cos(2\pi ft) \quad\text{or}\quad x = A\sin(2\pi ft)`, vars: [['x', 'position from equilibrium', 'm'], ['A', 'amplitude', 'm'], ['f', 'frequency', 'Hz'], ['t', 'time', 's']], note: 'Use cosine when the object starts at maximum displacement, sine when it starts at equilibrium.' },
+        { id: 'shm-position', name: 'Position in simple harmonic motion', tex: tex`x = A\cos(2\pi ft) \qquad x = A\sin(2\pi ft)`, vars: [['x', 'position from equilibrium', 'm'], ['A', 'amplitude', 'm'], ['f', 'frequency', 'Hz'], ['t', 'time', 's']], note: 'Use cosine when the object starts at maximum displacement, sine when it starts at equilibrium.' },
       ],
     },
     {

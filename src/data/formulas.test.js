@@ -3,6 +3,7 @@ import katex from 'katex'
 import { SUBJECT_INDEX } from './subjectIndex'
 import { FORMULA_SUBJECTS, hasFormulaSheet, loadFormulaSheet } from './formulaLoader'
 import { searchFormulas, queryWords } from '../utils/formulaSearch'
+import { splitDisplayParts } from '../utils/texParts'
 
 const modules = import.meta.glob(['./formulas/*.js', '!./formulas/_*.js'], { eager: true });
 const SHEETS = Object.entries(modules).map(([path, module]) => ({ file: path.match(/\/([^/]+)\.js$/)[1], ...module.default }));
@@ -28,6 +29,7 @@ describe.each(SHEETS.map(sheet => [sheet.file, sheet]))('%s formula sheet', (fil
     expect(typeof sheet.sheet.given).toBe('boolean');
     expect(sheet.sheet.label.length).toBeGreaterThan(10);
     if (sheet.sheet.given) expect(sheet.sheet.url).toMatch(/^https:\/\/apcentral\.collegeboard\.org\/.+\.pdf$/);
+    if (sheet.sheet.note !== undefined) expect(sheet.sheet.note).toMatch(/^[A-Z].+\.$/);
   });
 
   it('has unique, well-formed section and formula ids', () => {
@@ -46,7 +48,8 @@ describe.each(SHEETS.map(sheet => [sheet.file, sheet]))('%s formula sheet', (fil
   it('renders every formula and symbol in KaTeX', () => {
     const broken = [];
     for (const { formula } of formulas) {
-      for (const tex of [formula.tex, ...formula.vars.map(([symbol]) => symbol)]) {
+      // The screen renders each \qquad-separated part on its own, so each must stand alone.
+      for (const tex of [formula.tex, ...splitDisplayParts(formula.tex), ...formula.vars.map(([symbol]) => symbol)]) {
         try { renders(tex); } catch (error) { broken.push(`${formula.id}: ${tex} (${error.message.split('\n')[0]})`); }
       }
     }
@@ -67,7 +70,7 @@ describe.each(SHEETS.map(sheet => [sheet.file, sheet]))('%s formula sheet', (fil
   });
 
   it('uses no em or en dashes in student-facing text', () => {
-    const texts = [sheet.sheet.label, ...sheet.sections.map(s => s.title), ...formulas.flatMap(({ formula }) => [formula.name, formula.note ?? '', ...formula.vars.map(v => v[1])])];
+    const texts = [sheet.sheet.label, sheet.sheet.note ?? '', ...sheet.sections.map(s => s.title), ...formulas.flatMap(({ formula }) => [formula.name, formula.note ?? '', ...formula.vars.map(v => v[1])])];
     expect(texts.filter(t => DASHES.test(t))).toEqual([]);
   });
 });

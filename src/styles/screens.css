@@ -696,7 +696,8 @@ kbd svg { width: .75rem; height: .75rem; }
 .formula-tags { display: inline-flex; flex-wrap: wrap; gap: 6px; }
 .formula-subject { color: var(--graphite); }
 /* Long equations scroll sideways inside their own box, never the page. */
-.formula-math { overflow-x: auto; overflow-y: hidden; padding: 4px 2px; border-radius: var(--radius-small); color: var(--graphite); }
+.formula-math { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 2.25rem; overflow-x: auto; overflow-y: hidden; padding: 4px 2px; border-radius: var(--radius-small); color: var(--graphite); }
+.formula-math > .math-display { max-width: 100%; }
 .formula-math:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .formula-math .katex-display { margin: .25em 0; }
 .formula-math .katex { font-size: 1.12em; }
@@ -713,4 +714,6 @@ kbd svg { width: .75rem; height: .75rem; }
   .formula-jump::-webkit-scrollbar { display: none; }
   .formula-jump .chip { flex-shrink: 0; }
   .formula-card { padding: .875rem 1rem 1rem; }
+  .formula-math .katex { font-size: 1em; }
+  .formula-math { column-gap: 1.5rem; }
 }

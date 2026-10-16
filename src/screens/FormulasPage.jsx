@@ -7,6 +7,7 @@ import SubjectSwitcher from '../components/SubjectSwitcher'
 import MathTex from '../components/MathTex'
 import { FORMULA_SUBJECTS, loadFormulaSheet, loadAllFormulaSheets } from '../data/formulaLoader'
 import { searchFormulas } from '../utils/formulaSearch'
+import { splitDisplayParts } from '../utils/texParts'
 
 const SUBJECT_NAMES = Object.fromEntries(FORMULA_SUBJECTS.map(meta => [meta.id, meta.shortName]));
 const SUBJECT_BY_ID = new Map(FORMULA_SUBJECTS.map(meta => [meta.id, meta]));
@@ -54,7 +55,7 @@ function FormulaCard({ formula, given, subjectBadge }) {
         </span>
       </div>
       <div className="formula-math" tabIndex={0} role="group" aria-label={`${formula.name} formula`}>
-        <MathTex tex={formula.tex} display />
+        {splitDisplayParts(formula.tex).map(part => <MathTex key={part} tex={part} display />)}
       </div>
       {formula.vars.length > 0 && (
         <dl className="formula-vars">
@@ -78,6 +79,7 @@ function SheetSource({ sheet }) {
       Formulas tagged Given are printed on the{' '}
       <a href={sheet.url} target="_blank" rel="noopener noreferrer">{sheet.label}<ExternalLink aria-hidden="true" /><span className="sr-only">(opens in a new tab)</span></a>
       {' '}you get in the exam. Learn where each one sits so you can find it fast.
+      {sheet.note && <> {sheet.note}</>}
     </p>
   );
 }

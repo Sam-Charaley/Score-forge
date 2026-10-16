@@ -14,9 +14,9 @@ export default {
       title: 'Rates of change and polynomials',
       formulas: [
         { id: 'average-rate', name: 'Average rate of change', tex: tex`\dfrac{f(b) - f(a)}{b - a}`, vars: [['a, b', 'endpoints of the interval', '']], note: 'The slope of the secant line through (a, f(a)) and (b, f(b)).' },
-        { id: 'rate-concavity', name: 'Rates of change and concavity', tex: tex`\text{concave up} \iff \text{rate of change increasing}`, vars: [], note: 'Concave down means the rate of change is decreasing. An inflection point is where it switches.' },
-        { id: 'end-behavior', name: 'End behavior of a polynomial', tex: tex`p(x) = a_nx^n + \cdots \quad\Rightarrow\quad p(x) \text{ behaves like } a_nx^n \text{ as } x\to\pm\infty`, vars: [['a_n', 'leading coefficient', ''], ['n', 'degree', '']], note: 'Even degree: both ends point the same way. Odd degree: opposite ways.' },
-        { id: 'zeros-multiplicity', name: 'Zeros and multiplicity', tex: tex`(x - a)^k \text{ factor}: \ k \text{ odd crosses, } k \text{ even touches}`, vars: [['a', 'the zero', ''], ['k', 'multiplicity', '']], note: 'A degree-n polynomial has at most n real zeros and at most n − 1 turning points.' },
+        { id: 'rate-concavity', name: 'Rates of change and concavity', tex: tex`\text{concave up: rate increasing} \qquad \text{concave down: rate decreasing}`, vars: [], note: 'An inflection point is where the rate of change switches from increasing to decreasing, or back.' },
+        { id: 'end-behavior', name: 'End behavior of a polynomial', tex: tex`p(x) = a_nx^n + \cdots \qquad p(x) \approx a_nx^n \text{ as } x \to \pm\infty`, vars: [['a_n', 'leading coefficient', ''], ['n', 'degree', '']], note: 'Even degree: both ends point the same way. Odd degree: opposite ways.' },
+        { id: 'zeros-multiplicity', name: 'Zeros and multiplicity', tex: tex`k \text{ odd} \Rightarrow \text{crosses} \qquad k \text{ even} \Rightarrow \text{touches}`, vars: [['k', 'multiplicity of the zero', '']], note: 'For a factor (x − a)ᵏ, the graph crosses the x-axis at a when k is odd and touches it when k is even. A degree-n polynomial has at most n real zeros and at most n − 1 turning points.' },
         { id: 'complex-zeros', name: 'Complex zeros come in pairs', tex: tex`p(a + bi) = 0 \;\Rightarrow\; p(a - bi) = 0`, vars: [['a + bi', 'a non-real zero', '']], note: 'For polynomials with real coefficients.' },
         { id: 'binomial', name: 'Binomial theorem', tex: tex`(a + b)^n = \sum_{k=0}^n \binom{n}{k}a^{n-k}b^k`, vars: [['\\binom{n}{k}', 'entries of Pascal\'s triangle', '']] },
       ],
@@ -25,8 +25,8 @@ export default {
       id: 'rational',
       title: 'Rational functions',
       formulas: [
-        { id: 'horizontal-asymptote', name: 'Horizontal asymptote', tex: tex`r(x) = \dfrac{a_nx^n + \cdots}{b_mx^m + \cdots}: \ \begin{cases} y = 0 & n < m \\ y = a_n/b_m & n = m \\ \text{none} & n > m \end{cases}`, vars: [['n, m', 'degrees of numerator and denominator', '']], note: 'When n = m + 1 there is a slant asymptote instead, found by long division.' },
-        { id: 'vertical-asymptote-hole', name: 'Vertical asymptotes and holes', tex: tex`\text{zero of the denominator only} \Rightarrow \text{vertical asymptote} \qquad \text{zero of both (cancels)} \Rightarrow \text{hole}`, vars: [], note: 'Cancel common factors first. The hole\'s y-value comes from the simplified function.' },
+        { id: 'horizontal-asymptote', name: 'Horizontal asymptote', tex: tex`y = \begin{cases} 0 & n < m \\ a_n/b_m & n = m \\ \text{none} & n > m \end{cases}`, vars: [['n, m', 'degrees of numerator and denominator', ''], ['a_n, b_m', 'leading coefficients', '']], note: 'Compare the degrees of the top (n) and bottom (m). When n = m + 1 there is a slant asymptote instead, found by long division.' },
+        { id: 'vertical-asymptote-hole', name: 'Vertical asymptotes and holes', tex: tex`\text{denominator only} = 0 \Rightarrow \text{asymptote} \qquad \text{both} = 0 \Rightarrow \text{hole}`, vars: [], note: 'A zero of the denominator alone gives a vertical asymptote. A factor that cancels from top and bottom gives a hole; its y-value comes from the simplified function.' },
       ],
     },
     {
@@ -34,7 +34,7 @@ export default {
       title: 'Transformations and function composition',
       formulas: [
         { id: 'transformations', name: 'Transformations', tex: tex`g(x) = a\,f\big(b(x - h)\big) + k`, vars: [['a', 'vertical stretch (reflect if negative)', ''], ['b', 'horizontal compression by factor 1/|b|', ''], ['h', 'shift right', ''], ['k', 'shift up', '']], note: 'Inside changes act on x and feel backwards: x − 3 shifts right.' },
-        { id: 'inverse', name: 'Inverse functions', tex: tex`f\big(f^{-1}(x)\big) = x \quad\text{and}\quad (a, b) \text{ on } f \iff (b, a) \text{ on } f^{-1}`, vars: [], note: 'Swap x and y, then solve for y. The graph reflects over y = x.' },
+        { id: 'inverse', name: 'Inverse functions', tex: tex`f\big(f^{-1}(x)\big) = x \qquad (a, b) \text{ on } f \iff (b, a) \text{ on } f^{-1}`, vars: [], note: 'Swap x and y, then solve for y. The graph reflects over y = x.' },
       ],
     },
     {
@@ -63,7 +63,7 @@ export default {
         { id: 'reciprocal-trig', name: 'Reciprocal functions', tex: tex`\csc\theta = \dfrac{1}{\sin\theta} \qquad \sec\theta = \dfrac{1}{\cos\theta} \qquad \cot\theta = \dfrac{1}{\tan\theta}`, vars: [] },
         { id: 'pythagorean', name: 'Pythagorean identities', tex: tex`\sin^2\theta + \cos^2\theta = 1 \qquad 1 + \tan^2\theta = \sec^2\theta \qquad 1 + \cot^2\theta = \csc^2\theta`, vars: [], note: 'Divide the first by cos²θ or sin²θ to get the other two.' },
         { id: 'sum-identities', name: 'Sum and difference identities', tex: tex`\sin(\alpha \pm \beta) = \sin\alpha\cos\beta \pm \cos\alpha\sin\beta \qquad \cos(\alpha \pm \beta) = \cos\alpha\cos\beta \mp \sin\alpha\sin\beta`, vars: [], note: 'Note the flipped sign in the cosine version.' },
-        { id: 'double-angle', name: 'Double angle identities', tex: tex`\sin 2\theta = 2\sin\theta\cos\theta \qquad \cos 2\theta = \cos^2\theta - \sin^2\theta = 1 - 2\sin^2\theta = 2\cos^2\theta - 1`, vars: [] },
+        { id: 'double-angle', name: 'Double angle identities', tex: tex`\sin 2\theta = 2\sin\theta\cos\theta \qquad \cos 2\theta = \cos^2\theta - \sin^2\theta \qquad \cos 2\theta = 1 - 2\sin^2\theta = 2\cos^2\theta - 1`, vars: [] },
         { id: 'inverse-trig-ranges', name: 'Inverse trig ranges', tex: tex`\arcsin: \left[-\tfrac{\pi}{2}, \tfrac{\pi}{2}\right] \qquad \arccos: [0, \pi] \qquad \arctan: \left(-\tfrac{\pi}{2}, \tfrac{\pi}{2}\right)`, vars: [], note: 'Solving sin θ = k has more solutions than arcsin(k) gives. Use the period to find the rest.' },
         { id: 'polar-conversion', name: 'Polar and rectangular coordinates', tex: tex`x = r\cos\theta \qquad y = r\sin\theta \qquad r^2 = x^2 + y^2 \qquad \tan\theta = \dfrac{y}{x}`, vars: [['r', 'distance from the origin', ''], ['\\theta', 'angle', '']], note: 'Check the quadrant: arctan(y/x) alone gives the wrong angle when x < 0.' },
         { id: 'complex-polar', name: 'Complex numbers in polar form', tex: tex`a + bi = r(\cos\theta + i\sin\theta)`, vars: [['r', '√(a² + b²)', ''], ['\\theta', 'angle of the point (a, b)', '']] },
