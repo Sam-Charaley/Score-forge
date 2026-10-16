@@ -99,7 +99,7 @@ export default [
     explanation: 'Acceleration is the slope of a velocity-time graph: (8 m/s − 0)/(4 s − 0) = 2.0 m/s². 8.0 m/s² reads the velocity instead of the slope, and 0.50 m/s² divides the wrong way.',
     verify: 'numeric',
     solve: () => slopeAt(CAR_TRIP.series[0].points, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-007',
@@ -112,7 +112,7 @@ export default [
     explanation: 'Displacement is the area under a velocity-time graph. Split it into a triangle, a rectangle and a triangle: ½(4)(8) + (4)(8) + ½(2)(8) = 16 + 32 + 8 = 56 m. 80 m treats the whole trip as 8 m/s for 10 s.',
     verify: 'numeric',
     solve: () => areaUnder(CAR_TRIP.series[0].points, 0, 10),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-008',
@@ -125,7 +125,7 @@ export default [
     explanation: 'It moves forward for 3 s (area ½ × 3 × 6 = 9 m), stops, then moves backward for 3 s (another 9 m). Distance adds both: 18 m. 0 m is the displacement, because the two areas cancel when their signs are kept.',
     verify: 'numeric',
     solve: () => absoluteAreaUnder(THROW_BACK.series[0].points, 0, 6),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-009',
@@ -138,7 +138,7 @@ export default [
     explanation: 'Velocity is the slope of a position-time graph: (0 − 6 m)/(7 s − 5 s) = −3.0 m/s. The negative sign means the person is walking back toward the start. −6.0 m/s forgets to divide by the 2 s.',
     verify: 'numeric',
     solve: () => slopeAt(WALKER.series[0].points, 6),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-010',
@@ -151,7 +151,7 @@ export default [
     explanation: 'The area under an acceleration-time graph is the change in velocity: 3 m/s² × 4 s = 12 m/s. Add it to the starting speed: 2.0 + 12 = 14 m/s. 12 m/s is the change alone.',
     verify: 'numeric',
     solve: () => CART_START_SPEED + areaUnder(PUSHED_CART.series[0].points, 0, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-motion-1d-011',
@@ -162,6 +162,6 @@ export default [
     choices: ['From 0 to 2 s', 'From 2 s to 5 s', 'From 5 s to 7 s', 'At no time'],
     answer: 1,
     explanation: 'A flat line on a position-time graph means the position isn\'t changing, so the velocity is zero. From 2 s to 5 s the person stays at 6 m.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

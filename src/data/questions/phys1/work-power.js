@@ -79,7 +79,7 @@ export default [
     explanation: 'Work is the area under a force-position graph: a triangle ½(2)(10) = 10 J plus a rectangle (3)(10) = 30 J, a total of 40 J. 50 J treats the force as 10 N for the whole 5 m.',
     verify: 'numeric',
     solve: () => areaUnder(VARIABLE_PUSH.series[0].points, 0, 5),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-work-power-007',
@@ -92,6 +92,6 @@ export default [
     explanation: 'The energy stored equals the work done stretching it, the area under the line: ½(0.20 m)(40 N) = 4.0 J. That matches ½kx² with k = 40/0.20 = 200 N/m. 8.0 J multiplies force by distance as if the force were 40 N the whole way.',
     verify: 'numeric',
     solve: () => areaUnder(SPRING_FORCE.series[0].points, 0, 0.2),
-    reviewed: false,
+    reviewed: true,
   },
 ];

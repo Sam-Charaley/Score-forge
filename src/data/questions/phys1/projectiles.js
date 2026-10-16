@@ -83,6 +83,6 @@ export default [
     explanation: 'At the highest point the vertical velocity is zero, which is where the line crosses the time axis: t = 15/9.8 ≈ 1.5 s. 3.0 s is the end of the graph, roughly when the ball lands back at its starting height.',
     verify: 'numeric',
     solve: () => VERTICAL_LAUNCH_SPEED / G,
-    reviewed: false,
+    reviewed: true,
   },
 ];

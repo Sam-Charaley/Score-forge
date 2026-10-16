@@ -89,7 +89,7 @@ export default [
     explanation: 'Impulse is the area under the force-time graph: two triangles of ½(0.01)(500) = 2.5 N·s each plus a rectangle of (0.02)(500) = 10 N·s, a total of 15 N·s. From rest, v = J/m = 15/0.30 = 50 m/s. 67 m/s treats the force as 500 N for the full 0.04 s.',
     verify: 'numeric',
     solve: () => areaUnder(BAT_HIT.series[0].points, 0, 0.04) / 0.30,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-impulse-007',
@@ -102,6 +102,6 @@ export default [
     explanation: 'The impulse is the signed area: +4 N·s above the axis and −2 N·s below, a net +2.0 N·s. That changes the velocity by 2.0/2.0 = +1.0 m/s, so v = 1.0 + 1.0 = +2.0 m/s. +4.0 m/s counts the area below the axis as positive.',
     verify: 'numeric',
     solve: () => CART_START_VELOCITY + areaUnder(PUSH_AND_PULL.series[0].points, 0, 4) / CART_MASS,
-    reviewed: false,
+    reviewed: true,
   },
 ];

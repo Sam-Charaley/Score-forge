@@ -82,6 +82,6 @@ export default [
     explanation: 'One full cycle, from +0.10 m back to +0.10 m, takes 0.80 s, so the period is 0.80 s and the frequency is 1/0.80 = 1.25 Hz. 0.80 is the period, not the frequency, and 0.10 m is the amplitude.',
     verify: 'numeric',
     solve: () => 1 / SPRING_PERIOD,
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -94,7 +94,7 @@ export default [
     explanation: 'The vertical forces cancel. Horizontally the net force is 30 − 10 = 20 N to the right, so a = 20 N/5.0 kg = 4.0 m/s². 6.0 m/s² ignores friction, and 8.0 m/s² adds the two horizontal forces instead of subtracting.',
     verify: 'numeric',
     solve: () => netForce(PUSHED_BOX.forces).magnitude / 5.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-008',
@@ -107,7 +107,7 @@ export default [
     explanation: 'Only the horizontal part of the tension accelerates the sled: 20 cos 30° = 17.3 N, so a = 17.3/10 = 1.7 m/s². Vertically, the normal force (88 N) plus the tension\'s upward part (10 N) balance the 98 N weight. 2.0 m/s² uses the whole tension, and 1.0 m/s² uses sin 30°.',
     verify: 'numeric',
     solve: () => netForce(PULLED_SLED.forces).x / 10,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-newtons-laws-009',
@@ -118,6 +118,6 @@ export default [
     choices: ['It is at rest', 'It is moving to the right and slowing down', 'It is at rest or moving at constant velocity', 'It is speeding up to the right'],
     answer: 2,
     explanation: 'The forces balance in both directions, so the net force and the acceleration are zero. Zero acceleration fits being at rest or moving at constant velocity, and the diagram can\'t tell which. The 40 N push doesn\'t mean the crate must be moving.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
