@@ -22,7 +22,7 @@ export default [
     explanation: 'An antiderivative is x³ + x, so the integral is (8 + 2) − 0 = 10. 8 forgets the +1 term\'s contribution of 2.',
     verify: 'exact',
     solve: () => integrate(x => 3 * x * x + 1, 0, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-accumulation-002',
@@ -34,7 +34,7 @@ export default [
     explanation: 'The subintervals have width 1 and left endpoints 0, 1 and 2, so the sum is 1·(0 + 1 + 4) = 5. The right sum is 1 + 4 + 9 = 14, and 9 is the exact integral. For an increasing function the left sum underestimates.',
     verify: 'exact',
     solve: () => partialSum(k => k * k * 1, 0, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-accumulation-003',
@@ -46,7 +46,7 @@ export default [
     explanation: 'By the Fundamental Theorem with the chain rule, F\'(x) = √(1 + x²) · 2x. At x = 2 that is √5 · 4 = 4√5. √5 forgets to multiply by the derivative of the upper limit, x².',
     verify: 'exact',
     solve: () => derivative(x => integrate(t => Math.sqrt(1 + t), 1, x * x), 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-accumulation-004',
@@ -59,7 +59,7 @@ export default [
     explanation: 'g(4) is the signed area under f from 0 to 4: the rectangle from 0 to 2 has area 4, and from 2 to 4 the triangles above and below the axis cancel. So g(4) = 4. 6 counts the area below the axis as positive.',
     verify: 'exact',
     solve: () => areaUnder(RATE_GRAPH.series[0].points, 0, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-accumulation-005',
@@ -72,6 +72,6 @@ export default [
     explanation: 'The amount is the starting amount plus the accumulated inflow: 30 + ∫₀⁸ 20e^(−0.1t) dt ≈ 30 + 110.1 = 140.1 L. 110.1 L leaves out the starting 30 L, and 190.0 L treats the rate as a constant 20 L/min.',
     verify: 'numeric',
     solve: () => INITIAL_WATER_LITERS + integrate(inflowRate, 0, 8),
-    reviewed: false,
+    reviewed: true,
   },
 ];

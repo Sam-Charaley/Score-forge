@@ -20,7 +20,7 @@ export default [
     verify: 'exact',
     solve: () => findRoot(x => secondDerivative(t => t ** 3 - 3 * t * t, x), 0, 2),
     tolerance: 1e-4,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-curve-sketching-002',
@@ -35,7 +35,7 @@ export default [
     ],
     answer: 0,
     explanation: 'f\'(x) = 4x³ − 12x and f\'\'(x) = 12x² − 12 = 12(x − 1)(x + 1). That is positive when |x| > 1, so f is concave up for x < −1 and x > 1. ±√3 are where f\' = 0, which decides increasing/decreasing, not concavity.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-curve-sketching-003',
@@ -47,7 +47,7 @@ export default [
     explanation: 'With sides x and 20 − x, the area is A(x) = x(20 − x). A\'(x) = 20 − 2x = 0 at x = 10, so the best rectangle is a 10 × 10 square with area 100. 96 is the 8 × 12 rectangle, and 400 squares the half-perimeter.',
     verify: 'exact',
     solve: () => extremeValue(x => x * (20 - x), 0, 20, 'max'),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-curve-sketching-004',
@@ -60,7 +60,7 @@ export default [
     explanation: 'f has a local maximum where f′ changes from positive to negative, which happens at x = 2. At x = −2, f′ goes from negative to positive, a local minimum. On (−1, 1) f′ is at its highest, but that only means f is increasing fastest there.',
     verify: 'exact',
     solve: () => findRoot(x => valueAt(DERIVATIVE_GRAPH.series[0].points, x), 1, 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-curve-sketching-005',
@@ -75,6 +75,6 @@ export default [
     ],
     answer: 0,
     explanation: 'This is the Second Derivative Test: at a critical point where f\'\' < 0, the graph is concave down, so the point is a local maximum. The test is inconclusive only when f\'\'(4) = 0.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

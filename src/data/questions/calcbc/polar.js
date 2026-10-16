@@ -15,7 +15,7 @@ export default [
     choices: ['(1, −√3)', '(−√3, 1)', '(−1, √3)', '(√3, −1)'],
     answer: 2,
     explanation: 'x = r cos θ = 2 cos(2π/3) = 2(−1/2) = −1, and y = r sin θ = 2 sin(2π/3) = 2(√3/2) = √3. (−√3, 1) swaps sine and cosine.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-polar-002',
@@ -27,7 +27,7 @@ export default [
     explanation: 'The circle is traced once as θ goes from 0 to π, so the area is (1/2)∫₀^π 4cos²θ dθ = π. 2π traces it twice by integrating over 0 to 2π. Check: it is a circle of radius 1.',
     verify: 'exact',
     solve: () => polarArea(theta => 2 * Math.cos(theta), 0, Math.PI),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-polar-003',
@@ -39,7 +39,7 @@ export default [
     explanation: 'One petal is traced as θ goes from −π/4 to π/4, where cos 2θ ≥ 0. Its area is (1/2)∫ cos²(2θ) dθ over that interval = π/8. π/4 forgets the factor of 1/2 in the polar area formula.',
     verify: 'exact',
     solve: () => polarArea(theta => Math.cos(2 * theta), -Math.PI / 4, Math.PI / 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-polar-004',
@@ -51,7 +51,7 @@ export default [
     explanation: 'With x = θ cos θ and y = θ sin θ: dy/dθ = sin θ + θ cos θ = 1 and dx/dθ = cos θ − θ sin θ = −π/2 at θ = π/2. So dy/dx = 1/(−π/2) = −2/π. dr/dθ = 1 is not the slope.',
     verify: 'exact',
     solve: () => derivative(theta => theta * Math.sin(theta), Math.PI / 2) / derivative(theta => theta * Math.cos(theta), Math.PI / 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-polar-005',
@@ -61,6 +61,6 @@ export default [
     choices: ['(0, 1)', '(0, −1)', '(−1, 0)', '(1, 0)'],
     answer: 1,
     explanation: 'At θ = π/2, r = 1 − 2 = −1. A negative r is plotted in the opposite direction from the angle, so the point is 1 unit along θ = 3π/2: (0, −1). (0, 1) ignores the negative sign.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

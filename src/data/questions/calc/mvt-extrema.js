@@ -16,7 +16,7 @@ export default [
     explanation: 'The average rate of change is (f(4) − f(1))/(4 − 1) = (16 − 1)/3 = 5. Setting f\'(c) = 2c = 5 gives c = 5/2, which is inside (1, 4). 5 is the slope itself, not the point.',
     verify: 'exact',
     solve: () => findRoot(c => derivative(square, c) - (square(4) - square(1)) / 3, 1, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-mvt-extrema-002',
@@ -28,7 +28,7 @@ export default [
     explanation: 'f\'(x) = 3x² − 3 = 0 at x = 1 (x = −1 is outside the interval). Compare the candidates: f(0) = 0, f(1) = −2, f(2) = 8 − 6 = 2. The largest is 2, at the endpoint. −2 is the minimum, at the critical point.',
     verify: 'exact',
     solve: () => extremeValue(x => x ** 3 - 3 * x, 0, 2, 'max'),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-mvt-extrema-003',
@@ -38,7 +38,7 @@ export default [
     choices: ['x = 1 only', 'x = −2 only', 'x = −2 and x = 1', 'f has no local minimum'],
     answer: 0,
     explanation: 'Both x = 1 and x = −2 are critical points, but only a sign change makes an extremum. (x + 2)² is never negative, so f\' has the sign of (x − 1): negative left of 1 and positive right of it, a local minimum at x = 1. At x = −2, f\' is negative on both sides, so there is no extremum there.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-mvt-extrema-004',
@@ -53,7 +53,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The Extreme Value Theorem: a function continuous on a closed interval has both an absolute maximum and minimum there. An open interval isn\'t enough, since f(x) = 1/x is continuous on (0, 1) but has no maximum. f(a) = f(b) is part of Rolle\'s Theorem, which is about f\', not extreme values.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-mvt-extrema-005',
@@ -65,6 +65,6 @@ export default [
     explanation: 'f\'(x) = 1 − 4/x² = 0 at x = 2. Compare: f(1) = 5, f(2) = 2 + 2 = 4, f(4) = 4 + 1 = 5. The minimum value is 4. 2 is where it happens, not the value.',
     verify: 'exact',
     solve: () => extremeValue(x => x + 4 / x, 1, 4, 'min'),
-    reviewed: false,
+    reviewed: true,
   },
 ];

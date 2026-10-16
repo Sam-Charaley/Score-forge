@@ -17,7 +17,7 @@ export default [
     verify: 'exact',
     solve: () => secondDerivative(x => Math.cos(3 * x), 0) / 2,
     tolerance: 1e-5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-taylor-002',
@@ -33,7 +33,7 @@ export default [
       return naturalLogOnePlus(0) + derivative(naturalLogOnePlus, 0) * x + (secondDerivative(naturalLogOnePlus, 0) / 2) * x * x;
     },
     tolerance: 1e-5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-taylor-003',
@@ -43,7 +43,7 @@ export default [
     choices: ['1/6', '1/2', '1/24', '1/120'],
     answer: 2,
     explanation: 'For a degree-3 polynomial the Lagrange bound uses the 4th derivative: |error| ≤ max|f⁽⁴⁾| · |x|⁴/4! = 1 · 1/24. 1/6 uses 3!, the bound you get by treating 1 − x²/2 as only degree 2, which ignores that its x³ term is zero.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-taylor-004',
@@ -58,7 +58,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Substitute u = −x² into eᵘ = 1 + u + u²/2 + …: e^(−x²) = 1 − x² + x⁴/2 − … Multiplying by x gives x − x³ + x⁵/2 − … The third choice forgets the factor of x, and the last forgets that u is negative.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-taylor-005',
@@ -73,6 +73,6 @@ export default [
       const [value, slope, secondDer, step] = [3, -2, 4, 0.1];
       return value + slope * step + (secondDer / 2) * step ** 2;
     },
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -16,7 +16,7 @@ export default [
     explanation: 'Plugging in gives 0/0, so simplify first: (x² − 9)/(x − 3) = (x − 3)(x + 3)/(x − 3) = x + 3 for x ≠ 3. The limit is 3 + 3 = 6. A 0/0 form does not mean the limit fails to exist.',
     verify: 'exact',
     solve: () => limit(x => (x * x - 9) / (x - 3), 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-limits-002',
@@ -28,7 +28,7 @@ export default [
     explanation: 'Rewrite to use lim (u → 0) sin(u)/u = 1: sin(5x)/(2x) = (5/2) · sin(5x)/(5x), which approaches (5/2)(1) = 5/2.',
     verify: 'exact',
     solve: () => limit(x => Math.sin(5 * x) / (2 * x), 0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-limits-003',
@@ -40,7 +40,7 @@ export default [
     explanation: 'The numerator and denominator have the same degree, so the limit is the ratio of the leading coefficients: 4/2 = 2. Dividing every term by x³ shows the other terms go to 0.',
     verify: 'exact',
     solve: () => limitAtInfinity(x => (4 * x ** 3 - x) / (2 * x ** 3 + 7)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-limits-004',
@@ -53,7 +53,7 @@ export default [
     verify: 'exact',
     // The k that makes the left piece's value at 2 equal the right piece's.
     solve: () => (3 * 2 - 1) - 2 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-limits-005',
@@ -68,6 +68,6 @@ export default [
     ],
     answer: 0,
     explanation: 'By the Intermediate Value Theorem, a continuous function takes every value between f(1) = −2 and f(4) = 3, including 0. The Mean Value Theorem choice also needs differentiability, which isn\'t given, and f could go above 3 or dip in between.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

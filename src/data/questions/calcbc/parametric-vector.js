@@ -18,7 +18,7 @@ export default [
     explanation: 'dy/dx = (dy/dt)/(dx/dt) = 3t²/(2t) = 3t/2, which is 3 at t = 2. 12 is dy/dt alone and 4 is dx/dt alone.',
     verify: 'exact',
     solve: () => parametricSlope(2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-parametric-vector-002',
@@ -31,7 +31,7 @@ export default [
     verify: 'exact',
     solve: () => derivative(parametricSlope, 1) / derivative(square, 1),
     tolerance: 1e-5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-parametric-vector-003',
@@ -43,7 +43,7 @@ export default [
     explanation: 'The velocity is ⟨2, 2t⟩ = ⟨2, 4⟩ at t = 2. Speed is its magnitude: √(4 + 16) = √20 = 2√5. 6 adds the components instead of combining them with Pythagoras.',
     verify: 'exact',
     solve: () => Math.hypot(derivative(t => 2 * t, 2), derivative(square, 2)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-parametric-vector-004',
@@ -55,7 +55,7 @@ export default [
     explanation: 'L = ∫₀¹ √((2t)² + (3t²)²) dt = ∫₀¹ t√(4 + 9t²) dt. With u = 4 + 9t², this is (1/27)(4 + 9t²)^(3/2) from 0 to 1 = (13√13 − 8)/27. (13√13)/27 forgets the lower limit, which is 8/27, not 0.',
     verify: 'exact',
     solve: () => integrate(t => Math.hypot(derivative(square, t), derivative(cube, t)), 0, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-parametric-vector-005',
@@ -65,6 +65,6 @@ export default [
     choices: ['⟨0, 1⟩', '⟨2, 0⟩', '⟨2, 1⟩', '⟨0, 0⟩'],
     answer: 1,
     explanation: 'Differentiate each component twice: the velocity is ⟨2t, cos t⟩ and the acceleration is ⟨2, −sin t⟩. At t = 0 that is ⟨2, 0⟩. ⟨0, 1⟩ is the velocity at t = 0.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

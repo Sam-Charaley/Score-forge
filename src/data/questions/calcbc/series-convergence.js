@@ -17,7 +17,7 @@ export default [
     explanation: 'This is geometric with first term 3 and ratio 1/4, and |1/4| < 1, so it sums to 3/(1 − 1/4) = 3/(3/4) = 4. 12 divides by 1/4 instead of 1 − 1/4.',
     verify: 'exact',
     solve: () => partialSum(n => 3 * 0.25 ** n, 0, 60),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-series-convergence-002',
@@ -27,7 +27,7 @@ export default [
     choices: ['Σ 1/n^(3/2)', 'Σ 1/√n', 'Σ 1/n', 'Σ n/(n + 1)'],
     answer: 0,
     explanation: 'A p-series Σ 1/nᵖ converges only when p > 1, and 3/2 > 1. Σ 1/√n (p = 1/2) and the harmonic series (p = 1) diverge. Σ n/(n + 1) fails the nth-term test, since its terms approach 1, not 0.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-series-convergence-003',
@@ -37,7 +37,7 @@ export default [
     choices: ['Converges absolutely', 'Converges conditionally', 'Diverges by the nth-term test', 'Diverges by the ratio test'],
     answer: 1,
     explanation: 'The terms alternate, decrease in size and approach 0, so it converges by the Alternating Series Test. But Σ |(−1)ⁿ/n| = Σ 1/n is the harmonic series, which diverges, so the convergence is conditional. The ratio test limit is 1, which is inconclusive.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-series-convergence-004',
@@ -50,7 +50,7 @@ export default [
     verify: 'exact',
     // The ratio simplified to (n + 1)/(3n), since 3ⁿ itself overflows long before n gets large.
     solve: () => limitAtInfinity(n => (n + 1) / (3 * n)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-series-convergence-005',
@@ -63,7 +63,7 @@ export default [
     verify: 'exact',
     solve: () => partialSum(n => 1 / (n * (n + 1)), 1, TELESCOPING_TERMS),
     tolerance: 1e-5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-series-convergence-006',
@@ -75,6 +75,6 @@ export default [
     explanation: 'For an alternating series whose terms decrease to 0, the error is at most the size of the first term left out. After four terms that is the fifth, 1/5² = 1/25. 1/16 is the last term used.',
     verify: 'exact',
     solve: () => Math.abs((-1) ** (5 + 1) / 5 ** 2),
-    reviewed: false,
+    reviewed: true,
   },
 ];

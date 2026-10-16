@@ -14,7 +14,7 @@ export default [
     explanation: 'By the chain rule, f\'(x) = 5(3x² + 1)⁴ · 6x. At x = 1 that is 5(4)⁴(6) = 5 × 256 × 6 = 7680. 1280 forgets to multiply by the inner derivative 6x.',
     verify: 'exact',
     solve: () => derivative(x => (3 * x * x + 1) ** 5, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-chain-implicit-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 'The derivative of ln(u) is u\'/u, so the derivative is 2x/(x² + 1). At x = 1 that is 2/2 = 1. 1/2 leaves out the inner derivative 2x.',
     verify: 'exact',
     solve: () => derivative(x => Math.log(x * x + 1), 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-chain-implicit-003',
@@ -39,7 +39,7 @@ export default [
     verify: 'exact',
     // Near (3, 4) the circle is the top half, y = √(25 − x²).
     solve: () => derivative(x => Math.sqrt(25 - x * x), 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-chain-implicit-004',
@@ -53,7 +53,7 @@ export default [
     // g found numerically as the root of f(x) = y, then differentiated.
     solve: () => derivative(y => findRoot(x => x ** 3 + x - y, -10, 10), 2),
     tolerance: 1e-5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-chain-implicit-005',
@@ -65,7 +65,7 @@ export default [
     explanation: 'The derivative of arctan(u) is u\'/(1 + u²), so the derivative is 2/(1 + 4x²). At x = 0 that is 2. 1 leaves out the chain rule factor of 2.',
     verify: 'exact',
     solve: () => derivative(x => Math.atan(2 * x), 0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-chain-implicit-006',
@@ -77,6 +77,6 @@ export default [
     explanation: 'By the chain rule, the derivative is e^(sin x) · cos x. At x = π, sin π = 0 and cos π = −1, so the derivative is e⁰(−1) = −1.',
     verify: 'exact',
     solve: () => derivative(x => Math.exp(Math.sin(x)), Math.PI),
-    reviewed: false,
+    reviewed: true,
   },
 ];

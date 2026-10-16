@@ -14,7 +14,7 @@ export default [
     explanation: 'By the power rule, f\'(x) = 12x² − 5, so f\'(2) = 12(4) − 5 = 43. 48 forgets the −5, and 27 is f(2).',
     verify: 'exact',
     solve: () => derivative(x => 4 * x ** 3 - 5 * x + 2, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-derivative-rules-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 'This is the definition of the derivative of f(x) = x⁴ at x = 2, since 2⁴ = 16. f\'(x) = 4x³, so the limit is 4(8) = 32.',
     verify: 'exact',
     solve: () => limit(h => ((2 + h) ** 4 - 16) / h, 0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-derivative-rules-003',
@@ -38,7 +38,7 @@ export default [
     explanation: 'By the product rule, f\'(x) = 2x·eˣ + x²·eˣ, so f\'(1) = 2e + e = 3e. 2e differentiates only the first factor.',
     verify: 'exact',
     solve: () => derivative(x => x * x * Math.exp(x), 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-derivative-rules-004',
@@ -50,7 +50,7 @@ export default [
     explanation: 'By the quotient rule, f\'(x) = [(x − 1)(1) − (x + 1)(1)]/(x − 1)² = −2/(x − 1)². At x = 3 that is −2/4 = −1/2. Reversing the order of the numerator gives +1/2.',
     verify: 'exact',
     solve: () => derivative(x => (x + 1) / (x - 1), 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-derivative-rules-005',
@@ -62,7 +62,7 @@ export default [
     explanation: 'By the product rule, the derivative is cos x · cos x + sin x · (−sin x) = cos²x − sin²x = cos 2x. At x = π/4 that is cos(π/2) = 0.',
     verify: 'exact',
     solve: () => derivative(x => Math.sin(x) * Math.cos(x), Math.PI / 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-derivative-rules-006',
@@ -77,6 +77,6 @@ export default [
     ],
     answer: 1,
     explanation: 'The graph has no break at x = 2, so f is continuous there. But it has a corner: the slope is −1 just to the left and +1 just to the right, so the derivative doesn\'t exist. Differentiable always implies continuous, so the third choice is impossible.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

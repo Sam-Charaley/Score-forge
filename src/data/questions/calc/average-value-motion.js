@@ -24,7 +24,7 @@ export default [
     explanation: 'The average value is (1/(3 − 0))∫₀³ x² dx = (1/3)(9) = 3. 9 is the integral before dividing by the interval length, and 9/2 averages the endpoint values.',
     verify: 'exact',
     solve: () => integrate(x => x * x, 0, 3) / 3,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-average-value-motion-002',
@@ -36,7 +36,7 @@ export default [
     explanation: 'Position is the start plus the displacement: 5 + ∫₀⁴ (2t − 6) dt = 5 + (16 − 24) = −3. −8 is the displacement alone.',
     verify: 'exact',
     solve: () => 5 + integrate(t => 2 * t - 6, 0, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-average-value-motion-003',
@@ -48,7 +48,7 @@ export default [
     explanation: 'v(t) = (t − 1)(t − 3) is positive on (0, 1) and negative on (1, 3). The distances are ∫₀¹ v dt = 4/3 and |∫₁³ v dt| = 4/3, a total of 8/3. 0 is the displacement: the two pieces cancel.',
     verify: 'exact',
     solve: () => totalDistance(quadraticVelocity, 0, 3, [findRoot(quadraticVelocity, 0, 2)]),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-average-value-motion-004',
@@ -63,7 +63,7 @@ export default [
     ],
     answer: 2,
     explanation: 'v(1/2) = 1/4 − 1 = −3/4 and a(t) = 2t, so a(1/2) = 1. The velocity and acceleration have opposite signs, so the speed is decreasing. Neither sign alone decides it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-average-value-motion-005',
@@ -76,6 +76,6 @@ export default [
     explanation: 'Total distance is ∫₀³ |sin(t²)| dt ≈ 1.702. 0.774 is the displacement ∫₀³ sin(t²) dt, where the time moving backward cancels some of the forward motion, and 0.258 is the average velocity.',
     verify: 'numeric',
     solve: () => totalDistance(oscillatingVelocity, 0, 3, [Math.sqrt(Math.PI), Math.sqrt(2 * Math.PI)]),
-    reviewed: false,
+    reviewed: true,
   },
 ];

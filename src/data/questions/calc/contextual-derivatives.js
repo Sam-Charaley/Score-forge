@@ -14,7 +14,7 @@ export default [
     explanation: 'Velocity is the derivative of position: v(t) = 3t² − 12t + 9, so v(2) = 12 − 24 + 9 = −3. The particle is moving in the negative direction then. 2 is the position s(2).',
     verify: 'exact',
     solve: () => derivative(t => t ** 3 - 6 * t * t + 9 * t, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-contextual-derivatives-002',
@@ -24,7 +24,7 @@ export default [
     choices: ['t = 0 and t = 3', 't = 2 only', 't = 1 and t = 3', 't = 0, t = 1 and t = 3'],
     answer: 2,
     explanation: 'At rest means the velocity is zero: v(t) = 3t² − 12t + 9 = 3(t − 1)(t − 3), so t = 1 and t = 3. t = 0 and t = 3 are where the position is zero, which is a different question.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-contextual-derivatives-003',
@@ -37,7 +37,7 @@ export default [
     verify: 'exact',
     // Radius 5 + 2t passes 5 at t = 0; differentiate the area in time there.
     solve: () => derivative(t => Math.PI * (5 + 2 * t) ** 2, 0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-contextual-derivatives-004',
@@ -49,7 +49,7 @@ export default [
     explanation: 'The tangent line at x = 4 is L(x) = f(4) + f\'(4)(x − 4) = 2 + (1/4)(x − 4), because f\'(x) = 1/(2√x). So L(4.1) = 2 + 0.025 = 2.025. 2.05 uses a slope of 1/2.',
     verify: 'exact',
     solve: () => Math.sqrt(4) + derivative(Math.sqrt, 4) * 0.1,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-contextual-derivatives-005',
@@ -61,7 +61,7 @@ export default [
     explanation: 'The form is 0/0, so apply L\'Hôpital\'s rule: (eˣ − 1)/(2x) is still 0/0, and once more gives eˣ/2, which approaches 1/2. Stopping after one application at 0/0 is a common slip.',
     verify: 'exact',
     solve: () => limit(x => (Math.exp(x) - 1 - x) / (x * x), 0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-contextual-derivatives-006',
@@ -74,6 +74,6 @@ export default [
     verify: 'exact',
     // Base at 6 + 2t; the top's height is √(100 − x²).
     solve: () => derivative(t => Math.sqrt(100 - (6 + 2 * t) ** 2), 0),
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -14,7 +14,7 @@ export default [
     explanation: 'On [0, 1], x is above x², so the area is ∫₀¹ (x − x²) dx = 1/2 − 1/3 = 1/6. 1/3 is the area under y = x² alone.',
     verify: 'exact',
     solve: () => integrate(x => x - x * x, 0, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-area-volume-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 'Disks of radius √x give V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = 8π. 16π/3 integrates √x without squaring the radius and multiplies by π.',
     verify: 'exact',
     solve: () => Math.PI * integrate(x => Math.sqrt(x) ** 2, 0, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-area-volume-003',
@@ -38,7 +38,7 @@ export default [
     explanation: 'Washers: V = π∫₀¹ (x² − x⁴) dx = π(1/3 − 1/5) = 2π/15. π/30 squares the difference (x − x²)² instead of subtracting the squares, a common washer error.',
     verify: 'exact',
     solve: () => Math.PI * integrate(x => x * x - x ** 4, 0, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-area-volume-004',
@@ -50,7 +50,7 @@ export default [
     explanation: 'At x, the base runs from y = 0 up to the line y = 2 − x, so each square has side 2 − x. V = ∫₀² (2 − x)² dx = 8/3. 2 is the area of the base.',
     verify: 'exact',
     solve: () => integrate(x => (2 - x) ** 2, 0, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-area-volume-005',
@@ -63,6 +63,6 @@ export default [
     explanation: 'dy/dx = x^(1/2), so the length is ∫₀³ √(1 + x) dx = (2/3)(1 + x)^(3/2) from 0 to 3 = (2/3)(8 − 1) = 14/3. 16/3 forgets to subtract the value at x = 0.',
     verify: 'exact',
     solve: () => integrate(x => Math.sqrt(1 + x), 0, 3),
-    reviewed: false,
+    reviewed: true,
   },
 ];

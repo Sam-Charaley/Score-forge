@@ -15,7 +15,7 @@ export default [
     explanation: 'An antiderivative is x⁴/4, so the integral is 16/4 − 1/4 = 15/4. 4 forgets to subtract the value at the lower limit.',
     verify: 'exact',
     solve: () => integrate(x => x ** 3, 1, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-integration-techniques-002',
@@ -27,7 +27,7 @@ export default [
     explanation: 'Substitute u = ln x, so du = dx/x and the limits become 0 and 1: ∫₀¹ u du = 1/2.',
     verify: 'exact',
     solve: () => integrate(x => Math.log(x) / x, 1, Math.E),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-integration-techniques-003',
@@ -40,7 +40,7 @@ export default [
     explanation: 'By parts with u = x and dv = eˣ dx: ∫ x eˣ dx = x eˣ − eˣ. From 0 to 1 that is (e − e) − (0 − 1) = 1. e − 1 forgets the minus sign on the subtracted integral.',
     verify: 'exact',
     solve: () => integrate(x => x * Math.exp(x), 0, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-integration-techniques-004',
@@ -53,7 +53,7 @@ export default [
     explanation: 'Partial fractions: 1/(x² − 1) = (1/2)[1/(x − 1) − 1/(x + 1)]. The antiderivative is (1/2) ln|(x − 1)/(x + 1)|, which is (1/2) ln(1/2) at 3 and (1/2) ln(1/3) at 2. The difference is (1/2) ln(3/2). ln(3/2) drops the factor of 1/2.',
     verify: 'exact',
     solve: () => integrate(x => 1 / (x * x - 1), 2, 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-integration-techniques-005',
@@ -66,7 +66,7 @@ export default [
     explanation: 'Write it as a limit: ∫₁^b x⁻³ dx = [−1/(2x²)]₁^b = 1/2 − 1/(2b²), which approaches 1/2 as b → ∞. This is a p-integral with p = 3 > 1, so it converges.',
     verify: 'exact',
     solve: () => integrateToInfinity(x => 1 / x ** 3, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-integration-techniques-006',
@@ -78,6 +78,6 @@ export default [
     explanation: 'An antiderivative of 1/(1 + x²) is arctan x, so the integral is arctan 1 − arctan 0 = π/4. ln 2 would come from ∫ 2x/(1 + x²).',
     verify: 'exact',
     solve: () => integrate(x => 1 / (1 + x * x), 0, 1),
-    reviewed: false,
+    reviewed: true,
   },
 ];

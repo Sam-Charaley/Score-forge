@@ -18,7 +18,7 @@ export default [
     explanation: 'Separating gives dy/y = 2 dx, so ln|y| = 2x + C and y = Ce^(2x). y(0) = 3 makes C = 3, so y(1) = 3e². e² forgets the initial value.',
     verify: 'exact',
     solve: () => solveODE((x, y) => 2 * y, 0, 3, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-differential-equations-002',
@@ -30,7 +30,7 @@ export default [
     explanation: 'Separate: y dy = x dx, so y²/2 = x²/2 + C, or y² = x² + C. y(0) = 2 gives C = 4, so y(3) = √(9 + 4) = √13. 13 forgets the square root.',
     verify: 'exact',
     solve: () => solveODE((x, y) => x / y, 0, 2, 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-differential-equations-003',
@@ -40,7 +40,7 @@ export default [
     choices: ['dy/dx = x − y', 'dy/dx = xy', 'dy/dx = y − x', 'dy/dx = x + y'],
     answer: 2,
     explanation: 'Horizontal segments on y = x mean dy/dx = 0 wherever y = x, which fits y − x and x − y. Above the line y > x, so y − x is positive there. x − y would be negative above the line.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-differential-equations-004',
@@ -53,7 +53,7 @@ export default [
     explanation: 'Step 1: the slope at (0, 1) is 1, so y ≈ 1 + 0.5(1) = 1.5 at x = 0.5. Step 2: the slope at (0.5, 1.5) is 2, so y ≈ 1.5 + 0.5(2) = 2.5 at x = 1. 2 uses the starting slope for both steps.',
     verify: 'exact',
     solve: () => eulerMethod((x, y) => x + y, 0, 1, 0.5, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-differential-equations-005',
@@ -68,6 +68,6 @@ export default [
     // The population where the growth rate itself stops increasing.
     solve: () => findRoot(population => derivative(logisticRate, population), 100, 400),
     tolerance: 1e-5,
-    reviewed: false,
+    reviewed: true,
   },
 ];
