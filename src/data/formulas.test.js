@@ -49,11 +49,17 @@ describe.each(SHEETS.map(sheet => [sheet.file, sheet]))('%s formula sheet', (fil
     const broken = [];
     for (const { formula } of formulas) {
       // The screen renders each \qquad-separated part on its own, so each must stand alone.
-      for (const tex of [formula.tex, ...splitDisplayParts(formula.tex), ...formula.vars.map(([symbol]) => symbol)]) {
+      const mainTex = formula.tex ? [formula.tex, ...splitDisplayParts(formula.tex)] : [];
+      for (const tex of [...mainTex, ...formula.vars.map(([symbol]) => symbol)]) {
         try { renders(tex); } catch (error) { broken.push(`${formula.id}: ${tex} (${error.message.split('\n')[0]})`); }
       }
     }
     expect(broken).toEqual([]);
+  });
+
+  it('shows either math (tex) or Java (code), never both or neither', () => {
+    const bad = formulas.filter(({ formula }) => (typeof formula.tex === 'string') === (typeof formula.code === 'string') || formula.tex === '' || formula.code === '');
+    expect(bad.map(({ formula }) => formula.id)).toEqual([]);
   });
 
   it('gives every formula a name, and every variable a meaning', () => {

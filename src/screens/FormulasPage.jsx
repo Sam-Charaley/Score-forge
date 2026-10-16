@@ -55,7 +55,9 @@ function FormulaCard({ formula, given, subjectBadge }) {
         </span>
       </div>
       <div className="formula-math" tabIndex={0} role="group" aria-label={`${formula.name} formula`}>
-        {splitDisplayParts(formula.tex).map(part => <MathTex key={part} tex={part} display />)}
+        {formula.code
+          ? <pre className="formula-code"><code>{formula.code}</code></pre>
+          : splitDisplayParts(formula.tex).map(part => <MathTex key={part} tex={part} display />)}
       </div>
       {formula.vars.length > 0 && (
         <dl className="formula-vars">

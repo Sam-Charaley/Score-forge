@@ -1,6 +1,6 @@
 // Search across formula sheets. A formula matches when every word of the
-// query appears somewhere in its name, section, note, variable meanings or
-// subject name, so "spring period" finds T = 2π√(m/k) without exact phrasing.
+// query appears somewhere in its name, section, note, Java code, variable
+// meanings or subject name, so "spring period" finds T = 2π√(m/k) without exact phrasing.
 
 // Lowercase, strip accents and apostrophes: "L'Hôpital" and "lhopital" match.
 const ACCENTS_AND_APOSTROPHES = /[̀-ͯ'’]/g;
@@ -12,7 +12,7 @@ export function queryWords(query) {
 
 function haystackFor(formula, section, subjectName) {
   const varMeanings = (formula.vars ?? []).map(([, meaning]) => meaning);
-  return normalize([formula.name, section.title, formula.note ?? '', subjectName, ...varMeanings].join(' '));
+  return normalize([formula.name, section.title, formula.note ?? '', formula.code ?? '', subjectName, ...varMeanings].join(' '));
 }
 
 // sheets: [{ subjectId, sections }]; subjectNames: { [subjectId]: name }.

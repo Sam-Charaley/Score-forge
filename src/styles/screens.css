@@ -683,8 +683,8 @@ kbd svg { width: .75rem; height: .75rem; }
 .formula-search { margin-bottom: 14px; }
 .formula-search .input::-webkit-search-cancel-button { display: none; }
 .formula-source { color: var(--lead); font-size: var(--text-subhead); margin-bottom: 14px; max-width: 68ch; }
-.formula-source a { color: var(--graphite); font-weight: 600; display: inline-flex; align-items: center; gap: .25em; }
-.formula-source a svg { width: .9em; height: .9em; }
+.formula-source a { color: var(--graphite); font-weight: 600; }
+.formula-source a svg { display: inline-block; width: .9em; height: .9em; margin-left: .2em; vertical-align: -0.1em; }
 .formula-jump { margin-bottom: 8px; }
 .formula-jump .chip { text-decoration: none; color: inherit; }
 .formula-section { scroll-margin-top: 5.5rem; padding-top: 18px; }
@@ -698,6 +698,7 @@ kbd svg { width: .75rem; height: .75rem; }
 /* Long equations scroll sideways inside their own box, never the page. */
 .formula-math { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 2.25rem; overflow-x: auto; overflow-y: hidden; padding: 4px 2px; border-radius: var(--radius-small); color: var(--graphite); }
 .formula-math > .math-display { max-width: 100%; }
+.formula-code { margin: 0; flex: 1 1 100%; font-family: var(--font-mono); font-size: var(--text-footnote); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; text-align: left; background: var(--paper); border-radius: var(--radius-small); padding: 8px 10px; }
 .formula-math:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .formula-math .katex-display { margin: .25em 0; }
 .formula-math .katex { font-size: 1.12em; }
