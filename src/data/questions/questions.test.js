@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { loadQuestionBank, loadTopicMap, QUESTION_CHOICE_COUNT, DIFFICULTY_LEVELS } from './questionLoader'
+import { loadQuestionBank, loadTopicMap, foldersFor, QUESTION_CHOICE_COUNT, DIFFICULTY_LEVELS } from './questionLoader'
 
 // A screen reader gets only the alt text, so it must describe the figure in full.
 const MIN_ALT_LENGTH = 60;
@@ -8,14 +8,14 @@ function figureProblems(figure) {
   const problems = [];
   if (typeof figure.alt !== 'string' || figure.alt.trim().length < MIN_ALT_LENGTH) problems.push(`needs alt text of at least ${MIN_ALT_LENGTH} characters describing it`);
   if (figure.type === 'graph') {
-    const { xMax, xStep, yMin, yMax, yStep, series } = figure;
-    if (![xMax, xStep, yMin, yMax, yStep].every(Number.isFinite) || xMax <= 0 || xStep <= 0 || yStep <= 0 || yMax <= yMin) problems.push('graph needs xMax, xStep, yMin < yMax and yStep');
-    if (xMax / xStep > 12 || (yMax - yMin) / yStep > 12) problems.push('more than 12 grid lines is unreadable on a phone');
+    const { xMin = 0, xMax, xStep, yMin, yMax, yStep, series } = figure;
+    if (![xMin, xMax, xStep, yMin, yMax, yStep].every(Number.isFinite) || xMax <= xMin || xStep <= 0 || yStep <= 0 || yMax <= yMin) problems.push('graph needs xMin < xMax, xStep, yMin < yMax and yStep');
+    if ((xMax - xMin) / xStep > 12 || (yMax - yMin) / yStep > 12) problems.push('more than 12 grid lines is unreadable on a phone');
     if (!figure.xLabel || !figure.yLabel) problems.push('graph needs both axis labels, with units');
     if (!Array.isArray(series) || series.length === 0) problems.push('graph needs at least one series');
     (series ?? []).forEach((s, si) => {
       s.points.forEach(([x, y], i) => {
-        if (x < 0 || x > xMax + 1e-9 || y < yMin - 1e-9 || y > yMax + 1e-9) problems.push(`series ${si} point ${i} (${x}, ${y}) is off the axes`);
+        if (x < xMin - 1e-9 || x > xMax + 1e-9 || y < yMin - 1e-9 || y > yMax + 1e-9) problems.push(`series ${si} point ${i} (${x}, ${y}) is off the axes`);
         if (i > 0 && x < s.points[i - 1][0]) problems.push(`series ${si} point ${i}: x must not decrease`);
       });
     });
@@ -31,7 +31,25 @@ function figureProblems(figure) {
 }
 
 const files = import.meta.glob(['./*/*.js', '!./*/topics.js'], { eager: true });
-const SUBJECTS = [...new Set(Object.keys(files).map(p => p.split('/')[1]))];
+const topicFiles = import.meta.glob('./*/topics.js');
+// A subject has a bank when it has a topic map; its questions may come from
+// shared folders too (see SHARED_FOLDERS in questionLoader.js).
+const SUBJECTS = Object.keys(topicFiles).map(p => p.split('/')[1]);
+const FOLDERS = [...new Set(Object.keys(files).map(p => p.split('/')[1]))];
+const VERIFY_KINDS = ['output', 'numeric', 'exact'];
+
+describe('question folders', () => {
+  it('every folder of questions belongs to at least one subject\'s bank', () => {
+    const used = new Set(SUBJECTS.flatMap(foldersFor));
+    expect(FOLDERS.filter(folder => !used.has(folder))).toEqual([]);
+  });
+  it('onlyIn names a subject that loads the question', () => {
+    const problems = Object.entries(files).flatMap(([filePath, module]) => module.default
+      .filter(q => q.onlyIn !== undefined && !(SUBJECTS.includes(q.onlyIn) && foldersFor(q.onlyIn).includes(filePath.split('/')[1])))
+      .map(q => `${q.id}: onlyIn "${q.onlyIn}"`));
+    expect(problems).toEqual([]);
+  });
+});
 
 describe.each(SUBJECTS)('%s question bank', subjectId => {
   it('every topic belongs to a real unit and has a unique id', async () => {
@@ -49,13 +67,17 @@ describe.each(SUBJECTS)('%s question bank', subjectId => {
   it('every question is well formed and matches its file', async () => {
     const { topics } = await loadTopicMap(subjectId);
     const topicIds = new Set(topics.map(t => t.id));
-    const idPattern = new RegExp(`^${subjectId}-[a-z0-9-]+-\\d{3}$`);
+    const folders = foldersFor(subjectId);
     const problems = [];
-    Object.entries(files).filter(([p]) => p.startsWith(`./${subjectId}/`)).forEach(([filePath, module]) => {
+    Object.entries(files).filter(([p]) => folders.includes(p.split('/')[1])).forEach(([filePath, module]) => {
+      const folder = filePath.split('/')[1];
       const fileTopic = filePath.match(/\/([^/]+)\.js$/)[1];
-      module.default.forEach((q, i) => {
-        const where = `${fileTopic}: ${q.id ?? `#${i}`}`;
-        if (!idPattern.test(q.id ?? '')) problems.push(`${where}: id should look like ${subjectId}-<topic>-001`);
+      // The id names the folder the question lives in, which for shared
+      // questions is not the subject being practiced.
+      const idPattern = new RegExp(`^${folder}-${fileTopic}-\\d{3}$`);
+      module.default.filter(q => !q.onlyIn || q.onlyIn === subjectId).forEach((q, i) => {
+        const where = `${folder}/${fileTopic}: ${q.id ?? `#${i}`}`;
+        if (!idPattern.test(q.id ?? '')) problems.push(`${where}: id should look like ${folder}-${fileTopic}-001`);
         if (q.topic !== fileTopic) problems.push(`${where}: topic "${q.topic}" but file is ${fileTopic}.js`);
         if (!topicIds.has(q.topic)) problems.push(`${where}: unknown topic "${q.topic}"`);
         if (!DIFFICULTY_LEVELS.includes(q.difficulty)) problems.push(`${where}: difficulty must be 1, 2 or 3`);
@@ -68,10 +90,12 @@ describe.each(SUBJECTS)('%s question bank', subjectId => {
         }
         if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= QUESTION_CHOICE_COUNT) problems.push(`${where}: answer must be a choice index 0-3`);
         if (typeof q.reviewed !== 'boolean') problems.push(`${where}: reviewed must be true or false`);
-        if (q.verify !== undefined && q.verify !== 'output' && q.verify !== 'numeric') problems.push(`${where}: verify must be 'output', 'numeric' or absent`);
+        if (q.verify !== undefined && !VERIFY_KINDS.includes(q.verify)) problems.push(`${where}: verify must be one of ${VERIFY_KINDS.join(', ')}, or absent`);
         if (q.verify === 'output' && !q.code?.trim()) problems.push(`${where}: verify 'output' needs code`);
-        if (q.verify === 'numeric' && typeof q.solve !== 'function') problems.push(`${where}: verify 'numeric' needs a solve() function`);
-        if (q.solve !== undefined && q.verify !== 'numeric') problems.push(`${where}: solve() is only checked with verify: 'numeric'`);
+        if ((q.verify === 'numeric' || q.verify === 'exact') && typeof q.solve !== 'function') problems.push(`${where}: verify '${q.verify}' needs a solve() function`);
+        if (q.solve !== undefined && q.verify !== 'numeric' && q.verify !== 'exact') problems.push(`${where}: solve() is only checked with verify: 'numeric' or 'exact'`);
+        if (q.calculator !== undefined && q.calculator !== true) problems.push(`${where}: calculator must be true or absent`);
+        if (q.tolerance !== undefined && !(q.tolerance > 0 && q.tolerance < 0.01)) problems.push(`${where}: tolerance must be a small positive number`);
         if (q.setup !== undefined && (typeof q.setup !== 'string' || !q.setup.trim())) problems.push(`${where}: setup must be non-empty code if present`);
         if (q.fixedOrder !== undefined && q.fixedOrder !== true) problems.push(`${where}: fixedOrder must be true or absent`);
         if (q.figure !== undefined) problems.push(...figureProblems(q.figure).map(p => `${where}: figure ${p}`));

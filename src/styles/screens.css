@@ -230,7 +230,9 @@ button.task:hover .check-bubble:not(.is-checked) { border-color: var(--graphite)
 .practice-sheet { outline: none; }
 .practice-sheet:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 4px; }
 .practice-topic { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.practice-tags { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+/* Wraps under the topic name on a phone when a question carries several tags. */
+.practice-sheet .sheet-head { flex-wrap: wrap; row-gap: .5rem; }
+.practice-tags { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px; flex-shrink: 0; max-width: 100%; }
 .difficulty { display: inline-flex; align-items: center; gap: 7px; font-size: var(--text-footnote); font-weight: 600; color: var(--lead); }
 .difficulty-pips { display: inline-flex; gap: 3px; }
 .difficulty-pips i { width: .4375rem; height: .4375rem; border-radius: 50%; border: 1.5px solid var(--graphite); }

@@ -1,0 +1,68 @@
+// AP Calculus AB and BC, Unit 8 (first half): area between curves, volumes, and BC-only arc length.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+import { integrate } from '../calcMath.js'
+
+export default [
+  {
+    id: 'calc-area-volume-001',
+    topic: 'area-volume',
+    difficulty: 1,
+    prompt: 'What is the area of the region between y = x and y = x² for 0 ≤ x ≤ 1?',
+    choices: ['1/3', '1/6', '1/2', '5/6'],
+    answer: 1,
+    explanation: 'On [0, 1], x is above x², so the area is ∫₀¹ (x − x²) dx = 1/2 − 1/3 = 1/6. 1/3 is the area under y = x² alone.',
+    verify: 'exact',
+    solve: () => integrate(x => x - x * x, 0, 1),
+    reviewed: false,
+  },
+  {
+    id: 'calc-area-volume-002',
+    topic: 'area-volume',
+    difficulty: 2,
+    prompt: 'The region under y = √x for 0 ≤ x ≤ 4 is revolved about the x-axis. What is the volume of the solid?',
+    choices: ['16π/3', '4π', '8π', '16π'],
+    answer: 2,
+    explanation: 'Disks of radius √x give V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = 8π. 16π/3 integrates √x without squaring the radius and multiplies by π.',
+    verify: 'exact',
+    solve: () => Math.PI * integrate(x => Math.sqrt(x) ** 2, 0, 4),
+    reviewed: false,
+  },
+  {
+    id: 'calc-area-volume-003',
+    topic: 'area-volume',
+    difficulty: 3,
+    prompt: 'The region between y = x and y = x² for 0 ≤ x ≤ 1 is revolved about the x-axis. What is the volume of the solid?',
+    choices: ['π/6', '2π/15', 'π/30', 'π/15'],
+    answer: 1,
+    explanation: 'Washers: V = π∫₀¹ (x² − x⁴) dx = π(1/3 − 1/5) = 2π/15. π/30 squares the difference (x − x²)² instead of subtracting the squares, a common washer error.',
+    verify: 'exact',
+    solve: () => Math.PI * integrate(x => x * x - x ** 4, 0, 1),
+    reviewed: false,
+  },
+  {
+    id: 'calc-area-volume-004',
+    topic: 'area-volume',
+    difficulty: 2,
+    prompt: 'A solid\'s base is the triangle with vertices (0, 0), (2, 0) and (0, 2). Cross sections perpendicular to the x-axis are squares. What is the volume of the solid?',
+    choices: ['8/3', '4/3', '8', '2'],
+    answer: 0,
+    explanation: 'At x, the base runs from y = 0 up to the line y = 2 − x, so each square has side 2 − x. V = ∫₀² (2 − x)² dx = 8/3. 2 is the area of the base.',
+    verify: 'exact',
+    solve: () => integrate(x => (2 - x) ** 2, 0, 2),
+    reviewed: false,
+  },
+  {
+    id: 'calc-area-volume-005',
+    topic: 'area-volume',
+    onlyIn: 'calcbc',
+    difficulty: 3,
+    prompt: 'What is the arc length of y = (2/3)x^(3/2) from x = 0 to x = 3?',
+    choices: ['2√3', '16/3', '14/3', '2'],
+    answer: 2,
+    explanation: 'dy/dx = x^(1/2), so the length is ∫₀³ √(1 + x) dx = (2/3)(1 + x)^(3/2) from 0 to 3 = (2/3)(8 − 1) = 14/3. 16/3 forgets to subtract the value at x = 0.',
+    verify: 'exact',
+    solve: () => integrate(x => Math.sqrt(1 + x), 0, 3),
+    reviewed: false,
+  },
+];

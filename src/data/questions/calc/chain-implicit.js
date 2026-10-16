@@ -1,0 +1,82 @@
+// AP Calculus AB and BC, Unit 3: the chain rule, implicit differentiation and inverse functions.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+import { derivative, findRoot } from '../calcMath.js'
+
+export default [
+  {
+    id: 'calc-chain-implicit-001',
+    topic: 'chain-implicit',
+    difficulty: 1,
+    prompt: 'If f(x) = (3x² + 1)⁵, what is f\'(1)?',
+    choices: ['1280', '7680', '1024', '6144'],
+    answer: 1,
+    explanation: 'By the chain rule, f\'(x) = 5(3x² + 1)⁴ · 6x. At x = 1 that is 5(4)⁴(6) = 5 × 256 × 6 = 7680. 1280 forgets to multiply by the inner derivative 6x.',
+    verify: 'exact',
+    solve: () => derivative(x => (3 * x * x + 1) ** 5, 1),
+    reviewed: false,
+  },
+  {
+    id: 'calc-chain-implicit-002',
+    topic: 'chain-implicit',
+    difficulty: 2,
+    prompt: 'What is the derivative of ln(x² + 1) at x = 1?',
+    choices: ['1/2', 'ln 2', '2', '1'],
+    answer: 3,
+    explanation: 'The derivative of ln(u) is u\'/u, so the derivative is 2x/(x² + 1). At x = 1 that is 2/2 = 1. 1/2 leaves out the inner derivative 2x.',
+    verify: 'exact',
+    solve: () => derivative(x => Math.log(x * x + 1), 1),
+    reviewed: false,
+  },
+  {
+    id: 'calc-chain-implicit-003',
+    topic: 'chain-implicit',
+    difficulty: 2,
+    prompt: 'For the circle x² + y² = 25, what is dy/dx at the point (3, 4)?',
+    choices: ['−3/4', '3/4', '−4/3', '4/3'],
+    answer: 0,
+    explanation: 'Differentiating implicitly: 2x + 2y·(dy/dx) = 0, so dy/dx = −x/y = −3/4. −4/3 flips x and y, which is the slope of the radius\'s perpendicular, not the tangent.',
+    verify: 'exact',
+    // Near (3, 4) the circle is the top half, y = √(25 − x²).
+    solve: () => derivative(x => Math.sqrt(25 - x * x), 3),
+    reviewed: false,
+  },
+  {
+    id: 'calc-chain-implicit-004',
+    topic: 'chain-implicit',
+    difficulty: 3,
+    prompt: 'Let f(x) = x³ + x, and let g be the inverse function of f. What is g\'(2)?',
+    choices: ['4', '1/13', '1/4', '13'],
+    answer: 2,
+    explanation: 'f(1) = 2, so g(2) = 1. The derivative of an inverse is g\'(2) = 1/f\'(g(2)) = 1/f\'(1). Since f\'(x) = 3x² + 1, f\'(1) = 4 and g\'(2) = 1/4. 1/13 uses f\'(2) instead of f\'(1).',
+    verify: 'exact',
+    // g found numerically as the root of f(x) = y, then differentiated.
+    solve: () => derivative(y => findRoot(x => x ** 3 + x - y, -10, 10), 2),
+    tolerance: 1e-5,
+    reviewed: false,
+  },
+  {
+    id: 'calc-chain-implicit-005',
+    topic: 'chain-implicit',
+    difficulty: 2,
+    prompt: 'What is the derivative of arctan(2x) at x = 0?',
+    choices: ['1', '2', '1/2', '0'],
+    answer: 1,
+    explanation: 'The derivative of arctan(u) is u\'/(1 + u²), so the derivative is 2/(1 + 4x²). At x = 0 that is 2. 1 leaves out the chain rule factor of 2.',
+    verify: 'exact',
+    solve: () => derivative(x => Math.atan(2 * x), 0),
+    reviewed: false,
+  },
+  {
+    id: 'calc-chain-implicit-006',
+    topic: 'chain-implicit',
+    difficulty: 2,
+    prompt: 'What is the derivative of e^(sin x) at x = π?',
+    choices: ['1', 'e', '−1', '0'],
+    answer: 2,
+    explanation: 'By the chain rule, the derivative is e^(sin x) · cos x. At x = π, sin π = 0 and cos π = −1, so the derivative is e⁰(−1) = −1.',
+    verify: 'exact',
+    solve: () => derivative(x => Math.exp(Math.sin(x)), Math.PI),
+    reviewed: false,
+  },
+];

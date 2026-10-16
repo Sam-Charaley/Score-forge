@@ -4,7 +4,7 @@ import { useId } from 'react'
 // light and dark mode. Every figure carries `alt`, a full text description,
 // which screen readers read instead of the drawing.
 //
-// figure.type 'graph':  { xLabel, yLabel, xMax, xStep, yMin, yMax, yStep, series: [{ points: [[x, y], ...], label? }], alt }
+// figure.type 'graph':  { xLabel, yLabel, xMin = 0, xMax, xStep, yMin, yMax, yStep, series: [{ points: [[x, y], ...], label? }], alt }
 // figure.type 'forces': { object, forces: [{ label, value, angle }], alt }   (angle in degrees from +x, counterclockwise)
 
 const GRAPH = { width: 340, height: 238, left: 46, right: 16, top: 34, bottom: 38 };
@@ -31,14 +31,16 @@ function ticks(min, max, step) {
 
 function Graph({ figure, titleId }) {
   const { width, height, left, right, top, bottom } = GRAPH;
-  const { xMax, xStep, yMin, yMax, yStep } = figure;
+  const { xMin = 0, xMax, xStep, yMin, yMax, yStep } = figure;
   const plotW = width - left - right;
   const plotH = height - top - bottom;
-  const sx = x => left + (x / xMax) * plotW;
+  const sx = x => left + ((x - xMin) / (xMax - xMin)) * plotW;
   const sy = y => top + ((yMax - y) / (yMax - yMin)) * plotH;
-  const xTicks = ticks(0, xMax, xStep);
+  const xTicks = ticks(xMin, xMax, xStep);
   const yTicks = ticks(yMin, yMax, yStep);
   const zeroY = sy(Math.min(Math.max(0, yMin), yMax));
+  // The vertical axis sits at x = 0 when the graph spans it, else at the left edge.
+  const zeroX = sx(Math.min(Math.max(0, xMin), xMax));
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={titleId} className="q-figure-svg">
@@ -48,14 +50,14 @@ function Graph({ figure, titleId }) {
         {yTicks.map(y => <line key={`gy${y}`} x1={left} x2={left + plotW} y1={sy(y)} y2={sy(y)} />)}
       </g>
       <g className="fig-axis">
-        <line x1={left} x2={left} y1={top} y2={top + plotH} />
+        <line x1={zeroX} x2={zeroX} y1={top} y2={top + plotH} />
         <line x1={left} x2={left + plotW} y1={zeroY} y2={zeroY} />
       </g>
       <g className="fig-tick-label">
         {xTicks.map(x => <text key={`tx${x}`} x={sx(x)} y={top + plotH + 15} textAnchor="middle">{trimNumber(x)}</text>)}
         {yTicks.map(y => <text key={`ty${y}`} x={left - 7} y={sy(y) + 4} textAnchor="end">{trimNumber(y)}</text>)}
       </g>
-      <text className="fig-axis-label" x={left} y={top - 17} textAnchor="middle"><Label text={figure.yLabel} /></text>
+      <text className="fig-axis-label" x={zeroX} y={top - 17} textAnchor="middle"><Label text={figure.yLabel} /></text>
       <text className="fig-axis-label" x={left + plotW} y={height - 4} textAnchor="end"><Label text={figure.xLabel} /></text>
       {figure.series.map((s, i) => (
         <g key={i}>

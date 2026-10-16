@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import { Flag, PenLine, RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft } from 'lucide-react'
+import { Flag, PenLine, RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft, Calculator } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
 import EmptyState from '../components/ui/EmptyState'
@@ -249,6 +249,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
                 <span className="practice-topic">{topic?.name ?? question.topic}</span>
                 <span className="practice-tags">
                   {!question.reviewed && <span className="badge badge-pencil" title="Only visible in local development until reviewed">Draft {question.id}</span>}
+                  {question.calculator && <span className="badge badge-outline" title="Use a graphing calculator, as in the calculator part of the exam"><Calculator aria-hidden="true" />Calculator</span>}
                   <DifficultyPips difficulty={question.difficulty} />
                 </span>
               </div>
