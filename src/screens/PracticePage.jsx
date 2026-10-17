@@ -9,7 +9,7 @@ import { useQuestionBank } from '../hooks/useQuestionBank'
 import { pickNextQuestion, createVisibleTimer, choiceDisplayOrder } from '../utils/practice'
 import { pickSmartQuestion } from '../utils/priority'
 import { masteryLevel, chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
-import { missedQuestionIds, MISSED_SCOPE } from '../utils/progress'
+import { missedQuestionIds, reviewNote, MISSED_SCOPE } from '../utils/progress'
 import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyboard'
 import Tabs, { TabPanel } from '../components/ui/Tabs'
 import FrqPractice from '../components/FrqPractice'
@@ -291,7 +291,8 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
                   <p className="why">
                     <Sparkles aria-hidden="true" />
                     <span><b>Why this one:</b> {reason.topic.name} is about {percent(reason.weight)} of the exam
-                      {reason.attempts === 0 ? " and you haven't practiced it yet." : ` and you're at about ${percent(reason.chance)} on it.`}</span>
+                      {reason.attempts === 0 ? " and you haven't practiced it yet." : ` and you're at about ${percent(reason.chance)} on it`}
+                      {reason.attempts > 0 && (reason.dueForReview ? `, ${reviewNote(reason.daysSince)}.` : '.')}</span>
                   </p>
                 )}
                 <p className="prompt">{question.prompt}</p>

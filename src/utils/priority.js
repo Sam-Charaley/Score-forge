@@ -1,9 +1,10 @@
-// Phase 3: decide what to study next and estimate the AP score.
+// Decide what to study next and estimate the AP score.
 //
 // Every topic gets a share of the exam (its unit's College Board weight split
 // across the unit's topics) and an estimated chance of answering its
 // questions right. Priority is the share of the exam you're expected to lose
-// on that topic: weight x (1 - chance). Highest priority = most score per hour.
+// on that topic: weight x (1 - chance), with chance adjusted for time since
+// practice. Highest priority = most score per hour.
 
 import { expectedScore, questionRating, chanceOnMediumQuestion, ELO } from './mastery'
 
@@ -63,18 +64,65 @@ export function shrunkChance(stats) {
   return (attempts * raw + PRIOR_ATTEMPTS * PRIOR_CHANCE) / (attempts + PRIOR_ATTEMPTS);
 }
 
-// Topics that have questions, ranked by priority (highest first).
-export function rankTopics({ units, topics, questions, mastery }) {
+// Review spacing: a topic the student is good at but hasn't practiced in a
+// while has probably slipped. Its chance decays back toward 50% with this
+// half-life, so it climbs the priority list again.
+export const REVIEW_HALF_LIFE_DAYS = 21;
+// A practiced topic untouched this long is labeled "due for review".
+export const REVIEW_NOTICE_DAYS = 14;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+// Days since the topic was last practiced, or null if never (or no date).
+export function daysSinceLastPractice(stats, now) {
+  if (!stats?.lastAttemptAt) return null;
+  const ms = now.getTime() - new Date(stats.lastAttemptAt).getTime();
+  return Number.isFinite(ms) ? Math.max(0, ms / MS_PER_DAY) : null;
+}
+
+// The topic's chance as of `now`, for prioritizing only. Only a chance above
+// 50% decays: forgetting shouldn't make a weak topic look less urgent.
+// Mastery and the predicted score use the measured chance, so neither drops
+// just because time passed.
+export function recencyAdjustedChance(stats, now) {
+  const chance = shrunkChance(stats);
+  const days = daysSinceLastPractice(stats, now);
+  if (chance <= PRIOR_CHANCE || days === null) return chance;
+  return PRIOR_CHANCE + (chance - PRIOR_CHANCE) * 0.5 ** (days / REVIEW_HALF_LIFE_DAYS);
+}
+
+// Topics that have questions, ranked by priority (highest first). `chance` is
+// the measured level shown to the student; priority uses the review-adjusted one.
+export function rankTopics({ units, topics, questions, mastery, now = new Date() }) {
   const weights = topicExamWeights(units, topics);
   const topicsWithQuestions = new Set(questions.map(q => q.topic));
   return topics
     .filter(t => topicsWithQuestions.has(t.id))
     .map(t => {
       const stats = mastery.topics[t.id];
-      const chance = shrunkChance(stats);
-      return { topic: t, weight: weights[t.id], chance, attempts: stats?.attempts ?? 0, priority: weights[t.id] * (1 - chance) };
+      const daysSince = daysSinceLastPractice(stats, now);
+      return {
+        topic: t,
+        weight: weights[t.id],
+        chance: shrunkChance(stats),
+        attempts: stats?.attempts ?? 0,
+        daysSince,
+        dueForReview: daysSince !== null && daysSince >= REVIEW_NOTICE_DAYS,
+        priority: weights[t.id] * (1 - recencyAdjustedChance(stats, now)),
+      };
     })
     .sort((a, b) => b.priority - a.priority || a.topic.id.localeCompare(b.topic.id));
+}
+
+// The single topic to practice next across subjects. picks: { [subjectId]:
+// top-ranked row from rankTopics }. Priorities compare across subjects because
+// each is a share of that subject's exam expected to be lost.
+// Returns { subjectId, pick } or null.
+export function pickAcrossSubjects(picks) {
+  let best = null;
+  for (const [subjectId, pick] of Object.entries(picks)) {
+    if (pick && (!best || pick.priority > best.pick.priority)) best = { subjectId, pick };
+  }
+  return best;
 }
 
 function weightedRandom(items, weightOf, random) {
@@ -110,9 +158,9 @@ function pickQuestionInTopic(questions, attempts, topicRating, previousQuestionI
 // Smart practice: choose a topic in proportion to its priority (so weak,
 // heavily weighted topics come up most, but topics still interleave), then a
 // question at the target difficulty. Returns { question, reason } or null.
-export function pickSmartQuestion({ units, topics, questions, attempts, mastery, previousQuestionId = null, random = Math.random }) {
+export function pickSmartQuestion({ units, topics, questions, attempts, mastery, previousQuestionId = null, random = Math.random, now = new Date() }) {
   if (questions.length === 0) return null;
-  const ranked = rankTopics({ units, topics, questions, mastery });
+  const ranked = rankTopics({ units, topics, questions, mastery, now });
   const usable = ranked.filter(r => questions.some(q => q.topic === r.topic.id && (q.id !== previousQuestionId || questions.length === 1)));
   const chosen = weightedRandom(usable.length ? usable : ranked, r => r.priority, random);
   const inTopic = questions.filter(q => q.topic === chosen.topic.id);

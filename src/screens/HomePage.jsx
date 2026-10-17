@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { CalendarDays, CalendarCheck, Layers, Target, PenLine, Sparkles } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
@@ -9,8 +9,12 @@ import { hasQuestionBank } from '../data/questions/questionLoader'
 import { FLASHCARD_COUNTS } from '../data/flashcardCounts'
 import { EXAM_DATES_CONFIRMED } from '../data/subjectIndex'
 import { adaptPlanToWindow, getCurrentPhaseId, getExamCountdown, taskKey, allTaskRefs, pickFurthestBehind } from '../utils/planEngine'
+import { pickAcrossSubjects } from '../utils/priority'
+import { reviewNote } from '../utils/progress'
 
 const MORNING_ENDS_HOUR = 12
+// With one practice subject, the cross-subject pick would repeat its card.
+const MIN_SUBJECTS_FOR_PRACTICE_NEXT = 2
 const AFTERNOON_ENDS_HOUR = 18
 const URGENT_EXAM_DAYS = 14
 const SOON_EXAM_DAYS = 30
@@ -107,6 +111,24 @@ function FocusSheet({ subject, phase, phaseShare, reason, isBehind, hasPlan, che
   );
 }
 
+// The one topic, across every subject with a question bank, where practice
+// should gain the most score right now.
+function PracticeNext({ subject, pick, onPractice }) {
+  const detail = pick.attempts === 0
+    ? `About ${percent(pick.weight)} of the exam and not practiced yet.`
+    : `About ${percent(pick.weight)} of the exam, you're at ${percent(pick.chance)}${pick.dueForReview ? `, ${reviewNote(pick.daysSince)}` : ''}.`;
+  return (
+    <div className="callout home-setup" data-practice-next={subject.id}>
+      <Target aria-hidden="true" />
+      <span className="callout-title">Practice next: {pick.topic.name} ({subject.shortName})</span>
+      <div className="callout-body home-setup-body">
+        <span>{detail}</span>
+        <Button variant="secondary" size="small" icon={Sparkles} onClick={onPractice}>Smart practice</Button>
+      </div>
+    </div>
+  );
+}
+
 function StatCard({ label, value, detail, children }) {
   return (
     <div className="card stat-card">
@@ -145,6 +167,23 @@ function SubjectCard({ subject, plan, onNavigate }) {
 }
 
 export default function HomePage({ user, username, checked, mySubjects, planSettings, onNavigate, onToggleTask, onEditSubjects, onAdjustPlan }) {
+  // Each StudyNextCard reports its top topic here: { [subjectId]: row }.
+  const [topTopics, setTopTopics] = useState({});
+  const reportTopTopic = useCallback((subjectId, top) => {
+    setTopTopics(prev => {
+      const current = prev[subjectId] ?? null;
+      // Bail out on an unchanged report so the card's effect can't loop renders.
+      if (current?.topic.id === top?.topic.id && current?.priority === top?.priority) return prev;
+      const next = { ...prev };
+      if (top) next[subjectId] = top;
+      else delete next[subjectId];
+      return next;
+    });
+  }, []);
+  const practiceSubjects = mySubjects.filter(s => hasQuestionBank(s.id));
+  const practiceNext = practiceSubjects.length >= MIN_SUBJECTS_FOR_PRACTICE_NEXT ? pickAcrossSubjects(topTopics) : null;
+  const practiceNextSubject = practiceNext ? practiceSubjects.find(s => s.id === practiceNext.subjectId) : null;
+
   const subjectsWithProgress = mySubjects.map(s => {
     const refs = allTaskRefs(s);
     const done = refs.filter(ref => checked[taskKey(s.id, ref)]).length;
@@ -225,8 +264,12 @@ export default function HomePage({ user, username, checked, mySubjects, planSett
         </div>
       )}
 
-      {user && mySubjects.filter(s => hasQuestionBank(s.id)).map(s => (
-        <StudyNextCard key={s.id} user={user} subject={s} onPractice={() => onNavigate('practice', s.id)} />
+      {practiceNextSubject && (
+        <PracticeNext subject={practiceNextSubject} pick={practiceNext.pick} onPractice={() => onNavigate('practice', practiceNextSubject.id)} />
+      )}
+
+      {user && practiceSubjects.map(s => (
+        <StudyNextCard key={s.id} user={user} subject={s} onPractice={() => onNavigate('practice', s.id)} onTopTopic={reportTopTopic} />
       ))}
 
       <section aria-labelledby="subjects-title">

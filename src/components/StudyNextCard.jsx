@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { Lock, Check, Sparkles } from 'lucide-react'
 import Button from './ui/Button'
 import ProgressBar from './ui/ProgressBar'
@@ -8,7 +8,7 @@ import { usePracticeHistory } from '../hooks/usePracticeHistory'
 import { useFrqScores } from '../hooks/useFrqScores'
 import { hasFrqs } from '../data/frqs/frqLoader'
 import { rankTopics, predictApScore } from '../utils/priority'
-import { predictionBasis } from '../utils/progress'
+import { predictionBasis, reviewNote } from '../utils/progress'
 
 const TOP_TOPICS_SHOWN = 3;
 const percent = share => `${Math.round(share * 100)}%`;
@@ -54,7 +54,9 @@ function PredictionPanel({ prediction, frqLoadFailed }) {
 
 // "What to study next" for one subject with a question bank: the highest
 // priority topics (exam weight x chance of missing) and the score estimate.
-export default function StudyNextCard({ user, subject, onPractice }) {
+// onTopTopic(subjectId, row | null), optional: must be stable (useCallback),
+// or the report effect re-runs every render.
+export default function StudyNextCard({ user, subject, onPractice, onTopTopic }) {
   const bank = useQuestionBank(subject.id);
   const history = usePracticeHistory({ userId: user.id, subjectId: subject.id, onSaveError: ignoreSaveErrors });
   const frq = useFrqScores(user.id, subject.id, { enabled: hasFrqs(subject.id) });
@@ -68,6 +70,16 @@ export default function StudyNextCard({ user, subject, onPractice }) {
       prediction: predictApScore({ ...input, exam: bank.exam, frqAttempts: frq.attempts }),
     };
   }, [bank, history.attempts, history.mastery, frq.status, frq.attempts]);
+
+  // Report this subject's top topic to Home's cross-subject pick. Keyed on the
+  // topic and its priority, not the row object, so a re-render with the same
+  // ranking reports nothing. Unmounting withdraws the report.
+  const top = insight?.ranked[0] ?? null;
+  useEffect(() => {
+    if (!onTopTopic) return undefined;
+    onTopTopic(subject.id, top);
+    return () => onTopTopic(subject.id, null);
+  }, [onTopTopic, subject.id, top?.topic.id, top?.priority]);
 
   // Nothing useful to say until the bank and history are in (or if there are no reviewed questions).
   if (!insight) return null;
@@ -90,6 +102,7 @@ export default function StudyNextCard({ user, subject, onPractice }) {
               <span className="rank-name">{r.topic.name}</span>
               <span className="rank-meta">
                 about {percent(r.weight)} of the exam, {r.attempts === 0 ? 'not practiced yet' : `you're at ${percent(r.chance)}`}
+                {r.dueForReview && `, ${reviewNote(r.daysSince)}`}
               </span>
               <ProgressBar share={r.priority / topPriority} color={i === 0 ? 'var(--red-pen)' : undefined} thin className="rank-bar" label={`${r.topic.name} priority`} />
             </li>

@@ -63,6 +63,12 @@ export function predictionBasis(prediction, { frqLoadFailed = false } = {}) {
   return 'Free response estimated from multiple choice.';
 }
 
+// Why a ranked topic is up for review, for a topic with dueForReview set.
+export function reviewNote(daysSince) {
+  const days = Math.floor(daysSince);
+  return `due for review, last practiced ${days} day${days === 1 ? '' : 's'} ago`;
+}
+
 // Accuracy and typical time for each difficulty level.
 export function byDifficulty(attempts) {
   return Object.entries(DIFFICULTY_NAMES).map(([level, name]) => {

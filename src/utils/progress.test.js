@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { dailyProgress, byDifficulty, topicMap, missedQuestionIds, recentlyMissed, frqScores, predictionBasis, MIN_ANSWERS_FOR_RATE } from './progress'
+import { dailyProgress, byDifficulty, topicMap, missedQuestionIds, recentlyMissed, frqScores, predictionBasis, reviewNote, MIN_ANSWERS_FOR_RATE } from './progress'
 import { computeMastery } from './mastery'
 import { PREDICTION_MIN_ATTEMPTS } from './priority'
 
@@ -103,5 +103,12 @@ describe('frqScores', () => {
     ]);
     expect(scores.get('f1')).toMatchObject({ tries: 3, best: { points_earned: 6 }, latest: { points_earned: 5 } });
     expect(scores.get('f2').best.points_earned).toBe(2);
+  });
+});
+
+describe('reviewNote', () => {
+  it('counts whole days since practice', () => {
+    expect(reviewNote(1.7)).toBe('due for review, last practiced 1 day ago');
+    expect(reviewNote(20.2)).toBe('due for review, last practiced 20 days ago');
   });
 });

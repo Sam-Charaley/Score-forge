@@ -3,7 +3,9 @@ import { CSA_UNITS, CSA_TOPICS, CSA_EXAM } from '../data/questions/csa/topics'
 import { computeMastery, ELO } from './mastery'
 import {
   weightRangeMidpoint, topicExamWeights, shrunkChance, rankTopics, pickSmartQuestion, predictApScore, latestFrqShares,
-  PRIOR_ATTEMPTS, TARGET_SUCCESS, PREDICTION_MIN_ATTEMPTS, FRQ_PRIOR_ATTEMPTS,
+  recencyAdjustedChance, daysSinceLastPractice, pickAcrossSubjects,
+  PRIOR_ATTEMPTS, TARGET_SUCCESS, PREDICTION_MIN_ATTEMPTS, FRQ_PRIOR_ATTEMPTS, PRIOR_CHANCE,
+  REVIEW_HALF_LIFE_DAYS, REVIEW_NOTICE_DAYS,
 } from './priority'
 
 const units = CSA_UNITS, topics = CSA_TOPICS, exam = CSA_EXAM;
@@ -186,4 +188,59 @@ describe('latestFrqShares', () => {
   it('skips rows with no possible points', () => {
     expect(latestFrqShares([{ frq_id: 'a', points_earned: 0, points_possible: 0 }])).toEqual([]);
   });
+});
+
+describe('review spacing', () => {
+  const now = new Date(2026, 9, 31, 12);
+  const daysAgo = days => new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString();
+  // Ten right answers on one topic, all on the same past day.
+  const strongOn = when => computeMastery([...Array(10)].map((_, i) => ({ ...attempt(`l${i}`, 'loops', true), created_at: when }))).topics.loops;
+  const weakOn = when => computeMastery([...Array(10)].map((_, i) => ({ ...attempt(`l${i}`, 'loops', false), created_at: when }))).topics.loops;
+
+  it('counts days since the last attempt, and null when there is none', () => {
+    expect(daysSinceLastPractice(strongOn(daysAgo(3)), now)).toBeCloseTo(3);
+    expect(daysSinceLastPractice(undefined, now)).toBeNull();
+  });
+
+  it("leaves a topic practiced today where it is", () => {
+    const stats = strongOn(now.toISOString());
+    expect(recencyAdjustedChance(stats, now)).toBeCloseTo(shrunkChance(stats));
+  });
+
+  it('halves the lead over 50% every half-life', () => {
+    const stats = strongOn(daysAgo(REVIEW_HALF_LIFE_DAYS));
+    const lead = shrunkChance(stats) - PRIOR_CHANCE;
+    expect(lead).toBeGreaterThan(0);
+    expect(recencyAdjustedChance(stats, now)).toBeCloseTo(PRIOR_CHANCE + lead / 2);
+  });
+
+  it('never makes a weak topic look stronger with time', () => {
+    const stats = weakOn(daysAgo(60));
+    expect(recencyAdjustedChance(stats, now)).toBe(shrunkChance(stats));
+  });
+
+  it('raises the priority of a stale strong topic but keeps showing its measured chance', () => {
+    const questions = [q('l1', 'loops')];
+    const fresh = rankTopics({ units, topics, questions, mastery: { topics: { loops: strongOn(now.toISOString()) } }, now })[0];
+    const stale = rankTopics({ units, topics, questions, mastery: { topics: { loops: strongOn(daysAgo(42)) } }, now })[0];
+    expect(stale.priority).toBeGreaterThan(fresh.priority);
+    expect(stale.chance).toBeCloseTo(fresh.chance);
+  });
+
+  it('labels a topic due for review only after the notice period', () => {
+    const questions = [q('l1', 'loops')];
+    const rank = days => rankTopics({ units, topics, questions, mastery: { topics: { loops: strongOn(daysAgo(days)) } }, now })[0];
+    expect(rank(REVIEW_NOTICE_DAYS - 1).dueForReview).toBe(false);
+    expect(rank(REVIEW_NOTICE_DAYS).dueForReview).toBe(true);
+    expect(rankTopics({ units, topics, questions, mastery: { topics: {} }, now })[0].dueForReview).toBe(false);
+  });
+});
+
+describe('pickAcrossSubjects', () => {
+  it('picks the highest priority across subjects and skips withdrawn reports', () => {
+    const row = (id, priority) => ({ topic: { id }, priority });
+    expect(pickAcrossSubjects({ csa: row('loops', 0.04), psych: row('memory', 0.07), chem: null }))
+      .toEqual({ subjectId: 'psych', pick: row('memory', 0.07) });
+  });
+  it('is null with nothing reported', () => expect(pickAcrossSubjects({})).toBeNull());
 });
