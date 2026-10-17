@@ -21,7 +21,7 @@ Depth over breadth: **AP Computer Science A is the flagship subject** with the f
 - Local path: `~/Downloads/Scoreforge/score-forge` (patch and mbox files live one level up in `~/Downloads/Scoreforge`)
 - Live app: https://scoreforgeapp.vercel.app
 - Landing site (separate project, folder `score-forge-landing`): https://scoreforgelanding.vercel.app
-- PWA via a lightweight custom `sw.js` that must never intercept localhost or Supabase requests
+- PWA via a lightweight custom `sw.js` that must never intercept localhost or Supabase requests. It is currently pass-through: no fetch handler, no caching, and it deletes every cache on activate.
 - Node >= 22.12.0 (`engines` in `package.json`)
 
 ## Commands
@@ -46,7 +46,7 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 ### `src/screens/` (one per destination)
 - `AuthPage`: sign in and sign up (email, password, username)
 - `SubjectPicker`: choose subjects and plan length
-- `HomePage`: dashboard, Today's Focus, next exam, Study next cards
+- `HomePage`: dashboard, Today's Focus, next exam, a cross-subject Practice next line (two or more banked subjects), Study next cards
 - `StudyPage`: weekly plan, task ticks, week notes
 - `AdjustPlanPage`: change plan length and start date
 - `PracticePage`: multiple choice practice (Smart, Missed, Formula drill scopes) and FRQ mode
@@ -57,7 +57,7 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 - `AppShell`: header, main nav (`NAV_ITEMS`) and phone tab bar around every signed-in screen
 - `LoadingScreen`, `LoadErrorScreen`, `SaveErrorBanner`, `ScreenErrorBoundary`: loading and failure states
 - `FeedbackDialog`: in-app feedback form
-- `StudyNextCard`: highest-priority topics and score estimate for one subject
+- `StudyNextCard`: highest-priority topics and score estimate for one subject. Reports its top topic to HomePage through `onTopTopic` (must be a stable callback).
 - `FrqPractice`: write code for an FRQ, then self-check against the rubric
 - `QuestionFigure`: draws graph and force-diagram figures from question data
 - `FormulaChips`, `MathTex`: formula display; KaTeX loads on demand
@@ -66,7 +66,8 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 
 ### `src/hooks/`
 - `useUserData`: owns the signed-in user and everything loaded for them from Supabase. Screens read from it; App decides routing.
-- Content loaders: `useSubjectContent`, `useQuestionBank`, `useFlashcardDeck`, `useFormulaSheet`, `useFrqSet`
+- Content loaders: `useSubjectContent`, `useQuestionBank` (questions, units, topics, exam model), `useFlashcardDeck`, `useFormulaSheet`, `useFrqSet`
+- `useFrqScores`: FRQ self-check scores only (no saved code), for the predicted score
 - `usePracticeHistory`: a student's attempts for one subject plus mastery rebuilt from them, with optimistic writes rolled back on failure
 - `useWeekNote`: debounced autosave for week notes
 - Layout helpers: `useElementWidth`, `useCenterActiveChild`
@@ -80,15 +81,16 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 ### `src/utils/` (pure logic, mostly tested)
 - `planEngine.js`: study plan logic, local-date helpers, `getExamCountdown()`
 - `mastery.js`: Elo-style topic ratings rebuilt from attempt history
-- `priority.js`: topic priority (exam weight x chance of missing) and AP score estimate
-- `practice.js`: next-question choice
-- `progress.js`: numbers for the Progress page
+- `priority.js`: topic priority (exam weight x chance of missing, with review spacing), Smart question pick, cross-subject pick, and the AP score estimate (MCQ and FRQ blended by section weight, mapped through the subject's cut points)
+- `practice.js`: next-question choice for every scope except Smart
+- `progress.js`: numbers for the Progress page, plus shared copy for the score basis and review notes
 - `formulaDrill.js`, `formulaLinks.js`, `formulaSearch.js`, `texParts.js`, `keyboard.js`
 
 ### `src/data/` (content, all in the repo)
 - `subjectIndex.js`: metadata for all 30 subjects (name, color, code, exam date). Single source of truth for exam dates.
 - `subjects/<id>.js`: each subject's weekly plan, resources, FRQ prompts and exam tips, loaded on demand by `subjectLoader.js`. World language plans share weeks from `worldLanguages/project.js`.
 - `questions/<folder>/<topic>.js` plus `topics.js` per subject, loaded by `questionLoader.js`. Banks exist for CS A, Psychology, Physics 1, Chemistry, Calculus AB and BC (AB and BC share `questions/calc/`). Only questions with `reviewed: true` ship to production.
+- Each bank's `topics.js` also exports `exam`: section weights (`mcq`, `frq`) and estimated cut points for the predicted score, with a `source` note. A bank without one shows no score (`questions.test.js` requires it).
 - `frqs/csa.js`: CS A free-response set, same `reviewed` gate
 - `flashcards/<id>.js`: one deck per subject. `flashcardCounts.js` must match the decks (tested).
 - `formulas/<id>.js`: formula sheets for 14 subjects; files starting with `_` are shared sections, not sheets
@@ -109,8 +111,8 @@ Phased plan (Oct 2026):
 1. Cleanup (done)
 2. Split monolithic `App.jsx` into modules (done)
 3. CS A question bank + attempt logging (done: `questions/csa/`, `attempts` table, `services/attempts.js`)
-4. Adaptive engine (done: `mastery.js`, `priority.js`, `practice.js`)
-5. Dashboard (done: `ProgressPage`, `StudyNextCard` on Home)
+4. Adaptive engine (done: `mastery.js`, `priority.js`, `practice.js`; review spacing and the Home Practice next pick added Oct 2026)
+5. Dashboard (done: `ProgressPage`, `StudyNextCard` on Home; per-subject cut points and FRQ blend added Oct 2026)
 
 Decisions already made:
 - Mastery model: Elo-style
@@ -121,16 +123,20 @@ Decisions already made:
 - Outdated study plans are being rewritten in phases: Physics 1, Physics 2, then Spanish / French / Chinese / Japanese (all done). Rewritten plans start fresh with new week ids; old progress is not carried over. Retired week ids are listed in `RETIRED_WEEK_IDS` in `src/data/subjects.test.js`; add to it on any future rewrite.
 - **Formulas** nav tab covering every AP subject with formulas, rendered with KaTeX (done). Each formula shows its variables, a note, and whether it is given on the exam or must be memorized.
 - Auth for the localStorage to Supabase migration: Option B, a real email field at signup with email confirmation (done; the app no longer uses localStorage).
+- Predicted score: each subject maps through its own cut points. CS A keeps its original estimate; Psych, Physics 1, Chemistry and Calculus AB/BC cuts are drafts Sam accepted for now and may revise.
+- Predicted score blends MCQ and FRQ by the exam's section weights. FRQ uses the latest self-check per FRQ, pulled toward the MCQ level; with none, the FRQ part is borrowed from MCQ with a wider range.
+- Review spacing: for prioritizing only, a topic's chance above 50% decays toward 50% with a 21-day half-life. Weak topics never decay. Mastery and the predicted score use the measured chance. Topics untouched 14 days show "due for review".
+- Home keeps the plan-based Today's Focus and adds one Practice next line from the engine. Not weighted by exam date, and answer time is not used by the engine. Question difficulty calibration is deferred until there is cross-student data.
 
 Open questions (ask Sam, do not decide silently):
-- Mobile blank screen caused by a stale service worker cache. Note: `sw.js` answers same-origin GETs cache-first from any cache but never writes to one, and its `activate` handler does not delete old caches.
+- Mobile blank screen caused by a stale service worker cache. `sw.js` was made pass-through in Oct 2026 (commit `3083cbe`: no caching, old caches deleted on activate). Still open until Sam confirms on a real phone that the blank screen is gone.
 
 ## Known hazards
 
 - **Scroll trap**: `height: 100vh` + `justifyContent: center` + `overflowY: auto` on the same container blocks scrolling to content above the midpoint. Fix: remove centering from the scroll container and put `margin: 0 auto` on the inner content. Never reintroduce this pattern.
 - **Never replace whole folders.** Copying a generated `src/` over the real one once deleted 13 files. Change only the specific files involved.
 - **Large content generation truncates or corrupts.** Generate one or a few subjects at a time, and extend existing content instead of regenerating it.
-- **Service worker**: any change to caching must keep localhost and Supabase requests out of the cache, and should bump the cache version so clients pick up new builds.
+- **Service worker**: any change to caching must keep localhost and Supabase requests out of the cache, and should bump `SW_VERSION` in `sw.js` so clients pick up new builds.
 
 ## Git and deploys
 
