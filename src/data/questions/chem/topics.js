@@ -44,4 +44,21 @@ export const ATOMIC_MASS = { H: 1.008, C: 12.01, N: 14.01, O: 16.00, Na: 22.99, 
 // Molar mass from a { symbol: count } map, e.g. molarMass({ H: 2, O: 1 }).
 export const molarMass = formula => Object.entries(formula).reduce((sum, [symbol, count]) => sum + ATOMIC_MASS[symbol] * count, 0);
 
-export default { units: CHEM_UNITS, topics: CHEM_TOPICS };
+// How the predicted AP score is built (see predictApScore in utils/priority.js).
+// Section weights: 60 multiple-choice questions and 7 free response, 50% each
+// (College Board course page).
+// Cut points are shares of the maximum composite score. College Board does
+// not publish them. DRAFT: approximated from released scoring worksheets.
+export const CHEM_EXAM = {
+  sections: { mcq: 0.5, frq: 0.5 },
+  cuts: [
+    { score: 5, minShare: 0.72 },
+    { score: 4, minShare: 0.58 },
+    { score: 3, minShare: 0.42 },
+    { score: 2, minShare: 0.28 },
+    { score: 1, minShare: 0 },
+  ],
+  source: 'DRAFT estimate, needs Sam review: released AP Chemistry scoring worksheets.',
+};
+
+export default { units: CHEM_UNITS, topics: CHEM_TOPICS, exam: CHEM_EXAM };

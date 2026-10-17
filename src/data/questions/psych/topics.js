@@ -29,4 +29,22 @@ export const PSYCH_TOPICS = [
   { id: 'treatment', unit: 'u5', name: 'Treatment of Disorders' },
 ];
 
-export default { units: PSYCH_UNITS, topics: PSYCH_TOPICS };
+// How the predicted AP score is built (see predictApScore in utils/priority.js).
+// Section weights: 75 multiple-choice questions are two thirds of the score,
+// 2 free response one third (College Board course page, 2025 exam).
+// Cut points are shares of the maximum composite score. College Board does
+// not publish them. DRAFT: approximated from scoring worksheets for released
+// exams of the previous course, which may not match the redesigned exam.
+export const PSYCH_EXAM = {
+  sections: { mcq: 2 / 3, frq: 1 / 3 },
+  cuts: [
+    { score: 5, minShare: 0.75 },
+    { score: 4, minShare: 0.62 },
+    { score: 3, minShare: 0.51 },
+    { score: 2, minShare: 0.43 },
+    { score: 1, minShare: 0 },
+  ],
+  source: 'DRAFT estimate, needs Sam review: released AP Psychology scoring worksheets (pre-2025 course).',
+};
+
+export default { units: PSYCH_UNITS, topics: PSYCH_TOPICS, exam: PSYCH_EXAM };

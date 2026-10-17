@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { dailyProgress, byDifficulty, topicMap, missedQuestionIds, recentlyMissed, frqScores, MIN_ANSWERS_FOR_RATE } from './progress'
+import { dailyProgress, byDifficulty, topicMap, missedQuestionIds, recentlyMissed, frqScores, predictionBasis, MIN_ANSWERS_FOR_RATE } from './progress'
 import { computeMastery } from './mastery'
+import { PREDICTION_MIN_ATTEMPTS } from './priority'
 
 const units = [{ id: 'u1', name: 'One', weight: '40–60%' }, { id: 'u2', name: 'Two', weight: '40–60%' }];
 const topics = [{ id: 'a', unit: 'u1', name: 'A' }, { id: 'b', unit: 'u2', name: 'B' }, { id: 'c', unit: 'u2', name: 'C' }];
@@ -29,6 +30,28 @@ describe('dailyProgress', () => {
     expect(days[0].predictedScore).toBeNull();
   });
   it('is empty with no attempts', () => expect(dailyProgress([], bank)).toEqual([]));
+
+  it("counts only the FRQ self-checks saved by each day's end", () => {
+    // Half the score is FRQ, and a 5 needs 60% overall: strong multiple choice
+    // alone clears it, a zero on a self-check pulls it under.
+    const exam = { sections: { mcq: 0.5, frq: 0.5 }, cuts: [{ score: 5, minShare: 0.6 }, { score: 1, minShare: 0 }] };
+    const strongDay = Array.from({ length: PREDICTION_MIN_ATTEMPTS }, (_, i) => attempt(`q${i % 3 + 1}`, ['a', 'b', 'c'][i % 3], 2, true, at(10, 9)));
+    const attempts = [...strongDay, attempt('q1', 'a', 2, true, at(12, 9))];
+    const frqAttempts = [{ frq_id: 'f1', points_earned: 0, points_possible: 9, created_at: at(11, 9) }];
+    const days = dailyProgress(attempts, { ...bank, exam }, frqAttempts);
+    expect(days.map(d => d.predictedScore)).toEqual([5, 1]);
+  });
+});
+
+describe('predictionBasis', () => {
+  it('names the self-checks when there are some', () => {
+    expect(predictionBasis({ frqCount: 1 })).toBe('Multiple choice plus 1 free-response self-check.');
+    expect(predictionBasis({ frqCount: 3 })).toBe('Multiple choice plus 3 free-response self-checks.');
+  });
+  it('says the FRQ part is borrowed, and why when loading failed', () => {
+    expect(predictionBasis({ frqCount: 0 })).toBe('Free response estimated from multiple choice.');
+    expect(predictionBasis({ frqCount: 0 }, { frqLoadFailed: true })).toMatch(/couldn't load/);
+  });
 });
 
 describe('byDifficulty', () => {

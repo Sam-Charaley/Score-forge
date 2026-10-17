@@ -24,7 +24,11 @@ function median(values) {
 
 // One point per day with practice: where the student stood at the end of it.
 // attempts must be oldest first, as the history hook keeps them.
-export function dailyProgress(attempts, bank) {
+// Each day's predicted score counts only the FRQ self-checks saved by the end
+// of that day, so the history matches what the student saw at the time.
+// Rebuilds mastery once per practice day: quadratic in history length, which
+// is fine at a few thousand answers.
+export function dailyProgress(attempts, bank, frqAttempts = []) {
   const days = [];
   let upTo = 0;
   while (upTo < attempts.length) {
@@ -33,7 +37,8 @@ export function dailyProgress(attempts, bank) {
     while (end < attempts.length && dayOf(attempts[end]) === day) end++;
     const todays = attempts.slice(upTo, end);
     const mastery = computeMastery(attempts.slice(0, end));
-    const prediction = predictApScore({ ...bank, mastery });
+    const frqSoFar = frqAttempts.filter(a => dayOf(a) <= day);
+    const prediction = predictApScore({ ...bank, mastery, frqAttempts: frqSoFar });
     days.push({
       day,
       answered: todays.length,
@@ -45,6 +50,17 @@ export function dailyProgress(attempts, bank) {
     upTo = end;
   }
   return days;
+}
+
+// One sentence on what a ready prediction is built from, so a student can
+// tell a score backed by FRQ self-checks from one that borrows the FRQ part
+// from multiple choice. frqLoadFailed: the self-checks couldn't be loaded.
+export function predictionBasis(prediction, { frqLoadFailed = false } = {}) {
+  if (prediction.frqCount > 0) {
+    return `Multiple choice plus ${prediction.frqCount} free-response self-check${prediction.frqCount === 1 ? '' : 's'}.`;
+  }
+  if (frqLoadFailed) return "Free response estimated from multiple choice (couldn't load your self-checks).";
+  return 'Free response estimated from multiple choice.';
 }
 
 // Accuracy and typical time for each difficulty level.

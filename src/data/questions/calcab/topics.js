@@ -28,4 +28,21 @@ export const CALC_SHARED_TOPICS = [
   { id: 'average-value-motion', unit: 'u8', name: 'Average Value & Motion with Integrals' },
 ];
 
-export default { units: CALCAB_UNITS, topics: CALC_SHARED_TOPICS };
+// How the predicted AP score is built (see predictApScore in utils/priority.js).
+// Section weights: 45 multiple-choice questions and 6 free response, 50% each
+// (College Board course page).
+// Cut points are shares of the maximum composite score. College Board does
+// not publish them. DRAFT: approximated from released scoring worksheets.
+export const CALCAB_EXAM = {
+  sections: { mcq: 0.5, frq: 0.5 },
+  cuts: [
+    { score: 5, minShare: 0.62 },
+    { score: 4, minShare: 0.48 },
+    { score: 3, minShare: 0.37 },
+    { score: 2, minShare: 0.26 },
+    { score: 1, minShare: 0 },
+  ],
+  source: 'DRAFT estimate, needs Sam review: released AP Calculus AB scoring worksheets.',
+};
+
+export default { units: CALCAB_UNITS, topics: CALC_SHARED_TOPICS, exam: CALCAB_EXAM };

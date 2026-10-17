@@ -34,4 +34,22 @@ export const PHYS1_TOPICS = [
 // use it so a recomputed key matches what a student gets with the sheet.
 export const G = 9.8;
 
-export default { units: PHYS1_UNITS, topics: PHYS1_TOPICS };
+// How the predicted AP score is built (see predictApScore in utils/priority.js).
+// Section weights: 40 multiple-choice questions and 4 free response, 50% each
+// (College Board course page, 2025 exam).
+// Cut points are shares of the maximum composite score. College Board does
+// not publish them. DRAFT: approximated from scoring worksheets for released
+// exams of the previous course, which may not match the revised exam.
+export const PHYS1_EXAM = {
+  sections: { mcq: 0.5, frq: 0.5 },
+  cuts: [
+    { score: 5, minShare: 0.7 },
+    { score: 4, minShare: 0.55 },
+    { score: 3, minShare: 0.4 },
+    { score: 2, minShare: 0.27 },
+    { score: 1, minShare: 0 },
+  ],
+  source: 'DRAFT estimate, needs Sam review: released AP Physics 1 scoring worksheets (pre-2025 course).',
+};
+
+export default { units: PHYS1_UNITS, topics: PHYS1_TOPICS, exam: PHYS1_EXAM };

@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
-import { CSA_UNITS, CSA_TOPICS } from '../data/questions/csa/topics'
+import { CSA_UNITS, CSA_TOPICS, CSA_EXAM } from '../data/questions/csa/topics'
 import { computeMastery, ELO } from './mastery'
 import {
-  weightRangeMidpoint, topicExamWeights, shrunkChance, rankTopics, pickSmartQuestion, predictApScore,
-  PRIOR_ATTEMPTS, TARGET_SUCCESS, PREDICTION_MIN_ATTEMPTS, ESTIMATED_AP_CUTS,
+  weightRangeMidpoint, topicExamWeights, shrunkChance, rankTopics, pickSmartQuestion, predictApScore, latestFrqShares,
+  PRIOR_ATTEMPTS, TARGET_SUCCESS, PREDICTION_MIN_ATTEMPTS, FRQ_PRIOR_ATTEMPTS,
 } from './priority'
 
-const units = CSA_UNITS, topics = CSA_TOPICS;
+const units = CSA_UNITS, topics = CSA_TOPICS, exam = CSA_EXAM;
 const q = (id, topic, difficulty = 2) => ({ id, topic, difficulty });
 const attempt = (question_id, topic_id, correct, difficulty = 2) => ({ question_id, topic_id, correct, difficulty });
 const seq = values => { let i = 0; return () => values[i++ % values.length]; };
@@ -107,32 +107,83 @@ describe('pickSmartQuestion', () => {
 
 describe('predictApScore', () => {
   const twoTopics = [q('l1', 'loops'), q('a1', 'arraylist')];
+  const allTopics = topics.map(t => q(`${t.id}-1`, t.id));
+  // Every topic answered 6 times, two thirds right: ready, a little above 50%.
+  const history = topics.flatMap(t => [...Array(6)].map((_, i) => attempt(`${t.id}-${i}`, t.id, i % 3 !== 0)));
+  const readyInput = { units, topics, questions: allTopics, mastery: computeMastery(history), exam };
+  const frq = (frq_id, points_earned, points_possible = 9) => ({ frq_id, points_earned, points_possible });
+
   it('stays hidden with low coverage, and says what is missing', () => {
-    const result = predictApScore({ units, topics, questions: twoTopics, mastery: computeMastery([]) });
+    const result = predictApScore({ units, topics, questions: twoTopics, mastery: computeMastery([]), exam });
     expect(result.ready).toBe(false);
     expect(result.coverage).toBeCloseTo(0.30 / 0.99 / 4 + 0.35 / 0.99 / 5);
   });
 
   it('stays hidden with enough coverage but too few answers', () => {
-    const allTopics = topics.map(t => q(`${t.id}-1`, t.id));
-    const result = predictApScore({ units, topics, questions: allTopics, mastery: computeMastery([]) });
+    const result = predictApScore({ units, topics, questions: allTopics, mastery: computeMastery([]), exam });
     expect(result.ready).toBe(false);
     expect(result.coverage).toBeCloseTo(1);
   });
 
+  it('is unavailable without an exam model, whatever the practice', () => {
+    expect(predictApScore({ ...readyInput, exam: undefined })).toEqual({ ready: false, unavailable: true });
+  });
+
   it('gives a range that contains the likely score once ready', () => {
-    const allTopics = topics.map(t => q(`${t.id}-1`, t.id));
-    const history = topics.flatMap(t => [...Array(6)].map((_, i) => attempt(`${t.id}-${i}`, t.id, i % 3 !== 0)));
     expect(history.length).toBeGreaterThanOrEqual(PREDICTION_MIN_ATTEMPTS);
-    const result = predictApScore({ units, topics, questions: allTopics, mastery: computeMastery(history) });
+    const result = predictApScore(readyInput);
     expect(result.ready).toBe(true);
     expect(result.lowScore).toBeLessThanOrEqual(result.likelyScore);
     expect(result.highScore).toBeGreaterThanOrEqual(result.likelyScore);
     expect(result.expectedShare).toBeGreaterThan(0.5);
   });
 
-  it('maps cut points in order from 5 down to 1', () => {
-    expect(ESTIMATED_AP_CUTS.map(c => c.score)).toEqual([5, 4, 3, 2, 1]);
-    expect(ESTIMATED_AP_CUTS.at(-1).minShare).toBe(0);
+  it("maps the same practice through each subject's own cut points", () => {
+    const share = predictApScore(readyInput).expectedShare;
+    const lenient = { ...exam, cuts: [{ score: 5, minShare: share - 0.01 }, { score: 1, minShare: 0 }] };
+    const strict = { ...exam, cuts: [{ score: 5, minShare: share + 0.01 }, { score: 1, minShare: 0 }] };
+    expect(predictApScore({ ...readyInput, exam: lenient }).likelyScore).toBe(5);
+    expect(predictApScore({ ...readyInput, exam: strict }).likelyScore).toBe(1);
+  });
+
+  it('borrows the FRQ share from multiple choice when there are no self-checks, with a wider range', () => {
+    const result = predictApScore(readyInput);
+    expect(result.frqCount).toBe(0);
+    expect(result.frqShare).toBeCloseTo(result.mcqShare);
+    expect(result.expectedShare).toBeCloseTo(result.mcqShare);
+    const noProxy = predictApScore({ ...readyInput, exam: { ...exam, sections: { mcq: 1, frq: 0 } } });
+    const span = r => r.highScore - r.lowScore;
+    expect(span(result)).toBeGreaterThanOrEqual(span(noProxy));
+  });
+
+  it('blends FRQ self-checks by section weight, pulled toward the multiple-choice level', () => {
+    const base = predictApScore(readyInput);
+    const result = predictApScore({ ...readyInput, frqAttempts: [frq('f1', 9), frq('f2', 9)] });
+    const expectedFrq = (2 * 1 + FRQ_PRIOR_ATTEMPTS * base.mcqShare) / (2 + FRQ_PRIOR_ATTEMPTS);
+    expect(result.frqCount).toBe(2);
+    expect(result.frqShare).toBeCloseTo(expectedFrq);
+    expect(result.expectedShare).toBeCloseTo(exam.sections.mcq * base.mcqShare + exam.sections.frq * expectedFrq);
+    expect(result.expectedShare).toBeGreaterThan(base.expectedShare);
+  });
+
+  it('keeps the readiness rules: FRQs alone never unlock a score', () => {
+    const result = predictApScore({ units, topics, questions: allTopics, mastery: computeMastery([]), exam, frqAttempts: [frq('f1', 9)] });
+    expect(result.ready).toBe(false);
+  });
+});
+
+describe('latestFrqShares', () => {
+  it('uses the latest self-check per FRQ, not the best', () => {
+    const shares = latestFrqShares([
+      { frq_id: 'a', points_earned: 9, points_possible: 9 },
+      { frq_id: 'b', points_earned: 3, points_possible: 6 },
+      { frq_id: 'a', points_earned: 3, points_possible: 9 },
+    ]);
+    expect(shares).toHaveLength(2);
+    expect(shares[0]).toBeCloseTo(1 / 3);
+    expect(shares[1]).toBeCloseTo(0.5);
+  });
+  it('skips rows with no possible points', () => {
+    expect(latestFrqShares([{ frq_id: 'a', points_earned: 0, points_possible: 0 }])).toEqual([]);
   });
 });

@@ -27,16 +27,16 @@ const PREDICTION_Z = 1.645;
 // Spread for a topic with no data: a uniform guess between 0 and 1.
 const UNKNOWN_TOPIC_SD = Math.sqrt(1 / 12);
 
-// Estimated AP CS A cut points as a share of the maximum composite score.
-// College Board does not publish official cut points; these approximate
-// past released scoring guidance and are only good for a rough range.
-export const ESTIMATED_AP_CUTS = [
-  { score: 5, minShare: 0.75 },
-  { score: 4, minShare: 0.6 },
-  { score: 3, minShare: 0.45 },
-  { score: 2, minShare: 0.33 },
-  { score: 1, minShare: 0 },
-];
+// Each subject's section weights and cut points live with its bank, in
+// data/questions/<subject>/topics.js as `exam`.
+
+// One free-response self-check says little, so the FRQ share is pulled toward
+// the multiple-choice level as if the student had this many more FRQs there.
+export const FRQ_PRIOR_ATTEMPTS = 2;
+// With no self-checks the FRQ share is borrowed from multiple choice. The two
+// sections test different skills, so the borrowed share gets this much extra
+// spread on top of the multiple-choice uncertainty.
+export const FRQ_PROXY_SD = 0.1;
 
 // "15–25%" -> 0.20
 export function weightRangeMidpoint(range) {
@@ -121,12 +121,62 @@ export function pickSmartQuestion({ units, topics, questions, attempts, mastery,
   return { question, reason: chosen };
 }
 
-function apScoreFor(share) {
-  return ESTIMATED_AP_CUTS.find(cut => share >= cut.minShare).score;
+function apScoreFor(share, cuts) {
+  return cuts.find(cut => share >= cut.minShare).score;
 }
 
-// Estimated AP score as a range, or a "not yet" result explaining what's missing.
-export function predictApScore({ units, topics, questions, mastery }) {
+// Points share of the latest self-check on each FRQ. Latest, not best: it is
+// the closest thing to the student's skill today. frqAttempts are oldest first.
+export function latestFrqShares(frqAttempts) {
+  const latest = new Map();
+  for (const a of frqAttempts) {
+    if (a.points_possible > 0) latest.set(a.frq_id, a.points_earned / a.points_possible);
+  }
+  return [...latest.values()];
+}
+
+// Expected multiple-choice share and its standard deviation, from topic mastery.
+function multipleChoiceEstimate(weights, topics, mastery) {
+  let share = 0;
+  let variance = 0;
+  for (const t of topics) {
+    const stats = mastery.topics[t.id];
+    const chance = shrunkChance(stats);
+    const n = (stats?.attempts ?? 0) + PRIOR_ATTEMPTS;
+    const sd = stats?.attempts ? Math.sqrt(chance * (1 - chance) / n) : UNKNOWN_TOPIC_SD;
+    share += weights[t.id] * chance;
+    variance += (weights[t.id] * sd) ** 2;
+  }
+  return { share, sd: Math.sqrt(variance) };
+}
+
+// Expected composite share and its standard deviation. The FRQ share comes
+// from self-checks pulled toward the MCQ level, or, with none, is borrowed
+// from multiple choice outright.
+function compositeEstimate(sections, mcq, frqAttempts) {
+  const shares = latestFrqShares(frqAttempts);
+  if (shares.length === 0) {
+    // Borrowed FRQ share moves with the MCQ share, so their spreads add
+    // directly (sections sum to 1), plus the extra proxy spread.
+    return { share: mcq.share, sd: Math.sqrt(mcq.sd ** 2 + (sections.frq * FRQ_PROXY_SD) ** 2), frqShare: mcq.share, frqCount: 0 };
+  }
+  const n = shares.length + FRQ_PRIOR_ATTEMPTS;
+  const frqShare = (shares.reduce((a, b) => a + b, 0) + FRQ_PRIOR_ATTEMPTS * mcq.share) / n;
+  const frqSd = Math.sqrt(frqShare * (1 - frqShare) / n);
+  return {
+    share: sections.mcq * mcq.share + sections.frq * frqShare,
+    sd: Math.sqrt((sections.mcq * mcq.sd) ** 2 + (sections.frq * frqSd) ** 2),
+    frqShare,
+    frqCount: shares.length,
+  };
+}
+
+// Estimated AP score as a range, or a "not yet" result explaining what's
+// missing. exam: the subject's { sections, cuts } (see topics.js); without
+// one there is no scale to map onto, so the result is unavailable.
+// frqAttempts: the student's FRQ self-checks for this subject, oldest first.
+export function predictApScore({ units, topics, questions, mastery, exam, frqAttempts = [] }) {
+  if (!exam) return { ready: false, unavailable: true };
   const weights = topicExamWeights(units, topics);
   const topicsWithQuestions = new Set(questions.map(q => q.topic));
   const coverage = topics.filter(t => topicsWithQuestions.has(t.id)).reduce((sum, t) => sum + weights[t.id], 0);
@@ -134,18 +184,14 @@ export function predictApScore({ units, topics, questions, mastery }) {
   const ready = coverage >= PREDICTION_MIN_COVERAGE && attempts >= PREDICTION_MIN_ATTEMPTS;
   if (!ready) return { ready: false, coverage, attempts, needCoverage: PREDICTION_MIN_COVERAGE, needAttempts: PREDICTION_MIN_ATTEMPTS };
 
-  let expected = 0;
-  let variance = 0;
-  for (const t of topics) {
-    const stats = mastery.topics[t.id];
-    const chance = shrunkChance(stats);
-    const n = (stats?.attempts ?? 0) + PRIOR_ATTEMPTS;
-    const sd = stats?.attempts ? Math.sqrt(chance * (1 - chance) / n) : UNKNOWN_TOPIC_SD;
-    expected += weights[t.id] * chance;
-    variance += (weights[t.id] * sd) ** 2;
-  }
-  const margin = PREDICTION_Z * Math.sqrt(variance);
-  const low = Math.max(0, expected - margin);
-  const high = Math.min(1, expected + margin);
-  return { ready: true, coverage, attempts, expectedShare: expected, lowScore: apScoreFor(low), highScore: apScoreFor(high), likelyScore: apScoreFor(expected) };
+  const mcq = multipleChoiceEstimate(weights, topics, mastery);
+  const composite = compositeEstimate(exam.sections, mcq, frqAttempts);
+  const margin = PREDICTION_Z * composite.sd;
+  const low = Math.max(0, composite.share - margin);
+  const high = Math.min(1, composite.share + margin);
+  return {
+    ready: true, coverage, attempts,
+    expectedShare: composite.share, mcqShare: mcq.share, frqShare: composite.frqShare, frqCount: composite.frqCount,
+    lowScore: apScoreFor(low, exam.cuts), highScore: apScoreFor(high, exam.cuts), likelyScore: apScoreFor(composite.share, exam.cuts),
+  };
 }

@@ -8,8 +8,9 @@ import LevelChart from '../components/LevelChart'
 import { useQuestionBank } from '../hooks/useQuestionBank'
 import { usePracticeHistory } from '../hooks/usePracticeHistory'
 import { useFrqSet } from '../hooks/useFrqSet'
+import { useFrqScores } from '../hooks/useFrqScores'
 import { hasFrqs } from '../data/frqs/frqLoader'
-import { dailyProgress, byDifficulty, topicMap, recentlyMissed, frqScores, MIN_DAYS_FOR_TREND, MIN_ANSWERS_FOR_RATE, MISSED_SCOPE } from '../utils/progress'
+import { dailyProgress, byDifficulty, topicMap, recentlyMissed, frqScores, predictionBasis, MIN_DAYS_FOR_TREND, MIN_ANSWERS_FOR_RATE, MISSED_SCOPE } from '../utils/progress'
 import { chanceOnMediumQuestion, MIN_ATTEMPTS_FOR_LEVEL } from '../utils/mastery'
 import { predictApScore } from '../utils/priority'
 import { parseLocalDate, fmtDate, toLocalIsoDate } from '../utils/planEngine'
@@ -35,7 +36,9 @@ function Stat({ label, value, detail }) {
   );
 }
 
-function PredictionStat({ prediction, history }) {
+function PredictionStat({ prediction, history, frqLoadFailed }) {
+  // A subject without an exam model has no scale to show a score on.
+  if (prediction.unavailable) return null;
   if (!prediction.ready) {
     const remaining = Math.max(0, prediction.needAttempts - prediction.attempts);
     return <Stat label="Predicted AP score" value={<span className="stat-locked"><Lock aria-hidden="true" />Locked</span>}
@@ -45,7 +48,7 @@ function PredictionStat({ prediction, history }) {
   const change = firstScored && firstScored.predictedScore !== prediction.likelyScore
     ? `${prediction.likelyScore > firstScored.predictedScore ? 'Up' : 'Down'} from ${firstScored.predictedScore} on ${fmtDate(parseLocalDate(firstScored.day))}`
     : `Likely range ${prediction.lowScore} to ${prediction.highScore}`;
-  return <Stat label="Predicted AP score" value={prediction.likelyScore} detail={change} />;
+  return <Stat label="Predicted AP score" value={prediction.likelyScore} detail={`${change}. ${predictionBasis(prediction, { frqLoadFailed })}`} />;
 }
 
 function FrqSummary({ user, subject, onPractice }) {
@@ -104,19 +107,22 @@ function TopicTile({ entry }) {
 export default function ProgressPage({ user, subject, practiceSubjects, onSubject, onPractice }) {
   const bank = useQuestionBank(subject.id);
   const history = usePracticeHistory({ userId: user.id, subjectId: subject.id, onSaveError: ignoreSaveErrors });
+  // Scores only, separate from FrqSummary's full set (which includes saved
+  // code): one small extra request, but the report doesn't wait on FRQ prompts.
+  const frq = useFrqScores(user.id, subject.id, { enabled: hasFrqs(subject.id) });
 
   const report = useMemo(() => {
-    if (bank.status !== 'ready' || !history.attempts) return null;
+    if (bank.status !== 'ready' || !history.attempts || frq.status === 'loading') return null;
     const attempts = history.attempts;
-    const bankInput = { units: bank.units, topics: bank.topics, questions: bank.questions };
+    const bankInput = { units: bank.units, topics: bank.topics, questions: bank.questions, exam: bank.exam };
     return {
-      days: dailyProgress(attempts, bankInput),
+      days: dailyProgress(attempts, bankInput, frq.attempts),
       difficulty: byDifficulty(attempts),
       topics: topicMap({ ...bankInput, mastery: history.mastery }),
       missed: recentlyMissed(attempts, bank.questions),
-      prediction: predictApScore({ ...bankInput, mastery: history.mastery }),
+      prediction: predictApScore({ ...bankInput, mastery: history.mastery, frqAttempts: frq.attempts }),
     };
-  }, [bank, history.attempts, history.mastery]);
+  }, [bank, history.attempts, history.mastery, frq.status, frq.attempts]);
 
   const header = (
     <>
@@ -150,7 +156,7 @@ export default function ProgressPage({ user, subject, practiceSubjects, onSubjec
           <Stat label="Answers" value={attempts.length} detail={answeredToday > 0 ? `${answeredToday} today` : `over ${days.length} day${days.length === 1 ? '' : 's'}`} />
           <Stat label="Accuracy" value={percent(correct / attempts.length)} detail={`${correct} right`} />
           <Stat label="Your level" value={percent(chanceOnMediumQuestion(history.mastery.overall.rating))} detail="chance on a medium question" />
-          <PredictionStat prediction={prediction} history={days} />
+          <PredictionStat prediction={prediction} history={days} frqLoadFailed={frq.status === 'error'} />
         </div>
 
         <section className="card card-pad" aria-labelledby="trend-title">

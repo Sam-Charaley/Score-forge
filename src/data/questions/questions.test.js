@@ -59,6 +59,18 @@ describe.each(SUBJECTS)('%s question bank', subjectId => {
     expect(new Set(topics.map(t => t.id)).size).toBe(topics.length);
   });
 
+  // The predicted score needs this; without it the bank shows no score at all.
+  it('has an exam model with section weights and cut points', async () => {
+    const { exam } = await loadTopicMap(subjectId);
+    expect(exam).toBeDefined();
+    expect(exam.sections.mcq + exam.sections.frq).toBeCloseTo(1);
+    expect(exam.cuts.map(c => c.score)).toEqual([5, 4, 3, 2, 1]);
+    const shares = exam.cuts.map(c => c.minShare);
+    expect(shares.every((share, i) => i === 0 || share < shares[i - 1])).toBe(true);
+    expect(shares.at(-1)).toBe(0);
+    expect(exam.source).toBeTruthy();
+  });
+
   it('every question id is unique', async () => {
     const ids = (await loadQuestionBank(subjectId, { includeDrafts: true })).map(q => q.id);
     expect(ids.filter((id, i) => ids.indexOf(id) !== i)).toEqual([]);

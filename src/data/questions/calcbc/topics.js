@@ -26,4 +26,21 @@ export const CALCBC_TOPICS = [
   { id: 'taylor', unit: 'u10', name: 'Taylor Polynomials & Error' },
 ];
 
-export default { units: CALCBC_UNITS, topics: CALCBC_TOPICS };
+// How the predicted AP score is built (see predictApScore in utils/priority.js).
+// Section weights: 45 multiple-choice questions and 6 free response, 50% each
+// (College Board course page).
+// Cut points are shares of the maximum composite score. College Board does
+// not publish them. DRAFT: approximated from released scoring worksheets.
+export const CALCBC_EXAM = {
+  sections: { mcq: 0.5, frq: 0.5 },
+  cuts: [
+    { score: 5, minShare: 0.63 },
+    { score: 4, minShare: 0.52 },
+    { score: 3, minShare: 0.4 },
+    { score: 2, minShare: 0.32 },
+    { score: 1, minShare: 0 },
+  ],
+  source: 'DRAFT estimate, needs Sam review: released AP Calculus BC scoring worksheets.',
+};
+
+export default { units: CALCBC_UNITS, topics: CALCBC_TOPICS, exam: CALCBC_EXAM };

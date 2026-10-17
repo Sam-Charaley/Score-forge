@@ -25,4 +25,22 @@ export const CSA_TOPICS = [
   { id: 'search-sort', unit: 'u4', name: 'Searching, Sorting & Recursion' },
 ];
 
-export default { units: CSA_UNITS, topics: CSA_TOPICS };
+// How the predicted AP score is built (see predictApScore in utils/priority.js).
+// Section weights: 42 multiple-choice questions are 55% of the score, 4 free
+// response 45% (College Board course page for the revised exam).
+// Cut points are shares of the maximum composite score. College Board does
+// not publish them; these approximate past released scoring guidance and are
+// only good for a rough range.
+export const CSA_EXAM = {
+  sections: { mcq: 0.55, frq: 0.45 },
+  cuts: [
+    { score: 5, minShare: 0.75 },
+    { score: 4, minShare: 0.6 },
+    { score: 3, minShare: 0.45 },
+    { score: 2, minShare: 0.33 },
+    { score: 1, minShare: 0 },
+  ],
+  source: 'Estimate carried over unchanged from the original ESTIMATED_AP_CUTS in utils/priority.js.',
+};
+
+export default { units: CSA_UNITS, topics: CSA_TOPICS, exam: CSA_EXAM };

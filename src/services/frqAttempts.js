@@ -2,14 +2,20 @@ import { supabase } from './supabase'
 import { unwrap } from './unwrap'
 
 const COLUMNS = 'id, frq_id, earned_point_ids, points_earned, points_possible, responses, time_ms, created_at';
+// Enough for the score prediction, without downloading the student's saved code.
+const SCORE_COLUMNS = 'id, frq_id, points_earned, points_possible, created_at';
+
+// Oldest first. A student writes a handful of FRQs, far below the 1000-row page size.
+async function listColumns(userId, subjectId, columns) {
+  return unwrap(await supabase.from('frq_attempts').select(columns)
+    .eq('user_id', userId).eq('subject_id', subjectId)
+    .order('created_at', { ascending: true }).order('id', { ascending: true }), 'load your free-response history');
+}
 
 export const FrqAttempts = {
-  // Oldest first. A student writes a handful of FRQs, far below the 1000-row page size.
-  async list(userId, subjectId) {
-    return unwrap(await supabase.from('frq_attempts').select(COLUMNS)
-      .eq('user_id', userId).eq('subject_id', subjectId)
-      .order('created_at', { ascending: true }).order('id', { ascending: true }), 'load your free-response history');
-  },
+  list: (userId, subjectId) => listColumns(userId, subjectId, COLUMNS),
+
+  listScores: (userId, subjectId) => listColumns(userId, subjectId, SCORE_COLUMNS),
 
   async record(userId, subjectId, { frqId, earnedPointIds, pointsPossible, responses, timeMs }) {
     const saved = unwrap(await supabase.from('frq_attempts').insert({
