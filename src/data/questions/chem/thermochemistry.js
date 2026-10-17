@@ -24,7 +24,7 @@ export default [
     explanation: 'q = mcΔT = (100.0 g)(4.18 J/(g·°C))(10.0 °C) = 4180 J = 4.18 kJ.',
     verify: 'numeric',
     solve: () => (100.0 * WATER_SPECIFIC_HEAT * 10.0) / JOULES_PER_KJ,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-002',
@@ -40,7 +40,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The solution cools because the dissolving process takes energy from the surroundings (the water), so ΔH for dissolving is positive: endothermic.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-003',
@@ -53,7 +53,7 @@ export default [
     explanation: 'ΔH° = [−393.5 + 2(−285.8)] − [−74.8 + 2(0)] = −965.1 + 74.8 = −890.3 kJ/mol. O₂ is an element in its standard state, so its ΔH°f is 0. −604.5 forgets the coefficient 2 on water.',
     verify: 'numeric',
     solve: () => (FORMATION.carbonDioxide + 2 * FORMATION.liquidWater) - FORMATION.methane,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-004',
@@ -66,7 +66,7 @@ export default [
     explanation: 'Bonds broken minus bonds formed: (436 + 242) − 2(431) = 678 − 862 = −184 kJ. The sign comes out positive if you subtract in the formation-equation order.',
     verify: 'numeric',
     solve: () => (BOND.HH + BOND.ClCl) - 2 * BOND.HCl,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-005',
@@ -82,7 +82,7 @@ export default [
     ],
     answer: 0,
     explanation: 'ΔT = q/(mc). With q and m equal, the smaller specific heat gives the bigger temperature change, so copper heats up more.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-006',
@@ -95,7 +95,7 @@ export default [
     explanation: '36.0 g ÷ 18.02 g/mol = 2.00 mol, and 2.00 mol × 6.01 kJ/mol = 12.0 kJ. 216 kJ multiplies by the mass in grams instead of moles.',
     verify: 'numeric',
     solve: () => (36.0 / WATER) * 6.01,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-007',
@@ -108,7 +108,7 @@ export default [
     explanation: 'q = (100. g)(4.18)(6.5) = 2717 J absorbed by the solution, so the reaction released 2.72 kJ. 0.0500 mol of water formed, so ΔH = −2.72/0.0500 = −54 kJ/mol. The sign is negative because the reaction is exothermic.',
     verify: 'numeric',
     solve: () => -(100 * WATER_SPECIFIC_HEAT * 6.5) / JOULES_PER_KJ / 0.0500,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermochemistry-008',
@@ -123,6 +123,6 @@ export default [
     ],
     answer: 0,
     explanation: 'An exothermic reaction releases energy, so the products end up lower than the reactants and ΔH is negative. The top of the barrier is the transition state.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

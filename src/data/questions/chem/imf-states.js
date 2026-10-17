@@ -10,7 +10,7 @@ export default [
     choices: ['CH₄', 'H₂S', 'Ne', 'H₂O'],
     answer: 3,
     explanation: 'Water molecules hydrogen bond to each other (H bonded to O), the strongest of these intermolecular forces. H₂S has only dipole-dipole and dispersion forces; CH₄ and Ne have only dispersion.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-imf-states-002',
@@ -25,7 +25,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Both are nonpolar, so dispersion forces are the only intermolecular forces. I₂ has far more electrons, so its dispersion forces are much stronger. Melting doesn\'t break covalent bonds, so bond strength is irrelevant.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-imf-states-003',
@@ -35,7 +35,7 @@ export default [
     choices: ['Octane, C₈H₁₈', 'Hexane, C₆H₁₄', 'Pentane, C₅H₁₂', 'Water, H₂O'],
     answer: 2,
     explanation: 'Weaker intermolecular forces let more molecules escape, raising vapor pressure. Pentane is the smallest alkane here, so it has the weakest dispersion forces. Water hydrogen bonds, so its vapor pressure is low.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-imf-states-004',
@@ -45,7 +45,7 @@ export default [
     choices: ['Molecular', 'Covalent network', 'Ionic', 'Metallic'],
     answer: 1,
     explanation: 'Every Si is covalently bonded to O atoms in one continuous lattice, so melting means breaking covalent bonds, which takes a very high temperature. Molecular solids like CO₂ melt easily.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-imf-states-005',
@@ -60,7 +60,7 @@ export default [
     ],
     answer: 0,
     explanation: 'In the solid, ions are locked in the lattice. Melted, the Na⁺ and Cl⁻ ions can move toward the electrodes. NaCl is ionic, so there are no covalent bonds to break.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-imf-states-006',
@@ -70,6 +70,6 @@ export default [
     choices: ['Dispersion forces only', 'Dipole-dipole and dispersion forces', 'Hydrogen bonding', 'Ion-dipole forces'],
     answer: 1,
     explanation: 'HCl is polar, so it has dipole-dipole forces, and every molecule has dispersion forces. It doesn\'t hydrogen bond, because H must be bonded to N, O or F.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

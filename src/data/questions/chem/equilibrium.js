@@ -18,7 +18,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Products over reactants, each raised to its coefficient: [NH₃]² on top, [N₂][H₂]³ on the bottom. Coefficients become powers, never multipliers.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-002',
@@ -31,7 +31,7 @@ export default [
     explanation: 'Kc = (0.10)² / [(0.50)(0.20)³] = 0.010 / (0.50 × 0.0080) = 0.010/0.0040 = 2.5. 1.0 ignores the exponents.',
     verify: 'numeric',
     solve: () => 0.10 ** 2 / (0.50 * 0.20 ** 3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-003',
@@ -47,7 +47,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Q > K means there are too many products relative to equilibrium, so the reverse reaction runs until Q falls to K. K only changes with temperature.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-004',
@@ -62,7 +62,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Adding a product makes Q > K, so the system shifts toward reactants to partly undo the change (Le Chatelier). K is unchanged at constant temperature.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-005',
@@ -75,7 +75,7 @@ export default [
     explanation: 'Kp = Kc(RT)^Δn with Δn = 2 − 1 = 1: Kp = (4.6 × 10⁻³)(0.08206)(298) = 0.11. 1.9 × 10⁻⁴ divides by RT instead of multiplying.',
     verify: 'numeric',
     solve: () => 4.6e-3 * (R_LATM * 298) ** 1,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-006',
@@ -87,7 +87,7 @@ export default [
     explanation: 'AgCl ⇌ Ag⁺ + Cl⁻, so Ksp = s² and s = √(1.8 × 10⁻¹⁰) = 1.34 × 10⁻⁵ M. 1.8 × 10⁻¹⁰ M forgets the square root.',
     verify: 'numeric',
     solve: () => Math.sqrt(1.8e-10),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-007',
@@ -102,7 +102,7 @@ export default [
     ],
     answer: 0,
     explanation: 'This is the common-ion effect. Cl⁻ is already present, so Q for AgCl ⇌ Ag⁺ + Cl⁻ reaches Ksp with far less AgCl dissolved. Ksp is constant, but solubility is not.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-equilibrium-008',
@@ -112,6 +112,6 @@ export default [
     choices: ['K decreases', 'K increases', 'K stays the same', 'K becomes zero'],
     answer: 0,
     explanation: 'For an exothermic reaction, heat acts like a product. Raising the temperature shifts the equilibrium toward reactants, which lowers K. Temperature is the only change that alters K.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

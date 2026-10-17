@@ -10,7 +10,7 @@ export default [
     choices: ['Trigonal planar', 'Trigonal pyramidal', 'Tetrahedral', 'Bent'],
     answer: 1,
     explanation: 'N has four electron domains (three bonds and one lone pair), so the electron geometry is tetrahedral, but the shape of the atoms is trigonal pyramidal. Trigonal planar would need no lone pair.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-bonding-002',
@@ -20,7 +20,7 @@ export default [
     choices: ['109.5°', '120°', '180°', '104.5°'],
     answer: 2,
     explanation: 'C has two electron domains (two double bonds, no lone pairs), so CO₂ is linear with a 180° angle. 104.5° is water, which has two lone pairs.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-bonding-003',
@@ -31,7 +31,7 @@ export default [
     choices: ['NaCl', 'KBr', 'MgO', 'NaF'],
     answer: 2,
     explanation: 'Lattice energy follows Coulomb\'s law: larger ion charges and smaller ions give stronger attraction. MgO has 2+ and 2− ions, while the others are all 1+ and 1−.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-bonding-004',
@@ -41,7 +41,7 @@ export default [
     choices: ['sp', 'sp²', 'sp³', 'sp³d'],
     answer: 2,
     explanation: 'Four electron domains around C need four hybrid orbitals: one s and three p, so sp³. Two domains would be sp, three would be sp².',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-bonding-005',
@@ -51,7 +51,7 @@ export default [
     choices: ['CO₂', 'CH₄', 'BF₃', 'H₂O'],
     answer: 3,
     explanation: 'Water is bent, so its two polar O–H bonds don\'t cancel. CO₂ (linear), CH₄ (tetrahedral) and BF₃ (trigonal planar) all have polar bonds arranged symmetrically, so the dipoles cancel.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-bonding-006',
@@ -61,7 +61,7 @@ export default [
     choices: ['0', '1', '2', '3'],
     answer: 1,
     explanation: 'S has 6 valence electrons; four go into bonds with F, leaving 2 electrons as one lone pair. Five electron domains make SF₄ a seesaw shape.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-bonding-007',
@@ -76,6 +76,6 @@ export default [
     ],
     answer: 0,
     explanation: 'Carbon atoms are much smaller than iron atoms, so they sit in the holes between them (interstitial). They block the planes of atoms from sliding past each other. Substitutional alloys need atoms of similar size, like brass.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

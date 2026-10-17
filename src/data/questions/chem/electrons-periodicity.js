@@ -20,7 +20,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Both have valence electrons in n = 4, but Br has 16 more protons with almost no extra shielding, so its electrons are pulled in tighter. More protons pull inward, not outward.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-electrons-periodicity-002',
@@ -30,7 +30,7 @@ export default [
     choices: ['Nitrogen', 'Phosphorus', 'Sulfur', 'Arsenic'],
     answer: 1,
     explanation: 'Add the superscripts: 2 + 2 + 6 + 2 + 3 = 15 electrons, so atomic number 15, phosphorus. Nitrogen is the same group but ends in 2p³.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-electrons-periodicity-003',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Both lose a 3s electron with the same inner-core shielding. Mg has 12 protons to Na\'s 11, so the Coulombic attraction on that electron is stronger.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-electrons-periodicity-004',
@@ -59,7 +59,7 @@ export default [
     explanation: 'E = hc/λ = (6.626 × 10⁻³⁴)(2.998 × 10⁸)/(500 × 10⁻⁹ m) = 3.97 × 10⁻¹⁹ J. 3.97 × 10⁻²⁸ J forgets to convert nm to m, and 6.00 × 10¹⁴ is the frequency in s⁻¹.',
     verify: 'numeric',
     solve: () => (PLANCK * LIGHT_SPEED) / (500 * NANOMETER),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-electrons-periodicity-005',
@@ -72,7 +72,7 @@ export default [
     explanation: 'ν = c/λ = (2.998 × 10⁸ m/s)/(600 × 10⁻⁹ m) = 5.00 × 10¹⁴ s⁻¹. 5.00 × 10⁵ s⁻¹ leaves the wavelength in nm.',
     verify: 'numeric',
     solve: () => LIGHT_SPEED / (600 * NANOMETER),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-electrons-periodicity-006',
@@ -82,6 +82,6 @@ export default [
     choices: ['Sodium', 'Neon', 'Magnesium', 'Fluorine'],
     answer: 0,
     explanation: 'Each peak is a subshell and its height counts the electrons: 1s², 2s², 2p⁶, 3s¹. That is 11 electrons, sodium. The lowest-energy peak is the one valence electron.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -18,7 +18,7 @@ export default [
     explanation: 'HCl is a strong acid, so [H₃O⁺] = 0.010 M and pH = −log(0.010) = 2.00. 12.00 is the pOH.',
     verify: 'numeric',
     solve: () => pH(0.010),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-002',
@@ -31,7 +31,7 @@ export default [
     explanation: 'pOH = 14.00 − 3.00 = 11.00, so [OH⁻] = 10⁻¹¹ M. Equivalently, [OH⁻] = Kw/[H₃O⁺] = 10⁻¹⁴/10⁻³. 1.0 × 10⁻³ M is [H₃O⁺].',
     verify: 'numeric',
     solve: () => KW / 10 ** -3.00,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-003',
@@ -44,7 +44,7 @@ export default [
     explanation: 'NaOH is a strong base, so [OH⁻] = 0.10 M, pOH = 1.00 and pH = 14.00 − 1.00 = 13.00. 1.00 is the pOH.',
     verify: 'numeric',
     solve: () => PKW + Math.log10(0.10),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-004',
@@ -57,7 +57,7 @@ export default [
     explanation: 'Ka = x²/(0.10 − x) ≈ x²/0.10, so x² = 1.0 × 10⁻⁶ and x = [H₃O⁺] = 1.0 × 10⁻³ M, giving pH 3.00. (x is 1% of 0.10, so the approximation holds.) 1.00 treats HA as a strong acid; 5.00 is the pKa.',
     verify: 'numeric',
     solve: () => pH(Math.sqrt(1.0e-5 * 0.10)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-005',
@@ -70,7 +70,7 @@ export default [
     explanation: 'pH = pKa + log([A⁻]/[HA]) = 4.74 + log(0.20/0.10) = 4.74 + 0.30 = 5.04. 4.44 puts the ratio upside down.',
     verify: 'numeric',
     solve: () => 4.74 + Math.log10(0.20 / 0.10),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-006',
@@ -83,7 +83,7 @@ export default [
     explanation: 'At half-equivalence, [HA] = [A⁻], so pH = pKa = 4.20 and Ka = 10⁻⁴·²⁰ = 6.3 × 10⁻⁵. 1.6 × 10⁴ uses 10⁺⁴·²⁰.',
     verify: 'numeric',
     solve: () => 10 ** -4.20,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-007',
@@ -96,7 +96,7 @@ export default [
     explanation: 'Kw = Ka × Kb, so Kb = (1.0 × 10⁻¹⁴)/(1.8 × 10⁻⁵) = 5.6 × 10⁻¹⁰. A weak acid has an even weaker conjugate base.',
     verify: 'numeric',
     solve: () => KW / 1.8e-5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-008',
@@ -111,7 +111,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Strength is about how fully the acid ionizes, not its concentration: dilute HCl is still a strong acid. A strong acid has a smaller (more negative) pKa.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-009',
@@ -126,7 +126,7 @@ export default [
     ],
     answer: 0,
     explanation: 'At equivalence all the HA has become A⁻, a weak base that reacts with water to make OH⁻. pH = pKa happens halfway to equivalence, not at it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-acids-bases-010',
@@ -142,6 +142,6 @@ export default [
     ],
     answer: 0,
     explanation: 'Choose an indicator whose color change (near its pKa) includes the equivalence-point pH. Phenolphthalein\'s range covers 8.8; the others change well before equivalence.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

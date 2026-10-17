@@ -20,7 +20,7 @@ export default [
     explanation: 'The molar mass of H₂O is 2(1.008) + 16.00 = 18.02 g/mol, so n = m/M = 36.0/18.02 = 2.00 mol. 0.500 mol divides the wrong way.',
     verify: 'numeric',
     solve: () => 36.0 / WATER,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-moles-composition-002',
@@ -33,7 +33,7 @@ export default [
     explanation: 'Multiply by Avogadro\'s number: 0.250 × 6.022 × 10²³ = 1.51 × 10²³ molecules. 2.41 × 10²⁴ divides by 0.250 instead.',
     verify: 'numeric',
     solve: () => 0.250 * AVOGADRO,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-moles-composition-003',
@@ -46,7 +46,7 @@ export default [
     explanation: 'CaCO₃ has a molar mass of 40.08 + 12.01 + 3(16.00) = 100.09 g/mol, and its three oxygens weigh 48.00 g. 48.00/100.09 × 100% = 48.0%. 16.0% counts only one oxygen, and 40.0% is calcium.',
     verify: 'numeric',
     solve: () => (3 * 16.00 / CALCIUM_CARBONATE) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-moles-composition-004',
@@ -57,6 +57,6 @@ export default [
     choices: ['CHO', 'CH₂O', 'C₂H₄O', 'CH₄O₂'],
     answer: 1,
     explanation: 'Assume 100 g: 40.0/12.01 = 3.33 mol C, 6.7/1.008 = 6.6 mol H, 53.3/16.00 = 3.33 mol O. Dividing by the smallest (3.33) gives a 1 : 2 : 1 ratio, so CH₂O.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

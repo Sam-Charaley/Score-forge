@@ -17,7 +17,7 @@ export default [
     explanation: 'P = nRT/V = (2.00)(0.08206)(300.)/10.0 = 4.92 atm. 499 atm uses R = 8.314, which is for joules, not liters and atmospheres.',
     verify: 'numeric',
     solve: () => (2.00 * R_LATM * 300) / 10.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-gases-002',
@@ -30,7 +30,7 @@ export default [
     explanation: 'V₂ = V₁(P₁/P₂)(T₂/T₁) = 4.0 × (1.0/2.0) × (450/300) = 3.0 L. Doubling pressure halves the volume, and the higher temperature expands it by 1.5×.',
     verify: 'numeric',
     solve: () => 4.0 * (1.0 / 2.0) * (450 / 300),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-gases-003',
@@ -43,7 +43,7 @@ export default [
     explanation: 'The mole fraction of O₂ is 1.0/3.0, so P(O₂) = (1/3)(6.0 atm) = 2.0 atm. 4.0 atm is the N₂ partial pressure.',
     verify: 'numeric',
     solve: () => (1.0 / (2.0 + 1.0)) * 6.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-gases-004',
@@ -56,7 +56,7 @@ export default [
     explanation: 'Combine PV = nRT with n = m/M: M = DRT/P = (1.25)(0.08206)(273.15)/1.00 = 28.0 g/mol (likely N₂). 17.9 g/mol divides 22.4 by the density instead of multiplying.',
     verify: 'numeric',
     solve: () => (1.25 * R_LATM * STP_TEMPERATURE) / 1.00,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-gases-005',
@@ -72,6 +72,6 @@ export default [
     ],
     answer: 0,
     explanation: 'Average kinetic energy depends only on temperature, so it is the same for all four. Since KE = ½mv², the lightest molecule (H₂) must move fastest.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

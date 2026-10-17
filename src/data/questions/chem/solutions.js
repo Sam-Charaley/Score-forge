@@ -18,7 +18,7 @@ export default [
     explanation: '5.85 g ÷ 58.44 g/mol = 0.100 mol NaCl, and 250. mL = 0.250 L, so M = 0.100/0.250 = 0.400 M. 0.100 M forgets to divide by the volume.',
     verify: 'numeric',
     solve: () => (5.85 / SODIUM_CHLORIDE) / (250 / MILLILITERS_PER_LITER),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-solutions-002',
@@ -31,7 +31,7 @@ export default [
     explanation: 'M₁V₁ = M₂V₂, so M₂ = (2.00)(50.0)/250. = 0.400 M. Adding water spreads the same moles over more volume. 10.0 M multiplies the wrong way.',
     verify: 'numeric',
     solve: () => (2.00 * 50.0) / 250,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-solutions-003',
@@ -44,7 +44,7 @@ export default [
     explanation: 'A = εbc, so c = A/(εb) = 0.45/(150 × 1.00) = 3.0 × 10⁻³ M. 67.5 M multiplies A and ε instead of dividing.',
     verify: 'numeric',
     solve: () => 0.45 / (150 * 1.00),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-solutions-004',
@@ -60,7 +60,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The fingerprint absorbs light too, so the spectrometer reads a larger absorbance than the solution alone. Since c = A/(εb), a larger A gives a concentration that is too high.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-solutions-005',
@@ -70,6 +70,6 @@ export default [
     choices: ['Filtration', 'Distillation', 'Paper chromatography', 'Decanting'],
     answer: 1,
     explanation: 'Distillation boils off the liquid with the lower boiling point (weaker intermolecular forces) and condenses it separately. Filtration only separates a solid from a liquid.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -20,7 +20,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Na⁺ and NO₃⁻ are spectator ions: they appear unchanged on both sides, so they are left out. Only the ions that form the precipitate remain. The second choice is the molecular equation.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-002',
@@ -33,7 +33,7 @@ export default [
     explanation: '4.00 g ÷ 2.016 g/mol = 1.98 mol H₂, which makes 1.98 mol H₂O (a 2 : 2 ratio). 1.98 mol × 18.02 g/mol = 35.7 g. 17.9 g uses a 2 : 1 ratio by mistake.',
     verify: 'numeric',
     solve: () => (4.00 / HYDROGEN_GAS) * WATER,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-003',
@@ -45,7 +45,7 @@ export default [
     explanation: '2.0 mol Al could make 2.0 mol AlCl₃, but 2.0 mol Cl₂ can make only 2.0 × (2/3) = 1.3 mol. Cl₂ runs out first, so it is the limiting reactant and 1.3 mol forms.',
     verify: 'numeric',
     solve: () => Math.min(2.0 * (2 / 2), 2.0 * (2 / 3)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-004',
@@ -58,7 +58,7 @@ export default [
     explanation: 'Percent yield = actual/theoretical × 100% = 42.5/50.0 × 100% = 85.0%. 118% divides the wrong way, and a yield over 100% would mean the product is wet or impure.',
     verify: 'numeric',
     solve: () => (42.5 / 50.0) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-005',
@@ -71,7 +71,7 @@ export default [
     explanation: 'Moles NaOH = 0.0300 L × 0.100 M = 3.00 × 10⁻³ mol, which equals moles HCl (1 : 1). [HCl] = 3.00 × 10⁻³ mol / 0.0250 L = 0.120 M. 0.0833 M flips the two volumes.',
     verify: 'numeric',
     solve: () => (0.0300 * 0.100) / 0.0250,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-006',
@@ -81,7 +81,7 @@ export default [
     choices: ['+2', '+4', '+7', '−1'],
     answer: 2,
     explanation: 'K is +1 and each O is −2, so +1 + Mn + 4(−2) = 0 gives Mn = +7.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-007',
@@ -91,7 +91,7 @@ export default [
     choices: ['Zn(s)', 'Cu²⁺(aq)', 'Zn²⁺(aq)', 'Cu(s)'],
     answer: 0,
     explanation: 'Zn goes from 0 to +2, so it loses electrons: it is oxidized (and is the reducing agent). Cu²⁺ gains electrons and is reduced.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-reactions-008',
@@ -101,6 +101,6 @@ export default [
     choices: ['Dissolving sugar in water', 'Burning methane', 'Rusting iron', 'Mixing vinegar and baking soda, which fizzes'],
     answer: 0,
     explanation: 'Dissolving sugar breaks only intermolecular forces; the sucrose molecules are unchanged. The others form new substances (CO₂, H₂O, iron oxide).',
-    reviewed: false,
+    reviewed: true,
   },
 ];

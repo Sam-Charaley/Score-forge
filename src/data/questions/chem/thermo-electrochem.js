@@ -15,7 +15,7 @@ export default [
     choices: ['Negative', 'Positive', 'Zero', 'It cannot be predicted'],
     answer: 0,
     explanation: 'Three moles of gas become two moles of liquid, so the products have far fewer ways to arrange their energy. Entropy decreases.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-002',
@@ -28,7 +28,7 @@ export default [
     explanation: 'Convert ΔS° to kJ first: −0.199 kJ/(mol·K). ΔG° = −92 − (298)(−0.199) = −92 + 59.3 = −33 kJ/mol. +59,000 skips the J to kJ conversion.',
     verify: 'numeric',
     solve: () => -92 - 298 * (-199 / JOULES_PER_KJ),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-003',
@@ -41,7 +41,7 @@ export default [
     explanation: 'Favored when ΔG° < 0. With both ΔH° and ΔS° negative, that holds below T = ΔH°/ΔS° = (−92,000 J)/(−199 J/K) = 462 K. 0.46 K mixes kJ and J.',
     verify: 'numeric',
     solve: () => (-92 * JOULES_PER_KJ) / -199,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-004',
@@ -54,7 +54,7 @@ export default [
     explanation: 'ΔG° = −RT ln K, so ln K = 5710/(8.314 × 298) = 2.30 and K = e²·³⁰ = 10.0. 2.30 is ln K, not K. A negative ΔG° always means K > 1.',
     verify: 'numeric',
     solve: () => Math.exp((5.71 * JOULES_PER_KJ) / (R_J * 298)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-005',
@@ -66,7 +66,7 @@ export default [
     explanation: 'Copper is reduced (cathode) and zinc is oxidized (anode): E°cell = E°cathode − E°anode = 0.34 − (−0.76) = +1.10 V. A positive E°cell means the cell runs on its own.',
     verify: 'numeric',
     solve: () => 0.34 - (-0.76),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-006',
@@ -79,7 +79,7 @@ export default [
     explanation: 'ΔG° = −nFE° = −(2)(96,485 C/mol)(1.10 V) = −212,000 J/mol = −212 kJ/mol. −106 uses n = 1.',
     verify: 'numeric',
     solve: () => -(2 * FARADAY * 1.10) / JOULES_PER_KJ,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-007',
@@ -92,7 +92,7 @@ export default [
     explanation: 'q = It = 2.00 × 965 = 1930 C, which is 1930/96,485 = 0.0200 mol of electrons. Cu²⁺ needs 2 electrons per atom, so 0.0100 mol Cu × 63.55 g/mol = 0.636 g. 1.27 g forgets the 2 electrons per Cu.',
     verify: 'numeric',
     solve: () => ((2.00 * 965) / FARADAY / 2) * ATOMIC_MASS.Cu,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-thermo-electrochem-008',
@@ -108,6 +108,6 @@ export default [
     ],
     answer: 0,
     explanation: 'In the Nernst equation, E = E° − (RT/nF) ln Q, a growing Q makes E smaller. At equilibrium (Q = K) the cell can do no more work: a dead battery.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

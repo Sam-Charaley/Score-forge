@@ -13,7 +13,7 @@ export default [
     choices: ['Zero order', 'First order', 'Second order', 'Fourth order'],
     answer: 2,
     explanation: 'Rate ∝ [A]ⁿ, so 2ⁿ = 4 and n = 2. First order would double the rate; zero order would leave it unchanged.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-002',
@@ -26,7 +26,7 @@ export default [
     explanation: 't½ = 0.693/k = 0.693/0.0231 s⁻¹ = 30.0 s. 43.3 s is 1/k, which leaves out the ln 2.',
     verify: 'numeric',
     solve: () => LN_2 / 0.0231,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-003',
@@ -39,7 +39,7 @@ export default [
     explanation: 'ln[A] = ln(0.800) − (0.0500)(20.0) = −0.223 − 1.00 = −1.223, so [A] = e^(−1.223) = 0.294 M. 0.400 M assumes one half-life has passed, but t½ here is 13.9 s.',
     verify: 'numeric',
     solve: () => 0.800 * Math.exp(-0.0500 * 20.0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-004',
@@ -52,7 +52,7 @@ export default [
     explanation: 'For zero order, [A] = [A]₀ − kt = 0.50 − (0.010)(20) = 0.30 M: the concentration falls at a constant rate. 0.41 M uses the first-order equation.',
     verify: 'numeric',
     solve: () => 0.50 - 0.010 * 20,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-005',
@@ -65,7 +65,7 @@ export default [
     explanation: '1/[A] = 1/[A]₀ + kt = 1/0.20 + (0.50)(10) = 5.0 + 5.0 = 10 M⁻¹, so [A] = 0.10 M. 1.3 × 10⁻³ M uses the first-order equation.',
     verify: 'numeric',
     solve: () => 1 / (1 / 0.20 + 0.50 * 10),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-006',
@@ -81,7 +81,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The first-order integrated rate law, ln[A] = ln[A]₀ − kt, is a straight line in ln[A] versus t with slope −k. Zero order is linear in [A]; second order is linear in 1/[A].',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-007',
@@ -96,7 +96,7 @@ export default [
     ],
     answer: 0,
     explanation: 'A catalyst offers a different mechanism with a lower activation energy, so more collisions have enough energy to react. It doesn\'t change ΔH or the equilibrium constant.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'chem-kinetics-008',
@@ -107,6 +107,6 @@ export default [
     choices: ['rate = k[NO₂]²', 'rate = k[NO₂][CO]', 'rate = k[NO₃][CO]', 'rate = k[CO]'],
     answer: 0,
     explanation: 'The slow step limits the rate, and for an elementary step the rate law follows its coefficients: two NO₂ collide, so rate = k[NO₂]². CO appears only after the slow step, so it isn\'t in the rate law.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
