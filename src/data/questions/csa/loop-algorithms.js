@@ -5,6 +5,7 @@ export default [
   {
     id: 'csa-loop-algorithms-001',
     topic: 'loop-algorithms',
+    formulas: ['object-methods', 'string-length', 'char-at'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "banana";
@@ -24,6 +25,7 @@ System.out.println(count);`,
   {
     id: 'csa-loop-algorithms-002',
     topic: 'loop-algorithms',
+    formulas: ['string-length', 'char-at'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "code";
@@ -41,6 +43,7 @@ System.out.println(r);`,
   {
     id: 'csa-loop-algorithms-003',
     topic: 'loop-algorithms',
+    formulas: ['integer-division'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int n = 4052;
@@ -59,6 +62,7 @@ System.out.println(sum);`,
   {
     id: 'csa-loop-algorithms-004',
     topic: 'loop-algorithms',
+    formulas: ['object-methods', 'string-length', 'substring-range'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "abababa";
@@ -88,6 +92,7 @@ System.out.println(count);`,
   {
     id: 'csa-loop-algorithms-006',
     topic: 'loop-algorithms',
+    formulas: ['integer-division'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int total = 0;
@@ -106,6 +111,7 @@ System.out.println(total);`,
   {
     id: 'csa-loop-algorithms-007',
     topic: 'loop-algorithms',
+    formulas: ['string-length', 'char-at'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "abc";
@@ -125,6 +131,7 @@ System.out.println(out);`,
   {
     id: 'csa-loop-algorithms-008',
     topic: 'loop-algorithms',
+    formulas: ['object-methods', 'string-length', 'char-at'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "hello world";

@@ -15,6 +15,7 @@ export default [
   {
     id: 'phys1-impulse-001',
     topic: 'impulse',
+    formulas: ['impulse'],
     difficulty: 1,
     prompt: 'In a crash, an airbag reduces the force on a passenger compared with hitting the dashboard. How does it do this?',
     choices: [
@@ -30,6 +31,7 @@ export default [
   {
     id: 'phys1-impulse-002',
     topic: 'impulse',
+    formulas: ['impulse', 'momentum'],
     difficulty: 2,
     prompt: 'A 0.20 kg ball hits a wall at 20 m/s and rebounds straight back at 15 m/s. What is the magnitude of the impulse the wall gives the ball?',
     choices: ['1.0 N·s', '4.0 N·s', '3.0 N·s', '7.0 N·s'],
@@ -42,6 +44,7 @@ export default [
   {
     id: 'phys1-impulse-003',
     topic: 'impulse',
+    formulas: ['impulse', 'triangle-area'],
     difficulty: 2,
     prompt: 'A 0.50 kg ball at rest is kicked. The force on it rises steadily from 0 to 400 N and falls steadily back to 0, a triangle lasting 0.020 s in total. How fast does the ball leave the kick?',
     choices: ['8.0 m/s', '16 m/s', '4.0 m/s', '0.016 m/s'],
@@ -54,6 +57,7 @@ export default [
   {
     id: 'phys1-impulse-004',
     topic: 'impulse',
+    formulas: ['impulse', 'newtons-second-momentum'],
     difficulty: 2,
     prompt: 'A 1000 kg car moving at 20 m/s hits a barrier and stops in 0.10 s. What is the average force on the car?',
     choices: ['20,000 N', '200,000 N', '2000 N', '2,000,000 N'],
@@ -66,6 +70,7 @@ export default [
   {
     id: 'phys1-impulse-005',
     topic: 'impulse',
+    formulas: ['impulse'],
     difficulty: 3,
     prompt: 'Two identical eggs are dropped from the same height. One lands on a pillow and survives; the other lands on a tile floor and breaks. Which statement is correct?',
     choices: [
@@ -81,6 +86,7 @@ export default [
   {
     id: 'phys1-impulse-006',
     topic: 'impulse',
+    formulas: ['impulse', 'momentum'],
     difficulty: 2,
     prompt: 'A 0.30 kg ball at rest is hit by a bat. The graph shows the force on the ball. How fast does the ball leave the bat?',
     figure: BAT_HIT,
@@ -94,6 +100,7 @@ export default [
   {
     id: 'phys1-impulse-007',
     topic: 'impulse',
+    formulas: ['impulse', 'momentum'],
     difficulty: 3,
     prompt: 'A 2.0 kg cart moves at +1.0 m/s on a frictionless track. The graph shows the net force on it over 4 s. What is its velocity at t = 4 s?',
     figure: PUSH_AND_PULL,

@@ -5,6 +5,7 @@ export default [
   {
     id: 'csa-arraylist-001',
     topic: 'arraylist',
+    formulas: ['size', 'add-end', 'remove'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<String> names = new ArrayList<>();
@@ -22,6 +23,7 @@ System.out.println(names.size());`,
   {
     id: 'csa-arraylist-002',
     topic: 'arraylist',
+    formulas: ['add-at', 'add-end'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<String> list = new ArrayList<>();
@@ -39,6 +41,7 @@ System.out.println(list);`,
   {
     id: 'csa-arraylist-003',
     topic: 'arraylist',
+    formulas: ['add-end', 'set', 'wrapper-boxing'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<Integer> nums = new ArrayList<>();
@@ -56,6 +59,7 @@ System.out.println(old + " " + nums);`,
   {
     id: 'csa-arraylist-004',
     topic: 'arraylist',
+    formulas: ['add-end', 'remove', 'wrapper-boxing'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<Integer> nums = new ArrayList<>();
@@ -73,6 +77,7 @@ System.out.println(nums);`,
   {
     id: 'csa-arraylist-005',
     topic: 'arraylist',
+    formulas: ['size', 'add-end', 'get', 'remove'],
     difficulty: 3,
     prompt: 'The following code segment is intended to remove every even number from nums. What is printed when it is executed?',
     code: `ArrayList<Integer> nums = new ArrayList<>();
@@ -95,6 +100,7 @@ System.out.println(nums);`,
   {
     id: 'csa-arraylist-006',
     topic: 'arraylist',
+    formulas: ['size', 'add-end', 'get', 'remove'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<Integer> nums = new ArrayList<>();
@@ -117,6 +123,7 @@ System.out.println(nums);`,
   {
     id: 'csa-arraylist-007',
     topic: 'arraylist',
+    formulas: ['string-length', 'add-end'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<String> words = new ArrayList<>();
@@ -139,6 +146,7 @@ System.out.println(total);`,
   {
     id: 'csa-arraylist-008',
     topic: 'arraylist',
+    formulas: ['add-at', 'wrapper-boxing'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<Integer> list = new ArrayList<>();
@@ -155,6 +163,7 @@ System.out.println(list);`,
   {
     id: 'csa-arraylist-009',
     topic: 'arraylist',
+    formulas: ['size', 'add-end', 'get', 'wrapper-boxing'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `ArrayList<Integer> list = new ArrayList<>();
@@ -175,6 +184,7 @@ System.out.println(list);`,
   {
     id: 'csa-arraylist-010',
     topic: 'arraylist',
+    formulas: ['object-methods', 'remove'],
     difficulty: 3,
     prompt: 'Assume names contains "Ana", "Ben", "Cy", "Dee" in that order. What happens when the following code segment is executed?',
     code: `for (String s : names) {

@@ -21,6 +21,7 @@ System.out.println(other);`,
   {
     id: 'csa-objects-002',
     topic: 'objects',
+    formulas: ['abs', 'pow'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `System.out.println(Math.abs(-4) + Math.pow(2, 3));`,
@@ -43,6 +44,7 @@ System.out.println(other);`,
   {
     id: 'csa-objects-004',
     topic: 'objects',
+    formulas: ['object-methods'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `Integer a = 5;
@@ -58,6 +60,7 @@ System.out.println(c.equals(7) + " " + (b == 7));`,
   {
     id: 'csa-objects-005',
     topic: 'objects',
+    formulas: ['string-length'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = null;
@@ -75,6 +78,7 @@ if (s != null && s.length() > 0) {
   {
     id: 'csa-objects-006',
     topic: 'objects',
+    formulas: ['substring-from'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "abc";
@@ -90,6 +94,7 @@ System.out.println(s + " " + t);`,
   {
     id: 'csa-objects-007',
     topic: 'objects',
+    formulas: ['sqrt', 'casting'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `System.out.println((int) Math.sqrt(20) + " " + Math.sqrt(16));`,

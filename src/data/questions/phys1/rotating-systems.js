@@ -5,6 +5,7 @@ export default [
   {
     id: 'phys1-rotating-systems-001',
     topic: 'rotating-systems',
+    formulas: ['rotational-ke', 'kinetic-energy', 'rolling'],
     difficulty: 2,
     prompt: 'A solid sphere, a solid cylinder and a thin hoop are released from rest at the top of the same ramp and roll without slipping. In what order do they reach the bottom?',
     choices: ['Hoop, cylinder, sphere', 'Sphere, cylinder, hoop', 'All at the same time', 'Cylinder, sphere, hoop'],
@@ -15,6 +16,7 @@ export default [
   {
     id: 'phys1-rotating-systems-002',
     topic: 'rotating-systems',
+    formulas: ['rotational-ke', 'kinetic-energy', 'tangential-speed'],
     difficulty: 2,
     prompt: 'A 2.0 kg solid cylinder (I = ½MR²) rolls without slipping at 3.0 m/s. What is its total kinetic energy?',
     choices: ['9.0 J', '18 J', '13.5 J', '4.5 J'],
@@ -27,6 +29,7 @@ export default [
   {
     id: 'phys1-rotating-systems-003',
     topic: 'rotating-systems',
+    formulas: ['angular-momentum'],
     difficulty: 2,
     prompt: 'A spinning skater pulls her arms in. Which statement is correct?',
     choices: [
@@ -42,6 +45,7 @@ export default [
   {
     id: 'phys1-rotating-systems-004',
     topic: 'rotating-systems',
+    formulas: ['angular-momentum'],
     difficulty: 3,
     prompt: 'A skater spinning at 2.0 rev/s pulls in her arms, reducing her rotational inertia from 4.0 kg·m² to 1.6 kg·m². What is her new rate of spin?',
     choices: ['0.80 rev/s', '2.5 rev/s', '8.0 rev/s', '5.0 rev/s'],
@@ -54,6 +58,7 @@ export default [
   {
     id: 'phys1-rotating-systems-005',
     topic: 'rotating-systems',
+    formulas: ['angular-momentum-point'],
     difficulty: 2,
     prompt: 'A satellite follows an elliptical orbit around Earth. Why does it move fastest at the point closest to Earth?',
     choices: [

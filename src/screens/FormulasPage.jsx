@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useDeferredValue } from 'react'
-import { Search, RotateCcw, ExternalLink, X } from 'lucide-react'
+import { Search, RotateCcw, ExternalLink, X, Target, Sigma } from 'lucide-react'
 import Button from '../components/ui/Button'
 import IconButton from '../components/ui/IconButton'
 import EmptyState from '../components/ui/EmptyState'
@@ -8,6 +8,8 @@ import MathTex from '../components/MathTex'
 import { FORMULA_SUBJECTS, loadFormulaSheet, loadAllFormulaSheets } from '../data/formulaLoader'
 import { searchFormulas } from '../utils/formulaSearch'
 import { splitDisplayParts } from '../utils/texParts'
+import { hasQuestionBank, loadQuestionBank } from '../data/questions/questionLoader'
+import { questionsByFormula } from '../utils/formulaLinks'
 
 const SUBJECT_NAMES = Object.fromEntries(FORMULA_SUBJECTS.map(meta => [meta.id, meta.shortName]));
 const SUBJECT_BY_ID = new Map(FORMULA_SUBJECTS.map(meta => [meta.id, meta]));
@@ -44,7 +46,7 @@ function ExamTag({ given }) {
     : <span className="badge badge-pencil" title="Not on any exam sheet: you need to know it">Memorize</span>;
 }
 
-function FormulaCard({ formula, given, subjectBadge }) {
+function FormulaCard({ formula, given, subjectBadge, questionCount = 0, onPractice }) {
   return (
     <li className="card formula-card">
       <div className="formula-head">
@@ -70,6 +72,11 @@ function FormulaCard({ formula, given, subjectBadge }) {
         </dl>
       )}
       {formula.note && <p className="formula-note">{formula.note}</p>}
+      {questionCount > 0 && onPractice && (
+        <button type="button" className="formula-practice" onClick={onPractice}>
+          <Target aria-hidden="true" />Practice {questionCount} question{questionCount === 1 ? '' : 's'} that use this
+        </button>
+      )}
     </li>
   );
 }
@@ -86,8 +93,18 @@ function SheetSource({ sheet }) {
   );
 }
 
-function SubjectSheet({ subjectId }) {
+const NO_LINKS = new Map();
+
+// Formula id → question ids, for a subject the student can practice. Links
+// are a bonus: if the bank fails to load, the formulas still show.
+function useQuestionLinks(subjectId, enabled) {
+  const linked = useLoaded(() => (enabled ? loadQuestionBank(subjectId).then(questionsByFormula) : Promise.resolve(NO_LINKS)), `${subjectId}:${enabled}`);
+  return linked.status === 'ready' ? linked.value : NO_LINKS;
+}
+
+function SubjectSheet({ subjectId, canPractice, onPracticeFormula }) {
   const loaded = useLoaded(() => loadFormulaSheet(subjectId), subjectId);
+  const links = useQuestionLinks(subjectId, canPractice && hasQuestionBank(subjectId));
 
   if (loaded.status === 'loading') return <div className="card formula-loading" role="status">Loading formulas</div>;
   if (loaded.status === 'error') {
@@ -106,7 +123,13 @@ function SubjectSheet({ subjectId }) {
         <section key={section.id} className="formula-section" aria-labelledby={`formulas-${section.id}`}>
           <h2 id={`formulas-${section.id}`}>{section.title}</h2>
           <ul className="formula-list">
-            {section.formulas.map(formula => <FormulaCard key={formula.id} formula={formula} given={isGiven(sheet, formula)} />)}
+            {section.formulas.map(formula => (
+              <FormulaCard
+                key={formula.id} formula={formula} given={isGiven(sheet, formula)}
+                questionCount={links.get(formula.id)?.length ?? 0}
+                onPractice={() => onPracticeFormula(subjectId, formula.id)}
+              />
+            ))}
           </ul>
         </section>
       ))}
@@ -147,12 +170,15 @@ function SearchResults({ query, onClear }) {
 // Formula reference for every subject that has formulas. The subject choice
 // is local to this screen: it can show subjects the student hasn't picked,
 // which the rest of the app's active subject must never be.
-export default function FormulasPage({ mySubjectIds = [], initialSubjectId }) {
+// practiceSubjectIds: subjects the student can open in Practice (their own,
+// with a question bank or formula drill); only those get practice links.
+export default function FormulasPage({ mySubjectIds = [], initialSubjectId, practiceSubjectIds = [], onPracticeFormula, onDrill }) {
   const subjects = useMemo(() => orderedSubjects(mySubjectIds), [mySubjectIds]);
   const [subjectId, setSubjectId] = useState(() => (SUBJECT_BY_ID.has(initialSubjectId) ? initialSubjectId : subjects[0].id));
   const [search, setSearch] = useState('');
   const query = useDeferredValue(search.trim());
   const subject = SUBJECT_BY_ID.get(subjectId);
+  const canPractice = practiceSubjectIds.includes(subjectId) && Boolean(onPracticeFormula);
 
   return (
     <div className="page formulas" style={{ '--subject': subject.color }}>
@@ -162,6 +188,7 @@ export default function FormulasPage({ mySubjectIds = [], initialSubjectId }) {
           <h1>{query ? 'Search formulas' : `${subject.shortName} formulas`}</h1>
           <p>{query ? `Results for "${query}"` : subject.name}</p>
         </div>
+        {!query && canPractice && onDrill && <Button variant="secondary" icon={Sigma} onClick={() => onDrill(subjectId)}>Drill these formulas</Button>}
       </header>
 
       <div className="input-with-icon input-with-action formula-search">
@@ -171,7 +198,7 @@ export default function FormulasPage({ mySubjectIds = [], initialSubjectId }) {
         {search && <IconButton icon={X} label="Clear search" onClick={() => setSearch('')} />}
       </div>
 
-      {query ? <SearchResults query={query} onClear={() => setSearch('')} /> : <SubjectSheet key={subjectId} subjectId={subjectId} />}
+      {query ? <SearchResults query={query} onClear={() => setSearch('')} /> : <SubjectSheet key={subjectId} subjectId={subjectId} canPractice={canPractice} onPracticeFormula={onPracticeFormula} />}
     </div>
   );
 }

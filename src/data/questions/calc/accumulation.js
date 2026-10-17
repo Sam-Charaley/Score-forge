@@ -15,6 +15,7 @@ export default [
   {
     id: 'calc-accumulation-001',
     topic: 'accumulation',
+    formulas: ['ftc-1', 'basic-antiderivatives'],
     difficulty: 1,
     prompt: 'What is the value of ∫₀² (3x² + 1) dx?',
     choices: ['8', '10', '12', '14'],
@@ -27,6 +28,7 @@ export default [
   {
     id: 'calc-accumulation-002',
     topic: 'accumulation',
+    formulas: ['riemann-sums'],
     difficulty: 1,
     prompt: 'What is the left Riemann sum for f(x) = x² on [0, 3] using three subintervals of equal width?',
     choices: ['9', '14', '5', '14/3'],
@@ -39,6 +41,7 @@ export default [
   {
     id: 'calc-accumulation-003',
     topic: 'accumulation',
+    formulas: ['ftc-2'],
     difficulty: 3,
     prompt: 'If F(x) = ∫₁^(x²) √(1 + t) dt, what is F\'(2)?',
     choices: ['√5', '2√5', '4√5', '√3'],
@@ -51,6 +54,7 @@ export default [
   {
     id: 'calc-accumulation-004',
     topic: 'accumulation',
+    formulas: ['accumulation', 'integral-properties'],
     difficulty: 2,
     prompt: 'The graph of f is shown. If g(x) = ∫₀ˣ f(t) dt, what is g(4)?',
     figure: RATE_GRAPH,
@@ -64,6 +68,7 @@ export default [
   {
     id: 'calc-accumulation-005',
     topic: 'accumulation',
+    formulas: ['accumulation'],
     difficulty: 2,
     prompt: 'A tank holds 30 L of water at t = 0. Water flows in at R(t) = 20e^(−0.1t) liters per minute. How much water is in the tank at t = 8 minutes?',
     calculator: true,

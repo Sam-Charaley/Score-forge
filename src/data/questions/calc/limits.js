@@ -21,6 +21,7 @@ export default [
   {
     id: 'calc-limits-002',
     topic: 'limits',
+    formulas: ['sin-limit'],
     difficulty: 2,
     prompt: 'What is lim (x → 0) of sin(5x)/(2x)?',
     choices: ['2/5', '1', '5', '5/2'],
@@ -33,6 +34,7 @@ export default [
   {
     id: 'calc-limits-003',
     topic: 'limits',
+    formulas: ['limits-at-infinity'],
     difficulty: 2,
     prompt: 'What is lim (x → ∞) of (4x³ − x)/(2x³ + 7)?',
     choices: ['2', '4', '0', '−1/7'],
@@ -45,6 +47,7 @@ export default [
   {
     id: 'calc-limits-004',
     topic: 'limits',
+    formulas: ['continuity'],
     difficulty: 2,
     prompt: 'The function f is defined by f(x) = x² + k for x < 2 and f(x) = 3x − 1 for x ≥ 2. For what value of k is f continuous at x = 2?',
     choices: ['5', '−1', '1', '9'],
@@ -58,6 +61,7 @@ export default [
   {
     id: 'calc-limits-005',
     topic: 'limits',
+    formulas: ['ivt'],
     difficulty: 3,
     prompt: 'A function f is continuous on [1, 4], with f(1) = −2 and f(4) = 3. Which statement must be true?',
     choices: [

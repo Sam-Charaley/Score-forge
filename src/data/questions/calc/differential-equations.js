@@ -11,6 +11,7 @@ export default [
   {
     id: 'calc-differential-equations-001',
     topic: 'differential-equations',
+    formulas: ['separation', 'exponential-growth'],
     difficulty: 1,
     prompt: 'If dy/dx = 2y and y(0) = 3, what is y(1)?',
     choices: ['3e', 'e²', '3e²', '6'],
@@ -23,6 +24,7 @@ export default [
   {
     id: 'calc-differential-equations-002',
     topic: 'differential-equations',
+    formulas: ['separation'],
     difficulty: 2,
     prompt: 'If dy/dx = x/y and y(0) = 2, what is y(3)? (Take y > 0.)',
     choices: ['√13', '√5', '13', '5'],
@@ -45,6 +47,7 @@ export default [
   {
     id: 'calc-differential-equations-004',
     topic: 'differential-equations',
+    formulas: ['euler'],
     onlyIn: 'calcbc',
     difficulty: 2,
     prompt: 'Let y = f(x) solve dy/dx = x + y with f(0) = 1. Using Euler\'s method with two steps of size 0.5, what is the approximation of f(1)?',
@@ -58,6 +61,7 @@ export default [
   {
     id: 'calc-differential-equations-005',
     topic: 'differential-equations',
+    formulas: ['logistic'],
     onlyIn: 'calcbc',
     difficulty: 3,
     prompt: 'A population grows according to dP/dt = 0.2P(1 − P/500). At what population is it growing fastest?',

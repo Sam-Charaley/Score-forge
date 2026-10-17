@@ -6,6 +6,7 @@ export default [
   {
     id: 'csa-strings-001',
     topic: 'strings',
+    formulas: ['substring-range'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "computer";
@@ -19,6 +20,7 @@ System.out.println(s.substring(3, 6));`,
   {
     id: 'csa-strings-002',
     topic: 'strings',
+    formulas: ['index-of'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "banana";
@@ -32,6 +34,7 @@ System.out.println(s.indexOf("an"));`,
   {
     id: 'csa-strings-003',
     topic: 'strings',
+    formulas: ['string-length', 'index-of'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "Java";
@@ -46,6 +49,7 @@ System.out.println(total);`,
   {
     id: 'csa-strings-004',
     topic: 'strings',
+    formulas: ['string-equals'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String a = "hi";
@@ -60,6 +64,7 @@ System.out.println((a == b) + " " + a.equals(b));`,
   {
     id: 'csa-strings-005',
     topic: 'strings',
+    formulas: ['compare-to'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String a = "Zebra";
@@ -81,6 +86,7 @@ if (result < 0) {
   {
     id: 'csa-strings-006',
     topic: 'strings',
+    formulas: ['substring-from'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "cat";
@@ -96,6 +102,7 @@ System.out.println(s);`,
   {
     id: 'csa-strings-007',
     topic: 'strings',
+    formulas: ['substring-from', 'index-of'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String s = "mississippi";

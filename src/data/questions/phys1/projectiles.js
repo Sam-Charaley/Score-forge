@@ -24,6 +24,7 @@ export default [
   {
     id: 'phys1-projectiles-002',
     topic: 'projectiles',
+    formulas: ['position-time'],
     difficulty: 2,
     prompt: 'A ball is thrown horizontally at 15 m/s from the top of a cliff 4.9 m high. How far from the base of the cliff does it land? (g = 9.8 m/s²)',
     choices: ['7.5 m', '15 m', '30 m', '74 m'],
@@ -36,6 +37,7 @@ export default [
   {
     id: 'phys1-projectiles-003',
     topic: 'projectiles',
+    formulas: ['velocity-time'],
     difficulty: 2,
     prompt: 'A ball is launched at 40° above the horizontal. Ignoring air resistance, which describes the ball at the highest point of its path?',
     choices: [
@@ -51,6 +53,7 @@ export default [
   {
     id: 'phys1-projectiles-004',
     topic: 'projectiles',
+    formulas: ['velocity-time', 'right-triangle'],
     difficulty: 3,
     prompt: 'A ball is launched at 20 m/s at 30° above the horizontal and lands at the same height it started from. How long is it in the air? (g = 9.8 m/s²)',
     choices: ['2.0 s', '1.0 s', '3.5 s', '4.1 s'],
@@ -75,6 +78,7 @@ export default [
   {
     id: 'phys1-projectiles-006',
     topic: 'projectiles',
+    formulas: ['velocity-time'],
     difficulty: 2,
     prompt: 'The graph shows the vertical velocity of a ball launched upward at an angle. At about what time does the ball reach its highest point? (g = 9.8 m/s²)',
     figure: VERTICAL_VELOCITY,

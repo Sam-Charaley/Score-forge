@@ -53,6 +53,7 @@ System.out.println(total + step);`,
   {
     id: 'csa-scope-static-003',
     topic: 'scope-static',
+    formulas: ['add-end'],
     difficulty: 3,
     prompt: 'Consider the following class. What is printed when the code segment below it is executed?',
     setup: `public class Score {

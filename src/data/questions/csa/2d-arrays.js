@@ -18,6 +18,7 @@ System.out.println(grid[1][0] + grid[0][2]);`,
   {
     id: 'csa-2d-arrays-002',
     topic: '2d-arrays',
+    formulas: ['array-basics'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[][] m = new int[3][5];
@@ -31,6 +32,7 @@ System.out.println(m.length + " " + m[0].length);`,
   {
     id: 'csa-2d-arrays-003',
     topic: '2d-arrays',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[][] g = {{2, 4}, {6, 8}, {1, 3}};
@@ -48,6 +50,7 @@ System.out.println(total);`,
   {
     id: 'csa-2d-arrays-004',
     topic: '2d-arrays',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[][] g = {{1, 2}, {3, 4}};
@@ -65,6 +68,7 @@ for (int c = 0; c < g[0].length; c++) {
   {
     id: 'csa-2d-arrays-005',
     topic: '2d-arrays',
+    formulas: ['integer-division'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[][] g = {{1, 2, 3}, {4, 5, 6}};
@@ -86,6 +90,7 @@ System.out.println(count);`,
   {
     id: 'csa-2d-arrays-006',
     topic: '2d-arrays',
+    formulas: ['array-basics'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[][] g = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
@@ -108,6 +113,7 @@ System.out.println(sum);`,
   {
     id: 'csa-2d-arrays-007',
     topic: '2d-arrays',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[][] g = {{3, 9, 4}, {7, 2, 8}};
@@ -130,6 +136,7 @@ System.out.println(best[0] + " " + best[1]);`,
   {
     id: 'csa-2d-arrays-008',
     topic: '2d-arrays',
+    formulas: ['array-basics'],
     difficulty: 3,
     prompt: 'What happens when the following code segment is executed?',
     code: `int[][] g = new int[4][6];

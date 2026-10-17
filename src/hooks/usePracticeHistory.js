@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { Attempts } from '../services/attempts'
 import { computeMastery } from '../utils/mastery'
+import { isDrillAttempt } from '../utils/formulaDrill'
 
 // One student's attempts for one subject, plus mastery rebuilt from them.
 // New answers count immediately and are rolled back if the save fails.
@@ -21,7 +22,13 @@ export function usePracticeHistory({ userId, subjectId, onSaveError }) {
     return () => { isCurrent = false; };
   }, [userId, subjectId, loadRequest]);
 
-  const mastery = useMemo(() => computeMastery(attempts ?? []), [attempts]);
+  // Formula drill answers are kept apart: they never move mastery, Smart
+  // picks or Progress, so everything else sees only question-bank attempts.
+  const { bankAttempts, drillAttempts } = useMemo(() => ({
+    bankAttempts: attempts && attempts.filter(a => !isDrillAttempt(a)),
+    drillAttempts: attempts && attempts.filter(isDrillAttempt),
+  }), [attempts]);
+  const mastery = useMemo(() => computeMastery(bankAttempts ?? []), [bankAttempts]);
 
   const record = async (attempt) => {
     const tempId = `pending-${nextTempId.current++}`;
@@ -41,5 +48,5 @@ export function usePracticeHistory({ userId, subjectId, onSaveError }) {
     }
   };
 
-  return { attempts, mastery, loadError, retryLoad: () => setLoadRequest(n => n + 1), record };
+  return { attempts: bankAttempts, drillAttempts, mastery, loadError, retryLoad: () => setLoadRequest(n => n + 1), record };
 }

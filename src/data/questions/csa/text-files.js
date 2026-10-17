@@ -6,6 +6,7 @@ export default [
   {
     id: 'csa-text-files-001',
     topic: 'text-files',
+    formulas: ['split', 'array-basics'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String line = "Ana,17,Grade 12";
@@ -20,6 +21,7 @@ System.out.println(parts.length + " " + parts[1]);`,
   {
     id: 'csa-text-files-002',
     topic: 'text-files',
+    formulas: ['split', 'parse-int'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String line = "4 9 2";
@@ -38,6 +40,7 @@ System.out.println(total);`,
   {
     id: 'csa-text-files-003',
     topic: 'text-files',
+    formulas: ['split', 'parse-int'],
     difficulty: 2,
     prompt: 'The array lines holds the lines of a file, one per element. What is printed when the following code segment is executed?',
     code: `String[] lines = {"apple,3", "pear,5", "fig,2"};
@@ -85,6 +88,7 @@ while (line.length() > 0) {
   {
     id: 'csa-text-files-006',
     topic: 'text-files',
+    formulas: ['object-methods', 'split'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String[] lines = {"Ben,B", "Amy,A", "Cal,A", "Dee,C"};
@@ -104,6 +108,7 @@ System.out.println(count);`,
   {
     id: 'csa-text-files-007',
     topic: 'text-files',
+    formulas: ['split', 'array-basics'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String line = "a, b,c";
@@ -118,6 +123,7 @@ System.out.println(parts.length + "[" + parts[1] + "]");`,
   {
     id: 'csa-text-files-008',
     topic: 'text-files',
+    formulas: ['split', 'parse-int'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `String[] lines = {"Mon 12", "Tue 18", "Wed 15"};

@@ -25,6 +25,7 @@ export default [
   {
     id: 'phys1-motion-1d-001',
     topic: 'motion-1d',
+    formulas: ['average-velocity'],
     difficulty: 1,
     prompt: 'A car starts from rest and speeds up uniformly to 24 m/s in 6.0 s. How far does it travel in that time?',
     choices: ['144 m', '72 m', '36 m', '4.0 m'],
@@ -37,6 +38,7 @@ export default [
   {
     id: 'phys1-motion-1d-002',
     topic: 'motion-1d',
+    formulas: ['velocity-time'],
     difficulty: 2,
     prompt: 'An object\'s velocity-time graph is a straight line that starts at +6 m/s and falls steadily to −6 m/s over 4.0 s. Which statement is true?',
     choices: [
@@ -52,6 +54,7 @@ export default [
   {
     id: 'phys1-motion-1d-003',
     topic: 'motion-1d',
+    formulas: ['position-time'],
     difficulty: 2,
     prompt: 'A ball is dropped from rest from a height of 20 m. Ignoring air resistance, how long does it take to reach the ground? (g = 9.8 m/s²)',
     choices: ['1.4 s', '4.1 s', '0.45 s', '2.0 s'],
@@ -79,6 +82,7 @@ export default [
   {
     id: 'phys1-motion-1d-005',
     topic: 'motion-1d',
+    formulas: ['velocity-position'],
     difficulty: 3,
     prompt: 'A car moving at 20 m/s brakes with a constant deceleration of 5.0 m/s² and stops in 40 m. With the same deceleration, how far would it take to stop from 40 m/s?',
     choices: ['80 m', '160 m', '40 m', '320 m'],
@@ -91,6 +95,7 @@ export default [
   {
     id: 'phys1-motion-1d-006',
     topic: 'motion-1d',
+    formulas: ['velocity-time'],
     difficulty: 1,
     prompt: 'The graph shows a car\'s velocity over 10 s. What is its acceleration during the first 4 s?',
     figure: CAR_TRIP,
@@ -104,6 +109,7 @@ export default [
   {
     id: 'phys1-motion-1d-007',
     topic: 'motion-1d',
+    formulas: ['triangle-area'],
     difficulty: 2,
     prompt: 'Using the same graph, how far does the car travel in the full 10 s?',
     figure: CAR_TRIP,
@@ -117,6 +123,7 @@ export default [
   {
     id: 'phys1-motion-1d-008',
     topic: 'motion-1d',
+    formulas: ['triangle-area'],
     difficulty: 2,
     prompt: 'The graph shows an object\'s velocity. What total distance does it travel from t = 0 to t = 6 s?',
     figure: THROW_BACK,
@@ -143,6 +150,7 @@ export default [
   {
     id: 'phys1-motion-1d-010',
     topic: 'motion-1d',
+    formulas: ['velocity-time'],
     difficulty: 2,
     prompt: 'A cart moving at 2.0 m/s has the acceleration shown in the graph. What is its speed at t = 4 s?',
     figure: PUSHED_CART,

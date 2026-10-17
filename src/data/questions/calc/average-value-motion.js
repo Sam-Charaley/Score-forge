@@ -17,6 +17,7 @@ export default [
   {
     id: 'calc-average-value-motion-001',
     topic: 'average-value-motion',
+    formulas: ['average-value'],
     difficulty: 1,
     prompt: 'What is the average value of f(x) = x² on [0, 3]?',
     choices: ['9', '3', '9/2', '1'],
@@ -29,6 +30,7 @@ export default [
   {
     id: 'calc-average-value-motion-002',
     topic: 'average-value-motion',
+    formulas: ['displacement-distance', 'accumulation'],
     difficulty: 2,
     prompt: 'A particle starts at x = 5 when t = 0 and moves with velocity v(t) = 2t − 6. What is its position at t = 4?',
     choices: ['−8', '2', '−3', '5'],
@@ -41,6 +43,7 @@ export default [
   {
     id: 'calc-average-value-motion-003',
     topic: 'average-value-motion',
+    formulas: ['displacement-distance'],
     difficulty: 3,
     prompt: 'A particle moves with velocity v(t) = t² − 4t + 3 for 0 ≤ t ≤ 3. What is the total distance it travels?',
     choices: ['0', '4/3', '8/3', '4'],
@@ -53,6 +56,7 @@ export default [
   {
     id: 'calc-average-value-motion-004',
     topic: 'average-value-motion',
+    formulas: ['motion'],
     difficulty: 2,
     prompt: 'A particle has velocity v(t) = t² − 1. At t = 1/2, is its speed increasing or decreasing?',
     choices: [
@@ -68,6 +72,7 @@ export default [
   {
     id: 'calc-average-value-motion-005',
     topic: 'average-value-motion',
+    formulas: ['displacement-distance'],
     difficulty: 3,
     prompt: 'A particle moves along a line with velocity v(t) = sin(t²) for 0 ≤ t ≤ 3. What is the total distance it travels?',
     calculator: true,

@@ -9,6 +9,7 @@ export default [
   {
     id: 'calcbc-taylor-001',
     topic: 'taylor',
+    formulas: ['maclaurin-cos', 'taylor-polynomial'],
     difficulty: 1,
     prompt: 'What is the coefficient of x² in the Maclaurin series for cos(3x)?',
     choices: ['−9', '−9/2', '−3/2', '9/2'],
@@ -22,6 +23,7 @@ export default [
   {
     id: 'calcbc-taylor-002',
     topic: 'taylor',
+    formulas: ['maclaurin-ln', 'taylor-polynomial'],
     difficulty: 2,
     prompt: 'Using the second-degree Maclaurin polynomial for ln(1 + x), what is the approximation of ln(1.2)?',
     choices: ['0.2', '0.18', '0.22', '0.182'],
@@ -38,6 +40,7 @@ export default [
   {
     id: 'calcbc-taylor-003',
     topic: 'taylor',
+    formulas: ['lagrange-error'],
     difficulty: 3,
     prompt: 'The third-degree Maclaurin polynomial for cos x is 1 − x²/2. Using the Lagrange error bound with |f⁽⁴⁾(x)| ≤ 1, what is the largest the error can be when it approximates cos 1?',
     choices: ['1/6', '1/2', '1/24', '1/120'],
@@ -48,6 +51,7 @@ export default [
   {
     id: 'calcbc-taylor-004',
     topic: 'taylor',
+    formulas: ['maclaurin-e'],
     difficulty: 2,
     prompt: 'Which are the first three nonzero terms of the Maclaurin series for x e^(−x²)?',
     choices: [
@@ -63,6 +67,7 @@ export default [
   {
     id: 'calcbc-taylor-005',
     topic: 'taylor',
+    formulas: ['taylor-polynomial'],
     difficulty: 2,
     prompt: 'A function f has f(1) = 3, f\'(1) = −2 and f\'\'(1) = 4. Using the second-degree Taylor polynomial for f about x = 1, what is the approximation of f(1.1)?',
     choices: ['2.80', '2.84', '2.82', '3.22'],

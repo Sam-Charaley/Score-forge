@@ -15,6 +15,7 @@ export default [
   {
     id: 'phys1-work-power-001',
     topic: 'work-power',
+    formulas: ['work'],
     difficulty: 1,
     prompt: 'A student pushes a box 5.0 m across a floor with a constant horizontal force of 40 N. How much work does the student do on the box?',
     choices: ['8.0 J', '45 J', '200 J', '20 J'],
@@ -27,6 +28,7 @@ export default [
   {
     id: 'phys1-work-power-002',
     topic: 'work-power',
+    formulas: ['work'],
     difficulty: 2,
     prompt: 'A student carries a heavy box across a level room at constant velocity, holding it at the same height. How much work does the student\'s upward force do on the box?',
     choices: ['Zero', 'Positive, equal to the box\'s weight times the distance', 'Negative, because the box pushes down on the student', 'Positive, equal to the box\'s kinetic energy'],
@@ -37,6 +39,7 @@ export default [
   {
     id: 'phys1-work-power-003',
     topic: 'work-power',
+    formulas: ['work-energy', 'kinetic-energy'],
     difficulty: 2,
     prompt: 'A 0.50 kg ball speeds up from 4.0 m/s to 8.0 m/s. How much net work is done on it?',
     choices: ['4.0 J', '16 J', '12 J', '1.0 J'],
@@ -49,6 +52,7 @@ export default [
   {
     id: 'phys1-work-power-004',
     topic: 'work-power',
+    formulas: ['average-power', 'gravitational-potential-near'],
     difficulty: 2,
     prompt: 'A motor lifts a 50 kg load 10 m at constant speed in 8.0 s. What is the motor\'s average power output? (g = 9.8 m/s²)',
     choices: ['61 W', '610 W', '4900 W', '490 W'],
@@ -61,6 +65,7 @@ export default [
   {
     id: 'phys1-work-power-005',
     topic: 'work-power',
+    formulas: ['work-energy', 'kinetic-energy'],
     difficulty: 3,
     prompt: 'A car skids to a stop on a level road with the same friction force each time. If it starts skidding at twice the speed, how much farther does it slide?',
     choices: ['The same distance', 'Twice as far', 'Four times as far', 'Eight times as far'],
@@ -71,6 +76,7 @@ export default [
   {
     id: 'phys1-work-power-006',
     topic: 'work-power',
+    formulas: ['work'],
     difficulty: 2,
     prompt: 'The graph shows the force on a box as it moves 5.0 m. How much work does the force do?',
     figure: VARIABLE_PUSH,
@@ -84,6 +90,7 @@ export default [
   {
     id: 'phys1-work-power-007',
     topic: 'work-power',
+    formulas: ['spring-energy', 'spring-force'],
     difficulty: 3,
     prompt: 'The graph shows the force needed to stretch a spring. How much energy is stored in the spring when it is stretched 0.20 m?',
     figure: SPRING_FORCE,

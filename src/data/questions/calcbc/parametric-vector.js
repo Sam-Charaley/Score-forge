@@ -11,6 +11,7 @@ export default [
   {
     id: 'calcbc-parametric-vector-001',
     topic: 'parametric-vector',
+    formulas: ['parametric-slope'],
     difficulty: 1,
     prompt: 'A curve is given by x = t² and y = t³. What is dy/dx at t = 2?',
     choices: ['12', '3', '3/2', '4'],
@@ -23,6 +24,7 @@ export default [
   {
     id: 'calcbc-parametric-vector-002',
     topic: 'parametric-vector',
+    formulas: ['parametric-second'],
     difficulty: 3,
     prompt: 'A curve is given by x = t² and y = t³. What is d²y/dx² at t = 1?',
     choices: ['3/2', '3/4', '3', '6'],
@@ -36,6 +38,7 @@ export default [
   {
     id: 'calcbc-parametric-vector-003',
     topic: 'parametric-vector',
+    formulas: ['speed'],
     difficulty: 2,
     prompt: 'A particle moves with position x(t) = 2t and y(t) = t². What is its speed at t = 2?',
     choices: ['6', '20', '2√5', '4'],
@@ -48,6 +51,7 @@ export default [
   {
     id: 'calcbc-parametric-vector-004',
     topic: 'parametric-vector',
+    formulas: ['parametric-arc-length'],
     difficulty: 3,
     prompt: 'What is the length of the curve x = t², y = t³ for 0 ≤ t ≤ 1?',
     choices: ['(13√13 − 8)/27', '(13√13)/27', '(13√13 − 8)/9', '√13'],
@@ -60,6 +64,7 @@ export default [
   {
     id: 'calcbc-parametric-vector-005',
     topic: 'parametric-vector',
+    formulas: ['vector-motion'],
     difficulty: 2,
     prompt: 'A particle has position r(t) = ⟨t², sin t⟩. What is its acceleration vector at t = 0?',
     choices: ['⟨0, 1⟩', '⟨2, 0⟩', '⟨2, 1⟩', '⟨0, 0⟩'],

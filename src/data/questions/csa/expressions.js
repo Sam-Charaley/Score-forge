@@ -5,6 +5,7 @@ export default [
   {
     id: 'csa-expressions-001',
     topic: 'expressions',
+    formulas: ['integer-division'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int a = 7;
@@ -32,6 +33,7 @@ System.out.println(d);`,
   {
     id: 'csa-expressions-003',
     topic: 'expressions',
+    formulas: ['casting'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int x = 17;
@@ -75,6 +77,7 @@ System.out.println(n);`,
   {
     id: 'csa-expressions-006',
     topic: 'expressions',
+    formulas: ['int-limits'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int big = Integer.MAX_VALUE;
@@ -89,6 +92,7 @@ System.out.println(big == Integer.MIN_VALUE);`,
   {
     id: 'csa-expressions-007',
     topic: 'expressions',
+    formulas: ['casting'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `double price = 2.7;
@@ -103,6 +107,7 @@ System.out.println(rounded + " " + (int) price);`,
   {
     id: 'csa-expressions-008',
     topic: 'expressions',
+    formulas: ['integer-division'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int a = 5;

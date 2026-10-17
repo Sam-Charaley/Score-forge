@@ -7,6 +7,7 @@ export default [
   {
     id: 'phys1-circular-gravity-001',
     topic: 'circular-gravity',
+    formulas: ['centripetal'],
     difficulty: 1,
     prompt: 'A ball on a string is swung in a horizontal circle. Seen from above, what path does the ball take right after the string breaks?',
     choices: ['It keeps moving in a circle', 'It moves straight outward, away from the center', 'It moves in a straight line along the tangent to the circle', 'It spirals outward'],
@@ -17,6 +18,7 @@ export default [
   {
     id: 'phys1-circular-gravity-002',
     topic: 'circular-gravity',
+    formulas: ['centripetal', 'newtons-second', 'friction'],
     difficulty: 2,
     prompt: 'A 1200 kg car drives around a flat curve of radius 50 m at 15 m/s. What friction force from the road is needed to keep it on the curve?',
     choices: ['360 N', '5400 N', '11,800 N', '2700 N'],
@@ -29,6 +31,7 @@ export default [
   {
     id: 'phys1-circular-gravity-003',
     topic: 'circular-gravity',
+    formulas: ['gravitation'],
     difficulty: 2,
     prompt: 'A satellite orbits at a distance 2R from Earth\'s center, where R is Earth\'s radius. It is moved to an orbit at 4R. How does the gravitational force on it change?',
     choices: ['It becomes half as large', 'It becomes one quarter as large', 'It becomes twice as large', 'It stays the same'],
@@ -39,6 +42,7 @@ export default [
   {
     id: 'phys1-circular-gravity-004',
     topic: 'circular-gravity',
+    formulas: ['centripetal', 'weight'],
     difficulty: 3,
     prompt: 'A car drives over the top of a hill shaped like a circular arc of radius 20 m. What is the greatest speed at which it can pass the top without leaving the road? (g = 9.8 m/s²)',
     choices: ['20 m/s', '9.9 m/s', '14 m/s', '196 m/s'],
@@ -51,6 +55,7 @@ export default [
   {
     id: 'phys1-circular-gravity-005',
     topic: 'circular-gravity',
+    formulas: ['centripetal', 'newtons-second'],
     difficulty: 2,
     prompt: 'A roller coaster car passes through the bottom of a circular dip. How does the normal force on a rider compare with the rider\'s weight at that point?',
     choices: ['It is greater than the weight', 'It equals the weight', 'It is less than the weight', 'It is zero'],

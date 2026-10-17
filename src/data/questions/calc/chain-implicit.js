@@ -7,6 +7,7 @@ export default [
   {
     id: 'calc-chain-implicit-001',
     topic: 'chain-implicit',
+    formulas: ['chain-rule', 'power-rule'],
     difficulty: 1,
     prompt: 'If f(x) = (3x² + 1)⁵, what is f\'(1)?',
     choices: ['1280', '7680', '1024', '6144'],
@@ -19,6 +20,7 @@ export default [
   {
     id: 'calc-chain-implicit-002',
     topic: 'chain-implicit',
+    formulas: ['chain-rule', 'exp-log'],
     difficulty: 2,
     prompt: 'What is the derivative of ln(x² + 1) at x = 1?',
     choices: ['1/2', 'ln 2', '2', '1'],
@@ -44,6 +46,7 @@ export default [
   {
     id: 'calc-chain-implicit-004',
     topic: 'chain-implicit',
+    formulas: ['inverse-function'],
     difficulty: 3,
     prompt: 'Let f(x) = x³ + x, and let g be the inverse function of f. What is g\'(2)?',
     choices: ['4', '1/13', '1/4', '13'],
@@ -58,6 +61,7 @@ export default [
   {
     id: 'calc-chain-implicit-005',
     topic: 'chain-implicit',
+    formulas: ['chain-rule', 'inverse-trig-derivatives'],
     difficulty: 2,
     prompt: 'What is the derivative of arctan(2x) at x = 0?',
     choices: ['1', '2', '1/2', '0'],
@@ -70,6 +74,7 @@ export default [
   {
     id: 'calc-chain-implicit-006',
     topic: 'chain-implicit',
+    formulas: ['chain-rule', 'exp-log', 'trig-derivatives'],
     difficulty: 2,
     prompt: 'What is the derivative of e^(sin x) at x = π?',
     choices: ['1', 'e', '−1', '0'],

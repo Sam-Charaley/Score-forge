@@ -7,6 +7,7 @@ export default [
   {
     id: 'phys1-torque-001',
     topic: 'torque',
+    formulas: ['torque'],
     difficulty: 1,
     prompt: 'Where and in which direction should you push on a door to open it with the smallest force?',
     choices: [
@@ -22,6 +23,7 @@ export default [
   {
     id: 'phys1-torque-002',
     topic: 'torque',
+    formulas: ['torque'],
     difficulty: 2,
     prompt: 'A 20 N force is applied 0.40 m from a door\'s hinge, at an angle of 30° to the door. What torque does it produce about the hinge?',
     choices: ['8.0 N·m', '6.9 N·m', '4.0 N·m', '50 N·m'],
@@ -34,6 +36,7 @@ export default [
   {
     id: 'phys1-torque-003',
     topic: 'torque',
+    formulas: ['angular-position'],
     difficulty: 2,
     prompt: 'A wheel starts from rest and speeds up uniformly to 12 rad/s in 4.0 s. Through what angle does it turn in that time?',
     choices: ['48 rad', '24 rad', '12 rad', '3.0 rad'],
@@ -46,6 +49,7 @@ export default [
   {
     id: 'phys1-torque-004',
     topic: 'torque',
+    formulas: ['torque'],
     difficulty: 3,
     prompt: 'A 30 kg child sits 2.0 m from the pivot of a seesaw. How far from the pivot, on the other side, must a 40 kg child sit to balance it? (Ignore the seesaw\'s own mass.)',
     choices: ['2.7 m', '2.0 m', '1.0 m', '1.5 m'],
@@ -58,6 +62,7 @@ export default [
   {
     id: 'phys1-torque-005',
     topic: 'torque',
+    formulas: ['tangential-speed'],
     difficulty: 2,
     prompt: 'A wheel of radius 0.30 m turns at 5.0 rad/s. How fast is a point on its rim moving?',
     choices: ['1.5 m/s', '17 m/s', '0.060 m/s', '0.75 m/s'],

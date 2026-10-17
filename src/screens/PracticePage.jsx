@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
-import { Flag, PenLine, RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft, Calculator } from 'lucide-react'
+import { Flag, PenLine, RotateCcw as RetryIcon, Sparkles, Shuffle, Check, X, RotateCcw, Target, CornerDownLeft, Calculator, Sigma, Link2 } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
 import EmptyState from '../components/ui/EmptyState'
@@ -15,6 +15,12 @@ import Tabs, { TabPanel } from '../components/ui/Tabs'
 import FrqPractice from '../components/FrqPractice'
 import QuestionFigure from '../components/QuestionFigure'
 import { hasFrqs } from '../data/frqs/frqLoader'
+import { hasQuestionBank } from '../data/questions/questionLoader'
+import { hasFormulaSheet } from '../data/formulaLoader'
+import { useFormulaSheet } from '../hooks/useFormulaSheet'
+import FormulaChips, { FormulaContent } from '../components/FormulaChips'
+import { buildDrillQuestions, drillProgress, DRILL_SCOPE } from '../utils/formulaDrill'
+import { formulaIdFromScope, formulasById } from '../utils/formulaLinks'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D'];
 const ALL_UNITS = 'all';
@@ -22,6 +28,8 @@ const ALL_UNITS = 'all';
 const SMART = 'smart';
 // Questions whose latest answer was wrong; each leaves once answered right.
 const MISSED = MISSED_SCOPE;
+// Formula recall built from the subject's sheet; kept out of mastery.
+const DRILL = DRILL_SCOPE;
 const DIFFICULTY_LABELS = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
 const MAX_DIFFICULTY = 3;
 const MULTIPLE_CHOICE = 'mc';
@@ -64,9 +72,10 @@ function DifficultyPips({ difficulty }) {
   );
 }
 
-function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onChoose }) {
+function Choice({ index, text, format, chosen, submitted, isAnswer, isPrintedOutput, onChoose }) {
   // Choices that are whole code segments keep their line breaks and indentation.
   const isMultiline = text.includes('\n');
+  const isFormula = format === 'tex' || format === 'code';
   const result = !submitted ? '' : isAnswer ? 'is-right' : chosen ? 'is-wrong' : 'is-faded';
   return (
     <button
@@ -75,7 +84,9 @@ function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onC
       {...{ [SHORTCUT_TARGET_ATTR]: '' }}
     >
       <span className="bubble" aria-hidden="true">{CHOICE_LETTERS[index]}</span>
-      <span className={`choice-text${isMultiline ? ' is-multiline mono' : isPrintedOutput || looksLikeCode(text) ? ' mono' : ''}`}><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{text}</span>
+      {isFormula
+        ? <span className="choice-text choice-formula"><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{format === 'code' ? <FormulaContent code={text} /> : <FormulaContent tex={text} />}</span>
+        : <span className={`choice-text${isMultiline ? ' is-multiline mono' : isPrintedOutput || looksLikeCode(text) ? ' mono' : ''}`}><span className="sr-only">{CHOICE_LETTERS[index]}. </span>{text}</span>}
       {submitted && isAnswer && <span className="choice-mark"><Check aria-hidden="true" /><span className="sr-only">Correct answer</span></span>}
       {submitted && chosen && !isAnswer && <span className="choice-mark"><X aria-hidden="true" /><span className="sr-only">Your answer</span></span>}
     </button>
@@ -85,9 +96,13 @@ function Choice({ index, text, chosen, submitted, isAnswer, isPrintedOutput, onC
 export default function PracticePage({ user, subject, practiceSubjects = [], initialScope = SMART, initialMode = MULTIPLE_CHOICE, onSubject, onSaveError, onScopeUsed, onReport }) {
   const showModes = hasFrqs(subject.id);
   const [mode, setMode] = useState(showModes ? initialMode : MULTIPLE_CHOICE);
-  const bank = useQuestionBank(subject.id);
+  const hasBank = hasQuestionBank(subject.id);
+  const hasSheet = hasFormulaSheet(subject.id);
+  const bank = useQuestionBank(subject.id, { enabled: hasBank });
+  const formulaSheet = useFormulaSheet(subject.id, { enabled: hasSheet });
   const history = usePracticeHistory({ userId: user.id, subjectId: subject.id, onSaveError });
-  const [scope, setScope] = useState(initialScope);
+  // A subject with a formula sheet but no question bank has only the drill.
+  const [scope, setScope] = useState(hasBank ? initialScope : DRILL);
   // The starting scope is a one-time request (from Progress); clear it once
   // used. Mount-only on purpose: later renders must not clear it again.
   useEffect(() => { onScopeUsed?.(); }, []);
@@ -104,11 +119,18 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
 
   const topicById = useMemo(() => new Map((bank.topics ?? []).map(t => [t.id, t])), [bank.topics]);
   const missedIds = useMemo(() => new Set(missedQuestionIds(history.attempts ?? [])), [history.attempts]);
+  const sheet = formulaSheet.status === 'ready' ? formulaSheet.sheet : null;
+  const drillQuestions = useMemo(() => (sheet ? buildDrillQuestions(sheet) : []), [sheet]);
+  const scopeFormulaId = formulaIdFromScope(scope);
+  const scopeFormula = sheet && scopeFormulaId ? formulasById(sheet, [scopeFormulaId])[0] : null;
+  const isDrill = scope === DRILL;
   const pool = useMemo(() => {
+    if (isDrill) return drillQuestions;
     if (bank.status !== 'ready') return [];
+    if (scopeFormulaId) return bank.questions.filter(q => q.formulas?.includes(scopeFormulaId));
     if (scope === MISSED) return bank.questions.filter(q => missedIds.has(q.id));
     return scope === ALL_UNITS || scope === SMART ? bank.questions : bank.questions.filter(q => topicById.get(q.topic)?.unit === scope);
-  }, [bank, scope, topicById, missedIds]);
+  }, [bank, scope, topicById, missedIds, isDrill, drillQuestions, scopeFormulaId]);
   const missedCount = bank.status === 'ready' ? bank.questions.filter(q => missedIds.has(q.id)).length : 0;
   const unitsWithQuestions = useMemo(() => (bank.units ?? []).filter(u => (bank.questions ?? []).some(q => topicById.get(q.topic)?.unit === u.id)), [bank, topicById]);
   const topicsInScope = useMemo(() => (bank.topics ?? []).filter(t => pool.some(q => q.topic === t.id)), [bank.topics, pool]);
@@ -129,16 +151,17 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
       const pick = pickSmartQuestion({ units: bank.units, topics: bank.topics, questions: bank.questions, attempts, mastery: history.mastery, previousQuestionId });
       showQuestion(pick?.question ?? null, pick?.reason ?? null);
     } else {
-      showQuestion(pickNextQuestion(pool, attempts, previousQuestionId));
+      showQuestion(pickNextQuestion(pool, isDrill ? history.drillAttempts ?? [] : attempts, previousQuestionId));
     }
-  }, [scope, bank, pool, history.attempts, history.mastery, showQuestion]);
+  }, [scope, bank, pool, history.attempts, history.drillAttempts, history.mastery, showQuestion, isDrill]);
 
   // First question once both the bank and the history are in, and whenever the scope changes.
   const historyLoaded = history.attempts !== null;
+  const drillReady = !isDrill || formulaSheet.status === 'ready';
   useEffect(() => {
-    if (bank.status === 'ready' && historyLoaded) chooseNext();
+    if (bank.status === 'ready' && historyLoaded && drillReady) chooseNext();
     // chooseNext changes after every answer; only these events pick a fresh question.
-  }, [bank.status, scope, historyLoaded]);
+  }, [bank.status, scope, historyLoaded, drillReady]);
 
   useEffect(() => () => timer.current?.stop(), []);
 
@@ -184,7 +207,9 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
           <h1>{subject.shortName} practice</h1>
           <p>{mode === FREE_RESPONSE
             ? 'Write the code, then score it yourself against the rubric, the way exam readers do.'
-            : "Questions picked for where you'll gain the most. Ratings update after every answer."}</p>
+            : !hasBank
+              ? 'Formula drill: pick the right formula from look-alikes. Full practice questions are on the way.'
+              : "Questions picked for where you'll gain the most. Ratings update after every answer."}</p>
         </div>
         {mode === MULTIPLE_CHOICE && session.answered > 0 && (
           <div className="session-score" aria-live="polite">
@@ -217,16 +242,24 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
 
   if (bank.status === 'error') return statusPage(<EmptyState icon={RotateCcw} title="Couldn't load the questions" action={<Button variant="secondary" onClick={() => window.location.reload()}>Reload</Button>}>{bank.message}</EmptyState>);
   if (history.loadError) return statusPage(<EmptyState icon={RotateCcw} title="Couldn't load your answers" action={<Button variant="secondary" onClick={history.retryLoad}>Try again</Button>}>{history.loadError}</EmptyState>);
-  if (bank.status === 'loading' || !historyLoaded) return statusPage(<div className="practice-loading" role="status"><span className="practice-loading-bubble" />Loading questions</div>);
-  if (bank.questions.length === 0) return statusPage(<EmptyState icon={Target} title="No questions yet">There are no reviewed questions for {subject.shortName} yet. They appear here as soon as they've been checked.</EmptyState>);
+  if (isDrill && formulaSheet.status === 'error') return statusPage(<EmptyState icon={RotateCcw} title="Couldn't load the formulas" action={<Button variant="secondary" onClick={() => window.location.reload()}>Reload</Button>}>{formulaSheet.message}</EmptyState>);
+  if (bank.status === 'loading' || !historyLoaded || !drillReady) return statusPage(<div className="practice-loading" role="status"><span className="practice-loading-bubble" />Loading questions</div>);
+  if (hasBank && bank.questions.length === 0 && !isDrill) return statusPage(<EmptyState icon={Target} title="No questions yet">There are no reviewed questions for {subject.shortName} yet. They appear here as soon as they've been checked.</EmptyState>);
 
   const topic = question && topicById.get(question.topic);
   const wasCorrect = submitted && chosenIndex === question.answer;
+  const isGiven = formula => Boolean(sheet?.sheet.given && !formula.memorize);
+  const usedFormulas = sheet && question?.formulas ? formulasById(sheet, question.formulas) : [];
+  const drill = isDrill ? drillProgress(drillQuestions, history.drillAttempts ?? []) : null;
   const scopes = [
-    { id: SMART, label: 'Smart', icon: Sparkles },
-    { id: ALL_UNITS, label: 'Mixed', icon: Shuffle },
-    ...(missedCount > 0 || scope === MISSED ? [{ id: MISSED, label: `Missed (${missedCount})`, icon: RetryIcon }] : []),
-    ...unitsWithQuestions.map(u => ({ id: u.id, label: `${u.id.toUpperCase()}: ${u.name}` })),
+    ...(scopeFormulaId ? [{ id: scope, label: `Uses: ${scopeFormula?.name ?? scopeFormulaId}`, icon: Link2 }] : []),
+    ...(hasBank ? [
+      { id: SMART, label: 'Smart', icon: Sparkles },
+      { id: ALL_UNITS, label: 'Mixed', icon: Shuffle },
+      ...(missedCount > 0 || scope === MISSED ? [{ id: MISSED, label: `Missed (${missedCount})`, icon: RetryIcon }] : []),
+    ] : []),
+    ...(hasSheet ? [{ id: DRILL, label: 'Formula drill', icon: Sigma }] : []),
+    ...(hasBank ? unitsWithQuestions.map(u => ({ id: u.id, label: `${u.id.toUpperCase()}: ${u.name}` })) : []),
   ];
 
   return (
@@ -246,11 +279,11 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
           {question ? (
             <section ref={sheetRef} className="sheet sheet-signature practice-sheet" tabIndex={-1} aria-label="Question" {...{ [SHORTCUT_TARGET_ATTR]: '' }} key={question.id}>
               <div className="sheet-head">
-                <span className="practice-topic">{topic?.name ?? question.topic}</span>
+                <span className="practice-topic">{isDrill ? `Formula drill · ${question.sectionTitle}` : topic?.name ?? question.topic}</span>
                 <span className="practice-tags">
                   {!question.reviewed && <span className="badge badge-pencil" title="Only visible in local development until reviewed">Draft {question.id}</span>}
                   {question.calculator && <span className="badge badge-outline" title="Use a graphing calculator, as in the calculator part of the exam"><Calculator aria-hidden="true" />Calculator</span>}
-                  <DifficultyPips difficulty={question.difficulty} />
+                  {!isDrill && <DifficultyPips difficulty={question.difficulty} />}
                 </span>
               </div>
               <div className="sheet-body">
@@ -268,7 +301,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
 
                 <div role="radiogroup" aria-label="Answer choices" className="choices">
                   {displayOrder.map((authored, position) => (
-                    <Choice key={authored} index={position} text={question.choices[authored]} chosen={chosenIndex === authored} submitted={submitted} isAnswer={authored === question.answer} isPrintedOutput={question.verify === 'output'} onChoose={() => setChosenIndex(authored)} />
+                    <Choice key={authored} index={position} text={question.choices[authored]} format={question.choiceFormat} chosen={chosenIndex === authored} submitted={submitted} isAnswer={authored === question.answer} isPrintedOutput={question.verify === 'output'} onChoose={() => setChosenIndex(authored)} />
                   ))}
                 </div>
 
@@ -278,6 +311,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
                     <p>{question.explanation}</p>
                   </div>
                 )}
+                {submitted && usedFormulas.length > 0 && <FormulaChips key={question.id} formulas={usedFormulas} given={isGiven} />}
 
                 <div className="practice-actions">
                   {onReport && <button type="button" className="report-link" onClick={() => onReport(question)}><Flag aria-hidden="true" />Report a problem</button>}
@@ -299,6 +333,19 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
           )}
         </div>
 
+        {isDrill ? (
+          <aside className="card mastery-panel" aria-labelledby="mastery-title">
+            <h2 id="mastery-title">Formula drill</h2>
+            <ul className="mastery-list">
+              <li className="mastery-row is-overall">
+                <div className="mastery-row-top"><span className="mastery-name">Formulas you know</span><span className="mastery-pending">{drill.known} of {drill.total}</span></div>
+                <ProgressBar share={drill.total ? drill.known / drill.total : 0} thin color="var(--graphite)" label="Formulas known" />
+                <span className="mastery-detail">{drill.answers ? `${drill.correct} of ${drill.answers} drill answers right` : 'No drill answers yet'}</span>
+              </li>
+            </ul>
+            <p className="mastery-note">A formula counts as known when your latest answer on it was right. Drill answers don't change your mastery ratings.</p>
+          </aside>
+        ) : (
         <aside className="card mastery-panel" aria-labelledby="mastery-title">
           <h2 id="mastery-title">Mastery</h2>
           <ul className="mastery-list">
@@ -307,6 +354,7 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
           </ul>
           <p className="mastery-note">Harder questions count for more. A level appears after {MIN_ATTEMPTS_FOR_LEVEL} answers on a topic.</p>
         </aside>
+        )}
       </div>
       </TabPanel>
     </div>

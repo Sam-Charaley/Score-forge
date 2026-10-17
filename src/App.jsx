@@ -19,6 +19,9 @@ import AdjustPlanPage from './screens/AdjustPlanPage'
 import PracticePage from './screens/PracticePage'
 import ProgressPage from './screens/ProgressPage'
 import { hasQuestionBank } from './data/questions/questionLoader'
+import { hasFormulaSheet } from './data/formulaLoader'
+import { formulaScope } from './utils/formulaLinks'
+import { DRILL_SCOPE } from './utils/formulaDrill'
 import ScreenErrorBoundary from './components/ScreenErrorBoundary'
 
 // KaTeX is large, so the Formulas screen and its math renderer load only when opened.
@@ -83,8 +86,13 @@ export default function App() {
 
     const mySubjects = content.subjects;
     const subject = mySubjects.find(s => s.id === activeSubjectId) || mySubjects[0];
-    const practiceSubjects = mySubjects.filter(s => hasQuestionBank(s.id));
-    const practiceSubject = hasQuestionBank(subject.id) ? subject : practiceSubjects[0];
+    // Practice covers subjects with a question bank or a formula sheet (the
+    // latter get only the formula drill); Progress needs a question bank.
+    const canPractice = s => hasQuestionBank(s.id) || hasFormulaSheet(s.id);
+    const practiceSubjects = mySubjects.filter(canPractice);
+    const practiceSubject = canPractice(subject) ? subject : practiceSubjects[0];
+    const progressSubjects = mySubjects.filter(s => hasQuestionBank(s.id));
+    const progressSubject = hasQuestionBank(subject.id) ? subject : progressSubjects[0];
     const subjectPlan = data.planSettings[subject.id];
     const planDays = subjectPlan?.durationDays || null;
     const planStart = subjectPlan?.startDate || null;
@@ -96,7 +104,8 @@ export default function App() {
       setPracticeStartScope(dest === 'practice' ? practiceScope : null);
       setPracticeStartMode(dest === 'practice' ? practiceMode : null);
       if (subjectId) setActiveSubjectId(subjectId);
-      else if ((dest === 'practice' || dest === 'progress') && practiceSubject) setActiveSubjectId(practiceSubject.id);
+      else if (dest === 'practice' && practiceSubject) setActiveSubjectId(practiceSubject.id);
+      else if (dest === 'progress' && progressSubject) setActiveSubjectId(progressSubject.id);
       setScreen(dest);
       window.scrollTo(0, 0);
     };
@@ -148,15 +157,15 @@ export default function App() {
           />
         );
       }
-      if (screen === 'progress' && practiceSubject) {
+      if (screen === 'progress' && progressSubject) {
         return (
           <ProgressPage
-            key={practiceSubject.id}
+            key={progressSubject.id}
             user={data.user}
-            subject={practiceSubject}
-            practiceSubjects={practiceSubjects}
+            subject={progressSubject}
+            practiceSubjects={progressSubjects}
             onSubject={setActiveSubjectId}
-            onPractice={(options) => navigate('practice', practiceSubject.id, options)}
+            onPractice={(options) => navigate('practice', progressSubject.id, options)}
           />
         );
       }
@@ -165,7 +174,13 @@ export default function App() {
         return (
           <ScreenErrorBoundary>
             <Suspense fallback={<div className="page"><div className="card formula-loading" role="status">Loading formulas</div></div>}>
-              <FormulasPage mySubjectIds={mySubjects.map(s => s.id)} initialSubjectId={subject.id} />
+              <FormulasPage
+                mySubjectIds={mySubjects.map(s => s.id)}
+                initialSubjectId={subject.id}
+                practiceSubjectIds={practiceSubjects.map(s => s.id)}
+                onPracticeFormula={(subjectId, formulaId) => navigate('practice', subjectId, { practiceScope: formulaScope(formulaId) })}
+                onDrill={subjectId => navigate('practice', subjectId, { practiceScope: DRILL_SCOPE })}
+              />
             </Suspense>
           </ScreenErrorBoundary>
         );
@@ -192,14 +207,15 @@ export default function App() {
       );
     };
 
-    const needsBank = screen === 'practice' || screen === 'progress';
-    const activeNav = adjustingPlan ? PLANS : (needsBank && !practiceSubject ? 'study' : screen);
+    const noSubjectFor = (screen === 'practice' && !practiceSubject) || (screen === 'progress' && !progressSubject);
+    const activeNav = adjustingPlan ? PLANS : (noSubjectFor ? 'study' : screen);
     return (
       <AppShell
         active={activeNav}
         username={data.username || data.user.email}
         streakDays={data.streak?.count ?? 0}
         canPractice={practiceSubjects.length > 0}
+        canSeeProgress={progressSubjects.length > 0}
         onNavigate={navigate}
         onFeedback={() => setFeedbackRequest({ screen: adjustingPlan ? PLANS : screen })}
       >

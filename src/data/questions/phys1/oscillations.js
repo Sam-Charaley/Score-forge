@@ -13,6 +13,7 @@ export default [
   {
     id: 'phys1-oscillations-001',
     topic: 'oscillations',
+    formulas: ['pendulum-period'],
     difficulty: 1,
     prompt: 'A simple pendulum swings with small amplitude. If the mass of the bob is doubled, what happens to the period?',
     choices: ['It doubles', 'It increases by a factor of √2', 'It stays the same', 'It halves'],
@@ -23,6 +24,7 @@ export default [
   {
     id: 'phys1-oscillations-002',
     topic: 'oscillations',
+    formulas: ['spring-period'],
     difficulty: 2,
     prompt: 'A 0.50 kg mass oscillates on a spring with k = 200 N/m. What is the period of oscillation?',
     choices: ['0.050 s', '20 s', '0.31 s', '0.63 s'],
@@ -35,6 +37,7 @@ export default [
   {
     id: 'phys1-oscillations-003',
     topic: 'oscillations',
+    formulas: ['pendulum-period'],
     difficulty: 2,
     prompt: 'What length of simple pendulum has a period of 2.0 s? (g = 9.8 m/s²)',
     choices: ['3.1 m', '0.50 m', '0.99 m', '2.0 m'],
@@ -47,6 +50,7 @@ export default [
   {
     id: 'phys1-oscillations-004',
     topic: 'oscillations',
+    formulas: ['spring-energy', 'kinetic-energy'],
     difficulty: 2,
     prompt: 'A mass on a spring oscillates in simple harmonic motion. Which describes the mass as it passes through the equilibrium position?',
     choices: [
@@ -62,6 +66,7 @@ export default [
   {
     id: 'phys1-oscillations-005',
     topic: 'oscillations',
+    formulas: ['spring-energy', 'kinetic-energy'],
     difficulty: 3,
     prompt: 'A 0.40 kg mass on a spring with k = 160 N/m oscillates with an amplitude of 0.050 m. What is its maximum speed?',
     choices: ['20 m/s', '0.50 m/s', '1.0 m/s', '0.20 m/s'],
@@ -74,6 +79,7 @@ export default [
   {
     id: 'phys1-oscillations-006',
     topic: 'oscillations',
+    formulas: ['period-frequency'],
     difficulty: 2,
     prompt: 'The graph shows the position of a mass oscillating on a spring. What is the frequency of the oscillation?',
     figure: SPRING_MOTION,

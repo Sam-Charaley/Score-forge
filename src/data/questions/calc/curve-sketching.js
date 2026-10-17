@@ -12,6 +12,7 @@ export default [
   {
     id: 'calc-curve-sketching-001',
     topic: 'curve-sketching',
+    formulas: ['inflection'],
     difficulty: 1,
     prompt: 'At what x-value does f(x) = x³ − 3x² have a point of inflection?',
     choices: ['0', '1', '2', '3'],
@@ -25,6 +26,7 @@ export default [
   {
     id: 'calc-curve-sketching-002',
     topic: 'curve-sketching',
+    formulas: ['inflection'],
     difficulty: 2,
     prompt: 'On which intervals is f(x) = x⁴ − 6x² concave up?',
     choices: [
@@ -52,6 +54,7 @@ export default [
   {
     id: 'calc-curve-sketching-004',
     topic: 'curve-sketching',
+    formulas: ['first-derivative-test'],
     difficulty: 3,
     prompt: 'The graph shows f′, the derivative of a function f. At what x-value does f have a local maximum?',
     figure: DERIVATIVE_GRAPH,
@@ -65,6 +68,7 @@ export default [
   {
     id: 'calc-curve-sketching-005',
     topic: 'curve-sketching',
+    formulas: ['second-derivative-test'],
     difficulty: 2,
     prompt: 'A twice-differentiable function f has f\'(4) = 0 and f\'\'(4) = −3. Which statement is true?',
     choices: [

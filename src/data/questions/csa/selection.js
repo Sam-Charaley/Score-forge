@@ -89,6 +89,7 @@ if (a > b) {
   {
     id: 'csa-selection-005',
     topic: 'selection',
+    formulas: ['integer-division'],
     difficulty: 1,
     prompt: 'Consider the following method. Which value of n makes it print Buzz?',
     setup: `static void fizz(int n) {

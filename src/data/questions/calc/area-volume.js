@@ -7,6 +7,7 @@ export default [
   {
     id: 'calc-area-volume-001',
     topic: 'area-volume',
+    formulas: ['area-between'],
     difficulty: 1,
     prompt: 'What is the area of the region between y = x and y = x² for 0 ≤ x ≤ 1?',
     choices: ['1/3', '1/6', '1/2', '5/6'],
@@ -19,6 +20,7 @@ export default [
   {
     id: 'calc-area-volume-002',
     topic: 'area-volume',
+    formulas: ['disc'],
     difficulty: 2,
     prompt: 'The region under y = √x for 0 ≤ x ≤ 4 is revolved about the x-axis. What is the volume of the solid?',
     choices: ['16π/3', '4π', '8π', '16π'],
@@ -31,6 +33,7 @@ export default [
   {
     id: 'calc-area-volume-003',
     topic: 'area-volume',
+    formulas: ['washer'],
     difficulty: 3,
     prompt: 'The region between y = x and y = x² for 0 ≤ x ≤ 1 is revolved about the x-axis. What is the volume of the solid?',
     choices: ['π/6', '2π/15', 'π/30', 'π/15'],
@@ -43,6 +46,7 @@ export default [
   {
     id: 'calc-area-volume-004',
     topic: 'area-volume',
+    formulas: ['cross-sections'],
     difficulty: 2,
     prompt: 'A solid\'s base is the triangle with vertices (0, 0), (2, 0) and (0, 2). Cross sections perpendicular to the x-axis are squares. What is the volume of the solid?',
     choices: ['8/3', '4/3', '8', '2'],
@@ -55,6 +59,7 @@ export default [
   {
     id: 'calc-area-volume-005',
     topic: 'area-volume',
+    formulas: ['arc-length'],
     onlyIn: 'calcbc',
     difficulty: 3,
     prompt: 'What is the arc length of y = (2/3)x^(3/2) from x = 0 to x = 3?',

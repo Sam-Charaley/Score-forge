@@ -9,6 +9,7 @@ export default [
   {
     id: 'phys1-fluid-dynamics-001',
     topic: 'fluid-dynamics',
+    formulas: ['continuity'],
     difficulty: 1,
     prompt: 'Water flows at 2.0 m/s through a pipe with a cross-sectional area of 4.0 cm². The pipe narrows to 1.0 cm². How fast does the water flow in the narrow part?',
     choices: ['0.50 m/s', '4.0 m/s', '16 m/s', '8.0 m/s'],
@@ -21,6 +22,7 @@ export default [
   {
     id: 'phys1-fluid-dynamics-002',
     topic: 'fluid-dynamics',
+    formulas: ['bernoulli', 'continuity'],
     difficulty: 2,
     prompt: 'Water flows through a horizontal pipe that narrows. How does the pressure in the narrow section compare with the pressure in the wide section?',
     choices: [
@@ -36,6 +38,7 @@ export default [
   {
     id: 'phys1-fluid-dynamics-003',
     topic: 'fluid-dynamics',
+    formulas: ['bernoulli'],
     difficulty: 2,
     prompt: 'Water leaks from a small hole in the side of an open tank, 0.80 m below the water surface. How fast does the water leave the hole? (g = 9.8 m/s²)',
     choices: ['4.0 m/s', '16 m/s', '2.8 m/s', '7.8 m/s'],
@@ -48,6 +51,7 @@ export default [
   {
     id: 'phys1-fluid-dynamics-004',
     topic: 'fluid-dynamics',
+    formulas: ['bernoulli'],
     difficulty: 3,
     prompt: 'In a horizontal pipe, water speeds up from 2.0 m/s to 8.0 m/s. How much lower is the pressure in the fast-moving section? (water density 1000 kg/m³)',
     choices: ['18,000 Pa', '60,000 Pa', '30,000 Pa', '3000 Pa'],
@@ -60,6 +64,7 @@ export default [
   {
     id: 'phys1-fluid-dynamics-005',
     topic: 'fluid-dynamics',
+    formulas: ['continuity'],
     difficulty: 2,
     prompt: 'Water flows steadily through a pipe that changes from wide to narrow. How does the volume of water passing through the narrow section each second compare with the wide section?',
     choices: ['It is larger', 'It is smaller', 'It is the same', 'It depends on the pressure difference'],

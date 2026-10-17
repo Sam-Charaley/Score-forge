@@ -7,6 +7,7 @@ export default [
   {
     id: 'calc-derivative-rules-001',
     topic: 'derivative-rules',
+    formulas: ['power-rule'],
     difficulty: 1,
     prompt: 'If f(x) = 4x³ − 5x + 2, what is f\'(2)?',
     choices: ['38', '27', '43', '48'],
@@ -19,6 +20,7 @@ export default [
   {
     id: 'calc-derivative-rules-002',
     topic: 'derivative-rules',
+    formulas: ['derivative-limit'],
     difficulty: 2,
     prompt: 'What is lim (h → 0) of [(2 + h)⁴ − 16]/h?',
     choices: ['32', '16', '0', '8'],
@@ -31,6 +33,7 @@ export default [
   {
     id: 'calc-derivative-rules-003',
     topic: 'derivative-rules',
+    formulas: ['product-rule', 'exp-log'],
     difficulty: 2,
     prompt: 'If f(x) = x²eˣ, what is f\'(1)?',
     choices: ['2e', 'e', 'e²', '3e'],
@@ -43,6 +46,7 @@ export default [
   {
     id: 'calc-derivative-rules-004',
     topic: 'derivative-rules',
+    formulas: ['quotient-rule'],
     difficulty: 2,
     prompt: 'If f(x) = (x + 1)/(x − 1), what is f\'(3)?',
     choices: ['1/2', '−1/2', '−2', '1'],
@@ -55,6 +59,7 @@ export default [
   {
     id: 'calc-derivative-rules-005',
     topic: 'derivative-rules',
+    formulas: ['product-rule', 'trig-derivatives'],
     difficulty: 2,
     prompt: 'What is the derivative of sin x cos x at x = π/4?',
     choices: ['1', '1/2', '0', '−1'],

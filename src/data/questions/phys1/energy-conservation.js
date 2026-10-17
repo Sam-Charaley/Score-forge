@@ -7,6 +7,7 @@ export default [
   {
     id: 'phys1-energy-conservation-001',
     topic: 'energy-conservation',
+    formulas: ['energy-conservation', 'kinetic-energy', 'gravitational-potential-near'],
     difficulty: 1,
     prompt: 'A ball is dropped from rest from a height of 5.0 m. Ignoring air resistance, how fast is it moving just before it hits the ground? (g = 9.8 m/s²)',
     choices: ['49 m/s', '9.9 m/s', '7.0 m/s', '98 m/s'],
@@ -19,6 +20,7 @@ export default [
   {
     id: 'phys1-energy-conservation-002',
     topic: 'energy-conservation',
+    formulas: ['spring-energy', 'kinetic-energy', 'energy-conservation'],
     difficulty: 2,
     prompt: 'A spring with k = 400 N/m is compressed 0.10 m and launches a 0.25 kg block across a frictionless floor. What is the block\'s speed after it leaves the spring?',
     choices: ['16 m/s', '2.8 m/s', '8.0 m/s', '4.0 m/s'],
@@ -31,6 +33,7 @@ export default [
   {
     id: 'phys1-energy-conservation-003',
     topic: 'energy-conservation',
+    formulas: ['gravitational-potential-near', 'work-energy'],
     difficulty: 2,
     prompt: 'A student analyzes a falling ball and chooses the ball alone as the system, leaving Earth out. Which statement about this choice is correct?',
     choices: [
@@ -46,6 +49,7 @@ export default [
   {
     id: 'phys1-energy-conservation-004',
     topic: 'energy-conservation',
+    formulas: ['gravitational-potential-near', 'kinetic-energy'],
     difficulty: 3,
     prompt: 'A 2.0 kg sled starts from rest at the top of a hill 10 m high and reaches the bottom at 12 m/s. How much mechanical energy was converted to thermal energy by friction? (g = 9.8 m/s²)',
     choices: ['52 J', '196 J', '144 J', '340 J'],
@@ -58,6 +62,7 @@ export default [
   {
     id: 'phys1-energy-conservation-005',
     topic: 'energy-conservation',
+    formulas: ['energy-conservation', 'kinetic-energy'],
     difficulty: 2,
     prompt: 'A pendulum is released from rest at an angle and swings back and forth with negligible air resistance. Where is the bob\'s speed greatest?',
     choices: ['At the release point', 'Halfway between the release point and the bottom', 'At the lowest point of the swing', 'It is the same everywhere'],

@@ -9,6 +9,7 @@ export default [
   {
     id: 'calc-mvt-extrema-001',
     topic: 'mvt-extrema',
+    formulas: ['mvt'],
     difficulty: 1,
     prompt: 'For f(x) = x² on [1, 4], what value of c satisfies the conclusion of the Mean Value Theorem?',
     choices: ['5', '3/2', '5/2', '2'],
@@ -21,6 +22,7 @@ export default [
   {
     id: 'calc-mvt-extrema-002',
     topic: 'mvt-extrema',
+    formulas: ['evt'],
     difficulty: 2,
     prompt: 'What is the absolute maximum value of f(x) = x³ − 3x on [0, 2]?',
     choices: ['−2', '0', '2', '14'],
@@ -33,6 +35,7 @@ export default [
   {
     id: 'calc-mvt-extrema-003',
     topic: 'mvt-extrema',
+    formulas: ['first-derivative-test'],
     difficulty: 3,
     prompt: 'The derivative of a function f is f\'(x) = (x − 1)(x + 2)². At which x-values does f have a local minimum?',
     choices: ['x = 1 only', 'x = −2 only', 'x = −2 and x = 1', 'f has no local minimum'],
@@ -43,6 +46,7 @@ export default [
   {
     id: 'calc-mvt-extrema-004',
     topic: 'mvt-extrema',
+    formulas: ['evt'],
     difficulty: 2,
     prompt: 'Which condition guarantees that f has an absolute maximum value on the interval [a, b]?',
     choices: [
@@ -58,6 +62,7 @@ export default [
   {
     id: 'calc-mvt-extrema-005',
     topic: 'mvt-extrema',
+    formulas: ['evt'],
     difficulty: 2,
     prompt: 'What is the absolute minimum value of f(x) = x + 4/x on [1, 4]?',
     choices: ['5', '4', '2', '17/4'],

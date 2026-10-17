@@ -5,6 +5,7 @@ export default [
   {
     id: 'phys1-collisions-001',
     topic: 'collisions',
+    formulas: ['momentum', 'momentum-conservation'],
     difficulty: 1,
     prompt: 'A 2.0 kg cart moving at 3.0 m/s hits a 1.0 kg cart at rest, and they stick together. What is their speed just after the collision?',
     choices: ['3.0 m/s', '2.0 m/s', '1.0 m/s', '1.5 m/s'],
@@ -17,6 +18,7 @@ export default [
   {
     id: 'phys1-collisions-002',
     topic: 'collisions',
+    formulas: ['kinetic-energy'],
     difficulty: 2,
     prompt: 'In the same collision (a 2.0 kg cart at 3.0 m/s sticks to a 1.0 kg cart at rest, and they move off at 2.0 m/s), how much kinetic energy is lost?',
     choices: ['9.0 J', '6.0 J', '0 J', '3.0 J'],
@@ -29,6 +31,7 @@ export default [
   {
     id: 'phys1-collisions-003',
     topic: 'collisions',
+    formulas: ['momentum-conservation', 'kinetic-energy'],
     difficulty: 2,
     prompt: 'A moving billiard ball hits an identical ball at rest head-on in an elastic collision. What happens just after the collision?',
     choices: [
@@ -44,6 +47,7 @@ export default [
   {
     id: 'phys1-collisions-004',
     topic: 'collisions',
+    formulas: ['momentum', 'momentum-conservation'],
     difficulty: 2,
     prompt: 'A 60 kg skater and a 40 kg skater stand at rest on ice and push off each other. The 60 kg skater moves away at 2.0 m/s. How fast does the 40 kg skater move?',
     choices: ['1.3 m/s', '2.0 m/s', '3.0 m/s', '5.0 m/s'],
@@ -56,6 +60,7 @@ export default [
   {
     id: 'phys1-collisions-005',
     topic: 'collisions',
+    formulas: ['center-of-mass-velocity'],
     difficulty: 3,
     prompt: 'A firework moving at constant velocity explodes into several pieces. Ignoring air resistance and gravity during the brief explosion, which is true just after the explosion?',
     choices: [

@@ -11,6 +11,7 @@ export default [
   {
     id: 'calcbc-power-series-001',
     topic: 'power-series',
+    formulas: ['ratio-test', 'geometric-series'],
     difficulty: 1,
     prompt: 'What is the radius of convergence of Σ xⁿ/2ⁿ?',
     choices: ['1/2', '1', '2', '∞'],
@@ -21,6 +22,7 @@ export default [
   {
     id: 'calcbc-power-series-002',
     topic: 'power-series',
+    formulas: ['ratio-test', 'alternating-series'],
     difficulty: 3,
     prompt: 'What is the interval of convergence of Σ (n = 1 to ∞) (x − 3)ⁿ/n?',
     choices: ['(2, 4)', '[2, 4)', '(2, 4]', '[2, 4]'],
@@ -31,6 +33,7 @@ export default [
   {
     id: 'calcbc-power-series-003',
     topic: 'power-series',
+    formulas: ['maclaurin-e'],
     difficulty: 2,
     prompt: 'What is the sum of Σ (n = 0 to ∞) 2ⁿ/n!?',
     choices: ['2e', 'e²', 'e', 'e² − 1'],
@@ -43,6 +46,7 @@ export default [
   {
     id: 'calcbc-power-series-004',
     topic: 'power-series',
+    formulas: ['maclaurin-sin'],
     difficulty: 2,
     prompt: 'What is the sum of Σ (n = 0 to ∞) (−1)ⁿ (π/2)^(2n+1)/(2n + 1)!?',
     choices: ['0', 'π/2', '1', '−1'],
@@ -55,6 +59,7 @@ export default [
   {
     id: 'calcbc-power-series-005',
     topic: 'power-series',
+    formulas: ['maclaurin-geometric'],
     difficulty: 3,
     prompt: 'Using 1/(1 − x) = Σ xⁿ for |x| < 1, what is the sum of Σ (n = 1 to ∞) n(1/4)ⁿ⁻¹?',
     choices: ['4/3', '16/9', '4/9', '16/3'],

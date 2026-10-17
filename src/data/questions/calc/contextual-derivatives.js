@@ -7,6 +7,7 @@ export default [
   {
     id: 'calc-contextual-derivatives-001',
     topic: 'contextual-derivatives',
+    formulas: ['motion', 'power-rule'],
     difficulty: 1,
     prompt: 'A particle moves along a line with position s(t) = t³ − 6t² + 9t. What is its velocity at t = 2?',
     choices: ['2', '−3', '3', '0'],
@@ -19,6 +20,7 @@ export default [
   {
     id: 'calc-contextual-derivatives-002',
     topic: 'contextual-derivatives',
+    formulas: ['motion'],
     difficulty: 2,
     prompt: 'A particle moves along a line with position s(t) = t³ − 6t² + 9t for t ≥ 0. At what times is it at rest?',
     choices: ['t = 0 and t = 3', 't = 2 only', 't = 1 and t = 3', 't = 0, t = 1 and t = 3'],
@@ -42,6 +44,7 @@ export default [
   {
     id: 'calc-contextual-derivatives-004',
     topic: 'contextual-derivatives',
+    formulas: ['tangent-line'],
     difficulty: 2,
     prompt: 'Using the tangent line to f(x) = √x at x = 4, what is the approximation of √4.1?',
     choices: ['2.05', '2.025', '2.0025', '2.1'],
@@ -54,6 +57,7 @@ export default [
   {
     id: 'calc-contextual-derivatives-005',
     topic: 'contextual-derivatives',
+    formulas: ['lhopital'],
     difficulty: 3,
     prompt: 'What is lim (x → 0) of (eˣ − 1 − x)/x²?',
     choices: ['1', '1/2', '0', 'The limit does not exist'],

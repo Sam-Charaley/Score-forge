@@ -8,6 +8,7 @@ export default [
   {
     id: 'calc-integration-techniques-001',
     topic: 'integration-techniques',
+    formulas: ['basic-antiderivatives', 'ftc-1'],
     difficulty: 1,
     prompt: 'What is the value of ∫₁² x³ dx?',
     choices: ['15/4', '4', '7', '15/2'],
@@ -20,6 +21,7 @@ export default [
   {
     id: 'calc-integration-techniques-002',
     topic: 'integration-techniques',
+    formulas: ['u-substitution'],
     difficulty: 2,
     prompt: 'What is the value of ∫₁^e (ln x)/x dx?',
     choices: ['1', '1/2', 'e − 1', '1/e'],
@@ -32,6 +34,7 @@ export default [
   {
     id: 'calc-integration-techniques-003',
     topic: 'integration-techniques',
+    formulas: ['integration-by-parts'],
     onlyIn: 'calcbc',
     difficulty: 2,
     prompt: 'What is the value of ∫₀¹ x eˣ dx?',
@@ -45,6 +48,7 @@ export default [
   {
     id: 'calc-integration-techniques-004',
     topic: 'integration-techniques',
+    formulas: ['partial-fractions'],
     onlyIn: 'calcbc',
     difficulty: 3,
     prompt: 'What is the value of ∫₂³ 1/(x² − 1) dx?',
@@ -58,6 +62,7 @@ export default [
   {
     id: 'calc-integration-techniques-005',
     topic: 'integration-techniques',
+    formulas: ['improper-integral'],
     onlyIn: 'calcbc',
     difficulty: 2,
     prompt: 'What is the value of ∫₁^∞ 1/x³ dx?',
@@ -71,6 +76,7 @@ export default [
   {
     id: 'calc-integration-techniques-006',
     topic: 'integration-techniques',
+    formulas: ['inverse-trig-antiderivatives'],
     difficulty: 2,
     prompt: 'What is the value of ∫₀¹ 1/(1 + x²) dx?',
     choices: ['π/2', 'ln 2', '1', 'π/4'],

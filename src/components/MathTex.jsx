@@ -13,6 +13,7 @@ export default function MathTex({ tex, display = false }) {
     () => katex.renderToString(tex, { displayMode: display, throwOnError: false, output: 'htmlAndMathml' }),
     [tex, display],
   );
-  const Tag = display ? 'div' : 'span';
-  return <Tag className={display ? 'math-display' : 'math-inline'} dangerouslySetInnerHTML={{ __html: html }} />;
+  // Always a span (block-styled for display math) so it can sit inside a
+  // button, as drill answer choices do.
+  return <span className={display ? 'math-display' : 'math-inline'} dangerouslySetInnerHTML={{ __html: html }} />;
 }

@@ -20,6 +20,7 @@ export default [
   {
     id: 'phys1-newtons-laws-001',
     topic: 'newtons-laws',
+    formulas: ['newtons-second', 'weight'],
     difficulty: 1,
     prompt: 'An elevator moves upward at a constant speed. How does the tension in its cable compare with the elevator\'s weight?',
     choices: ['The tension is greater than the weight', 'The tension equals the weight', 'The tension is less than the weight', 'It depends on how fast the elevator is moving'],
@@ -30,6 +31,7 @@ export default [
   {
     id: 'phys1-newtons-laws-002',
     topic: 'newtons-laws',
+    formulas: ['newtons-second', 'friction', 'weight'],
     difficulty: 2,
     prompt: 'A 4.0 kg box is pushed across a floor with a horizontal force of 30 N. The coefficient of kinetic friction is 0.25. What is the box\'s acceleration? (g = 9.8 m/s²)',
     choices: ['7.5 m/s²', '2.5 m/s²', '5.1 m/s²', '10 m/s²'],
@@ -52,6 +54,7 @@ export default [
   {
     id: 'phys1-newtons-laws-004',
     topic: 'newtons-laws',
+    formulas: ['newtons-second', 'right-triangle'],
     difficulty: 3,
     prompt: 'A 2.0 kg block slides down a frictionless ramp inclined at 30° to the horizontal. What is the magnitude of its acceleration? (g = 9.8 m/s²)',
     choices: ['8.5 m/s²', '4.9 m/s²', '9.8 m/s²', '2.5 m/s²'],
@@ -64,6 +67,7 @@ export default [
   {
     id: 'phys1-newtons-laws-005',
     topic: 'newtons-laws',
+    formulas: ['newtons-second'],
     difficulty: 3,
     prompt: 'Two blocks, of mass m and 2m, sit side by side on a frictionless floor. A horizontal force F pushes on the block of mass m, which pushes the other block. What is the force between the two blocks?',
     choices: ['F/3', 'F/2', '2F/3', 'F'],
@@ -74,6 +78,7 @@ export default [
   {
     id: 'phys1-newtons-laws-006',
     topic: 'newtons-laws',
+    formulas: ['spring-force', 'weight'],
     difficulty: 2,
     prompt: 'A 0.60 kg mass hangs at rest from a vertical spring with spring constant 200 N/m. How far is the spring stretched? (g = 9.8 m/s²)',
     choices: ['2.9 cm', '0.30 cm', '29 cm', '5.9 cm'],
@@ -86,6 +91,7 @@ export default [
   {
     id: 'phys1-newtons-laws-007',
     topic: 'newtons-laws',
+    formulas: ['newtons-second'],
     difficulty: 1,
     prompt: 'The free-body diagram shows every force on a 5.0 kg box. What is the box\'s acceleration?',
     figure: PUSHED_BOX,
@@ -99,6 +105,7 @@ export default [
   {
     id: 'phys1-newtons-laws-008',
     topic: 'newtons-laws',
+    formulas: ['newtons-second', 'right-triangle'],
     difficulty: 2,
     prompt: 'A 10 kg sled is pulled across frictionless ice by a rope at 30° above the horizontal. The free-body diagram shows every force on it. What is its acceleration?',
     figure: PULLED_SLED,
@@ -112,6 +119,7 @@ export default [
   {
     id: 'phys1-newtons-laws-009',
     topic: 'newtons-laws',
+    formulas: ['newtons-second'],
     difficulty: 2,
     prompt: 'The free-body diagram shows every force on a crate. Which statement about the crate\'s motion must be true?',
     figure: BALANCED_CRATE,

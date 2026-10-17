@@ -5,6 +5,7 @@ export default [
   {
     id: 'csa-search-sort-001',
     topic: 'search-sort',
+    formulas: ['array-basics'],
     difficulty: 1,
     prompt: 'Consider the following method. What is printed when the code segment below it is executed?',
     setup: `static int find(int[] a, int target) {
@@ -36,6 +37,7 @@ System.out.println(find(data, 9) + " " + find(data, 5));`,
   {
     id: 'csa-search-sort-003',
     topic: 'search-sort',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'Consider the following method, which counts how many times a binary search loop runs. What is printed when the code segment below it is executed?',
     setup: `static int steps(int[] a, int target) {
@@ -66,6 +68,7 @@ System.out.println(steps(a, 11));`,
   {
     id: 'csa-search-sort-004',
     topic: 'search-sort',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'The following code segment does the first pass of selection sort. What is printed?',
     code: `int[] a = {5, 2, 8, 1, 9};
@@ -135,6 +138,7 @@ for (int v : a) {
   {
     id: 'csa-search-sort-007',
     topic: 'search-sort',
+    formulas: ['string-length', 'substring-range', 'substring-from'],
     difficulty: 2,
     prompt: 'Consider the following method. What is printed when the code segment below it is executed?',
     setup: `static String g(String s) {

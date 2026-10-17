@@ -5,6 +5,7 @@ export default [
   {
     id: 'phys1-rotational-dynamics-001',
     topic: 'rotational-dynamics',
+    formulas: ['rotational-inertia'],
     difficulty: 1,
     prompt: 'A thin hoop and a solid disk have the same mass and the same radius. Which is harder to start spinning about its center?',
     choices: ['The solid disk', 'The hoop', 'Both are equally hard', 'It depends on how fast they spin'],
@@ -15,6 +16,7 @@ export default [
   {
     id: 'phys1-rotational-dynamics-002',
     topic: 'rotational-dynamics',
+    formulas: ['rotational-second-law'],
     difficulty: 2,
     prompt: 'A net torque of 6.0 N·m acts on a wheel with rotational inertia 2.0 kg·m². What is its angular acceleration?',
     choices: ['12 rad/s²', '0.33 rad/s²', '3.0 rad/s²', '6.0 rad/s²'],
@@ -27,6 +29,7 @@ export default [
   {
     id: 'phys1-rotational-dynamics-003',
     topic: 'rotational-dynamics',
+    formulas: ['rotational-inertia'],
     difficulty: 2,
     prompt: 'Two 1.0 kg masses are fixed to the ends of a light rod, each 0.50 m from the rod\'s center. What is the rotational inertia about the center?',
     choices: ['1.0 kg·m²', '0.50 kg·m²', '0.25 kg·m²', '2.0 kg·m²'],
@@ -39,6 +42,7 @@ export default [
   {
     id: 'phys1-rotational-dynamics-004',
     topic: 'rotational-dynamics',
+    formulas: ['rotational-second-law'],
     difficulty: 3,
     prompt: 'Two blocks of different mass hang from a string over a pulley that has mass, and the heavier block accelerates downward. How do the string tensions on the two sides of the pulley compare?',
     choices: [
@@ -54,6 +58,7 @@ export default [
   {
     id: 'phys1-rotational-dynamics-005',
     topic: 'rotational-dynamics',
+    formulas: ['parallel-axis'],
     difficulty: 3,
     prompt: 'A uniform rod of mass 2.0 kg and length 1.0 m has rotational inertia (1/12)ML² about its center. What is its rotational inertia about one end?',
     choices: ['0.17 kg·m²', '0.67 kg·m²', '0.42 kg·m²', '2.2 kg·m²'],

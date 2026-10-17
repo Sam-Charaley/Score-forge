@@ -10,6 +10,7 @@ export default [
   {
     id: 'calcbc-polar-001',
     topic: 'polar',
+    formulas: ['polar-conversion'],
     difficulty: 1,
     prompt: 'What are the rectangular coordinates of the polar point (r, θ) = (2, 2π/3)?',
     choices: ['(1, −√3)', '(−√3, 1)', '(−1, √3)', '(√3, −1)'],
@@ -20,6 +21,7 @@ export default [
   {
     id: 'calcbc-polar-002',
     topic: 'polar',
+    formulas: ['polar-area'],
     difficulty: 2,
     prompt: 'What is the area enclosed by the circle r = 2 cos θ?',
     choices: ['2π', 'π', '4π', 'π/2'],
@@ -32,6 +34,7 @@ export default [
   {
     id: 'calcbc-polar-003',
     topic: 'polar',
+    formulas: ['polar-area'],
     difficulty: 3,
     prompt: 'What is the area of one petal of the rose r = cos 2θ?',
     choices: ['π/4', 'π/2', 'π/16', 'π/8'],
@@ -44,6 +47,7 @@ export default [
   {
     id: 'calcbc-polar-004',
     topic: 'polar',
+    formulas: ['polar-slope'],
     difficulty: 3,
     prompt: 'For the polar curve r = θ, what is dy/dx at θ = π/2?',
     choices: ['2/π', '−π/2', '0', '−2/π'],
@@ -56,6 +60,7 @@ export default [
   {
     id: 'calcbc-polar-005',
     topic: 'polar',
+    formulas: ['polar-conversion'],
     difficulty: 2,
     prompt: 'For the polar curve r = 1 − 2 sin θ, which rectangular point is plotted at θ = π/2?',
     choices: ['(0, 1)', '(0, −1)', '(−1, 0)', '(1, 0)'],

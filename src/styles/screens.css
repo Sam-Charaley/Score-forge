@@ -698,7 +698,11 @@ kbd svg { width: .75rem; height: .75rem; }
 /* Long equations scroll sideways inside their own box, never the page. */
 .formula-math { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 2.25rem; overflow-x: auto; overflow-y: hidden; padding: 4px 2px; border-radius: var(--radius-small); color: var(--graphite); }
 .formula-math > .math-display { max-width: 100%; }
-.formula-code { margin: 0; flex: 1 1 100%; font-family: var(--font-mono); font-size: var(--text-footnote); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; text-align: left; background: var(--paper); border-radius: var(--radius-small); padding: 8px 10px; }
+.math-display { display: block; max-width: 100%; }
+/* KaTeX pulls fractions and roots 2px past their box (a Chrome alignment
+   trick), which made tight boxes scroll by 2px. The padding absorbs it. */
+.math-display .katex-display > .katex { padding-right: 2px; }
+.formula-code { display: block; margin: 0; flex: 1 1 100%; font-family: var(--font-mono); font-size: var(--text-footnote); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; text-align: left; background: var(--paper); border-radius: var(--radius-small); padding: 8px 10px; }
 .formula-math:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .formula-math .katex-display { margin: .25em 0; }
 .formula-math .katex { font-size: 1.12em; }
@@ -718,3 +722,25 @@ kbd svg { width: .75rem; height: .75rem; }
   .formula-math .katex { font-size: 1em; }
   .formula-math { column-gap: 1.5rem; }
 }
+
+/* Formula links: practice from a formula card, formulas after an answer */
+.formula-practice { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: var(--target-min); font-size: var(--text-footnote); font-weight: 600; color: var(--graphite); text-decoration: underline; text-underline-offset: 3px; }
+.formula-practice svg { width: 1em; height: 1em; }
+.formula-practice:hover { text-decoration-thickness: 2px; }
+.formula-chips { margin-top: 14px; display: grid; gap: 8px; }
+.formula-chips-label { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-footnote); font-weight: 700; color: var(--lead); }
+.formula-chips-label svg { width: 1em; height: 1em; }
+.formula-chips .chip-caret { width: .9em; height: .9em; transition: transform .15s ease; }
+.formula-chips .chip[aria-expanded="true"] .chip-caret { transform: rotate(180deg); }
+.formula-chip-card { border: 1px solid var(--rule); border-radius: var(--radius); padding: 10px 12px; display: grid; gap: 8px; background: var(--sheet); }
+.formula-chip-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: var(--text-subhead); }
+.formula-parts { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 1.5rem; max-width: 100%; }
+.formula-fallback { font-family: var(--font-mono); font-size: var(--text-footnote); overflow-wrap: anywhere; }
+/* Drill choices hold rendered math or Java instead of text. */
+.choice-formula { min-width: 0; overflow-x: auto; }
+.choice-formula .formula-parts { justify-content: flex-start; }
+.choice-formula .katex-display { margin: .15em 0; text-align: left; }
+.choice-formula .katex { font-size: 1em; }
+.choice-formula .formula-parts { column-gap: 1.25rem; }
+.choice-formula .katex-display > .katex { text-align: left; }
+.choice-formula .formula-code { background: transparent; padding: 0; }

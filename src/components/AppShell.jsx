@@ -3,8 +3,9 @@ import { House, CalendarCheck, Target, Layers, Sigma, LibraryBig, CalendarDays, 
 import IconButton from './ui/IconButton'
 import LogoMark from './LogoMark'
 
-// The destinations in the main navigation, in order. Practice and Progress
-// only show when one of the student's subjects has a question bank.
+// The destinations in the main navigation, in order. Practice shows when one
+// of the student's subjects has a question bank or a formula sheet (formula
+// drill); Progress only when one has a question bank.
 export const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: House },
   { id: 'study', label: 'Study plan', shortLabel: 'Plan', icon: CalendarCheck },
@@ -15,7 +16,6 @@ export const NAV_ITEMS = [
   { id: 'library', label: 'Library', icon: LibraryBig },
 ];
 
-const NEEDS_QUESTION_BANK = ['practice', 'progress'];
 
 function initialOf(name) {
   return (name || '?').trim().charAt(0).toUpperCase() || '?';
@@ -24,8 +24,8 @@ function initialOf(name) {
 // Header, main navigation and the phone tab bar around every signed-in screen.
 // active: the NAV_ITEMS id of the current screen, or null.
 // onNavigate(id) is called with a NAV_ITEMS id, 'account' or 'plans'.
-export default function AppShell({ active, username, streakDays, canPractice, onNavigate, onFeedback, children }) {
-  const items = NAV_ITEMS.filter(item => canPractice || !NEEDS_QUESTION_BANK.includes(item.id));
+export default function AppShell({ active, username, streakDays, canPractice, canSeeProgress, onNavigate, onFeedback, children }) {
+  const items = NAV_ITEMS.filter(item => (item.id !== 'practice' || canPractice) && (item.id !== 'progress' || canSeeProgress));
   const mainRef = useRef(null);
   const previousActive = useRef(active);
 

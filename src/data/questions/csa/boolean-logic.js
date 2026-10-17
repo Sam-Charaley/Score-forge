@@ -91,6 +91,7 @@ System.out.println(calls);`,
   {
     id: 'csa-boolean-logic-007',
     topic: 'boolean-logic',
+    formulas: ['integer-division'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int x = -3;

@@ -10,6 +10,7 @@ export default [
   {
     id: 'phys1-fluid-statics-001',
     topic: 'fluid-statics',
+    formulas: ['gauge-pressure'],
     difficulty: 1,
     prompt: 'What is the gauge pressure 10 m below the surface of a freshwater lake? (water density 1000 kg/m³, g = 9.8 m/s²)',
     choices: ['9800 Pa', '98,000 Pa', '980 Pa', '199,000 Pa'],
@@ -22,6 +23,7 @@ export default [
   {
     id: 'phys1-fluid-statics-002',
     topic: 'fluid-statics',
+    formulas: ['buoyancy', 'density'],
     difficulty: 2,
     prompt: 'Ice has a density of 917 kg/m³. What percentage of a floating ice cube\'s volume is below the surface of fresh water (1000 kg/m³)?',
     choices: ['8%', '50%', '92%', '100%'],
@@ -34,6 +36,7 @@ export default [
   {
     id: 'phys1-fluid-statics-003',
     topic: 'fluid-statics',
+    formulas: ['absolute-pressure'],
     difficulty: 2,
     prompt: 'Three open containers of different shapes, a narrow tube, a wide tank and a cone, are filled with water to the same depth. How does the pressure at the bottom compare?',
     choices: ['Greatest in the wide tank', 'Greatest in the narrow tube', 'Greatest in the cone', 'The same in all three'],
@@ -44,6 +47,7 @@ export default [
   {
     id: 'phys1-fluid-statics-004',
     topic: 'fluid-statics',
+    formulas: ['buoyancy', 'weight'],
     difficulty: 3,
     prompt: 'A 2.0 kg rock with a volume of 8.0 × 10⁻⁴ m³ hangs from a spring scale, fully under water. What does the scale read? (water density 1000 kg/m³, g = 9.8 m/s²)',
     choices: ['20 N', '7.8 N', '27 N', '12 N'],
@@ -56,6 +60,7 @@ export default [
   {
     id: 'phys1-fluid-statics-005',
     topic: 'fluid-statics',
+    formulas: ['buoyancy'],
     difficulty: 2,
     prompt: 'A sealed block is held fully under water just below the surface, then pushed deeper. Treating water as incompressible, how does the buoyant force on it change?',
     choices: ['It increases, because pressure increases with depth', 'It decreases', 'It stays the same', 'It becomes zero at the bottom'],

@@ -121,7 +121,7 @@ export default {
         { id: 'circle', name: 'Circle', tex: tex`A = \pi r^2 \qquad C = 2\pi r \qquad s = r\theta`, vars: [['A', 'area', 'm²'], ['C', 'circumference', 'm'], ['s', 'arc length', 'm'], ['r', 'radius', 'm'], ['\\theta', 'angle', 'rad']], note: 's = rθ needs θ in radians.' },
         { id: 'cylinder', name: 'Cylinder', tex: tex`V = \pi r^2\ell \qquad S = 2\pi r\ell + 2\pi r^2`, vars: [['V', 'volume', 'm³'], ['S', 'surface area', 'm²'], ['r', 'radius', 'm'], ['\\ell', 'length', 'm']] },
         { id: 'sphere', name: 'Sphere', tex: tex`V = \tfrac{4}{3}\pi r^3 \qquad S = 4\pi r^2`, vars: [['V', 'volume', 'm³'], ['S', 'surface area', 'm²'], ['r', 'radius', 'm']] },
-        { id: 'right-triangle', name: 'Right triangle', tex: tex`a^2 + b^2 = c^2 \qquad \sin\theta = \dfrac{a}{c} \quad \cos\theta = \dfrac{b}{c} \quad \tan\theta = \dfrac{a}{b}`, vars: [['a', 'side opposite θ', 'm'], ['b', 'side adjacent to θ', 'm'], ['c', 'hypotenuse', 'm']], note: 'For components: F_x = F cos θ and F_y = F sin θ when θ is measured from the x-axis.' },
+        { id: 'right-triangle', name: 'Right triangle', tex: tex`a^2 + b^2 = c^2 \qquad \sin\theta = \dfrac{a}{c} \qquad \cos\theta = \dfrac{b}{c} \qquad \tan\theta = \dfrac{a}{b}`, vars: [['a', 'side opposite θ', 'm'], ['b', 'side adjacent to θ', 'm'], ['c', 'hypotenuse', 'm']], note: 'For components: F_x = F cos θ and F_y = F sin θ when θ is measured from the x-axis.' },
       ],
     },
   ],

@@ -5,6 +5,7 @@ export default [
   {
     id: 'csa-arrays-001',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] a = {4, 7, 1, 9};
@@ -18,6 +19,7 @@ System.out.println(a[1] + a[a.length - 1]);`,
   {
     id: 'csa-arrays-002',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 1,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] nums = new int[4];
@@ -32,6 +34,7 @@ System.out.println(nums[0] + " " + nums[2] + " " + nums.length);`,
   {
     id: 'csa-arrays-003',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] scores = {90, 85, 72};
@@ -65,6 +68,7 @@ System.out.println(a[0] + a[1] + a[2]);`,
   {
     id: 'csa-arrays-005',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] a = {5, 6, 7, 8};
@@ -83,6 +87,7 @@ for (int v : a) {
   {
     id: 'csa-arrays-006',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] a = {1, 2, 3, 4};
@@ -103,6 +108,7 @@ for (int v : a) {
   {
     id: 'csa-arrays-007',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 2,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] a = {3, 8, 2, 8, 5};
@@ -122,6 +128,7 @@ System.out.println(best);`,
   {
     id: 'csa-arrays-008',
     topic: 'arrays',
+    formulas: ['array-basics'],
     difficulty: 3,
     prompt: 'What is printed when the following code segment is executed?',
     code: `int[] a = {1, 2, 3};

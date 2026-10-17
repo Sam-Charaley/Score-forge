@@ -10,6 +10,7 @@ export default [
   {
     id: 'calcbc-series-convergence-001',
     topic: 'series-convergence',
+    formulas: ['geometric-series'],
     difficulty: 1,
     prompt: 'What is the sum of the series Σ (n = 0 to ∞) 3(1/4)ⁿ?',
     choices: ['3', '4', '12', '3/4'],
@@ -22,6 +23,7 @@ export default [
   {
     id: 'calcbc-series-convergence-002',
     topic: 'series-convergence',
+    formulas: ['p-series', 'nth-term-test'],
     difficulty: 1,
     prompt: 'Which series converges?',
     choices: ['Σ 1/n^(3/2)', 'Σ 1/√n', 'Σ 1/n', 'Σ n/(n + 1)'],
@@ -32,6 +34,7 @@ export default [
   {
     id: 'calcbc-series-convergence-003',
     topic: 'series-convergence',
+    formulas: ['absolute-conditional', 'alternating-series'],
     difficulty: 2,
     prompt: 'Which best describes the series Σ (n = 1 to ∞) (−1)ⁿ/n?',
     choices: ['Converges absolutely', 'Converges conditionally', 'Diverges by the nth-term test', 'Diverges by the ratio test'],
@@ -42,6 +45,7 @@ export default [
   {
     id: 'calcbc-series-convergence-004',
     topic: 'series-convergence',
+    formulas: ['ratio-test'],
     difficulty: 2,
     prompt: 'For the series Σ n/3ⁿ, what is lim (n → ∞) of |aₙ₊₁/aₙ| in the ratio test?',
     choices: ['3', '1', '1/3', '0'],
@@ -68,6 +72,7 @@ export default [
   {
     id: 'calcbc-series-convergence-006',
     topic: 'series-convergence',
+    formulas: ['alternating-series'],
     difficulty: 2,
     prompt: 'The sum of Σ (n = 1 to ∞) (−1)ⁿ⁺¹/n² is approximated using its first four terms. By the Alternating Series Error Bound, what is the largest the error can be?',
     choices: ['1/16', '1/25', '1/5', '1/4'],
