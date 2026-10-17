@@ -14,6 +14,7 @@ describe('parseChoiceNumber', () => {
   it.each([
     ['72 m', 72, 1], ['4.0 m/s', 4, 0.1], ['0.050 s', 0.05, 0.001], ['200,000 N', 200000, 100000],
     ['−3.0 m/s²', -3, 0.1], ['+2.0 m/s', 2, 0.1], ['610 W', 610, 10], ['92%', 92, 1], ['0 J', 0, 1], ['13.5 J', 13.5, 0.1],
+    ['1.8 × 10⁻⁵', 0.000018, 0.000001], ['6.02 × 10²³ atoms', 6.02e23, 1e21], ['4.0 × 10⁻³ M', 0.004, 0.0001], ['2.5 ×10³ J', 2500, 100],
   ])('%s', (text, value, place) => expect(parseChoiceNumber(text)).toEqual({ value, place }));
 
   it('returns null for choices that are not numbers', () => {
