@@ -1,5 +1,6 @@
-// Chooses the next practice question. Phase 2 keeps this simple and
-// predictable; Phase 3 replaces it with weakness-driven selection.
+// Chooses the next question for every scope except Smart (Mixed, a unit,
+// Missed, a formula, the formula drill). Smart practice uses the
+// weakness-driven pickSmartQuestion in priority.js instead.
 //
 // Priority: questions never seen, then questions most recently answered
 // wrong, then everything else. Never repeats the question just shown unless

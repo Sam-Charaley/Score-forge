@@ -11,6 +11,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js');
+    // The app works without the worker (it only makes the app installable),
+    // so a failed registration is logged, not shown to the student.
+    navigator.serviceWorker.register('/sw.js')
+      .catch(error => console.warn('Service worker registration failed:', error));
   });
 }

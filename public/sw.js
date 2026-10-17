@@ -1,26 +1,25 @@
-const CACHE = 'score-forge-v1';
+// Pass-through worker: it exists so the app stays installable, and answers no
+// requests itself. Every request, including localhost and Supabase, goes
+// straight to the network.
+//
+// The previous version answered requests from the cache but never wrote to it,
+// and never deleted old caches, so a phone holding caches from an even older
+// build could keep being served stale files. Activating this version clears
+// them.
+//
+// Bump this whenever the worker changes: browsers only install a new worker
+// when the file's bytes change.
+const SW_VERSION = 'score-forge-v2';
 
-self.addEventListener('install', e => {
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(clients.claim());
-});
-
-self.addEventListener('fetch', e => {
-  // Only cache GET requests to same origin in production
-  if (
-    e.request.method !== 'GET' ||
-    e.request.url.includes('localhost') ||
-    e.request.url.includes('supabase') ||
-    e.request.url.includes('fonts.googleapis') ||
-    e.request.url.includes('@vite') ||
-    e.request.url.includes('@react')
-  ) {
-    return;
-  }
-  e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys()
+      .then(names => Promise.all(names.map(name => caches.delete(name))))
+      .catch(error => console.warn(`[${SW_VERSION}] Couldn't clear old caches:`, error))
+      .then(() => self.clients.claim())
   );
 });
