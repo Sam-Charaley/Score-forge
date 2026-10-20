@@ -53,8 +53,8 @@ export default [
     sources: [
       {
         label: 'Source',
-        text: 'Assemblies shall be widely established, and all matters of state shall be decided by public discussion. All classes, high and low, shall unite in carrying out the affairs of state. Evil customs of the past shall be broken off. Knowledge shall be sought throughout the world so as to strengthen the foundations of imperial rule.',
-        citation: 'Written for ScoreForge, based on the Charter Oath issued in the name of Emperor Meiji of Japan, April 1868.',
+        text: 'The new government makes five promises. Councils will be set up, and the business of the state will be settled through open debate. People of every rank, from nobles to commoners, will work together for the nation. Harmful old customs will be abandoned. And Japan will learn from every part of the world, so that the rule of the emperor stands on firm ground.',
+        citation: 'Written for ScoreForge, a summary of the Charter Oath issued in the name of Emperor Meiji of Japan, April 1868.',
       },
     ],
     parts: [
