@@ -24,7 +24,7 @@ const UNEMPLOYMENT_SOURCE = {
 };
 
 const STALIN_1931 = {
-  text: 'We are fifty or a hundred years behind the advanced countries. We must close that gap in ten years. Either we do it, or they will crush us. To slow down the pace of industry would mean to fall behind, and those who fall behind are beaten.',
+  text: 'Our country lags fifty to a hundred years behind the leading industrial nations. That gap has to be closed within ten years, or our enemies will destroy us. Slowing the pace of industry would mean falling behind, and those who fall behind are defeated.',
   citation: 'Written for ScoreForge, based on Joseph Stalin (leader of the Soviet Union), speech to a conference of Soviet industrial managers, February 1931.',
 };
 
