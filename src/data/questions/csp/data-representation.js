@@ -37,7 +37,7 @@ export default [
     topic: 'data-representation',
     difficulty: 2,
     prompt: 'Which binary number is equal to the decimal number 45?',
-    choices: ['101101', '110101', '100111', '101011'],
+    choices: ['101101', '110101', '100111', '111101'],
     answer: 0,
     explanation: '45 = 32 + 8 + 4 + 1, so the 32, 8, 4 and 1 places are 1 and the 16 and 2 places are 0: 101101. 110101 is 53, which puts the 16 bit on instead of the 8 bit.',
     verify: 'exact',
