@@ -132,4 +132,64 @@ export default [
       },
     ],
   },
+  {
+    id: 'whap-frq-dbq-001',
+    type: 'dbq',
+    title: 'Industrialization and British workers',
+    intro: 'Read all seven documents, then write an essay that answers the prompt. On the exam you get 60 minutes for the DBQ, including about 15 minutes to read. Plan your thesis first, group the documents by argument, and use at least four of them as evidence.',
+    reviewed: false,
+    sources: [
+      {
+        label: 'Document 1',
+        text: 'I went to the mill when I was eight years old. In the busy season we worked from six in the morning until half past eight at night, with forty minutes for dinner. The children were beaten with a strap if they fell asleep or were slow at their work. I have been sick a great deal since, and the doctor says the long standing has ruined my legs.',
+        citation: 'Written for ScoreForge, based on testimony of a young textile worker before the Sadler Committee of the British Parliament, 1832.',
+      },
+      {
+        label: 'Document 2',
+        text: 'I have visited many factories and never saw a child punished, nor did any of them seem tired or unhappy. The work is light: they only watch the machines and join broken threads. They are better fed and better clothed than the children of farm laborers or handloom weavers. The factory gives honest work to thousands who would otherwise be idle or starving.',
+        citation: 'Written for ScoreForge, based on Andrew Ure (a Scottish chemist and writer who promoted the factory system), The Philosophy of Manufactures, 1835.',
+      },
+      {
+        label: 'Document 3',
+        text: 'Average age at death in 1840, by district and class.\nManchester (industrial city): gentry and professional families, 38 years; tradesmen and their families, 20 years; laborers, mechanics and their families, 17 years.\nRutlandshire (rural county): gentry and professional families, 52 years; tradesmen and their families, 41 years; laborers and their families, 38 years.',
+        citation: 'Written for ScoreForge, restating figures from Edwin Chadwick (secretary of the Poor Law Commission), Report on the Sanitary Condition of the Labouring Population of Great Britain, 1842.',
+      },
+      {
+        label: 'Document 4',
+        text: 'The workers\' quarters of Manchester lie hidden behind the main streets, where the wealthy who ride through to their offices never have to see them. The houses are packed together around narrow courts, with one privy shared by dozens of people and open drains running between the doors. Whole families live in a single damp cellar. This is how the class that creates the wealth of England is forced to live.',
+        citation: 'Written for ScoreForge, based on Friedrich Engels (a German who managed his family\'s cotton business in Manchester), The Condition of the Working Class in England, 1845.',
+      },
+      {
+        label: 'Document 5',
+        text: 'We, the working people, ask Parliament to grant the vote to every man over twenty-one, to hold elections every year by secret ballot, and to pay members of Parliament so that working men can serve. We produce the wealth of this nation, yet we have no voice in making the laws that govern our wages, our hours and our lives.',
+        citation: 'Written for ScoreForge, based on the National Petition of the Chartist movement, presented to the British Parliament in 1842 with more than three million signatures.',
+      },
+      {
+        label: 'Document 6',
+        text: 'Under the new act, no child under nine may be employed in a textile mill. Children aged nine to thirteen may work no more than nine hours a day, and must attend school for two hours each day. Inspectors appointed by the government will visit the mills and may fine owners who break the law.',
+        citation: 'Written for ScoreForge, summarizing the main terms of the Factory Act passed by the British Parliament, 1833.',
+      },
+      {
+        label: 'Document 7',
+        text: 'The great engineers and manufacturers of our age began as poor working men. They rose by their own effort, by thrift, hard work and steady habits, not by the favor of the great. Any working man who saves his wages, educates himself and avoids drink may improve his position. The best help is help from within.',
+        citation: 'Written for ScoreForge, based on Samuel Smiles (a Scottish writer and reformer), Self-Help, 1859.',
+      },
+    ],
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Evaluate the extent to which industrialization improved the lives of working people in Britain in the period 1800 to 1900.\n\nIn your response you should do the following.\n• Respond to the prompt with a historically defensible thesis or claim that establishes a line of reasoning.\n• Describe a broader historical context relevant to the prompt.\n• Support an argument in response to the prompt using at least four documents.\n• Use at least one additional piece of specific historical evidence (beyond that found in the documents) relevant to an argument about the prompt.\n• For at least two documents, explain how or why the document\'s point of view, purpose, historical situation, and/or audience is relevant to an argument.\n• Use evidence to support, qualify, or modify an argument that addresses the prompt.',
+        solution: 'Model thesis: In the first half of the 1800s, industrialization made life worse for most British workers, who faced long hours, dangerous mills and deadly cities; after about 1850, reforms that workers and their allies fought for, along with rising wages, brought real but limited improvements.\n\nContext: Britain was the first country to industrialize, starting in the late 1700s with steam-powered cotton mills, because of its coal and iron, capital from trade and empire, and a growing population pushed off the land by enclosure.\n\nOutline:\n1. Early industrialization harmed workers. Doc 1 (long hours, beatings, injury) and Doc 4 (crowded, unsanitary housing) show the costs. Doc 3 shows Manchester laborers died at 17 on average, compared with 38 in rural Rutland, which shows that city life itself was deadly. Sourcing: Doc 1 was given to a committee of a reformer, Michael Sadler, who wanted a ten-hour law, so witnesses were chosen to show the worst cases; that purpose makes it persuasive but possibly one-sided.\n2. Defenders claimed factories improved lives. Doc 2 and Doc 7 argue that factory work beat rural poverty and that hard work let men rise. Sourcing: Ure wrote to promote factories and visited with owners\' permission, so he had reason to see only the best; Smiles wrote for a middle-class and aspiring audience that believed in self-help, which explains why he ignores the conditions in Docs 1 and 4.\n3. Workers\' demands and reform brought gradual improvement. Doc 5 shows workers organizing politically, and Doc 6 shows the state starting to limit child labor. Evidence beyond the documents: the Reform Act of 1867 gave many urban working men the vote, trade unions were legalized in the 1870s, and public health laws such as the Public Health Act of 1875 improved sewers and water, so life expectancy in cities began to rise late in the century.\n\nComplexity: The answer depends on time and on who is meant. Skilled workers and the growing middle class gained more than unskilled laborers, and women and children faced the harshest early conditions. Improvement came mostly from reforms that workers forced, not from industrialization alone, which links Docs 5 and 6 to the suffering in Docs 1, 3 and 4.',
+        points: [
+          { id: 'a1', text: 'Thesis: makes a defensible claim that answers how far industrialization improved workers\' lives and sets up a line of reasoning, in the introduction or conclusion' },
+          { id: 'a2', text: 'Contextualization: describes broader context before or during the period (for example why Britain industrialized first, enclosure and migration to cities, or the spread of the factory system) and connects it to the prompt' },
+          { id: 'a3', text: 'Evidence from the documents: accurately describes the content of at least three documents in a way that addresses the topic' },
+          { id: 'a4', text: 'Evidence from the documents: uses the content of at least four documents to support an argument, not just to summarize them' },
+          { id: 'a5', text: 'Evidence beyond the documents: uses at least one specific piece of evidence not in the documents (for example the Reform Acts, trade unions, the Ten Hours Act of 1847, public health laws, the Luddites) to support an argument' },
+          { id: 'a6', text: 'Sourcing: for at least two documents, explains how the point of view, purpose, historical situation or audience is relevant to the argument (for example Ure as a promoter of factories, or Sadler\'s committee seeking a reform law)' },
+          { id: 'a7', text: 'Complexity: shows a complex understanding, for example by explaining change over time, differences between groups of workers, or both costs and benefits, using evidence throughout the essay' },
+        ],
+      },
+    ],
+  },
 ];
