@@ -1,0 +1,180 @@
+// AP Microeconomics, Unit 1: scarcity, the production possibilities curve,
+// comparative advantage and economic systems.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+
+// Output per worker per day in two countries, used by the trade questions.
+const OUTPUT = { alpha: { wheat: 40, cloth: 20 }, beta: { wheat: 30, cloth: 30 } };
+const OUTPUT_TABLE = {
+  type: 'table',
+  caption: 'Maximum output per worker per day',
+  columns: ['Country', 'Wheat (bushels)', 'Cloth (yards)'],
+  rows: [['Alpha', OUTPUT.alpha.wheat, OUTPUT.alpha.cloth], ['Beta', OUTPUT.beta.wheat, OUTPUT.beta.cloth]],
+  alt: 'Table of maximum daily output per worker. A worker in Alpha can make 40 bushels of wheat or 20 yards of cloth. A worker in Beta can make 30 bushels of wheat or 30 yards of cloth.',
+};
+
+// A bowed-out PPC: each extra 10 robots costs more food than the last 10.
+const PPC_POINTS = [[0, 60], [10, 57], [20, 50], [30, 38], [40, 20], [45, 0]];
+const PPC_GRAPH = {
+  type: 'graph', xLabel: 'Robots (units)', yLabel: 'Food (tons)', xMax: 50, xStep: 10, yMin: 0, yMax: 60, yStep: 10,
+  series: [{ points: PPC_POINTS, label: 'PPC' }],
+  alt: 'A production possibilities curve bowed out from the origin. Points on it: 0 robots and 60 tons of food, 10 robots and 57 tons, 20 robots and 50 tons, 30 robots and 38 tons, 40 robots and 20 tons, and 45 robots and 0 tons.',
+};
+const foodAt = robots => PPC_POINTS.find(([x]) => x === robots)[1];
+
+export default [
+  {
+    id: 'micro-scarcity-ppc-001',
+    topic: 'scarcity-ppc',
+    difficulty: 1,
+    prompt: 'The basic economic problem of scarcity exists because',
+    choices: [
+      'prices are too high for many consumers',
+      'governments limit how much firms can produce',
+      'some goods are not produced at all',
+      'wants are unlimited while the resources to satisfy them are limited',
+    ],
+    answer: 3,
+    explanation: 'Scarcity is the gap between unlimited wants and limited resources, and it exists in every economy, rich or poor. High prices are a result of scarcity, not its cause, and scarcity would remain even if every price fell.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-002',
+    topic: 'scarcity-ppc',
+    formulas: ['opportunity-cost'],
+    difficulty: 2,
+    prompt: 'Based on the table, what is the opportunity cost of producing 1 bushel of wheat in Alpha?',
+    figure: OUTPUT_TABLE,
+    choices: ['0.5 yard of cloth', '2 yards of cloth', '1 yard of cloth', '20 yards of cloth'],
+    answer: 0,
+    explanation: 'An Alpha worker gives up 20 yards of cloth to make 40 bushels of wheat, so each bushel costs 20/40 = 0.5 yard of cloth. 2 yards flips the ratio: that is the cost of a yard of cloth measured in wheat.',
+    verify: 'numeric',
+    solve: () => OUTPUT.alpha.cloth / OUTPUT.alpha.wheat,
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-003',
+    topic: 'scarcity-ppc',
+    formulas: ['opportunity-cost'],
+    difficulty: 2,
+    prompt: 'Based on the table, which statement about comparative advantage is correct?',
+    figure: OUTPUT_TABLE,
+    choices: [
+      'Alpha has a comparative advantage in both goods.',
+      'Beta has a comparative advantage in both goods.',
+      'Alpha has a comparative advantage in wheat, and Beta has a comparative advantage in cloth.',
+      'Alpha has a comparative advantage in cloth, and Beta has a comparative advantage in wheat.',
+    ],
+    answer: 2,
+    explanation: 'A bushel of wheat costs 0.5 yard of cloth in Alpha but 1 yard in Beta, so Alpha has the lower opportunity cost for wheat. A yard of cloth costs 2 bushels in Alpha but 1 in Beta, so Beta has the lower cost for cloth. One country can never have a comparative advantage in both goods, even though Alpha has the absolute advantage in wheat.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-004',
+    topic: 'scarcity-ppc',
+    formulas: ['terms-of-trade'],
+    difficulty: 3,
+    prompt: 'Based on the table, Alpha and Beta specialize according to comparative advantage and trade. Which terms of trade would benefit both countries?',
+    figure: OUTPUT_TABLE,
+    choices: [
+      '1 yard of cloth for 0.5 bushel of wheat',
+      '1 yard of cloth for 1 bushel of wheat',
+      '1 yard of cloth for 2.5 bushels of wheat',
+      '1 yard of cloth for 1.5 bushels of wheat',
+    ],
+    answer: 3,
+    explanation: 'Making a yard of cloth costs Beta 1 bushel of wheat and costs Alpha 2 bushels. A price between those two costs lets Beta sell cloth for more than it costs to make and lets Alpha buy cloth for less than making it would cost, so 1.5 bushels works. At exactly 1 bushel Beta gains nothing, and at 2.5 bushels Alpha would rather make its own cloth.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-005',
+    topic: 'scarcity-ppc',
+    formulas: ['opportunity-cost'],
+    difficulty: 2,
+    prompt: 'The graph shows an economy\'s production possibilities curve. What is the opportunity cost of increasing robot production from 30 to 40 units?',
+    figure: PPC_GRAPH,
+    choices: ['12 tons of food', '18 tons of food', '20 tons of food', '38 tons of food'],
+    answer: 1,
+    explanation: 'Moving along the curve from 30 to 40 robots, food falls from 38 to 20 tons, so the 10 extra robots cost 38 − 20 = 18 tons of food. 20 tons is the food still produced at 40 robots, not what was given up, and 12 tons is the cost of the previous 10 robots (50 − 38).',
+    verify: 'numeric',
+    solve: () => foodAt(30) - foodAt(40),
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-006',
+    topic: 'scarcity-ppc',
+    difficulty: 2,
+    prompt: 'The production possibilities curve in the graph is bowed outward from the origin. This shape shows that',
+    figure: PPC_GRAPH,
+    choices: [
+      'the opportunity cost of robots is constant',
+      'resources are not equally suited to producing both goods, so the opportunity cost of robots rises as more are made',
+      'the economy has unemployed resources',
+      'the economy has a comparative advantage in robots',
+    ],
+    answer: 1,
+    explanation: 'Each extra 10 robots costs more food than the last (3, then 7, then 12, then 18 tons) because the resources moved last are the ones best suited to farming. A straight-line PPC would show constant opportunity cost. Unemployment is shown by a point inside the curve, not by the curve\'s shape.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-007',
+    topic: 'scarcity-ppc',
+    difficulty: 1,
+    prompt: 'Using the graph, the economy is producing 20 robots and 30 tons of food. Which statement is true?',
+    figure: PPC_GRAPH,
+    choices: [
+      'The economy is producing efficiently.',
+      'The combination is unattainable with current resources.',
+      'The economy has unemployed or underused resources.',
+      'The economy has experienced economic growth.',
+    ],
+    answer: 2,
+    explanation: 'With 20 robots the economy could make up to 50 tons of food, so 30 tons is a point inside the curve. Some resources are idle or used inefficiently, and the economy could have more of one good without giving up any of the other. An unattainable point would lie outside the curve.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-008',
+    topic: 'scarcity-ppc',
+    difficulty: 2,
+    prompt: 'Which of the following would shift an economy\'s production possibilities curve outward?',
+    choices: [
+      'An increase in the size of the labor force',
+      'A decrease in the unemployment rate',
+      'An increase in consumer demand for robots',
+      'A shift of workers from food production to robot production',
+    ],
+    answer: 0,
+    explanation: 'More labor means the economy can produce more of both goods, which moves the whole curve out. Lower unemployment moves the economy from a point inside the curve toward the curve, and shifting workers between goods is a movement along the curve. Neither changes what the economy is able to produce.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-009',
+    topic: 'scarcity-ppc',
+    difficulty: 3,
+    prompt: 'A new fertilizer raises the amount of food the economy can produce with any given resources, but robot technology is unchanged. As a result, the opportunity cost of producing robots',
+    choices: [
+      'decreases, because the economy can now produce more of both goods',
+      'stays the same, because robot technology did not change',
+      'cannot be determined without knowing the price of robots',
+      'increases, because each robot now requires giving up more food',
+    ],
+    answer: 3,
+    explanation: 'The food intercept rises while the robot intercept stays put, so the curve gets steeper. Resources moved into robots now could have grown more food than before, so each robot costs more food. It is tempting to say nothing changes for robots, but opportunity cost is measured in the other good, which did change.',
+    reviewed: false,
+  },
+  {
+    id: 'micro-scarcity-ppc-010',
+    topic: 'scarcity-ppc',
+    difficulty: 1,
+    prompt: 'In a market economy, the questions of what to produce, how to produce it and for whom are answered mainly by',
+    choices: [
+      'a central planning agency',
+      'tradition passed down from earlier generations',
+      'the decisions of individual buyers and sellers responding to prices',
+      'elected officials who set production targets',
+    ],
+    answer: 2,
+    explanation: 'In a market economy, prices signal what people value and what is scarce, and households and firms acting in their own interest decide what is produced and who gets it. A central planning agency answers these questions in a command economy, and tradition answers them in a traditional economy.',
+    reviewed: false,
+  },
+];
