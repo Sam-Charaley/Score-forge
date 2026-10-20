@@ -1,0 +1,173 @@
+// AP World History: Modern, Unit 4: the technology and motives behind maritime
+// exploration, and the Columbian Exchange, c. 1450 to 1750.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+const MEXICO_POPULATION = {
+  type: 'table',
+  caption: 'Estimated population of central Mexico after Spanish arrival',
+  columns: ['Year', 'Estimated population (millions)'],
+  rows: [
+    [1519, 25.2],
+    [1523, 16.8],
+    [1548, 6.3],
+    [1568, 2.65],
+    [1580, 1.9],
+    [1605, 1.075],
+  ],
+  alt: 'Table of estimated population of central Mexico in millions: 25.2 in 1519, 16.8 in 1523, 6.3 in 1548, 2.65 in 1568, 1.9 in 1580 and 1.075 in 1605, a fall of about 96 percent in under a century.',
+};
+const MEXICO_POPULATION_SOURCE = {
+  text: 'The table restates population estimates for central Mexico made by two historians who worked from Spanish tax and tribute records. Other scholars have argued for much lower numbers in 1519.',
+  citation: 'Written for ScoreForge, based on estimates by Sherburne F. Cook and Woodrow Borah, published in the 1960s.',
+};
+
+const COLUMBUS_LETTER = {
+  text: 'The islands I have found are very fertile, with fine harbors, great rivers and many mines of gold and other metals. The people go naked, carry no weapons except canes, and are so timid and generous that they give whatever they have for trifles. I believe they would easily become Christians. Their Highnesses can see that I will give them as much gold as they need, with very little help, along with spices, cotton and as many slaves as they order.',
+  citation: 'Written for ScoreForge, based on Christopher Columbus, letter to Luis de Santángel, an official of King Ferdinand and Queen Isabella of Spain, 1493.',
+};
+
+export default [
+  {
+    id: 'whap-exploration-exchange-001',
+    topic: 'exploration-exchange',
+    difficulty: 1,
+    figure: MEXICO_POPULATION,
+    stimulus: MEXICO_POPULATION_SOURCE,
+    prompt: 'The main cause of the population change shown in the table was',
+    choices: [
+      'diseases such as smallpox and measles brought from Afro-Eurasia, to which the population had no immunity',
+      'large-scale emigration of the population to Europe',
+      'a decline in the birth rate caused by industrialization',
+      'famine caused by the arrival of potatoes from Europe',
+    ],
+    answer: 0,
+    explanation: 'Epidemics of smallpox, measles and other diseases killed most of the population, made worse by war, forced labor and disruption. Potatoes came from the Americas, not from Europe, and industrialization was centuries away.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-002',
+    topic: 'exploration-exchange',
+    difficulty: 2,
+    figure: MEXICO_POPULATION,
+    stimulus: MEXICO_POPULATION_SOURCE,
+    prompt: 'Which development was most directly a result of population losses like those in the table across the Americas?',
+    choices: [
+      'European colonizers abandoned the Americas.',
+      'Colonizers increasingly imported enslaved Africans to replace lost Indigenous labor.',
+      'Spain stopped mining silver in the Americas.',
+      'Indigenous peoples gained control of colonial governments.',
+    ],
+    answer: 1,
+    explanation: 'With far fewer Indigenous workers, colonizers turned to the transatlantic slave trade to supply labor for plantations and mines, especially in the Caribbean and Brazil. Spanish silver mining at Potosí and in Mexico expanded rather than stopped.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-003',
+    topic: 'exploration-exchange',
+    difficulty: 3,
+    figure: MEXICO_POPULATION,
+    stimulus: MEXICO_POPULATION_SOURCE,
+    prompt: 'A historian using the table as evidence should be most cautious because',
+    choices: [
+      'the numbers for 1605 are higher than those for 1519',
+      'the table shows only European settlers',
+      'population figures before the Spanish arrived had to be estimated from incomplete records, and scholars disagree about them',
+      'the table covers only the 1800s',
+    ],
+    answer: 2,
+    explanation: 'No census existed in 1519, so the early figures are reconstructions from later tribute records, and the source notes that other scholars give much lower starting numbers. The trend of steep decline is widely accepted, but the exact size is debated. The numbers fall over time, so the first choice misreads the table.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-004',
+    topic: 'exploration-exchange',
+    difficulty: 2,
+    stimulus: COLUMBUS_LETTER,
+    prompt: 'Columbus\'s purpose in writing the letter was most likely to',
+    choices: [
+      'warn Spain that the islands were too dangerous to settle',
+      'describe Indigenous religion accurately for scholars',
+      'persuade the Spanish monarchs to fund more voyages by stressing the wealth and easy conquest of the islands',
+      'ask Portugal to join a shared colony',
+    ],
+    answer: 2,
+    explanation: 'Columbus promises gold, spices and slaves and describes the people as harmless and easy to convert. He was writing to the officials who had paid for his voyage, so he had reason to make the lands sound rich and easy to control. That makes it unreliable as a neutral description.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-005',
+    topic: 'exploration-exchange',
+    difficulty: 1,
+    stimulus: COLUMBUS_LETTER,
+    prompt: 'The letter reflects which motives for Spanish exploration?',
+    choices: [
+      'Escaping religious persecution in Spain',
+      'Desire for wealth and the spread of Christianity',
+      'Finding new land for a growing industrial workforce',
+      'Searching for allies against the Mongols',
+    ],
+    answer: 1,
+    explanation: 'Columbus mentions gold, spices and trade goods along with converting the people to Christianity, the "gold and God" motives often linked to Iberian expansion, together with glory for the crown. Industrialization did not begin until the 1700s.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-006',
+    topic: 'exploration-exchange',
+    difficulty: 1,
+    prompt: 'Which technologies made long ocean voyages by Portuguese and Spanish sailors possible in the 1400s?',
+    choices: [
+      'Steam engines and iron-hulled ships',
+      'Railroads and the telegraph',
+      'The caravel, the magnetic compass and the astrolabe',
+      'Airplanes and radio',
+    ],
+    answer: 2,
+    explanation: 'The caravel combined square and lateen sails so it could sail against the wind, and the compass and astrolabe (both adopted from other parts of Afro-Eurasia) helped with navigation. Steam and iron ships came in the 1800s.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-007',
+    topic: 'exploration-exchange',
+    difficulty: 2,
+    prompt: 'Which statement best describes an effect of the Columbian Exchange on Afro-Eurasia?',
+    choices: [
+      'American crops such as maize and potatoes helped populations grow in places like China and Europe.',
+      'Wheat and cattle were introduced to Europe for the first time.',
+      'Smallpox first reached Europe from the Americas.',
+      'Sugar cane spread from the Americas to South Asia.',
+    ],
+    answer: 0,
+    explanation: 'Maize, potatoes and sweet potatoes grew well on land that did not suit older crops, and they supported population growth in China, Europe and Africa. Wheat and cattle went the other way, from Afro-Eurasia to the Americas, and sugar cane came from Asia originally.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-008',
+    topic: 'exploration-exchange',
+    difficulty: 2,
+    prompt: 'Portugal sponsored voyages down the coast of West Africa and around the Cape of Good Hope in the 1400s mainly to',
+    choices: [
+      'find a western route to the Americas',
+      'reach the spice trade of Asia directly by sea, avoiding Venetian and Ottoman middlemen',
+      'escape the Black Death, which had just reached Portugal',
+      'spread Protestant Christianity to Africa',
+    ],
+    answer: 1,
+    explanation: 'Spices from Asia reached Europe through Muslim and Venetian traders who raised the price at every stage. A sea route around Africa would let Portugal buy directly. Vasco da Gama reached India in 1498. Protestantism did not exist until after 1517, and Portugal stayed Catholic.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-exploration-exchange-009',
+    topic: 'exploration-exchange',
+    difficulty: 3,
+    prompt: 'The arrival of horses, brought by the Spanish, changed many peoples of the North American Great Plains, such as the Lakota, by',
+    choices: [
+      'leading them to abandon hunting for settled farming',
+      'making them dependent on Spanish missions for food',
+      'ending their contact with other Indigenous peoples',
+      'allowing them to become mounted, mobile buffalo hunters and warriors',
+    ],
+    answer: 3,
+    explanation: 'Horses made buffalo hunting far more effective and long-distance travel easier, so several Plains peoples left farming villages for a mobile, horse-based way of life in the 1700s. This shows how the Columbian Exchange could strengthen some Indigenous societies, at least for a time.',
+    reviewed: false,
+  },
+];
