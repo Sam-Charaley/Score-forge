@@ -1,0 +1,156 @@
+// AP World History: Modern, Unit 1: states in South and Southeast Asia, the
+// Americas, Africa and Europe, c. 1200 to 1450.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+const IBN_BATTUTA_MALI = {
+  text: 'Among the good qualities of these people: they rarely do wrong, and they hate injustice more than any other people, and their sultan forgives no one who commits it. A traveler or a local person has nothing to fear from thieves anywhere in the country. They are careful to say their prayers, and on Fridays the mosque is so full that you must arrive early to find a place. They put their children in chains until they have learned the Qur\'an by heart. Among their bad qualities: their women servants and young girls go about in public uncovered.',
+  citation: 'Written for ScoreForge, based on Ibn Battuta (a Muslim scholar and judge from Morocco), Rihla (travel account), describing his visit to Mali in 1352 to 1353.',
+};
+
+const MEXICA_TRIBUTE = {
+  text: 'Each conquered town kept its own ruler and its own gods, but twice or four times a year it had to send loads of goods to the Mexica capital, Tenochtitlan: cotton cloaks, cacao beans, feathers, maize, warrior costumes and, from some towns, captives for sacrifice. Mexica officials lived in the main towns of each province to see that the tribute arrived on time. Towns that refused were attacked again.',
+  citation: 'Written for ScoreForge, based on the tribute lists of the Codex Mendoza, made in Mexico c. 1541.',
+};
+
+export default [
+  {
+    id: 'whap-regional-states-001',
+    topic: 'regional-states',
+    difficulty: 2,
+    stimulus: IBN_BATTUTA_MALI,
+    prompt: 'Ibn Battuta\'s point of view in the passage is best explained by the fact that he',
+    choices: [
+      'was a West African ruler trying to impress foreign merchants',
+      'had never traveled outside Mali before',
+      'was a Muslim scholar who judged Mali by the religious and social standards of North Africa',
+      'opposed the spread of Islam in Africa',
+    ],
+    answer: 2,
+    explanation: 'Ibn Battuta was a trained Muslim judge from Morocco. He praises what matches his idea of good Islamic practice (prayer, learning the Qur\'an, justice) and criticizes what does not (women going uncovered). He was a foreign visitor, not a Malian ruler, and he clearly supported Islam.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-002',
+    topic: 'regional-states',
+    difficulty: 1,
+    stimulus: IBN_BATTUTA_MALI,
+    prompt: 'The wealth and power of the Mali Empire in this period came mainly from',
+    choices: [
+      'controlling the gold trade across the Sahara',
+      'exporting silver to China',
+      'conquering the Swahili city-states of East Africa',
+      'growing sugar on plantations for European buyers',
+    ],
+    answer: 0,
+    explanation: 'Mali controlled gold fields and the trade routes that carried gold north across the Sahara in exchange for salt, cloth and other goods. Mansa Musa\'s famous pilgrimage to Mecca in 1324 showed off this gold wealth. Sugar plantations for Europe came later and elsewhere.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-003',
+    topic: 'regional-states',
+    difficulty: 3,
+    stimulus: IBN_BATTUTA_MALI,
+    prompt: 'The passage best supports which conclusion about Islam in Mali?',
+    choices: [
+      'Islam was brought to Mali by European missionaries.',
+      'Mali\'s population had abandoned all local customs.',
+      'Islam was practiced only by foreign merchants and not by Malians.',
+      'Islam was widely practiced, but it was blended with local customs that a visitor saw as un-Islamic.',
+    ],
+    answer: 3,
+    explanation: 'Full mosques and children memorizing the Qur\'an show that Islam was deeply rooted, while Ibn Battuta\'s complaints show that local customs continued alongside it. This kind of syncretism was common where Islam spread through trade. The full mosques rule out the idea that only foreigners practiced it.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-004',
+    topic: 'regional-states',
+    difficulty: 2,
+    stimulus: MEXICA_TRIBUTE,
+    prompt: 'The system described in the passage was used by the Mexica (Aztec) state mainly to',
+    choices: [
+      'convert conquered peoples to Christianity',
+      'gain wealth and keep control over conquered peoples without ruling them directly',
+      'build a road network linking the Andes Mountains',
+      'replace local rulers with officials from Tenochtitlan',
+    ],
+    answer: 1,
+    explanation: 'The Mexica let conquered towns keep their own rulers and gods but forced them to send tribute, which made the capital rich and kept the towns weak. The passage says local rulers stayed in place, which rules out the last choice. The Andean road network belongs to the Inca.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-005',
+    topic: 'regional-states',
+    difficulty: 3,
+    stimulus: MEXICA_TRIBUTE,
+    prompt: 'The Inca state differed from the Mexica system described in the passage in that the Inca',
+    choices: [
+      'collected no labor or goods from their subjects',
+      'never fought wars of expansion',
+      'relied on the mit\'a system of required labor and ruled conquered areas more directly through roads, officials and resettlement',
+      'were organized as a loose alliance of city-states with no capital',
+    ],
+    answer: 2,
+    explanation: 'The Inca demanded labor through the mit\'a, built a vast road network, sent officials to run provinces and moved whole communities to keep control. That is more direct rule than the Mexica tribute system, which left local rulers in place. The Inca were a centralized empire with a capital at Cusco.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-006',
+    topic: 'regional-states',
+    difficulty: 2,
+    prompt: 'Which of the following best describes political organization in Western Europe around 1200?',
+    choices: [
+      'Decentralized kingdoms in which power was shared among monarchs, nobles and the Catholic Church, supported by feudal and manorial systems',
+      'A single empire ruled by an emperor through a merit-based bureaucracy',
+      'City-states governed by Islamic law',
+      'Nomadic confederations that collected tribute from settled peoples',
+    ],
+    answer: 0,
+    explanation: 'In feudal Europe, kings depended on nobles who owed them military service in exchange for land, while peasants worked manors, and the Catholic Church held great power of its own. Kings slowly gained power over this period, but Europe had nothing like the exam-based bureaucracy of Song China.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-007',
+    topic: 'regional-states',
+    difficulty: 2,
+    prompt: 'The Vijayanagara Empire of southern India (founded 1336) is often studied as an example of',
+    choices: [
+      'a Buddhist state that spread its faith to Japan',
+      'a Hindu state that resisted the Muslim Delhi Sultanate to the north',
+      'a Christian kingdom founded by Portuguese traders',
+      'a nomadic empire that conquered China',
+    ],
+    answer: 1,
+    explanation: 'Vijayanagara was founded in reaction to raids by the Delhi Sultanate and became a powerful Hindu kingdom that controlled much of southern India. Portuguese traders did not arrive in India until 1498, long after its founding.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-008',
+    topic: 'regional-states',
+    difficulty: 3,
+    prompt: 'Srivijaya and the Majapahit kingdom in Southeast Asia were similar in that both',
+    choices: [
+      'were land-based empires that avoided overseas trade',
+      'were founded by Mongol armies',
+      'adopted Christianity as their official faith',
+      'were sea-based states whose power came from controlling Indian Ocean trade routes',
+    ],
+    answer: 3,
+    explanation: 'Srivijaya (centered on Sumatra) and later Majapahit (on Java) grew rich by controlling the straits between the Indian Ocean and the South China Sea and taxing the ships that passed. Both were influenced by Hindu and Buddhist traditions, not Christianity. By contrast, the Khmer Empire of Angkor was a land-based state built on rice farming.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-regional-states-009',
+    topic: 'regional-states',
+    difficulty: 1,
+    prompt: 'The Swahili city-states of the East African coast, such as Kilwa and Mombasa, developed mainly because of',
+    choices: [
+      'gold mining in the Sahara Desert',
+      'protection from the Mongol Empire',
+      'Indian Ocean trade that connected East Africa with Arabia, Persia and India',
+      'Spanish colonization of the coast',
+    ],
+    answer: 2,
+    explanation: 'Monsoon winds carried merchants between East Africa, Arabia, Persia and India. Swahili towns traded gold, ivory and other goods from the interior, and their culture blended African Bantu and Arab influences, including Islam. The Sahara and the Spanish played no role on this coast.',
+    reviewed: false,
+  },
+];
