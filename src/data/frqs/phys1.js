@@ -14,6 +14,20 @@ export const FRQ_TYPES = {
   'qual-quant': 'Qualitative/Quantitative Translation',
 };
 
+// Invented lab data. Friction against normal force has a slope of about 0.30
+// and passes close to the origin.
+const FRICTION_DATA = { type: 'table', caption: 'Block pulled at constant velocity',
+  columns: ['Normal force (N)', 'Friction force (N)'],
+  rows: [['2.0', '0.62'], ['4.0', '1.18'], ['6.0', '1.85'], ['8.0', '2.38'], ['10.0', '3.05']],
+  alt: 'Table of friction data. Normal forces of 2.0, 4.0, 6.0, 8.0 and 10.0 N give friction forces of 0.62, 1.18, 1.85, 2.38 and 3.05 N.' };
+
+// Invented lab data. Scale reading against depth has a slope of about
+// −8.1 N/m, which with A = 1.0 × 10⁻³ m² gives a density near 830 kg/m³.
+const BUOYANCY_DATA = { type: 'table', caption: 'Cylinder lowered into the liquid',
+  columns: ['Depth submerged (m)', 'Scale reading (N)'],
+  rows: [['0', '4.00'], ['0.020', '3.84'], ['0.040', '3.66'], ['0.060', '3.52'], ['0.080', '3.35']],
+  alt: 'Table of buoyancy data. At submerged depths of 0, 0.020, 0.040, 0.060 and 0.080 m, the spring scale reads 4.00, 3.84, 3.66, 3.52 and 3.35 N.' };
+
 export default [
   {
     id: 'phys1-frq-mathroutines-001',
@@ -213,6 +227,175 @@ export default [
         points: [
           { id: 'd1', text: 'Connects the slopes to the accelerations, using a_up > a_down from part (b)' },
           { id: 'd2', text: 'Explains that friction does negative work in both directions, so the block returns with less kinetic energy' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'phys1-frq-experimental-001',
+    type: 'experimental',
+    title: 'Measuring the coefficient of friction',
+    intro: 'Students want to find the coefficient of kinetic friction between a wooden block and a long, level board. They have the block, a set of slotted masses that can be stacked on the block, a spring scale, a meterstick, a stopwatch and a balance.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Describe an experimental procedure the students could use to collect data for finding the coefficient of kinetic friction. Give enough detail that another student could repeat it, including what is measured, which equipment measures it, and how the students would reduce experimental uncertainty.',
+        solution: 'Measure the mass of the block with the balance. Attach the spring scale to the block and pull it horizontally along the board so it slides at a steady, constant speed; read the scale, which equals the friction force because the net force is zero. Calculate the normal force as the total weight, mg. Repeat with different numbers of slotted masses stacked on the block, to get at least five different normal forces. Do several pulls for each mass and average the readings.',
+        points: [
+          { id: 'a1', text: 'Measures the mass on the board with the balance and finds the normal force as mg (or the total weight)' },
+          { id: 'a2', text: 'Pulls the block horizontally at constant velocity, so the spring scale reading equals the friction force' },
+          { id: 'a3', text: 'Changes the normal force by adding masses to get several data points, and repeats trials to reduce uncertainty' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Describe how the students could graph their data to find the coefficient of kinetic friction. State what they should plot on each axis and how they would get μ from the graph.',
+        solution: 'Plot friction force on the vertical axis against normal force on the horizontal axis. Since f = μF_N, the graph should be a straight line through the origin, and its slope is μ.',
+        points: [
+          { id: 'b1', text: 'Plots friction force against normal force (either orientation, if the slope is used correctly)' },
+          { id: 'b2', text: 'States that μ is the slope (or 1/slope if the axes are swapped)' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'The students\' data are shown in the table. On paper, plot the data on labeled axes with scales, and draw a best-fit line. Use your line to calculate the coefficient of kinetic friction.',
+        figure: FRICTION_DATA,
+        solution: 'The points lie close to a straight line through the origin. Using two points on the best-fit line, such as (0, 0) and (10.0 N, 3.03 N), the slope is about 3.03/10.0 ≈ 0.30. So μ ≈ 0.30.',
+        points: [
+          { id: 'c1', text: 'Axes are labeled with quantities and units, with linear scales that use most of the grid, and all five points are plotted correctly' },
+          { id: 'c2', text: 'Draws a single straight best-fit line with points on both sides, not a dot-to-dot line' },
+          { id: 'c3', text: 'Calculates the slope from points on the line (not two data points), getting μ between 0.28 and 0.32' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'Another group did the same experiment, but their block was speeding up while they read the spring scale. Would their value of μ be too large, too small or about right? Justify your answer.',
+        solution: 'Too large. When the block speeds up, the net force on it points forward, so the spring scale force is greater than friction: F_scale − f = ma. The group records the larger scale force as the friction force, so their friction values and their slope are too high.',
+        points: [
+          { id: 'd1', text: 'States that μ would be too large' },
+          { id: 'd2', text: 'Justifies it with Newton\'s second law: an accelerating block needs a pull greater than friction, so the scale reads more than the friction force' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'phys1-frq-experimental-002',
+    type: 'experimental',
+    title: 'Density of an unknown liquid',
+    intro: 'Students want to find the density of an unknown liquid. They hang a metal cylinder from a spring scale. The cylinder has weight W = 4.00 N, height 0.100 m and cross-sectional area A = 1.0 × 10⁻³ m². They lower it into a beaker of the liquid in steps, keeping it upright, and record the scale reading at each submerged depth d. Use g = 9.8 m/s².',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Derive an expression for the scale reading F in terms of W, the liquid density ρ, A, d and g, while the cylinder is partly submerged and at rest. Begin your derivation by writing a fundamental physics principle or an equation from the reference sheet.',
+        solution: 'The cylinder is in equilibrium: the scale force F and the buoyant force F_b point up, and its weight W points down, so F + F_b = W. The buoyant force equals the weight of displaced liquid, F_b = ρVg = ρAdg. So F = W − ρgAd.',
+        points: [
+          { id: 'a1', text: 'Starts from equilibrium (net force zero) with the scale force and buoyant force up and the weight down' },
+          { id: 'a2', text: 'Uses F_b = ρgV with V = Ad to get F = W − ρgAd' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Which quantities could the students graph to get a straight line? Explain how they would find ρ from that graph.',
+        solution: 'Plot the scale reading F on the vertical axis against the submerged depth d on the horizontal axis. From part (a) this is a straight line with slope −ρgA and vertical intercept W. So ρ = −slope/(gA).',
+        points: [
+          { id: 'b1', text: 'Plots scale reading (or buoyant force) against submerged depth' },
+          { id: 'b2', text: 'Relates the slope to ρ: ρ = −slope/(gA), or slope/(gA) for buoyant force against depth' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'The students\' data are shown in the table. On paper, plot the data, draw a best-fit line, and use it to calculate the density of the liquid.',
+        figure: BUOYANCY_DATA,
+        solution: 'The points fall close to a straight line. Taking two points on the line, such as (0, 4.00 N) and (0.080 m, 3.35 N), the slope is about (3.35 − 4.00)/0.080 ≈ −8.1 N/m. Then ρ = 8.1/(9.8 × 1.0 × 10⁻³) ≈ 830 kg/m³.',
+        points: [
+          { id: 'c1', text: 'Plots all five points correctly on labeled axes with units and sensible linear scales' },
+          { id: 'c2', text: 'Draws a straight best-fit line and finds its slope from points on the line' },
+          { id: 'c3', text: 'Gets a density between about 780 and 880 kg/m³' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'A student predicts that if the cylinder were lowered to a depth of 0.150 m, past the point where it is fully submerged, the scale reading would keep decreasing at the same rate. Do you agree? Justify your answer.',
+        solution: 'No. The cylinder is only 0.100 m tall, so it is fully submerged by d = 0.100 m. After that, the volume of liquid it displaces stays the same, so the buoyant force stays the same and the scale reading stops changing (at about 4.00 − 8.1 × 0.100 ≈ 3.19 N). Going deeper raises the pressure on both the top and bottom faces by the same amount, so the pressure difference that causes the buoyant force does not change.',
+        points: [
+          { id: 'd1', text: 'Disagrees, and states that the reading stays constant once the cylinder is fully submerged' },
+          { id: 'd2', text: 'Explains that the displaced volume (and so the buoyant force) no longer changes, or that the pressure difference between the top and bottom stays the same' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'phys1-frq-qualquant-001',
+    type: 'qual-quant',
+    title: 'Two blocks launched by one spring',
+    intro: 'A spring with spring constant k is compressed a distance x and used to launch a block across a frictionless floor. The block then slides onto a rough section of floor where the coefficient of kinetic friction is μ, and it slides until it stops. The experiment is done twice with the same spring and compression: once with block 1 of mass m and once with block 2 of mass 2m.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Without using equations, explain which block slides farther on the rough section, or whether they slide the same distance. Explain your reasoning in a clear, paragraph-length argument using physics principles.',
+        solution: 'Both blocks get the same energy from the spring, because the spring is compressed the same distance each time, so both start across the rough floor with the same kinetic energy. Friction removes that energy by doing negative work as each block slides. The friction force is proportional to the normal force, so the heavier block feels twice the friction force. With twice the force removing the same energy, block 2 stops in half the distance. Block 1, the lighter block, slides farther.',
+        points: [
+          { id: 'a1', text: 'States that both blocks leave the spring with the same kinetic energy, because the spring stores the same energy' },
+          { id: 'a2', text: 'States that the heavier block has a larger friction force, because the normal force is larger' },
+          { id: 'a3', text: 'Concludes that the lighter block slides farther, with reasoning that links force, energy and distance' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Derive an expression for the distance d a block of mass M slides on the rough section, in terms of k, x, μ, M and g. Begin your derivation by writing a fundamental physics principle or an equation from the reference sheet.',
+        solution: 'Energy: all the spring energy is removed by friction. ½kx² = μMg d, so d = kx² / (2μMg).',
+        points: [
+          { id: 'b1', text: 'Sets the spring energy ½kx² equal to the work done by friction, μMgd' },
+          { id: 'b2', text: 'Gets d = kx² / (2μMg)' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Explain how your expression from part (b) supports or contradicts your reasoning in part (a).',
+        solution: 'The expression shows d is inversely proportional to M, so doubling the mass halves the distance. Block 1 slides twice as far as block 2, which agrees with part (a). The numerator kx² is the same for both blocks, which matches the claim that the spring gives each block the same energy.',
+        points: [
+          { id: 'c1', text: 'Identifies that d is proportional to 1/M, so block 1 slides twice as far, and states that this agrees with (or corrects) part (a)' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'phys1-frq-qualquant-002',
+    type: 'qual-quant',
+    title: 'Rolling race',
+    intro: 'A solid cylinder (I = ½MR²) and a thin-walled hollow cylinder (I = MR²) have the same mass M and the same radius R. They are released from rest side by side at the top of the same ramp and roll without slipping down a vertical drop h.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Without using equations, explain which cylinder reaches the bottom first, or whether they arrive at the same time. Explain your reasoning in a clear, paragraph-length argument using physics principles.',
+        solution: 'Both cylinders start with the same gravitational potential energy, since they have the same mass and drop the same height, and both reach the bottom with the same total kinetic energy. That kinetic energy is split between moving forward and spinning. The hollow cylinder has all its mass at the rim, so it has a larger rotational inertia and must put a larger share of its energy into rotation to roll at a given speed. That leaves it less translational kinetic energy, so it moves more slowly at every point on the ramp. The solid cylinder reaches the bottom first.',
+        points: [
+          { id: 'a1', text: 'States that both cylinders convert the same gravitational potential energy into kinetic energy' },
+          { id: 'a2', text: 'States that the hollow cylinder has the larger rotational inertia, so more of its energy goes into rotation' },
+          { id: 'a3', text: 'Concludes that the solid cylinder has more translational speed and arrives first' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'An object with rotational inertia I = βMR² rolls without slipping from rest down the vertical drop h. Derive an expression for its speed at the bottom in terms of β, g and h. Begin your derivation by writing a fundamental physics principle or an equation from the reference sheet.',
+        solution: 'Energy is conserved: Mgh = ½Mv² + ½Iω². Rolling without slipping means ω = v/R, so ½Iω² = ½βMR²(v/R)² = ½βMv². Then Mgh = ½(1 + β)Mv², so v = √(2gh / (1 + β)).',
+        points: [
+          { id: 'b1', text: 'Writes energy conservation with both translational and rotational kinetic energy' },
+          { id: 'b2', text: 'Uses v = ωR for rolling without slipping' },
+          { id: 'b3', text: 'Gets v = √(2gh / (1 + β))' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Explain how your expression from part (b) supports or contradicts your reasoning in part (a). Also state whether a solid cylinder would beat a hollow one if the solid cylinder had a much larger mass and radius.',
+        solution: 'The solid cylinder has β = ½ and the hollow one has β = 1. A larger β makes the denominator larger and the speed smaller, so the solid cylinder is faster at the bottom (and at every height), which agrees with part (a). M and R cancel out of the expression, so the result does not depend on them: any solid cylinder beats any thin hollow cylinder on the same ramp.',
+        points: [
+          { id: 'c1', text: 'Uses the expression to show a larger β gives a smaller speed, and states that this agrees with part (a)' },
+          { id: 'c2', text: 'States that M and R cancel, so the solid cylinder still wins regardless of its mass and radius' },
         ],
       },
     ],
