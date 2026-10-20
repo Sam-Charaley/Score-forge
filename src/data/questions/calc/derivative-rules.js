@@ -3,6 +3,9 @@
 // If you change what a question asks, give it a new id instead of editing it.
 import { derivative, limit } from '../calcMath.js'
 
+// Values at x = 2 shown in question 007's table.
+const PRODUCT_TABLE = { f: 3, df: -1, g: 4, dg: 5 };
+
 export default [
   {
     id: 'calc-derivative-rules-001',
@@ -83,5 +86,33 @@ export default [
     answer: 1,
     explanation: 'The graph has no break at x = 2, so f is continuous there. But it has a corner: the slope is −1 just to the left and +1 just to the right, so the derivative doesn\'t exist. Differentiable always implies continuous, so the third choice is impossible.',
     reviewed: true,
+  },
+  {
+    id: 'calc-derivative-rules-007',
+    topic: 'derivative-rules',
+    formulas: ['product-rule'],
+    difficulty: 1,
+    prompt: 'The table gives values of the differentiable functions f and g and their derivatives at x = 2. If h(x) = f(x)g(x), what is h\'(2)?',
+    figure: { type: 'table', columns: ['x', 'f(x)', 'f′(x)', 'g(x)', 'g′(x)'], rows: [[2, PRODUCT_TABLE.f, PRODUCT_TABLE.df, PRODUCT_TABLE.g, PRODUCT_TABLE.dg]],
+      alt: 'Table of values at x = 2: f(2) = 3, f′(2) = −1, g(2) = 4 and g′(2) = 5.' },
+    choices: ['11', '−5', '19', '−1'],
+    answer: 0,
+    explanation: 'By the product rule, h\'(2) = f\'(2)g(2) + f(2)g\'(2) = (−1)(4) + (3)(5) = −4 + 15 = 11. −5 multiplies the two derivatives, which is not the product rule.',
+    verify: 'exact',
+    solve: () => PRODUCT_TABLE.df * PRODUCT_TABLE.g + PRODUCT_TABLE.f * PRODUCT_TABLE.dg,
+    reviewed: false,
+  },
+  {
+    id: 'calc-derivative-rules-008',
+    topic: 'derivative-rules',
+    formulas: ['derivative-limit', 'trig-derivatives'],
+    difficulty: 3,
+    prompt: 'What is lim (h → 0) of [cos(π/3 + h) − 1/2]/h?',
+    choices: ['1/2', '√3/2', '−1/2', '−√3/2'],
+    answer: 3,
+    explanation: 'Since cos(π/3) = 1/2, this is the definition of the derivative of cos x at x = π/3. The derivative of cos x is −sin x, so the limit is −sin(π/3) = −√3/2. √3/2 drops the minus sign, and 1/2 is cos(π/3) itself.',
+    verify: 'exact',
+    solve: () => limit(h => (Math.cos(Math.PI / 3 + h) - 0.5) / h, 0),
+    reviewed: false,
   },
 ];
