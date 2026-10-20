@@ -3,6 +3,10 @@
 // If you change what a question asks, give it a new id instead of editing it.
 import { derivative, findRoot } from '../calcMath.js'
 
+// Rows of question 007's table: x, f(x), f′(x), g(x), g′(x).
+const CHAIN_TABLE = [[1, 2, 5, 3, 2], [3, 7, -4, 1, 6]];
+const tableRow = x => CHAIN_TABLE.find(row => row[0] === x);
+
 export default [
   {
     id: 'calc-chain-implicit-001',
@@ -83,5 +87,33 @@ export default [
     verify: 'exact',
     solve: () => derivative(x => Math.exp(Math.sin(x)), Math.PI),
     reviewed: true,
+  },
+  {
+    id: 'calc-chain-implicit-007',
+    topic: 'chain-implicit',
+    formulas: ['chain-rule'],
+    difficulty: 1,
+    prompt: 'The table gives values of the differentiable functions f and g and their derivatives. If h(x) = f(g(x)), what is h\'(1)?',
+    figure: { type: 'table', columns: ['x', 'f(x)', 'f′(x)', 'g(x)', 'g′(x)'], rows: CHAIN_TABLE,
+      alt: 'Table with two rows. At x = 1: f = 2, f′ = 5, g = 3, g′ = 2. At x = 3: f = 7, f′ = −4, g = 1, g′ = 6.' },
+    choices: ['10', '−4', '−8', '−12'],
+    answer: 2,
+    explanation: 'By the chain rule, h\'(1) = f\'(g(1)) · g\'(1). g(1) = 3, so this is f\'(3) · g\'(1) = (−4)(2) = −8. 10 uses f\'(1) instead of f\'(g(1)), the most common slip.',
+    verify: 'exact',
+    solve: () => { const [, , , g1, dg1] = tableRow(1); return tableRow(g1)[2] * dg1; },
+    reviewed: false,
+  },
+  {
+    id: 'calc-chain-implicit-008',
+    topic: 'chain-implicit',
+    difficulty: 3,
+    prompt: 'The curve xy + y³ = 10 passes through the point (1, 2). What is dy/dx at that point?',
+    choices: ['2/13', '−1/6', '−13/2', '−2/13'],
+    answer: 3,
+    explanation: 'Differentiate implicitly: y + x(dy/dx) + 3y²(dy/dx) = 0, so dy/dx = −y/(x + 3y²). At (1, 2) that is −2/(1 + 12) = −2/13. −1/6 comes from dropping the x(dy/dx) term of the product rule.',
+    verify: 'exact',
+    // y as a function of x near (1, 2), found by solving the equation for y.
+    solve: () => derivative(x => findRoot(y => x * y + y ** 3 - 10, 0, 5), 1),
+    reviewed: false,
   },
 ];

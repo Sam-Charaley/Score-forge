@@ -5,6 +5,9 @@ import { derivative, findRoot, extremeValue } from '../calcMath.js'
 
 const square = x => x * x;
 
+// Question 007's table of values for f.
+const MVT_TABLE = [[0, 4], [2, 1], [5, 10], [7, 8]];
+
 export default [
   {
     id: 'calc-mvt-extrema-001',
@@ -71,5 +74,41 @@ export default [
     verify: 'exact',
     solve: () => extremeValue(x => x + 4 / x, 1, 4, 'min'),
     reviewed: true,
+  },
+  {
+    id: 'calc-mvt-extrema-006',
+    topic: 'mvt-extrema',
+    difficulty: 1,
+    prompt: 'What are the critical points of f(x) = x³ − 12x?',
+    choices: ['x = 2 only', 'x = 0, x = −2 and x = 2', 'x = 0 only', 'x = −2 and x = 2'],
+    answer: 3,
+    explanation: 'Critical points are where f\'(x) = 0 or is undefined. f\'(x) = 3x² − 12 = 3(x − 2)(x + 2), which is zero at x = −2 and x = 2 and is defined everywhere. x = 0 is where f itself is zero, not f\'.',
+    reviewed: false,
+  },
+  {
+    id: 'calc-mvt-extrema-007',
+    topic: 'mvt-extrema',
+    formulas: ['mvt'],
+    difficulty: 2,
+    prompt: 'The function f is differentiable for all real numbers. Selected values of f are given in the table. On which interval must there be a value c with f\'(c) = 3?',
+    figure: { type: 'table', columns: ['x', 'f(x)'], rows: MVT_TABLE,
+      alt: 'Table of values of f: f(0) = 4, f(2) = 1, f(5) = 10 and f(7) = 8.' },
+    choices: ['(0, 2)', '(2, 5)', '(5, 7)', '(0, 7)'],
+    answer: 1,
+    explanation: 'f is differentiable, so it is also continuous, and the Mean Value Theorem applies on each interval. The average rate of change on [2, 5] is (10 − 1)/(5 − 2) = 3, so f\'(c) = 3 for some c in (2, 5). The other intervals give −3/2, −1 and 4/7.',
+    reviewed: false,
+  },
+  {
+    id: 'calc-mvt-extrema-008',
+    topic: 'mvt-extrema',
+    formulas: ['evt'],
+    difficulty: 3,
+    prompt: 'What is the absolute maximum value of f(x) = x²e^(−x) on the interval [0, 3]?',
+    choices: ['1/e', '9/e³', '2/e', '4/e²'],
+    answer: 3,
+    explanation: 'f\'(x) = 2xe^(−x) − x²e^(−x) = xe^(−x)(2 − x), so the critical points are x = 0 and x = 2. Compare the candidates: f(0) = 0, f(2) = 4/e² ≈ 0.541 and f(3) = 9/e³ ≈ 0.448. The maximum is 4/e². 9/e³ is the right endpoint, which is not the largest value here.',
+    verify: 'exact',
+    solve: () => extremeValue(x => x * x * Math.exp(-x), 0, 3, 'max'),
+    reviewed: false,
   },
 ];

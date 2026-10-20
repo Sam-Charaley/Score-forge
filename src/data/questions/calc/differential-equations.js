@@ -7,6 +7,11 @@ import { solveODE, eulerMethod, derivative, findRoot } from '../calcMath.js'
 const CARRYING_CAPACITY = 500;
 const logisticRate = population => 0.2 * population * (1 - population / CARRYING_CAPACITY);
 
+const FISH_CAPACITY = 800;
+const fishRate = population => 0.4 * population * (1 - population / FISH_CAPACITY);
+// Long enough for the population to settle at its limit to many digits.
+const LONG_RUN_YEARS = 200;
+
 export default [
   {
     id: 'calc-differential-equations-001',
@@ -73,5 +78,43 @@ export default [
     solve: () => findRoot(population => derivative(logisticRate, population), 100, 400),
     tolerance: 1e-5,
     reviewed: true,
+  },
+  {
+    id: 'calc-differential-equations-006',
+    topic: 'differential-equations',
+    formulas: ['separation'],
+    difficulty: 1,
+    prompt: 'Which of the following is the general solution of the differential equation dy/dx = 2xy?',
+    choices: ['y = Ce^(x²)', 'y = e^(x²) + C', 'y = Cx²', 'y = Ce^(2x)'],
+    answer: 0,
+    explanation: 'Separate: dy/y = 2x dx. Integrating gives ln|y| = x² + C, so y = ±e^C · e^(x²), which is y = Ce^(x²). Adding C after exponentiating (e^(x²) + C) is the classic slip: the constant was added before exponentiating, so it becomes a factor.',
+    reviewed: false,
+  },
+  {
+    id: 'calc-differential-equations-007',
+    topic: 'differential-equations',
+    formulas: ['logistic'],
+    onlyIn: 'calcbc',
+    difficulty: 2,
+    prompt: 'A fish population P(t) satisfies dP/dt = 0.4P(1 − P/800), where t is in years, and P(0) = 1000. What is lim (t → ∞) of P(t)?',
+    choices: ['1000', '800', '400', '∞'],
+    answer: 1,
+    explanation: 'This is logistic growth with carrying capacity 800. Starting above 800, dP/dt is negative, so the population decreases toward 800 and approaches it as t → ∞. 400 is where a population below the carrying capacity grows fastest, not the limit.',
+    verify: 'exact',
+    solve: () => solveODE((t, population) => fishRate(population), 0, 1000, LONG_RUN_YEARS),
+    reviewed: false,
+  },
+  {
+    id: 'calc-differential-equations-008',
+    topic: 'differential-equations',
+    formulas: ['separation'],
+    difficulty: 3,
+    prompt: 'Let y = f(x) be the particular solution to dy/dx = y² sin x with f(0) = 1/2. What is f(π/2)?',
+    choices: ['1/2', '2', '1/3', '1'],
+    answer: 3,
+    explanation: 'Separate: dy/y² = sin x dx, so −1/y = −cos x + C. At (0, 1/2): −2 = −1 + C, so C = −1, and −1/y = −cos x − 1, which gives y = 1/(1 + cos x). Then f(π/2) = 1/(1 + 0) = 1. 1/3 comes from integrating sin x as cos x instead of −cos x.',
+    verify: 'exact',
+    solve: () => solveODE((x, y) => y * y * Math.sin(x), 0, 0.5, Math.PI / 2),
+    reviewed: false,
   },
 ];

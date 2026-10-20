@@ -4,6 +4,12 @@
 import { derivative, secondDerivative } from '../calcMath.js'
 
 const naturalLogOnePlus = x => Math.log(1 + x);
+const factorial = n => (n <= 1 ? 1 : n * factorial(n - 1));
+
+// Question 007: a degree-3 polynomial about x = 1 used at x = 1.5.
+const ERROR_DEGREE = 3;
+const FOURTH_DERIVATIVE_BOUND = 6;
+const ERROR_DISTANCE = 0.5;
 
 export default [
   {
@@ -79,5 +85,40 @@ export default [
       return value + slope * step + (secondDer / 2) * step ** 2;
     },
     reviewed: true,
+  },
+  {
+    id: 'calcbc-taylor-006',
+    topic: 'taylor',
+    formulas: ['taylor-polynomial'],
+    difficulty: 1,
+    prompt: 'A function f has derivatives of all orders, with f⁽ⁿ⁾(0) = (n + 1)! for every n ≥ 0. Which is the Maclaurin series for f?',
+    choices: ['Σ (n = 0 to ∞) (n + 1)xⁿ', 'Σ (n = 0 to ∞) (n + 1)! xⁿ', 'Σ (n = 0 to ∞) xⁿ/(n + 1)', 'Σ (n = 0 to ∞) n xⁿ'],
+    answer: 0,
+    explanation: 'The Maclaurin coefficient of xⁿ is f⁽ⁿ⁾(0)/n! = (n + 1)!/n! = n + 1, so the series is Σ (n + 1)xⁿ. Σ (n + 1)! xⁿ forgets to divide each derivative by n!.',
+    reviewed: false,
+  },
+  {
+    id: 'calcbc-taylor-007',
+    topic: 'taylor',
+    formulas: ['lagrange-error'],
+    difficulty: 3,
+    prompt: 'The third-degree Taylor polynomial for f about x = 1 is used to approximate f(1.5). If |f⁽⁴⁾(x)| ≤ 6 for all x in [1, 1.5], what is the Lagrange error bound for this approximation?',
+    choices: ['1/16', '3/8', '1/384', '1/64'],
+    answer: 3,
+    explanation: 'The Lagrange error bound for a degree-3 polynomial is max|f⁽⁴⁾| · |x − 1|⁴/4! = 6(0.5)⁴/24 = 6(1/16)/24 = 1/64. 3/8 forgets to divide by 4!, and 1/384 leaves out the bound of 6 on the fourth derivative.',
+    verify: 'exact',
+    solve: () => (FOURTH_DERIVATIVE_BOUND * ERROR_DISTANCE ** (ERROR_DEGREE + 1)) / factorial(ERROR_DEGREE + 1),
+    reviewed: false,
+  },
+  {
+    id: 'calcbc-taylor-008',
+    topic: 'taylor',
+    formulas: ['maclaurin-sin'],
+    difficulty: 2,
+    prompt: 'What is the coefficient of x⁶ in the Maclaurin series for sin(x²)?',
+    choices: ['1/6', '1/2', '−1/120', '−1/6'],
+    answer: 3,
+    explanation: 'Substitute u = x² into sin u = u − u³/3! + u⁵/5! − ...: sin(x²) = x² − x⁶/6 + x¹⁰/120 − .... The x⁶ term is −x⁶/6, so the coefficient is −1/6. 1/6 drops the alternating sign, and −1/120 belongs to the u⁵ term, which becomes x¹⁰.',
+    reviewed: false,
   },
 ];
