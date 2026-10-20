@@ -9,6 +9,14 @@ const SPRING_MOTION = { type: 'graph', xLabel: 't (s)', yLabel: 'x (m)', xMax: 1
   series: [{ points: Array.from({ length: 65 }, (_, i) => { const t = (i * 1.6) / 64; return [t, SPRING_AMPLITUDE * Math.cos((2 * Math.PI * t) / SPRING_PERIOD)]; }) }],
   alt: 'Position-time graph of a mass on a spring: a cosine curve starting at +0.10 m at t = 0, reaching −0.10 m at t = 0.4 s and returning to +0.10 m at t = 0.8 s, then repeating once more by t = 1.6 s.' };
 
+// Spring lab: periods measured for three hanging masses, all consistent with
+// k ≈ 20 N/m, so averaging the rows gives the key.
+const SPRING_LAB = [[0.2, 0.63], [0.4, 0.89], [0.8, 1.26]];
+const SPRING_LAB_TABLE = { type: 'table', caption: 'Period of a mass on one spring',
+  columns: ['Mass (kg)', 'Period (s)'],
+  rows: SPRING_LAB.map(([m, t]) => [m.toFixed(2), t.toFixed(2)]),
+  alt: 'Table of spring lab data. A 0.20 kg mass oscillates with a period of 0.63 s, a 0.40 kg mass with 0.89 s, and a 0.80 kg mass with 1.26 s, all on the same spring.' };
+
 export default [
   {
     id: 'phys1-oscillations-001',
@@ -89,5 +97,31 @@ export default [
     verify: 'numeric',
     solve: () => 1 / SPRING_PERIOD,
     reviewed: true,
+  },
+  {
+    id: 'phys1-oscillations-007',
+    topic: 'oscillations',
+    formulas: ['spring-period'],
+    difficulty: 1,
+    prompt: 'A block oscillates on a spring. It is replaced by a block with four times the mass on the same spring. How does the period change?',
+    choices: ['It is cut in half', 'It stays the same', 'It becomes four times as long', 'It doubles'],
+    answer: 3,
+    explanation: 'The period of a mass on a spring is T = 2π√(m/k), so it grows with the square root of the mass. Four times the mass gives √4 = 2 times the period. "Four times as long" forgets the square root.',
+    reviewed: false,
+  },
+  {
+    id: 'phys1-oscillations-008',
+    topic: 'oscillations',
+    formulas: ['spring-period'],
+    difficulty: 3,
+    calculator: true,
+    prompt: 'Students hang different masses from the same spring and time the oscillations, as shown in the table. What is the best estimate of the spring constant?',
+    figure: SPRING_LAB_TABLE,
+    choices: ['20 N/m', '13 N/m', '0.050 N/m', '0.50 N/m'],
+    answer: 0,
+    explanation: 'Squaring T = 2π√(m/k) gives k = 4π²m/T². Each row gives about 20 N/m, for example 4π² × 0.20/0.63² ≈ 20 N/m. A graph of T² against m would be a straight line with slope 4π²/k. 13 N/m divides by T instead of T², and 0.050 N/m is the ratio turned upside down.',
+    verify: 'numeric',
+    solve: () => SPRING_LAB.reduce((sum, [m, t]) => sum + (4 * Math.PI ** 2 * m) / t ** 2, 0) / SPRING_LAB.length,
+    reviewed: false,
   },
 ];

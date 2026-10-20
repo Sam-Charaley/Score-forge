@@ -1,6 +1,13 @@
 // AP Physics 1, Unit 4: collisions, explosions and conservation of momentum.
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
+// Lab data for a collision on a level, low-friction track; cart B's final
+// velocity is left for the student. Kinetic energy drops, so it is physical.
+const CART_COLLISION = { type: 'table', caption: 'Collision on a level track',
+  columns: ['Cart', 'Mass (kg)', 'Velocity before (m/s)', 'Velocity after (m/s)'],
+  rows: [['A', '0.50', '+0.80', '+0.30'], ['B', '0.25', '0', '?']],
+  alt: 'Table of collision data. Cart A, mass 0.50 kg, moves at +0.80 m/s before and +0.30 m/s after. Cart B, mass 0.25 kg, is at rest before; its velocity after is unknown.' };
+
 export default [
   {
     id: 'phys1-collisions-001',
@@ -72,5 +79,43 @@ export default [
     answer: 1,
     explanation: 'The explosion forces are internal, so total momentum is conserved and the center of mass keeps moving as before. Chemical energy turns into kinetic energy, so the total kinetic energy increases.',
     reviewed: true,
+  },
+  {
+    id: 'phys1-collisions-006',
+    topic: 'collisions',
+    formulas: ['momentum-conservation', 'kinetic-energy'],
+    difficulty: 1,
+    prompt: 'Two carts on a frictionless track collide, crumple slightly and bounce apart. For the system of both carts, which quantity is the same just before and just after the collision?',
+    choices: ['Total momentum only', 'Total kinetic energy only', 'Both total momentum and total kinetic energy', 'Neither'],
+    answer: 0,
+    explanation: 'No net external force acts on the two-cart system during the collision, so its total momentum is conserved in every collision. The crumpling turns some kinetic energy into internal energy, so kinetic energy is not conserved. Kinetic energy is conserved only in an elastic collision.',
+    reviewed: false,
+  },
+  {
+    id: 'phys1-collisions-007',
+    topic: 'collisions',
+    formulas: ['momentum', 'momentum-conservation'],
+    difficulty: 2,
+    prompt: 'Students record the collision data in the table. What is cart B\'s velocity just after the collision?',
+    figure: CART_COLLISION,
+    choices: ['0.50 m/s', '1.6 m/s', '1.0 m/s', '2.2 m/s'],
+    answer: 2,
+    explanation: 'Total momentum before is 0.50 × 0.80 = 0.40 kg·m/s. After, cart A carries 0.50 × 0.30 = 0.15 kg·m/s, so cart B carries 0.25 kg·m/s and v = 0.25/0.25 = +1.0 m/s. 1.6 m/s gives cart B all of the original momentum, forgetting that cart A is still moving.',
+    verify: 'numeric',
+    solve: () => (0.5 * 0.8 - 0.5 * 0.3) / 0.25,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-collisions-008',
+    topic: 'collisions',
+    formulas: ['center-of-mass-velocity'],
+    difficulty: 3,
+    prompt: 'A 3.0 kg cart moving at +4.0 m/s and a 1.0 kg cart moving at −2.0 m/s are about to collide on a frictionless track. What is the velocity of the two-cart system\'s center of mass just after the collision?',
+    choices: ['+1.0 m/s', '+3.5 m/s', 'It cannot be found without knowing whether the collision is elastic', '+2.5 m/s'],
+    answer: 3,
+    explanation: 'With no external force, the center of mass moves at a constant velocity no matter what kind of collision happens: v_cm = (3.0 × 4.0 + 1.0 × (−2.0))/(3.0 + 1.0) = 10/4 = +2.5 m/s, before and after. +3.5 m/s ignores the minus sign on the second cart\'s velocity.',
+    verify: 'numeric',
+    solve: () => (3 * 4 + 1 * -2) / (3 + 1),
+    reviewed: false,
   },
 ];

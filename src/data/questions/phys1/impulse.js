@@ -111,4 +111,17 @@ export default [
     solve: () => CART_START_VELOCITY + areaUnder(PUSH_AND_PULL.series[0].points, 0, 4) / CART_MASS,
     reviewed: true,
   },
+  {
+    id: 'phys1-impulse-008',
+    topic: 'impulse',
+    formulas: ['impulse', 'momentum'],
+    difficulty: 1,
+    prompt: 'A 0.15 kg baseball moving at 10 m/s is caught in a glove and brought to rest. What is the magnitude of the impulse the glove exerts on the ball?',
+    choices: ['15 N·s', '0.67 N·s', '150 N·s', '1.5 N·s'],
+    answer: 3,
+    explanation: 'Impulse equals the change in momentum: |Δp| = m|Δv| = 0.15 × (10 − 0) = 1.5 N·s. The time the catch takes would decide the average force, but not the impulse. 15 N·s comes from a slipped decimal, and 0.67 N·s divides mass by speed instead of multiplying.',
+    verify: 'numeric',
+    solve: () => 0.15 * 10,
+    reviewed: false,
+  },
 ];
