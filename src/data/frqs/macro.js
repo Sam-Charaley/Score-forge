@@ -140,4 +140,161 @@ export default [
       },
     ],
   },
+  {
+    id: 'macro-frq-short-001',
+    type: 'short',
+    title: 'Bank balance sheet and money creation',
+    intro: 'Lakeside Bank\'s balance sheet is shown below. The reserve requirement is 20%. Assume banks lend all excess reserves and borrowers keep no cash.',
+    figure: {
+      type: 'table',
+      caption: 'Lakeside Bank balance sheet (reserve requirement 20%)',
+      columns: ['Assets', 'Asset value ($)', 'Liabilities', 'Liability value ($)'],
+      rows: [
+        ['Reserves', 40000, 'Demand deposits', 100000],
+        ['Loans', 60000, '', ''],
+      ],
+      alt: 'Balance sheet for Lakeside Bank with a 20 percent reserve requirement. Assets: reserves of $40,000 and loans of $60,000. Liabilities: demand deposits of $100,000.',
+    },
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Calculate the amount of Lakeside Bank\'s required reserves. Show your work.',
+        solution: 'Required reserves = 20% × $100,000 = $20,000.',
+        points: [
+          { id: 'a1', text: 'Calculates $20,000 and shows the work: 0.20 × $100,000' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'What is the maximum amount Lakeside Bank can lend?',
+        solution: 'Lakeside Bank can lend its excess reserves: $40,000 − $20,000 = $20,000.',
+        points: [
+          { id: 'b1', text: 'States $20,000 (the bank\'s excess reserves)' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'If Lakeside Bank lends the amount in part (b), calculate the maximum possible change in the money supply for the banking system. Show your work.',
+        solution: 'The money multiplier is 1/0.20 = 5. Maximum change in the money supply = $20,000 × 5 = $100,000 (an increase).',
+        points: [
+          { id: 'c1', text: 'Calculates an increase of $100,000 and shows the work: $20,000 × (1 / 0.20)' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'A customer withdraws $5,000 in cash from her checking account at Lakeside Bank. What is the immediate effect of the withdrawal on the M1 money supply? Explain.',
+        solution: 'M1 does not change immediately. Both currency held by the public and checkable deposits are part of M1, so the withdrawal only changes the form of the money: currency rises by $5,000 and checkable deposits fall by $5,000.',
+        points: [
+          { id: 'd1', text: 'States that M1 does not change' },
+          { id: 'd2', text: 'Explains that currency and checkable deposits are both in M1, so the withdrawal moves money from one part of M1 to another' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'macro-frq-short-002',
+    type: 'short',
+    title: 'Interest rates and the foreign exchange market',
+    intro: 'The United States and Mexico trade with each other, and financial capital moves freely between them. The central bank of the United States raises interest rates, while interest rates in Mexico do not change.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Draw a correctly labeled graph of the foreign exchange market for the U.S. dollar, with the price of the dollar in Mexican pesos. Show the effect of the higher U.S. interest rates on the value of the dollar.',
+        solution: 'The horizontal axis is labeled Quantity of dollars and the vertical axis is labeled Pesos per dollar. Demand for dollars (D) slopes down and supply of dollars (S) slopes up. Higher U.S. interest rates attract Mexican investors to U.S. financial assets, so demand for dollars shifts right from D₁ to D₂, and the equilibrium price of the dollar rises from ER₁ to ER₂ (the dollar appreciates).',
+        points: [
+          { id: 'a1', text: 'Axes labeled: quantity of dollars on the horizontal axis and price of the dollar (pesos per dollar) on the vertical axis' },
+          { id: 'a2', text: 'A downward-sloping curve labeled D and an upward-sloping curve labeled S' },
+          { id: 'a3', text: 'Shows the demand for dollars shifting to the right' },
+          { id: 'a4', text: 'Marks a new equilibrium exchange rate higher than the starting one (the dollar appreciates)' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Based on your answer to part (a), what will happen to U.S. exports to Mexico? Explain.',
+        solution: 'U.S. exports to Mexico decrease. Because each dollar now costs more pesos, U.S. goods are more expensive for Mexican buyers.',
+        points: [
+          { id: 'b1', text: 'States that U.S. exports decrease and explains that U.S. goods become more expensive for Mexican buyers' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'macro-frq-short-003',
+    type: 'short',
+    title: 'Comparative advantage',
+    intro: 'Country A and Country B each produce phones and shirts with constant opportunity costs. The table shows the maximum amount each country can produce of each good if it uses all of its resources for that good.',
+    figure: {
+      type: 'table',
+      caption: 'Maximum output',
+      columns: ['Country', 'Phones', 'Shirts'],
+      rows: [['Country A', 20, 40], ['Country B', 10, 30]],
+      alt: 'Table of maximum output. Country A can make 20 phones or 40 shirts. Country B can make 10 phones or 30 shirts.',
+    },
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Draw a correctly labeled production possibilities curve for Country A, with phones on the horizontal axis and shirts on the vertical axis. Show the numerical values of the endpoints.',
+        solution: 'The horizontal axis is labeled Phones and the vertical axis is labeled Shirts. Country A\'s PPC is a straight line from 40 shirts on the vertical axis to 20 phones on the horizontal axis.',
+        points: [
+          { id: 'a1', text: 'Axes labeled: phones on the horizontal axis and shirts on the vertical axis' },
+          { id: 'a2', text: 'A straight-line PPC from 40 shirts to 20 phones, with both endpoints labeled' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Calculate Country B\'s opportunity cost of producing one phone. Show your work.',
+        solution: 'Country B gives up 30 shirts to make 10 phones, so one phone costs 30/10 = 3 shirts.',
+        points: [
+          { id: 'b1', text: 'Calculates 3 shirts and shows the work: 30 / 10' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Which country has a comparative advantage in producing shirts? Explain using opportunity costs.',
+        solution: 'Country B. One shirt costs Country B 10/30 = 1/3 phone, while it costs Country A 20/40 = 1/2 phone. Country B gives up less to make a shirt.',
+        points: [
+          { id: 'c1', text: 'Identifies Country B and compares opportunity costs: 1/3 phone per shirt for B versus 1/2 phone per shirt for A' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'If the two countries specialize and trade 1 phone for 2.5 shirts, would both countries benefit? Explain.',
+        solution: 'Yes. Country A, which exports phones, gets 2.5 shirts per phone instead of the 2 it gives up making a phone itself. Country B, which exports shirts, pays 2.5 shirts per phone instead of the 3 shirts a phone costs it to make. The terms of trade lie between the two opportunity costs.',
+        points: [
+          { id: 'd1', text: 'States yes and explains that 2.5 shirts per phone lies between the opportunity costs of a phone (2 shirts for A and 3 shirts for B)' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'macro-frq-short-004',
+    type: 'short',
+    title: 'Deficit spending and crowding out',
+    intro: 'Country Z is at full employment. Its government increases spending without changing taxes, and it finances the resulting budget deficit by borrowing.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Draw a correctly labeled graph of the loanable funds market. Show the effect of the government borrowing on the real interest rate.',
+        solution: 'The horizontal axis is labeled Quantity of loanable funds and the vertical axis is labeled Real interest rate. Demand (D) slopes down and supply (S) slopes up. Government borrowing shifts demand right from D₁ to D₂, and the real interest rate rises from r₁ to r₂. (Showing supply shifting left, as a fall in public saving, also earns credit.)',
+        points: [
+          { id: 'a1', text: 'Axes labeled: quantity of loanable funds on the horizontal axis and real interest rate on the vertical axis' },
+          { id: 'a2', text: 'A downward-sloping curve labeled D and an upward-sloping curve labeled S' },
+          { id: 'a3', text: 'Shows demand shifting right (or supply shifting left)' },
+          { id: 'a4', text: 'Marks a new equilibrium real interest rate higher than the starting one' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Based on your answer to part (a), what will happen to the rate of economic growth in Country Z in the long run? Explain.',
+        solution: 'Economic growth slows. The higher real interest rate reduces private investment (crowding out), so Country Z adds less physical capital, and productivity and potential output grow more slowly.',
+        points: [
+          { id: 'b1', text: 'States that economic growth slows and explains that the higher real interest rate reduces private investment, so the capital stock grows more slowly' },
+        ],
+      },
+    ],
+  },
 ];
