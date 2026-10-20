@@ -1,0 +1,128 @@
+// AP Macroeconomics, Unit 3: MPC and MPS, the spending multiplier, the tax
+// multiplier and the balanced budget multiplier.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+
+const spendingMultiplier = mpc => 1 / (1 - mpc);
+const taxMultiplier = mpc => mpc / (1 - mpc);
+
+// Disposable income and consumption for a household sector, billions of dollars.
+const INCOME_TABLE = {
+  type: 'table',
+  caption: 'Disposable income and consumption (billions of dollars)',
+  columns: ['Disposable income', 'Consumption'],
+  rows: [[1000, 900], [1200, 1050], [1400, 1200]],
+  alt: 'Table of disposable income and consumption in billions of dollars. At income 1,000 consumption is 900, at income 1,200 consumption is 1,050, and at income 1,400 consumption is 1,200.',
+};
+const TABLE_MPC = (1050 - 900) / (1200 - 1000);
+
+export default [
+  {
+    id: 'macro-multipliers-001',
+    topic: 'multipliers',
+    formulas: ['spending-multiplier'],
+    difficulty: 1,
+    prompt: 'If the marginal propensity to consume is 0.8, what is the value of the spending multiplier?',
+    choices: ['0.8', '1.25', '4', '5'],
+    answer: 3,
+    explanation: 'Spending multiplier = 1/(1 − MPC) = 1/0.2 = 5. 4 is the size of the tax multiplier (MPC/MPS), and 1.25 is 1/MPC.',
+    verify: 'numeric',
+    solve: () => spendingMultiplier(0.8),
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-002',
+    topic: 'multipliers',
+    formulas: ['mpc-mps', 'spending-multiplier'],
+    difficulty: 1,
+    prompt: 'The marginal propensity to save is 0.25. If investment spending increases by $20 billion, what is the maximum possible increase in real GDP?',
+    choices: ['20 billion', '80 billion', '60 billion', '100 billion'],
+    answer: 1,
+    explanation: 'Spending multiplier = 1/MPS = 1/0.25 = 4, so real GDP can rise by up to 4 × $20 billion = $80 billion. 60 billion uses the tax multiplier (3) by mistake.',
+    verify: 'numeric',
+    solve: () => spendingMultiplier(1 - 0.25) * 20,
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-003',
+    topic: 'multipliers',
+    formulas: ['tax-multiplier'],
+    difficulty: 2,
+    prompt: 'The marginal propensity to consume is 0.75. If the government cuts taxes by $10 billion, what is the maximum possible increase in real GDP, in billions of dollars?',
+    choices: ['40', '7.5', '30', '10'],
+    answer: 2,
+    explanation: 'Tax multiplier = MPC/MPS = 0.75/0.25 = 3, so the tax cut can raise real GDP by up to 3 × $10 billion = $30 billion. 40 uses the spending multiplier: households save part of a tax cut before spending, so it has a smaller effect than the same increase in government purchases.',
+    verify: 'numeric',
+    solve: () => taxMultiplier(0.75) * 10,
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-004',
+    topic: 'multipliers',
+    formulas: ['balanced-budget'],
+    difficulty: 2,
+    prompt: 'The marginal propensity to consume is 0.9. The government increases its purchases by $50 billion and raises taxes by $50 billion. What is the maximum possible change in real GDP, in billions of dollars?',
+    choices: ['0', '+500', '+450', '+50'],
+    answer: 3,
+    explanation: 'The spending increase adds 10 × 50 = 500, and the tax increase subtracts 9 × 50 = 450, for a net change of +50. This is the balanced budget multiplier of 1. 0 assumes the two cancel, but a dollar of taxes lowers spending by only $0.90 at first.',
+    verify: 'numeric',
+    solve: () => spendingMultiplier(0.9) * 50 - taxMultiplier(0.9) * 50,
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-005',
+    topic: 'multipliers',
+    formulas: ['spending-multiplier'],
+    difficulty: 2,
+    prompt: 'An economy has a recessionary gap of $100 billion, and the marginal propensity to consume is 0.8. What is the minimum increase in government purchases that would close the gap, in billions of dollars?',
+    choices: ['20', '25', '80', '100'],
+    answer: 0,
+    explanation: 'The spending multiplier is 1/0.2 = 5, so purchases need to rise by $100 billion / 5 = $20 billion. 25 is the tax cut needed (tax multiplier 4), and 100 ignores the multiplier.',
+    verify: 'numeric',
+    solve: () => 100 / spendingMultiplier(0.8),
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-006',
+    topic: 'multipliers',
+    formulas: ['tax-multiplier'],
+    difficulty: 3,
+    prompt: 'An economy has a recessionary gap of $100 billion, and the marginal propensity to consume is 0.8. What is the minimum tax cut that would close the gap, in billions of dollars?',
+    choices: ['20', '25', '100', '125'],
+    answer: 1,
+    explanation: 'Tax multiplier = MPC/MPS = 0.8/0.2 = 4, so taxes must fall by $100 billion / 4 = $25 billion. 20 is the increase in government purchases that would do the same job; a tax cut must be larger because part of it is saved.',
+    verify: 'numeric',
+    solve: () => 100 / taxMultiplier(0.8),
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-007',
+    topic: 'multipliers',
+    formulas: ['mpc-mps', 'spending-multiplier'],
+    difficulty: 2,
+    prompt: 'Based on the table, what is the value of the spending multiplier?',
+    figure: INCOME_TABLE,
+    choices: ['4', '3', '10', '1.33'],
+    answer: 0,
+    explanation: 'MPC = change in consumption / change in disposable income = 150/200 = 0.75, so the multiplier is 1/(1 − 0.75) = 4. 10 divides by the average propensity to save at the first row (100/1,000) instead of the marginal one, and 3 is the tax multiplier.',
+    verify: 'numeric',
+    solve: () => spendingMultiplier(TABLE_MPC),
+    reviewed: false,
+  },
+  {
+    id: 'macro-multipliers-008',
+    topic: 'multipliers',
+    formulas: ['spending-multiplier'],
+    difficulty: 3,
+    prompt: 'Which of the following would make the spending multiplier larger?',
+    choices: [
+      'An increase in the marginal propensity to save',
+      'An increase in the marginal propensity to consume',
+      'An increase in government purchases',
+      'A decrease in the marginal propensity to consume',
+    ],
+    answer: 1,
+    explanation: 'Each round of spending is larger when households spend a bigger share of each extra dollar, so a higher MPC (and lower MPS) means a larger multiplier, 1/(1 − MPC). A change in government purchases changes how much is multiplied, not the multiplier itself.',
+    reviewed: false,
+  },
+];
