@@ -420,4 +420,177 @@ export default [
       },
     ],
   },
+  {
+    id: 'calcbc-frq-parametric-001',
+    type: 'parametric',
+    title: 'Limaçon and circle',
+    intro: 'Calculator allowed. The polar curves r = 3 − 2 cos θ and r = 2 are graphed together for 0 ≤ θ ≤ 2π. The curves intersect at θ = π/3 and θ = 5π/3.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Find the area of the region that lies inside the curve r = 3 − 2 cos θ and outside the circle r = 2.',
+        solution: '3 − 2 cos θ > 2 when cos θ < 1/2, which is π/3 < θ < 5π/3. Area = (1/2)∫ from π/3 to 5π/3 of ((3 − 2 cos θ)² − 2²) dθ ≈ 24.187 (exactly 14π/3 + 11√3/2).',
+        points: [
+          { id: 'a1', text: 'Uses the limits θ = π/3 and θ = 5π/3' },
+          { id: 'a2', text: 'Uses the integrand (1/2)((3 − 2 cos θ)² − 4), the outer radius squared minus the inner radius squared' },
+          { id: 'a3', text: 'Gets about 24.187' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Find the value of dr/dθ at θ = π/3. Explain what this value says about the motion of a point moving along the curve r = 3 − 2 cos θ as θ increases through π/3.',
+        solution: 'dr/dθ = 2 sin θ, so at θ = π/3 it is 2(√3/2) = √3 ≈ 1.732. Since r = 2 > 0 and dr/dθ > 0, the point is moving away from the origin as θ increases through π/3.',
+        points: [
+          { id: 'b1', text: 'dr/dθ = √3 (about 1.732)' },
+          { id: 'b2', text: 'Explains that the point is moving away from the origin, because r > 0 and dr/dθ > 0' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Find the slope of the line tangent to the curve r = 3 − 2 cos θ at θ = π/2.',
+        solution: 'With x = r cos θ and y = r sin θ: dy/dθ = (dr/dθ) sin θ + r cos θ and dx/dθ = (dr/dθ) cos θ − r sin θ. At θ = π/2, r = 3 and dr/dθ = 2, so dy/dθ = 2(1) + 3(0) = 2 and dx/dθ = 2(0) − 3(1) = −3. The slope is dy/dx = 2/(−3) = −2/3.',
+        points: [
+          { id: 'c1', text: 'Writes dy/dx = (dy/dθ)/(dx/dθ) using x = r cos θ and y = r sin θ' },
+          { id: 'c2', text: 'Gets −2/3' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'A particle moves along the curve r = 3 − 2 cos θ so that dθ/dt = 2 for all times t. Find dy/dt at the instant the particle is at θ = π/2.',
+        solution: 'dy/dt = (dy/dθ)(dθ/dt) = 2 · 2 = 4, using dy/dθ = 2 at θ = π/2 from part (c).',
+        points: [
+          { id: 'd1', text: 'Uses the chain rule dy/dt = (dy/dθ)(dθ/dt) and gets 4' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'calcbc-frq-parametric-002',
+    type: 'parametric',
+    title: 'Parametric curve',
+    intro: 'No calculator. A curve in the xy-plane is defined by the parametric equations x(t) = t² − 2t and y(t) = t³ − 3t for −2 ≤ t ≤ 2.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Find dy/dx in terms of t, and write an equation for the line tangent to the curve at the point where t = 2.',
+        solution: 'dy/dx = (dy/dt)/(dx/dt) = (3t² − 3)/(2t − 2) = 3(t + 1)/2 for t ≠ 1. At t = 2 the point is (0, 2) and the slope is 9/2, so the tangent line is y = 2 + (9/2)x.',
+        points: [
+          { id: 'a1', text: 'dy/dx = (3t² − 3)/(2t − 2), or the simplified 3(t + 1)/2' },
+          { id: 'a2', text: 'Tangent line y = 2 + (9/2)(x − 0) at the point (0, 2)' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Find the coordinates of each point on the curve at which the tangent line is horizontal. Justify your answer.',
+        solution: 'dy/dt = 3t² − 3 = 0 at t = −1 and t = 1. At t = −1, dx/dt = −4 ≠ 0, so the tangent is horizontal at (x(−1), y(−1)) = (3, 2). At t = 1, dx/dt = 0 too, so that is not a horizontal tangent (the slope there approaches 3). The only point is (3, 2).',
+        points: [
+          { id: 'b1', text: 'Sets dy/dt = 0 and checks that dx/dt ≠ 0' },
+          { id: 'b2', text: 'Answers only (3, 2), ruling out t = 1' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Find d²y/dx² at t = 2. Is the curve concave up or concave down at that point? Give a reason for your answer.',
+        solution: 'd²y/dx² = [d/dt (dy/dx)]/(dx/dt) = (3/2)/(2t − 2). At t = 2 this is (3/2)/2 = 3/4 > 0, so the curve is concave up there.',
+        points: [
+          { id: 'c1', text: 'Divides d/dt(dy/dx) by dx/dt, getting d²y/dx² = 3/4 at t = 2' },
+          { id: 'c2', text: 'Concave up, because d²y/dx² > 0' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'Write, but do not evaluate, an integral expression that gives the length of the curve from t = 0 to t = 2.',
+        solution: 'Length = ∫₀² √((2t − 2)² + (3t² − 3)²) dt.',
+        points: [
+          { id: 'd1', text: 'Writes ∫₀² √((2t − 2)² + (3t² − 3)²) dt' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'calcbc-frq-series-001',
+    type: 'series',
+    title: 'A power series and its derivative',
+    intro: 'No calculator. The function f is defined by the power series f(x) = Σ (n = 1 to ∞) (x − 1)ⁿ/(n · 3ⁿ) for all x at which the series converges.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Find the interval of convergence of the power series for f. Show the work that leads to your answer.',
+        solution: 'Ratio test: |aₙ₊₁/aₙ| = |x − 1| · n/(3(n + 1)), which approaches |x − 1|/3. The series converges when |x − 1|/3 < 1, so −2 < x < 4. At x = 4 the series is Σ 1/n, the harmonic series, which diverges. At x = −2 it is Σ (−1)ⁿ/n, which converges by the alternating series test (the terms 1/n decrease to 0). The interval of convergence is −2 ≤ x < 4.',
+        points: [
+          { id: 'a1', text: 'Sets up the ratio test and gets the limit |x − 1|/3' },
+          { id: 'a2', text: 'Finds the open interval −2 < x < 4 (radius 3)' },
+          { id: 'a3', text: 'Shows the series diverges at x = 4 (harmonic series) and converges at x = −2 (alternating series test)' },
+          { id: 'a4', text: 'States the interval −2 ≤ x < 4' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Find the first three nonzero terms and the general term of the power series for f′(x). Then find f′(x) as a function in closed form for x in the open interval of convergence.',
+        solution: 'Differentiating term by term, f′(x) = Σ (n = 1 to ∞) (x − 1)ⁿ⁻¹/3ⁿ = 1/3 + (x − 1)/9 + (x − 1)²/27 + .... This is geometric with first term 1/3 and ratio (x − 1)/3, so f′(x) = (1/3)/(1 − (x − 1)/3) = 1/(4 − x).',
+        points: [
+          { id: 'b1', text: 'First three terms 1/3 + (x − 1)/9 + (x − 1)²/27 and general term (x − 1)ⁿ⁻¹/3ⁿ' },
+          { id: 'b2', text: 'Closed form f′(x) = 1/(4 − x)' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Use the first two nonzero terms of the series for f(0) to approximate f(0). Show that this approximation differs from f(0) by less than 1/50.',
+        solution: 'f(0) = Σ (−1)ⁿ/(n · 3ⁿ) = −1/3 + 1/18 − 1/81 + .... The first two terms give −1/3 + 1/18 = −5/18. The series alternates, and its terms 1/(n · 3ⁿ) decrease in size to 0, so by the alternating series error bound the error is at most the size of the next term, 1/81, which is less than 1/50.',
+        points: [
+          { id: 'c1', text: 'Approximation −5/18' },
+          { id: 'c2', text: 'Uses the alternating series error bound with the conditions met: error ≤ 1/81 < 1/50' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'calcbc-frq-series-002',
+    type: 'series',
+    title: 'Taylor polynomial from a table',
+    intro: 'No calculator. The function f has derivatives of all orders for all real numbers. Values of f and its first three derivatives at x = 2 are given in the table. The fourth derivative of f satisfies |f⁽⁴⁾(x)| ≤ 30 for 2 ≤ x ≤ 2.5.',
+    figure: { type: 'table', columns: ['x', 'f(x)', 'f′(x)', 'f″(x)', 'f‴(x)'], rows: [[2, 3, -2, 5, 12]],
+      alt: 'Table of values at x = 2: f(2) = 3, f′(2) = −2, f″(2) = 5 and f‴(2) = 12.' },
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Write the third-degree Taylor polynomial for f about x = 2.',
+        solution: 'P₃(x) = f(2) + f′(2)(x − 2) + f″(2)/2! (x − 2)² + f‴(2)/3! (x − 2)³ = 3 − 2(x − 2) + (5/2)(x − 2)² + 2(x − 2)³.',
+        points: [
+          { id: 'a1', text: 'Constant and linear terms 3 − 2(x − 2)' },
+          { id: 'a2', text: 'Quadratic and cubic terms (5/2)(x − 2)² + 2(x − 2)³, dividing by 2! and 3!' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'Use the polynomial from part (a) to approximate f(2.5).',
+        solution: 'P₃(2.5) = 3 − 2(0.5) + (5/2)(0.25) + 2(0.125) = 3 − 1 + 0.625 + 0.25 = 2.875.',
+        points: [
+          { id: 'b1', text: 'Gets 2.875' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Use the Lagrange error bound to show that the approximation in part (b) differs from f(2.5) by less than 0.1.',
+        solution: '|f(2.5) − P₃(2.5)| ≤ max|f⁽⁴⁾(x)| · (2.5 − 2)⁴/4! ≤ 30(0.5)⁴/24 = 30(0.0625)/24 = 0.078125, which is less than 0.1.',
+        points: [
+          { id: 'c1', text: 'Uses the form max|f⁽⁴⁾| · |x − 2|⁴/4! with the bound 30' },
+          { id: 'c2', text: 'Gets 0.078125 and concludes it is less than 0.1' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'Let g(x) = ∫₂ˣ f(t) dt. Write the third-degree Taylor polynomial for g about x = 2.',
+        solution: 'g(2) = 0 and g′ = f, so integrate the second-degree Taylor polynomial of f term by term from 2 to x: g(x) ≈ 3(x − 2) − (x − 2)² + (5/6)(x − 2)³.',
+        points: [
+          { id: 'd1', text: 'Uses g(2) = 0 and g′(x) = f(x) (or integrates the Taylor polynomial of f term by term)' },
+          { id: 'd2', text: 'Gets 3(x − 2) − (x − 2)² + (5/6)(x − 2)³' },
+        ],
+      },
+    ],
+  },
 ];
