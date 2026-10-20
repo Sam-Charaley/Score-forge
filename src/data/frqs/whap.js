@@ -252,4 +252,48 @@ export default [
       },
     ],
   },
+  {
+    id: 'whap-frq-leq-001',
+    type: 'leq',
+    title: 'The Columbian Exchange in the Americas',
+    intro: 'Write an essay that answers the prompt. No documents are provided; use your own knowledge. On the exam you get about 40 minutes for the long essay. Spend a few minutes planning a thesis and two or three body paragraphs before you write.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'In the period 1450 to 1750, the arrival of Europeans brought new plants, animals, diseases and peoples to the Americas.\n\nDevelop an argument that evaluates the extent to which the Columbian Exchange transformed societies in the Americas in this period.\n\nIn your response you should do the following.\n• Respond to the prompt with a historically defensible thesis or claim that establishes a line of reasoning.\n• Describe a broader historical context relevant to the prompt.\n• Support an argument in response to the prompt using specific and relevant examples of evidence.\n• Use historical reasoning (for example, comparison, causation, continuity or change) to frame or structure an argument that addresses the prompt.\n• Use evidence to support, qualify, or modify an argument that addresses the prompt.',
+        solution: 'Model thesis: The Columbian Exchange transformed the Americas to a very great extent, because disease destroyed most Indigenous populations and new labor systems and crops rebuilt colonial economies around exports, though many Indigenous communities kept their languages, beliefs and local customs by blending them with European ones.\n\nContext: In the 1400s, Portugal and Spain, competing for the Asian spice trade and using new ship designs such as the caravel, began voyages that led to Columbus\'s arrival in the Caribbean in 1492 and to Spanish conquest of the Aztec and Inca empires in the 1520s and 1530s.\n\nOutline:\n1. Disease caused demographic collapse. Smallpox, measles and influenza killed perhaps 80 to 90 percent of the Indigenous population in many regions, which helped small Spanish forces conquer the Aztecs and Inca and destroyed whole societies in the Caribbean.\n2. New labor systems and peoples. With Indigenous workers dying, the Spanish used the encomienda and the mit\'a at the Potosí silver mines, and planters in Brazil and the Caribbean imported millions of enslaved Africans for sugar plantations. This created new societies ranked by the casta system.\n3. New plants and animals. Horses, cattle, pigs, wheat and sugar cane changed land use and diets. Ranching spread across Mexico and the pampas, and horses transformed Plains peoples such as the Lakota into mounted hunters.\n4. Limits of the transformation (complexity). Many Indigenous people kept their languages, such as Nahuatl and Quechua, and blended Catholicism with older beliefs, as in the veneration of the Virgin of Guadalupe. Resistance such as the Pueblo Revolt of 1680 shows that Indigenous societies were not simply erased.\n\nReasoning: The essay uses causation, tracing how disease led to labor shortages, which led to the slave trade and new social hierarchies, while the last paragraph qualifies the argument with continuity.',
+        points: [
+          { id: 'a1', text: 'Thesis: makes a defensible claim about how far the Columbian Exchange transformed American societies and sets up a line of reasoning, in the introduction or conclusion' },
+          { id: 'a2', text: 'Contextualization: describes broader context (for example Iberian motives for exploration, new maritime technology, or the conquests of the Aztec and Inca) and connects it to the prompt' },
+          { id: 'a3', text: 'Evidence: names at least two specific, relevant examples (for example smallpox, the mit\'a at Potosí, sugar plantations, horses on the Plains, the casta system)' },
+          { id: 'a4', text: 'Evidence: uses specific examples to support an argument about the extent of transformation, not just to list facts' },
+          { id: 'a5', text: 'Historical reasoning: uses causation, comparison or continuity and change to structure the argument (for example tracing how disease led to new labor systems)' },
+          { id: 'a6', text: 'Complexity: shows a complex understanding, for example by weighing change against continuity, or by explaining effects that differed by region or group' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'whap-frq-leq-002',
+    type: 'leq',
+    title: 'Paths to independence after 1900',
+    intro: 'Write an essay that answers the prompt. No documents are provided; use your own knowledge. On the exam you get about 40 minutes for the long essay. Spend a few minutes planning a thesis and two or three body paragraphs before you write.',
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'In the period 1900 to the present, many colonies in Asia and Africa gained independence from European empires.\n\nDevelop an argument that evaluates the extent to which the methods used to gain independence were similar in different regions.\n\nIn your response you should do the following.\n• Respond to the prompt with a historically defensible thesis or claim that establishes a line of reasoning.\n• Describe a broader historical context relevant to the prompt.\n• Support an argument in response to the prompt using specific and relevant examples of evidence.\n• Use historical reasoning (for example, comparison, causation, continuity or change) to frame or structure an argument that addresses the prompt.\n• Use evidence to support, qualify, or modify an argument that addresses the prompt.',
+        solution: 'Model thesis: Independence movements across Asia and Africa were similar in that most were led by Western-educated nationalists who built mass political parties, but their methods differed greatly: where colonial powers were willing to leave, as Britain was in India and Ghana, movements used mostly nonviolent pressure and negotiation, while settler colonies and determined colonizers, as in Algeria, Kenya and Vietnam, faced long armed struggles.\n\nContext: The two world wars weakened Britain and France economically and militarily, colonial soldiers who had fought for the empires demanded rights, and the new United Nations and both Cold War superpowers spoke against old-style colonialism.\n\nOutline:\n1. Similarity: nationalist leadership and mass movements. Gandhi and Nehru in India, Nkrumah in Ghana and Ho Chi Minh in Vietnam were educated in Western ideas of rights and self-determination, and each built a party (the Indian National Congress, the Convention People\'s Party, the Viet Minh) that mobilized ordinary people.\n2. Difference: negotiated and nonviolent paths. India used civil disobedience, boycotts and the Salt March, and gained independence in 1947 through negotiation, though partition brought terrible violence. Ghana gained independence in 1957 through strikes, elections and talks with Britain.\n3. Difference: armed struggle. Algeria, with about a million French settlers, won independence only after the FLN fought an eight-year war (1954 to 1962). Kenya saw the Mau Mau uprising against British settlers, and Vietnam defeated France at Dien Bien Phu in 1954.\n4. Reasons for the difference (complexity). Large settler populations and Cold War stakes made colonial powers less willing to leave, which pushed movements toward violence. Even nonviolent movements succeeded partly because the wars had weakened the empires.\n\nReasoning: The essay uses comparison, identifying similarities and differences and explaining why the methods differed.',
+        points: [
+          { id: 'a1', text: 'Thesis: makes a defensible claim about how similar the methods of independence movements were and sets up a line of reasoning, in the introduction or conclusion' },
+          { id: 'a2', text: 'Contextualization: describes broader context (for example how the world wars weakened European empires, the ideals of the UN, or Cold War pressure) and connects it to the prompt' },
+          { id: 'a3', text: 'Evidence: names at least two specific, relevant examples (for example the Salt March, Ghana under Nkrumah, the Algerian War, the Mau Mau uprising, Dien Bien Phu)' },
+          { id: 'a4', text: 'Evidence: uses specific examples to support an argument about similarities and differences, not just to describe each movement' },
+          { id: 'a5', text: 'Historical reasoning: uses comparison to structure the argument, explaining both similarities and differences' },
+          { id: 'a6', text: 'Complexity: shows a complex understanding, for example by explaining why methods differed (settler populations, Cold War stakes) or how a single movement used several methods' },
+        ],
+      },
+    ],
+  },
 ];
