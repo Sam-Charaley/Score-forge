@@ -101,4 +101,18 @@ export default [
     solve: () => areaUnder(SPRING_FORCE.series[0].points, 0, 0.2),
     reviewed: true,
   },
+  {
+    id: 'phys1-work-power-008',
+    topic: 'work-power',
+    formulas: ['work', 'right-triangle'],
+    difficulty: 2,
+    calculator: true,
+    prompt: 'A student pulls a sled 10 m across level snow with a rope that makes a 37° angle above the horizontal. The tension in the rope is 50 N. How much work does the rope do on the sled?',
+    choices: ['500 J', '300 J', '0 J', '400 J'],
+    answer: 3,
+    explanation: 'Only the component of the force along the displacement does work: W = Fd cos θ = 50 × 10 × cos 37° ≈ 400 J. 500 J treats the whole tension as horizontal, and 300 J uses sin 37°, which is the vertical component that does no work on a level path.',
+    verify: 'numeric',
+    solve: () => 50 * 10 * Math.cos(37 * Math.PI / 180),
+    reviewed: false,
+  },
 ];
