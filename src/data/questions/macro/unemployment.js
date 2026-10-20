@@ -1,0 +1,133 @@
+// AP Macroeconomics, Unit 2: measuring unemployment, types of unemployment,
+// the natural rate and the business cycle.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+
+// Labor data for a made-up country, in millions of people.
+const LABOR = { adultPopulation: 200, employed: 115, unemployed: 10, notInLaborForce: 75 };
+const LABOR_TABLE = {
+  type: 'table',
+  caption: 'Labor market data (millions of people)',
+  columns: ['Group', 'Number'],
+  rows: [
+    ['Adult population', LABOR.adultPopulation],
+    ['Employed', LABOR.employed],
+    ['Unemployed', LABOR.unemployed],
+    ['Not in the labor force', LABOR.notInLaborForce],
+  ],
+  alt: 'Table of labor market data in millions of people: adult population 200, employed 115, unemployed 10, and not in the labor force 75.',
+};
+const laborForce = () => LABOR.employed + LABOR.unemployed;
+
+export default [
+  {
+    id: 'macro-unemployment-001',
+    topic: 'unemployment',
+    difficulty: 1,
+    prompt: 'A software engineer quits her job to look for a better-paying position in the same field and is searching for work. She is',
+    choices: ['frictionally unemployed', 'structurally unemployed', 'cyclically unemployed', 'not in the labor force'],
+    answer: 0,
+    explanation: 'Frictional unemployment is the short-term unemployment of people between jobs or searching for a better match. Her skills are still in demand, so it is not structural, and nothing about a recession caused it, so it is not cyclical.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-002',
+    topic: 'unemployment',
+    formulas: ['labor-force', 'unemployment-rate'],
+    difficulty: 1,
+    prompt: 'Based on the table, what is the unemployment rate?',
+    figure: LABOR_TABLE,
+    choices: ['5.0%', '8.7%', '8.0%', '12.5%'],
+    answer: 2,
+    explanation: 'The labor force is employed plus unemployed: 115 + 10 = 125 million. The unemployment rate is 10/125 = 8.0%. 5.0% divides by the whole adult population, and 8.7% divides by the employed only.',
+    verify: 'numeric',
+    solve: () => (LABOR.unemployed / laborForce()) * 100,
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-003',
+    topic: 'unemployment',
+    formulas: ['participation-rate'],
+    difficulty: 2,
+    prompt: 'Based on the table, what is the labor force participation rate?',
+    figure: LABOR_TABLE,
+    choices: ['57.5%', '62.5%', '37.5%', '92.0%'],
+    answer: 1,
+    explanation: 'The participation rate is the labor force divided by the adult population: 125/200 = 62.5%. 57.5% uses only the employed, and 92.0% is the employment rate within the labor force.',
+    verify: 'numeric',
+    solve: () => (laborForce() / LABOR.adultPopulation) * 100,
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-004',
+    topic: 'unemployment',
+    difficulty: 2,
+    prompt: 'Automated checkout machines replace many cashiers, who lack the skills for the jobs that are available. What type of unemployment results?',
+    choices: ['Frictional', 'Seasonal', 'Cyclical', 'Structural'],
+    answer: 3,
+    explanation: 'Structural unemployment is caused by a mismatch between workers\' skills and the jobs available, often from technological change. It lasts longer than frictional unemployment and does not go away when the economy recovers, unlike cyclical unemployment.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-005',
+    topic: 'unemployment',
+    difficulty: 2,
+    prompt: 'During a long recession, many unemployed workers stop looking for work because they believe no jobs are available. Holding everything else constant, what happens to the measured unemployment rate?',
+    choices: [
+      'It increases, because more people are without jobs.',
+      'It decreases, because discouraged workers leave the labor force.',
+      'It does not change, because the number of jobs does not change.',
+      'It decreases, because discouraged workers are counted as employed.',
+    ],
+    answer: 1,
+    explanation: 'Discouraged workers are no longer actively searching, so they are not counted as unemployed or in the labor force. The number unemployed falls by more, in percentage terms, than the labor force, so the measured rate falls even though no one found a job.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-006',
+    topic: 'unemployment',
+    formulas: ['natural-rate'],
+    difficulty: 2,
+    prompt: 'When an economy is producing at full employment, which of the following is true?',
+    choices: [
+      'The unemployment rate is zero.',
+      'Frictional and structural unemployment are zero.',
+      'Cyclical unemployment is zero, and the unemployment rate equals the natural rate.',
+      'Cyclical unemployment is at its highest level.',
+    ],
+    answer: 2,
+    explanation: 'Full employment means no cyclical unemployment. Frictional and structural unemployment still exist, and together they make up the natural rate of unemployment, so the unemployment rate is above zero.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-007',
+    topic: 'unemployment',
+    formulas: ['natural-rate'],
+    difficulty: 3,
+    prompt: 'In a country, frictional unemployment is 2.5%, structural unemployment is 1.5%, and the actual unemployment rate is 6.5%. Which of the following is true?',
+    choices: [
+      'The natural rate is 4.0%, and the economy is in a recession.',
+      'The natural rate is 6.5%, and the economy is at full employment.',
+      'The natural rate is 4.0%, and output is above its full-employment level.',
+      'The natural rate is 2.5%, and cyclical unemployment is 4.0%.',
+    ],
+    answer: 0,
+    explanation: 'The natural rate is frictional plus structural: 2.5% + 1.5% = 4.0%. Actual unemployment is 2.5 points above it, so there is cyclical unemployment and the economy is in a recession, producing below full-employment output.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-unemployment-008',
+    topic: 'unemployment',
+    difficulty: 3,
+    prompt: 'Which of the following is most likely to happen during the contraction phase of the business cycle?',
+    choices: [
+      'Real GDP rises and cyclical unemployment falls.',
+      'Real GDP rises faster than potential output.',
+      'Inflationary pressure increases as output exceeds full employment.',
+      'Real GDP falls and cyclical unemployment rises.',
+    ],
+    answer: 3,
+    explanation: 'In a contraction, real GDP falls and firms need fewer workers, so cyclical unemployment rises. Rising real GDP and falling unemployment describe an expansion, and output above full employment describes the peak of a boom.',
+    reviewed: false,
+  },
+];
