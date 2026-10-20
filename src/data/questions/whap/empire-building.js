@@ -144,11 +144,11 @@ export default [
     prompt: 'Between 1450 and 1750, the Russian state expanded mainly by',
     choices: [
       'founding overseas colonies in Africa',
-      'moving east across Siberia, drawn in part by the fur trade',
       'conquering the Mughal Empire',
       'uniting with the Ottoman Empire',
+      'moving east across Siberia, drawn in part by the fur trade',
     ],
-    answer: 1,
+    answer: 3,
     explanation: 'Russian rulers from Ivan IV onward pushed east across Siberia, with Cossacks and fur traders leading the way, and reached the Pacific in the 1600s. Russia was a land-based empire and had no colonies in Africa; it was a rival of the Ottomans, not a partner.',
     reviewed: false,
   },

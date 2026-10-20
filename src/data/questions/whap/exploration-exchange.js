@@ -87,10 +87,10 @@ export default [
     choices: [
       'warn Spain that the islands were too dangerous to settle',
       'describe Indigenous religion accurately for scholars',
-      'persuade the Spanish monarchs to fund more voyages by stressing the wealth and easy conquest of the islands',
       'ask Portugal to join a shared colony',
+      'persuade the Spanish monarchs to fund more voyages by stressing the wealth and easy conquest of the islands',
     ],
-    answer: 2,
+    answer: 3,
     explanation: 'Columbus promises gold, spices and slaves and describes the people as harmless and easy to convert. He was writing to the officials who had paid for his voyage, so he had reason to make the lands sound rich and easy to control. That makes it unreliable as a neutral description.',
     reviewed: false,
   },

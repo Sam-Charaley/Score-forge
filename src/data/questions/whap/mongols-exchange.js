@@ -115,11 +115,11 @@ export default [
     prompt: 'The Mongol capture of Baghdad in 1258 is significant because it',
     choices: [
       'began the Crusades',
-      'ended the Abbasid Caliphate',
       'led to the founding of the Ming dynasty',
       'brought Buddhism to the Middle East for the first time',
+      'ended the Abbasid Caliphate',
     ],
-    answer: 1,
+    answer: 3,
     explanation: 'Mongol forces sacked Baghdad, killed the last Abbasid caliph and destroyed much of the city, including its libraries. This ended the Abbasid Caliphate, which had already lost most of its political power. The Crusades began in 1095, long before.',
     reviewed: false,
   },
