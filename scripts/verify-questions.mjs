@@ -93,7 +93,9 @@ const frqs = [];
 const FRQ_SET_FILE = /^(?!frqLoader\.js$)[a-z0-9-]+\.js$/;
 for (const file of readdirSync(FRQ_ROOT).filter(f => FRQ_SET_FILE.test(f))) {
   const module = await import(pathToFileURL(path.join(FRQ_ROOT, file)));
-  frqs.push(...module.default);
+  // Only code FRQs (a Java setup and a verify test) can be run; written FRQs
+  // in other subjects are checked by Sam's review.
+  frqs.push(...module.default.filter(frq => frq.setup));
 }
 let frqFailures = 0;
 for (const frq of frqs) {

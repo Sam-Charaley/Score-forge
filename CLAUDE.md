@@ -10,7 +10,7 @@ Layers, bottom to top:
 3. **Adaptive engine**: finds weak areas, adjusts difficulty, prioritizes highest-impact topics
 4. **UI**: quizzes, dashboards, predicted scores (outputs of the layers below)
 
-Depth over breadth: **AP Computer Science A is the flagship subject** with the fullest question bank and adaptation. Other subjects are lighter secondary expansions.
+Coverage: seven popular APs get full practice parity: CS A, Calc BC, Physics 1, CS Principles, World History: Modern, Macro and Micro. That means a full multiple-choice bank across every unit, FRQ practice with rubric self-check, and an exam model. CS A is still the only subject with code FRQs and Java-verified keys. Psychology, Chemistry and Calc AB have banks too, and the other subjects have study plans and flashcards only. (This replaced "depth over breadth, CS A first" in Oct 2026.)
 
 ## Stack
 
@@ -30,8 +30,9 @@ From `package.json`:
 - `npm run dev`: local dev server. Draft (unreviewed) questions and FRQs show here with a badge.
 - `npm run build`: production build. Run this before any commit that touches app code; Vercel fails the deploy on build errors. Drafts are excluded.
 - `npm run preview`: serve the production build locally
-- `npm test`: Vitest, run once. Content tests guard subjects, flashcards, formulas, questions and FRQs, so run this after any content change.
-- `npm run verify:questions`: compiles and runs the Java in every CS A question marked `verify: 'output'` and checks it against the answer key. Needs a JDK (`javac` and `java` on PATH).
+- `npm test`: Vitest, run once. Content tests guard subjects, flashcards, formulas, questions and FRQs, so run this after any content change. It skips `.claude/**`, so Claude Code session worktrees aren't tested twice.
+- `npm run verify:questions`: compiles and runs the Java in every CS A question marked `verify: 'output'` and checks it against the answer key, plus the sample solutions of code FRQs. Needs a JDK (`javac` and `java` on PATH).
+- `npm run review:drafts -- <subject> [--all]`: writes `~/Downloads/Scoreforge/review/<subject>.html`, listing every draft question and FRQ with its key, explanation and rubric, for Sam's review. Run it from the main checkout: it writes to `../review` relative to where it runs.
 
 There is no lint script.
 
@@ -58,8 +59,9 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 - `LoadingScreen`, `LoadErrorScreen`, `SaveErrorBanner`, `ScreenErrorBoundary`: loading and failure states
 - `FeedbackDialog`: in-app feedback form
 - `StudyNextCard`: highest-priority topics and score estimate for one subject. Reports its top topic to HomePage through `onTopTopic` (must be a stable callback).
-- `FrqPractice`: write code for an FRQ, then self-check against the rubric
-- `QuestionFigure`: draws graph and force-diagram figures from question data
+- `FrqPractice`: answer an FRQ, then self-check against the rubric. Code FRQs (CS A) get a code box. Written FRQs (every other subject) get a text box, optional cited `sources` and figures, and can be checked without typing, since graphs and math are worked on paper.
+- `QuestionFigure`: draws graph, force-diagram and table figures from question data
+- `SourcePassage`: a cited source passage (question `stimulus`, FRQ `sources`)
 - `FormulaChips`, `MathTex`: formula display; KaTeX loads on demand
 - `LevelChart`, `DaysStepper`, `SubjectSwitcher`, `LogoMark`
 - `ui/`: `Button`, `IconButton`, `Dialog`, `Tabs`, `EmptyState`, `ProgressBar`, `ProgressRing`, `CheckBubble`, `SubjectMark`
@@ -89,9 +91,10 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 ### `src/data/` (content, all in the repo)
 - `subjectIndex.js`: metadata for all 30 subjects (name, color, code, exam date). Single source of truth for exam dates.
 - `subjects/<id>.js`: each subject's weekly plan, resources, FRQ prompts and exam tips, loaded on demand by `subjectLoader.js`. World language plans share weeks from `worldLanguages/project.js`.
-- `questions/<folder>/<topic>.js` plus `topics.js` per subject, loaded by `questionLoader.js`. Banks exist for CS A, Psychology, Physics 1, Chemistry, Calculus AB and BC (AB and BC share `questions/calc/`). Only questions with `reviewed: true` ship to production.
+- `questions/<folder>/<topic>.js` plus `topics.js` per subject, loaded by `questionLoader.js`. Banks exist for CS A, Psychology, Physics 1, Chemistry, Calculus AB and BC (AB and BC share `questions/calc/`; see `sharedFolders.js`), CS Principles, World History, Macro and Micro. Only questions with `reviewed: true` ship to production.
+- `questions/contentChecks.js`: shared figure and source checks used by the question and FRQ tests.
 - Each bank's `topics.js` also exports `exam`: section weights (`mcq`, `frq`) and estimated cut points for the predicted score, with a `source` note. A bank without one shows no score (`questions.test.js` requires it).
-- `frqs/csa.js`: CS A free-response set, same `reviewed` gate
+- `frqs/<subject>.js`: FRQ sets for CS A (code) and Calc BC, Physics 1, CSP, World History, Macro, Micro (written), same `reviewed` gate. `CODE_FRQ_SUBJECTS` in `frqLoader.js` says which subjects answer in code, and `frqs.test.js` checks each set against its kind.
 - `flashcards/<id>.js`: one deck per subject. `flashcardCounts.js` must match the decks (tested).
 - `formulas/<id>.js`: formula sheets for 14 subjects; files starting with `_` are shared sections, not sheets
 
@@ -120,6 +123,7 @@ Decisions already made:
 - CS A questions are AI-drafted; Sam reviews every answer key
 - CS A free-response: self-check against a rubric, not AI grading
 - Question bank order after CS A: AP Psychology, then AP Physics 1 (both done; Chemistry and Calculus AB/BC banks have since been added)
+- Oct 2026: parity drafts for Calc BC, Physics 1, CSP, World History, Macro and Micro were merged as `reviewed: false`: 618 questions and 48 FRQs, about 8 questions per topic and 2 FRQs per type. None of it reaches students until Sam reviews it, using the review pages. Cut points for CSP, World History, Macro and Micro are drafts, like the earlier batch.
 - Outdated study plans are being rewritten in phases: Physics 1, Physics 2, then Spanish / French / Chinese / Japanese (all done). Rewritten plans start fresh with new week ids; old progress is not carried over. Retired week ids are listed in `RETIRED_WEEK_IDS` in `src/data/subjects.test.js`; add to it on any future rewrite.
 - **Formulas** nav tab covering every AP subject with formulas, rendered with KaTeX (done). Each formula shows its variables, a note, and whether it is given on the exam or must be memorized.
 - Auth for the localStorage to Supabase migration: Option B, a real email field at signup with email confirmation (done; the app no longer uses localStorage).
@@ -130,6 +134,16 @@ Decisions already made:
 
 Open questions (ask Sam, do not decide silently):
 - Mobile blank screen caused by a stale service worker cache. `sw.js` was made pass-through in Oct 2026 (commit `3083cbe`: no caching, old caches deleted on activate). Still open until Sam confirms on a real phone that the blank screen is gone.
+
+## Content rules (questions and FRQs)
+
+- Write one topic file at a time, run `npm test`, then commit (see the generation hazard below).
+- Every new item is `reviewed: false`, and only Sam sets `reviewed: true`. Never change a reviewed item's id or meaning: attempts are stored against ids.
+- Use `verify: 'numeric'` or `'exact'` with `solve()` wherever a key can be computed. `verify: 'output'` is Java only.
+- Numeric answer choices must start with the number: write "125" with the unit in the prompt, not "$125". The checker can't parse a leading symbol.
+- FRQ ids are `<subject>-frq-<type>-NNN`. The type part of the id can't contain hyphens (`frqs.test.js`), so type `math-routines` uses ids like `phys1-frq-mathroutines-001`.
+- **Copyright:** source passages are either US public domain (published in 1930 or earlier, or a US federal government work) or written for ScoreForge (cited "Written for ScoreForge, based on ..."). Nothing is copied from College Board exams, textbooks or prep sites. Verbatim quotes need their wording checked against the original before review.
+- No em dashes in student-facing text.
 
 ## Known hazards
 
