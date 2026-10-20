@@ -22,6 +22,25 @@ const PRICING_GAME = {
   alt: 'Payoff matrix for Lumen (rows) and Prism (columns), profits listed as Lumen then Prism. Both high: 40 and 30. Lumen high, Prism low: 15 and 45. Lumen low, Prism high: 50 and 20. Both low: 25 and 25.',
 };
 
+// A bakery hires in a competitive labor market and sells in a competitive market.
+const BAKERY_LABOR = {
+  type: 'table',
+  caption: 'Total product of labor at a bakery',
+  columns: ['Workers', 'Total product (loaves per hour)'],
+  rows: [[0, 0], [1, 12], [2, 22], [3, 30], [4, 36], [5, 40]],
+  alt: 'Table of total product by number of workers. 0 workers make 0 loaves per hour, 1 worker 12, 2 workers 22, 3 workers 30, 4 workers 36 and 5 workers 40.',
+};
+
+// Demand falls from $10 at 0 units to $0 at 100; supply rises from $1 at 0 to $9 at 100.
+const TICKET_MARKET = {
+  type: 'graph', xLabel: 'Quantity (tickets per day)', yLabel: 'Price ($)', xMax: 100, xStep: 10, yMin: 0, yMax: 10, yStep: 1,
+  series: [
+    { points: [[0, 10], [100, 0]], label: 'D' },
+    { points: [[0, 1], [100, 9]], label: 'S' },
+  ],
+  alt: 'Supply and demand graph for ferry tickets. Demand D falls in a straight line from $10 at 0 tickets to $0 at 100 tickets. Supply S rises in a straight line from $1 at 0 tickets to $9 at 100 tickets. They cross at 50 tickets and $5.',
+};
+
 export default [
   {
     id: 'micro-frq-long-001',
@@ -205,6 +224,99 @@ export default [
         solution: 'A per-unit tax on producers equal to the marginal external cost (the vertical distance between MSC and MPC). It raises each firm\'s private cost so that MPC plus the tax equals MSC, and the market then produces where MPB = MSC, at QS.',
         points: [
           { id: 'c1', text: 'Says the tax should equal the marginal external cost (the gap between MSC and MPC), so producers\' cost matches MSC and output falls to QS' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'micro-frq-short-003',
+    type: 'short',
+    title: 'Hiring bakers',
+    intro: 'A bakery sells bread in a perfectly competitive market at $4 per loaf and hires workers in a perfectly competitive labor market at a wage of $30 per hour. The table shows its total product.',
+    figure: BAKERY_LABOR,
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Calculate the marginal revenue product of the 2nd worker. Show your work.',
+        solution: 'The 2nd worker raises output from 12 to 22 loaves, a marginal product of 10 loaves. MRP = MP × P = 10 × $4 = $40 per hour.',
+        points: [
+          { id: 'a1', text: 'Calculates MRP = $40, showing MP = 10 times the $4 price' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'How many workers will the profit-maximizing bakery hire? Explain.',
+        solution: 'Three workers. The MRPs of the 1st to 5th workers are $48, $40, $32, $24 and $16. The bakery hires every worker whose MRP is at least the $30 wage (its MRC). The 3rd worker adds $32, but the 4th adds only $24, less than the wage.',
+        points: [
+          { id: 'b1', text: 'Says 3 workers' },
+          { id: 'b2', text: 'Explains with the hiring rule: hire while MRP ≥ wage (MRC), and the 4th worker\'s MRP of $24 is below $30' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'The market wage falls to $20 per hour. How many workers will the bakery now hire?',
+        solution: 'Four workers. The 4th worker\'s MRP of $24 is now above the $20 wage, but the 5th worker\'s $16 is below it.',
+        points: [
+          { id: 'c1', text: 'Says 4 workers' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'Instead, suppose the price of bread rises and the wage stays at $30. What happens to the bakery\'s demand for labor? Explain.',
+        solution: 'It increases (shifts right). Labor demand is the MRP curve, and MRP = MP × P, so a higher bread price raises the MRP of every worker.',
+        points: [
+          { id: 'd1', text: 'Says demand for labor increases, because a higher output price raises MRP (MP × P)' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'micro-frq-short-004',
+    type: 'short',
+    title: 'Ferry tickets and a price ceiling',
+    intro: 'The graph shows the market for daily ferry tickets to an island, which is perfectly competitive.',
+    figure: TICKET_MARKET,
+    reviewed: false,
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Calculate consumer surplus at the market equilibrium. Show your work.',
+        solution: 'Equilibrium is 50 tickets at $5. Consumer surplus is the triangle below demand and above $5: ½ × 50 × ($10 − $5) = $125.',
+        points: [
+          { id: 'a1', text: 'Calculates consumer surplus = $125, showing ½ × 50 × $5' },
+        ],
+      },
+      {
+        id: 'b',
+        prompt: 'The government sets a price ceiling of $3. Calculate the resulting shortage.',
+        solution: 'At $3, quantity demanded is 70 tickets and quantity supplied is 25 tickets. The shortage is 70 − 25 = 45 tickets.',
+        points: [
+          { id: 'b1', text: 'Calculates a shortage of 45 tickets (70 demanded minus 25 supplied)' },
+        ],
+      },
+      {
+        id: 'c',
+        prompt: 'Calculate the deadweight loss caused by the $3 price ceiling. Show your work.',
+        solution: 'Only 25 tickets are sold. At 25 tickets, buyers value the last ticket at $7.50 (on demand) and it costs $3 to supply (on supply). The deadweight loss is the triangle from 25 to 50 tickets between demand and supply: ½ × (50 − 25) × ($7.50 − $3) = $56.25.',
+        points: [
+          { id: 'c1', text: 'Calculates deadweight loss = $56.25, using a base of 25 tickets and a height of $4.50' },
+        ],
+      },
+      {
+        id: 'd',
+        prompt: 'Would a price ceiling of $6 change the quantity of tickets sold? Explain.',
+        solution: 'No. A ceiling of $6 is above the $5 equilibrium price, so it is not binding: the market still trades 50 tickets at $5.',
+        points: [
+          { id: 'd1', text: 'Says no, because $6 is above the equilibrium price, so the ceiling is not binding' },
+        ],
+      },
+      {
+        id: 'e',
+        prompt: 'Using the midpoint method, calculate the price elasticity of demand between prices of $5 and $7, and say whether demand is elastic or inelastic in this range.',
+        solution: 'Quantity demanded is 50 at $5 and 30 at $7. %ΔQ = 20 / 40 = 50%, and %ΔP = 2 / 6 ≈ 33.3%. Elasticity = 50 / 33.3 = 1.5 (in absolute value), so demand is elastic.',
+        points: [
+          { id: 'e1', text: 'Calculates an elasticity of 1.5 and says demand is elastic' },
         ],
       },
     ],
