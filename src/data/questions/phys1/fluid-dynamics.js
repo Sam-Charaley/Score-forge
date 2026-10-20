@@ -5,6 +5,13 @@ import { G } from './topics.js'
 
 const WATER_DENSITY = 1000;  // kg/m³
 
+// A horizontal pipe narrowing to a quarter of its area; the narrow speed is
+// left for the student, so continuity comes before Bernoulli.
+const VENTURI = { type: 'table', caption: 'Horizontal pipe, water flowing steadily',
+  columns: ['Section', 'Area (m²)', 'Speed (m/s)'],
+  rows: [['Wide', '0.0040', '1.0'], ['Narrow', '0.0010', '?']],
+  alt: 'Table for a horizontal water pipe. The wide section has area 0.0040 square meters and water speed 1.0 m/s. The narrow section has area 0.0010 square meters; its speed is not given.' };
+
 export default [
   {
     id: 'phys1-fluid-dynamics-001',
@@ -71,5 +78,49 @@ export default [
     answer: 2,
     explanation: 'An incompressible fluid can\'t pile up or disappear inside the pipe, so the volume flow rate Av is the same everywhere along it. The narrow section carries the same volume per second by moving faster.',
     reviewed: true,
+  },
+  {
+    id: 'phys1-fluid-dynamics-006',
+    topic: 'fluid-dynamics',
+    formulas: ['continuity'],
+    difficulty: 1,
+    prompt: 'Covering part of the end of a garden hose with your thumb makes the water spray out faster. Which explanation is correct?',
+    choices: [
+      'Your thumb adds energy to the water',
+      'The same volume of water per second must pass through a smaller opening, so it moves faster',
+      'The water is squeezed into a smaller volume, which raises its speed',
+      'Your thumb reduces the friction between the water and the hose',
+    ],
+    answer: 1,
+    explanation: 'For an incompressible fluid the volume flow rate Av is the same everywhere along the flow. Shrinking the opening area A means the speed v must rise. Water barely compresses, so its volume does not change; the faster flow comes from continuity.',
+    reviewed: false,
+  },
+  {
+    id: 'phys1-fluid-dynamics-007',
+    topic: 'fluid-dynamics',
+    formulas: ['bernoulli', 'continuity'],
+    difficulty: 2,
+    prompt: 'Water flows steadily up through a pipe of constant cross-section to a point 2.0 m higher. How much lower is the pressure at the higher point? (water density 1000 kg/m³, g = 9.8 m/s²)',
+    choices: ['19,600 Pa', '9800 Pa', '2000 Pa', '0 Pa, because the speed does not change'],
+    answer: 0,
+    explanation: 'The area is constant, so by continuity the speed is the same at both points and the kinetic terms in Bernoulli\'s equation cancel. What is left is ΔP = ρgΔy = 1000 × 9.8 × 2.0 = 19,600 Pa. Equal speeds do not mean equal pressures when the heights differ.',
+    verify: 'numeric',
+    solve: () => WATER_DENSITY * G * 2.0,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-fluid-dynamics-008',
+    topic: 'fluid-dynamics',
+    formulas: ['continuity', 'bernoulli'],
+    difficulty: 3,
+    calculator: true,
+    prompt: 'The table describes water flowing through a horizontal pipe. How much greater is the pressure in the wide section than in the narrow section? (water density 1000 kg/m³)',
+    figure: VENTURI,
+    choices: ['500 Pa', '4500 Pa', '8000 Pa', '7500 Pa'],
+    answer: 3,
+    explanation: 'Continuity gives the narrow speed: v = (0.0040 × 1.0)/0.0010 = 4.0 m/s. For a horizontal pipe Bernoulli gives ΔP = ½ρ(v₂² − v₁²) = ½ × 1000 × (16 − 1.0) = 7500 Pa. 8000 Pa forgets the wide section\'s own speed, and 4500 Pa squares the difference of the speeds instead of taking the difference of their squares.',
+    verify: 'numeric',
+    solve: () => 0.5 * WATER_DENSITY * ((0.004 * 1.0 / 0.001) ** 2 - 1.0 ** 2),
+    reviewed: false,
   },
 ];
