@@ -1,6 +1,8 @@
 // AP Physics 1, Unit 6: rolling, rotational kinetic energy and angular momentum.
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
+import { G } from './topics.js'
+
 export default [
   {
     id: 'phys1-rotating-systems-001',
@@ -70,5 +72,44 @@ export default [
     answer: 1,
     explanation: 'Gravity points toward Earth, so it exerts no torque about Earth\'s center, and the satellite\'s angular momentum stays constant. At the closest and farthest points the velocity is perpendicular to r, so L = mvr there: where r is smallest, v must be largest. Energy agrees too: it trades potential energy for kinetic energy on the way in.',
     reviewed: true,
+  },
+  {
+    id: 'phys1-rotating-systems-006',
+    topic: 'rotating-systems',
+    formulas: ['angular-momentum'],
+    difficulty: 1,
+    prompt: 'A disk spins freely on a frictionless axle. A lump of clay is dropped straight down onto the disk, away from the axle, and sticks. For the disk-clay system, which quantity is the same just before and just after the clay lands?',
+    choices: ['Angular momentum', 'Angular velocity', 'Rotational kinetic energy', 'Rotational inertia'],
+    answer: 0,
+    explanation: 'The clay lands without any external torque about the axle, so the system\'s angular momentum Iω is conserved. The clay increases the rotational inertia, so the angular velocity drops. The sticking is like an inelastic collision, so some rotational kinetic energy becomes internal energy.',
+    reviewed: false,
+  },
+  {
+    id: 'phys1-rotating-systems-007',
+    topic: 'rotating-systems',
+    formulas: ['angular-momentum', 'rotational-inertia'],
+    difficulty: 2,
+    calculator: true,
+    prompt: 'A disk with rotational inertia 0.40 kg·m² spins at 6.0 rad/s on a frictionless axle. A 0.20 kg lump of clay is dropped onto it and sticks 0.50 m from the axle. What is the new angular velocity? (Treat the clay as a point mass.)',
+    choices: ['5.3 rad/s', '6.0 rad/s', '4.0 rad/s', '2.4 rad/s'],
+    answer: 0,
+    explanation: 'Angular momentum is conserved: 0.40 × 6.0 = (0.40 + 0.20 × 0.50²)ω, so ω = 2.4/0.45 ≈ 5.3 rad/s. 4.0 rad/s adds the clay\'s mass to the rotational inertia instead of mr², and 2.4 is the angular momentum, not the angular velocity.',
+    verify: 'numeric',
+    solve: () => (0.4 * 6.0) / (0.4 + 0.2 * 0.5 ** 2),
+    reviewed: false,
+  },
+  {
+    id: 'phys1-rotating-systems-008',
+    topic: 'rotating-systems',
+    formulas: ['rolling', 'rotational-ke', 'energy-conservation'],
+    difficulty: 3,
+    calculator: true,
+    prompt: 'A solid sphere (I = ⅖MR²) is released from rest and rolls without slipping down a ramp, dropping a vertical height of 1.4 m. How fast is its center moving at the bottom? (g = 9.8 m/s²)',
+    choices: ['5.2 m/s', '3.7 m/s', '4.4 m/s', '19.6 m/s'],
+    answer: 2,
+    explanation: 'Gravitational energy becomes both translational and rotational kinetic energy. With v = ωR, Mgh = ½Mv² + ½(⅖MR²)(v/R)² = (7/10)Mv², so v = √(10gh/7) = √19.6 ≈ 4.4 m/s. 5.2 m/s is √(2gh), which ignores the energy that goes into spinning, and 3.7 m/s is the answer for a thin hoop.',
+    verify: 'numeric',
+    solve: () => Math.sqrt((10 * G * 1.4) / 7),
+    reviewed: false,
   },
 ];
