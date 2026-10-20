@@ -1,0 +1,151 @@
+// AP World History: Modern, Unit 5: the Enlightenment, nationalism and the
+// Atlantic revolutions, c. 1750 to 1900.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+const DECLARATION = {
+  text: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed.',
+  citation: 'Thomas Jefferson and the Second Continental Congress, The Declaration of Independence, 1776.',
+};
+
+const BOLIVAR = {
+  text: 'For three hundred years Spain kept us in a state of permanent childhood. We Americans born here were allowed no part in government except as servants; we could not be viceroys or governors, we could not trade freely with other nations, and we were forced to grow only what Spain allowed. I hope to see America become the greatest nation in the world, but I fear our people are not yet ready for perfectly free institutions. Rival factions may tear apart the republics we are building.',
+  citation: 'Written for ScoreForge, based on Simón Bolívar (a creole leader of the independence wars in South America), the "Jamaica Letter," 1815.',
+};
+
+export default [
+  {
+    id: 'whap-revolutions-001',
+    topic: 'revolutions',
+    difficulty: 1,
+    stimulus: DECLARATION,
+    prompt: 'The idea that governments get "their just powers from the consent of the governed" reflects which Enlightenment idea?',
+    choices: [
+      'Divine right of kings',
+      'Mercantilism',
+      'The social contract',
+      'Social Darwinism',
+    ],
+    answer: 2,
+    explanation: 'Enlightenment thinkers such as John Locke argued that people create governments by agreement to protect their natural rights, and can replace a government that fails to do so. Divine right says the opposite: power comes from God, not the people.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-002',
+    topic: 'revolutions',
+    difficulty: 2,
+    stimulus: DECLARATION,
+    prompt: 'Ideas like those in the passage most directly influenced which later document?',
+    choices: [
+      'The Declaration of the Rights of Man and of the Citizen in France (1789)',
+      'The Ninety-Five Theses (1517)',
+      'The Treaty of Tordesillas (1494)',
+      'The Communist Manifesto (1848)',
+    ],
+    answer: 0,
+    explanation: 'The French declaration, written with help from Lafayette, who had fought in the American Revolution, also claimed natural rights and said that sovereignty belongs to the nation. The Ninety-Five Theses and the Treaty of Tordesillas came before 1776, so they could not have been influenced by it.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-003',
+    topic: 'revolutions',
+    difficulty: 3,
+    stimulus: DECLARATION,
+    prompt: 'A historian could use the passage to illustrate a limitation of the Atlantic revolutions because',
+    choices: [
+      'the passage rejects the idea of natural rights',
+      'its claim that "all men are created equal" was not applied to enslaved people or to women, which reformers later used to demand change',
+      'it calls for a return to absolute monarchy',
+      'it was written by a monarch',
+    ],
+    answer: 1,
+    explanation: 'Many signers, including Jefferson, held people in slavery, and women could not vote. Later reformers such as abolitionists and the women at Seneca Falls (1848) quoted this language to demand the rights it promised. The passage clearly supports natural rights, so the first choice is wrong.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-004',
+    topic: 'revolutions',
+    difficulty: 2,
+    stimulus: BOLIVAR,
+    prompt: 'The complaints in the passage best explain why the Latin American independence movements were led mainly by',
+    choices: [
+      'Spanish-born peninsulares who wanted to stay loyal to Spain',
+      'enslaved Africans seeking to end slavery',
+      'creoles who resented being shut out of high office and trade by Spain',
+      'Indigenous nobles seeking to restore the Inca Empire',
+    ],
+    answer: 2,
+    explanation: 'Bolívar was a creole, an American-born person of Spanish descent. Creoles were wealthy and educated but were kept out of top posts, which went to peninsulares, and limited by Spanish trade rules. These are the exact complaints in the passage.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-005',
+    topic: 'revolutions',
+    difficulty: 3,
+    stimulus: BOLIVAR,
+    prompt: 'Which development after independence most supports the fear Bolívar expresses at the end of the passage?',
+    choices: [
+      'Gran Colombia broke apart into separate countries, and many new states were ruled by military strongmen (caudillos).',
+      'Spain regained control of all its American colonies.',
+      'The new nations immediately ended all social inequality.',
+      'Latin America united into one large democratic federation.',
+    ],
+    answer: 0,
+    explanation: 'Bolívar\'s Gran Colombia split into Venezuela, Colombia and Ecuador by 1831, and caudillos seized power in many countries. That matches his worry about factions and weak republics. Spain lost nearly all its mainland colonies, and no single federation formed.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-006',
+    topic: 'revolutions',
+    difficulty: 2,
+    prompt: 'The Haitian Revolution (1791 to 1804) was different from the other Atlantic revolutions in that it',
+    choices: [
+      'was led by wealthy colonists who kept slavery in place',
+      'restored the power of the French king',
+      'was won entirely without fighting',
+      'was a successful revolt by enslaved people that ended both slavery and colonial rule',
+    ],
+    answer: 3,
+    explanation: 'Enslaved Africans in Saint-Domingue, led by figures such as Toussaint Louverture and Jean-Jacques Dessalines, defeated French, British and Spanish forces and created an independent state without slavery. The American Revolution, by contrast, left slavery in place.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-007',
+    topic: 'revolutions',
+    difficulty: 2,
+    prompt: 'The unification of Germany in 1871 is an example of',
+    choices: [
+      'the breakup of a multiethnic empire into small states',
+      'a revolution led by enslaved workers',
+      'colonial rule imposed by Britain',
+      'nationalism used by a state, Prussia, to unite people who shared a language and culture',
+    ],
+    answer: 3,
+    explanation: 'Otto von Bismarck, Prussia\'s chief minister, used wars against Denmark, Austria and France to stir German national feeling and unite the German states under the Prussian king. Italy was unified in a similar period. Neither involved British rule.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-008',
+    topic: 'revolutions',
+    difficulty: 1,
+    prompt: 'The Enlightenment thinker best known for arguing that government power should be separated into legislative, executive and judicial branches was',
+    choices: ['Adam Smith', 'Montesquieu', 'Thomas Hobbes', 'Karl Marx'],
+    answer: 1,
+    explanation: 'Montesquieu argued in The Spirit of the Laws (1748) that dividing power among branches protects liberty. Adam Smith wrote about free markets, Hobbes defended strong rulers, and Marx was a later critic of capitalism.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-revolutions-009',
+    topic: 'revolutions',
+    difficulty: 2,
+    prompt: 'Which 1800s movement most directly drew on Enlightenment ideas about natural rights and equality?',
+    choices: [
+      'The expansion of serfdom in Russia',
+      'The building of the Suez Canal',
+      'The movements to abolish slavery and to gain voting rights for women',
+      'The Meiji Restoration\'s return of power to the emperor',
+    ],
+    answer: 2,
+    explanation: 'Abolitionists and women\'s rights activists argued that if all people have natural rights, slavery and denying women a vote were wrong. Britain abolished slavery in its empire in 1833, and women\'s suffrage campaigns grew across the century. Russia abolished serfdom in 1861 rather than expanding it.',
+    reviewed: false,
+  },
+];

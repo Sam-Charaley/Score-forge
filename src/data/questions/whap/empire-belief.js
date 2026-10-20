@@ -1,0 +1,157 @@
+// AP World History: Modern, Unit 3: belief systems, religious conflict and how
+// rulers legitimized their power, c. 1450 to 1750.
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+const LUTHER_THESES = {
+  text: 'Those preachers are wrong who say that a person is freed from all punishment by the pope\'s indulgences. Christians should be taught that whoever gives to the poor or lends to the needy does a better deed than whoever buys an indulgence. And people ask: why does the pope, who is richer than the richest man, not build the church of St. Peter with his own money, rather than with the money of poor believers?',
+  citation: 'Written for ScoreForge, based on Martin Luther (a German monk and professor of theology), Ninety-Five Theses, 1517.',
+};
+
+const BOSSUET = {
+  text: 'God establishes kings as his ministers and rules the people through them. The royal throne is not the throne of a man but the throne of God himself. Therefore the person of the king is sacred, and to attack him in any way is a sacrilege. The king owes an account of his actions to no one but God.',
+  citation: 'Written for ScoreForge, based on Jacques-Bénigne Bossuet (a French bishop and tutor to the son of King Louis XIV), Politics Drawn from the Very Words of Holy Scripture, written c. 1679, published 1709.',
+};
+
+export default [
+  {
+    id: 'whap-empire-belief-001',
+    topic: 'empire-belief',
+    difficulty: 1,
+    stimulus: LUTHER_THESES,
+    prompt: 'Luther\'s main criticism in the passage is directed at',
+    choices: [
+      'the Ottoman sultans',
+      'the sale of indulgences by the Catholic Church',
+      'the translation of the Bible into German',
+      'the power of the Holy Roman Emperor',
+    ],
+    answer: 1,
+    explanation: 'Indulgences were documents that reduced punishment for sins, and the Church was selling them to raise money, including for St. Peter\'s Basilica in Rome. Luther argued this was wrong. Translating the Bible into German was something Luther himself later did, not something he attacked.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-002',
+    topic: 'empire-belief',
+    difficulty: 2,
+    stimulus: LUTHER_THESES,
+    prompt: 'Which development most directly helped ideas like those in the passage spread quickly across Europe?',
+    choices: [
+      'The printing press with movable type',
+      'The Columbian Exchange',
+      'The invention of the telegraph',
+      'The Mongol postal system',
+    ],
+    answer: 0,
+    explanation: 'Gutenberg\'s printing press (c. 1450) made it cheap to print pamphlets, and Luther\'s writings were copied and sold across Germany within weeks. The telegraph came in the 1800s, and the Mongol empire had broken up long before.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-003',
+    topic: 'empire-belief',
+    difficulty: 2,
+    stimulus: LUTHER_THESES,
+    prompt: 'Which was a response of the Catholic Church to the movement that began with the ideas in the passage?',
+    choices: [
+      'It merged with the Eastern Orthodox Church.',
+      'It gave up all of its lands to European kings.',
+      'It launched the Counter-Reformation, including the Council of Trent and the founding of the Jesuit order.',
+      'It allowed each priest to set his own doctrine.',
+    ],
+    answer: 2,
+    explanation: 'The Church reformed some abuses and restated its core teachings at the Council of Trent (1545 to 1563), and new orders such as the Jesuits spread Catholicism through education and missions. The Counter-Reformation made doctrine more uniform, the opposite of the last choice.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-004',
+    topic: 'empire-belief',
+    difficulty: 1,
+    stimulus: BOSSUET,
+    prompt: 'The passage is an example of which idea about political power?',
+    choices: [
+      'Popular sovereignty',
+      'The social contract',
+      'Divine right of kings',
+      'Separation of powers',
+    ],
+    answer: 2,
+    explanation: 'Bossuet argues that kings are chosen by God and answer only to God, which is the theory of divine right. Popular sovereignty and the social contract, Enlightenment ideas, place the source of power in the people instead.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-005',
+    topic: 'empire-belief',
+    difficulty: 2,
+    stimulus: BOSSUET,
+    prompt: 'The argument in the passage is most similar to which idea used by rulers in China?',
+    choices: [
+      'The civil service examination system',
+      'The Mandate of Heaven',
+      'The tributary system',
+      'Filial piety within the family',
+    ],
+    answer: 1,
+    explanation: 'Both ideas use religion to justify a ruler\'s power: Chinese emperors claimed to rule by the Mandate of Heaven. One difference is that the Mandate could be lost if a ruler governed badly, while Bossuet says the king answers to no one but God. The exam system was about choosing officials, not legitimizing the emperor.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-006',
+    topic: 'empire-belief',
+    difficulty: 3,
+    stimulus: BOSSUET,
+    prompt: 'Besides religious arguments like those in the passage, Louis XIV and other rulers of the period also legitimized their power by',
+    choices: [
+      'holding regular elections for the head of state',
+      'giving up control of the army to nobles',
+      'refusing to collect taxes',
+      'building monumental architecture such as Versailles, the Taj Mahal and the Süleymaniye Mosque',
+    ],
+    answer: 3,
+    explanation: 'Grand palaces, tombs and mosques displayed a ruler\'s wealth and power to subjects and foreign visitors. Louis XIV also brought nobles to live at Versailles so he could watch them, which strengthened his control rather than giving it away.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-007',
+    topic: 'empire-belief',
+    difficulty: 2,
+    prompt: 'Wars between the Ottoman Empire and the Safavid Empire in the 1500s and 1600s were intensified by',
+    choices: [
+      'the split between Sunni and Shia Islam',
+      'competition over colonies in the Americas',
+      'the Protestant Reformation',
+      'disputes over the transatlantic slave trade',
+    ],
+    answer: 0,
+    explanation: 'The Ottomans were Sunni and the Safavids made Shia Islam their state religion. Their rivalry over land, such as Iraq and the Caucasus, was also a religious conflict. Neither empire had colonies in the Americas.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-008',
+    topic: 'empire-belief',
+    difficulty: 1,
+    prompt: 'Sikhism, founded by Guru Nanak in South Asia around 1500, is best described as a faith that',
+    choices: [
+      'was brought to India by Portuguese missionaries',
+      'combined elements of Hinduism and Islam into a new tradition',
+      'was the official religion of the Mughal emperors',
+      'rejected belief in any god',
+    ],
+    answer: 1,
+    explanation: 'Guru Nanak taught devotion to one God and rejected the caste system, drawing on both the Hindu bhakti tradition and Islamic ideas, in a region where both religions met. Sikhs later clashed with some Mughal emperors, so it was not the Mughal state religion.',
+    reviewed: false,
+  },
+  {
+    id: 'whap-empire-belief-009',
+    topic: 'empire-belief',
+    difficulty: 3,
+    prompt: 'The Ottoman millet system affected religious minorities in the empire by',
+    choices: [
+      'forcing all Christians and Jews to leave the empire',
+      'requiring every subject to convert to Islam within one generation',
+      'letting each religious community run many of its own affairs under its own leaders while paying a tax',
+      'giving Christians control of the Ottoman army',
+    ],
+    answer: 2,
+    explanation: 'Under the millet system, Orthodox Christians, Armenians and Jews could follow their own religious laws for matters like marriage, under their own religious leaders, as long as they paid the tax on non-Muslims and stayed loyal. This allowed a diverse empire to be governed without forced conversion.',
+    reviewed: false,
+  },
+];
