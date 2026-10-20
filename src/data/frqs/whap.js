@@ -192,4 +192,64 @@ export default [
       },
     ],
   },
+  {
+    id: 'whap-frq-dbq-002',
+    type: 'dbq',
+    title: 'The Scramble for Africa',
+    intro: 'Read all seven documents, then write an essay that answers the prompt. On the exam you get 60 minutes for the DBQ, including about 15 minutes to read. Plan your thesis first, group the documents by argument, and use at least four of them as evidence.',
+    reviewed: false,
+    sources: [
+      {
+        label: 'Document 1',
+        text: 'To open to civilization the only part of our globe where it has not yet entered, to pierce the darkness that hangs over whole peoples: this is a crusade worthy of this century of progress. Our aim is to end the slave trade and bring the light of science and Christianity to Central Africa. Belgium, a small country, seeks nothing for itself but the honor of serving humanity.',
+        citation: 'Written for ScoreForge, based on King Leopold II of Belgium, opening speech to the Brussels Geographic Conference, 1876.',
+      },
+      {
+        label: 'Document 2',
+        text: 'Colonial policy is the child of industrial policy. Our factories produce more than France can buy, and other nations close their markets with tariffs. We need new markets. There is also a second point: the superior races have a duty to civilize the inferior races. And France cannot be only a free country; it must also be a great one, with ports and coaling stations for its navy on every sea.',
+        citation: 'Written for ScoreForge, based on Jules Ferry (former prime minister of France), speech to the French Chamber of Deputies, July 1885.',
+      },
+      {
+        label: 'Document 3',
+        text: 'I contend that we are the finest race in the world, and that the more of the world we inhabit, the better it is for humanity. Every acre added to our territory means more of the English race brought into existence. Africa is still lying ready for us, and it is our duty to take it.',
+        citation: 'Written for ScoreForge, based on Cecil Rhodes (a British businessman who made a fortune in South African diamond mines), "Confession of Faith," written 1877.',
+      },
+      {
+        label: 'Document 4',
+        text: 'Any power that takes possession of land on the coasts of Africa from now on, or sets up a protectorate there, must notify the other signing powers so that they may make any claims of their own. The signing powers agree that a claim must be backed by real authority on the ground, enough to protect existing rights and freedom of trade.',
+        citation: 'Written for ScoreForge, summarizing Articles 34 and 35 of the General Act of the Berlin Conference, signed by fourteen European states and the United States, 1885.',
+      },
+      {
+        label: 'Document 5',
+        text: 'The Lord has set up different kingdoms in the world, and I am the ruler of my people on our land. If you wish to make our land your protectorate, you are asking me to give up my independence. I see no truth or sense in your offer of protection. Protection from whom? We have no quarrel with anyone that needs your help. I will not surrender.',
+        citation: 'Written for ScoreForge, based on Hendrik Witbooi (leader of a Nama community in southwest Africa), letter to the German colonial official Theodor Leutwein, 1894.',
+      },
+      {
+        label: 'Document 6',
+        text: 'British trade with tropical Africa has grown in twenty years from a few hundred thousand pounds a year to many millions: palm oil, rubber, cocoa, ivory and gold. Every day our manufacturers ask where they will sell their goods when Germany and America compete with us everywhere. If we do not claim these lands, our rivals will, and they will shut our goods out.',
+        citation: 'Written for ScoreForge, based on speeches by Joseph Chamberlain (British Colonial Secretary) on the value of the empire, 1890s.',
+      },
+      {
+        label: 'Document 7',
+        text: 'The Africans were told that the white man came to stop the slave trade and to bring them the gospel. What he brought instead was the theft of their land and forced labor to gather rubber and ivory for companies in Europe. Under King Leopold\'s rule in the Congo, villages that failed to meet their rubber quotas were burned and their people killed or maimed.',
+        citation: 'Written for ScoreForge, based on E. D. Morel (a British journalist who led a campaign against abuses in the Congo), The Black Man\'s Burden, 1920.',
+      },
+    ],
+    parts: [
+      {
+        id: 'a',
+        prompt: 'Evaluate the relative importance of the causes of European expansion into Africa in the period 1870 to 1914.\n\nIn your response you should do the following.\n• Respond to the prompt with a historically defensible thesis or claim that establishes a line of reasoning.\n• Describe a broader historical context relevant to the prompt.\n• Support an argument in response to the prompt using at least four documents.\n• Use at least one additional piece of specific historical evidence (beyond that found in the documents) relevant to an argument about the prompt.\n• For at least two documents, explain how or why the document\'s point of view, purpose, historical situation, and/or audience is relevant to an argument.\n• Use evidence to support, qualify, or modify an argument that addresses the prompt.',
+        solution: 'Model thesis: European expansion into Africa between 1870 and 1914 was driven above all by economic demands of industrial economies for raw materials and markets, sharpened by political rivalry among European states; ideas of a civilizing mission and racial superiority mattered mainly as justifications that made conquest acceptable at home.\n\nContext: The Second Industrial Revolution created new demand for rubber, palm oil, copper and other raw materials, and rising tariffs made industrial nations look for protected markets. New technologies such as steamships, quinine against malaria and the Maxim gun made conquest of the African interior possible for the first time.\n\nOutline:\n1. Economic motives were most important. Doc 2 says colonial policy is "the child of industrial policy," and Doc 6 points to growing trade in palm oil, rubber and gold. Doc 7 shows how the Congo was run for rubber profits. Sourcing: Chamberlain (Doc 6) was trying to persuade British voters and manufacturers to support the cost of empire, so he stresses profit, which shows that economic arguments were the ones expected to win public support.\n2. Political rivalry made the scramble fast. Doc 4 shows European states setting rules for claims so they would not go to war with each other, and Doc 6 fears that rivals will claim the land first. Evidence beyond the documents: Germany, newly unified in 1871, and Italy joined the race for colonies as a sign of great-power status, and the Fashoda crisis of 1898 nearly led to war between Britain and France.\n3. Ideological motives served as justification. Docs 1, 2 and 3 use civilizing and racial arguments. Sourcing: Leopold (Doc 1) spoke to an international audience of geographers and humanitarians, and his claim to seek "nothing for itself" is contradicted by his later personal rubber empire described in Doc 7. His purpose was to win support for his plans by presenting them as charity.\n\nComplexity: The causes reinforced each other: racial ideas like Rhodes\'s (Doc 3) made economic exploitation seem natural, and rivalry turned economic interest into a race. Doc 5 adds that expansion also depended on breaking African resistance, which Europeans could do because of their new military technology. A full explanation must include African responses, not only European motives.',
+        points: [
+          { id: 'a1', text: 'Thesis: makes a defensible claim that ranks or weighs the causes of European expansion into Africa and sets up a line of reasoning, in the introduction or conclusion' },
+          { id: 'a2', text: 'Contextualization: describes broader context (for example the Second Industrial Revolution, new technologies such as steamships, quinine and the Maxim gun, or rivalry after German unification) and connects it to the prompt' },
+          { id: 'a3', text: 'Evidence from the documents: accurately describes the content of at least three documents in a way that addresses the topic' },
+          { id: 'a4', text: 'Evidence from the documents: uses the content of at least four documents to support an argument about the causes, not just to summarize them' },
+          { id: 'a5', text: 'Evidence beyond the documents: uses at least one specific piece of evidence not in the documents (for example the Fashoda crisis, the Battle of Adwa, the Maxim gun, Social Darwinism, the Suez Canal) to support an argument' },
+          { id: 'a6', text: 'Sourcing: for at least two documents, explains how the point of view, purpose, historical situation or audience is relevant to the argument (for example Leopold presenting his plans as charity, or Ferry and Chamberlain persuading lawmakers or voters)' },
+          { id: 'a7', text: 'Complexity: shows a complex understanding, for example by explaining how causes interacted, weighing justifications against real motives, or including African resistance, using evidence throughout the essay' },
+        ],
+      },
+    ],
+  },
 ];
