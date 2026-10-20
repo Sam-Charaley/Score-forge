@@ -11,6 +11,14 @@ const RATE_GRAPH = { type: 'graph', xLabel: 't', yLabel: 'f(t)', xMax: 6, xStep:
 const INITIAL_WATER_LITERS = 30;
 const inflowRate = t => 20 * Math.exp(-0.1 * t);
 
+// Question 006's table: time in hours, rate in liters per hour. Uneven widths
+// on purpose, as on the exam.
+const RATE_TABLE = [[0, 10], [2, 14], [5, 11], [9, 7]];
+const trapezoidSum = rows => rows.slice(1).reduce((sum, [t, r], i) => sum + ((rows[i][1] + r) / 2) * (t - rows[i][0]), 0);
+
+const INITIAL_F = 5;
+const fPrime = x => Math.sqrt(x ** 3 + 1);
+
 export default [
   {
     id: 'calc-accumulation-001',
@@ -78,5 +86,46 @@ export default [
     verify: 'numeric',
     solve: () => INITIAL_WATER_LITERS + integrate(inflowRate, 0, 8),
     reviewed: true,
+  },
+  {
+    id: 'calc-accumulation-006',
+    topic: 'accumulation',
+    formulas: ['riemann-sums'],
+    difficulty: 2,
+    prompt: 'Water flows into a tank at a rate of R(t) liters per hour, where R is a differentiable function of t in hours. Selected values are given in the table. Using a trapezoidal sum with the three subintervals shown in the table, what is the approximation of ∫₀⁹ R(t) dt?',
+    figure: { type: 'table', columns: ['t (hours)', 'R(t) (liters per hour)'], rows: RATE_TABLE,
+      alt: 'Table of R(t): R(0) = 10, R(2) = 14, R(5) = 11 and R(9) = 7 liters per hour.' },
+    choices: ['106', '97.5', '89', '42'],
+    answer: 1,
+    explanation: 'Each trapezoid uses its own width: 2(10 + 14)/2 + 3(14 + 11)/2 + 4(11 + 7)/2 = 24 + 37.5 + 36 = 97.5 liters. 106 is the left Riemann sum and 89 the right Riemann sum. 42 adds the rates without multiplying by the widths.',
+    verify: 'exact',
+    solve: () => trapezoidSum(RATE_TABLE),
+    reviewed: false,
+  },
+  {
+    id: 'calc-accumulation-007',
+    topic: 'accumulation',
+    formulas: ['ftc-2'],
+    difficulty: 2,
+    prompt: 'The graph of f is shown. If g(x) = ∫₀ˣ f(t) dt for 0 ≤ x ≤ 6, at what value of x does g reach its absolute maximum?',
+    figure: RATE_GRAPH,
+    choices: ['x = 3', 'x = 2', 'x = 6', 'x = 4'],
+    answer: 0,
+    explanation: 'g\'(x) = f(x), so g increases while f > 0 and decreases while f < 0. f changes from positive to negative at x = 3, so g rises until x = 3 and falls after. g(3) = 5 while g(0) = 0 and g(6) = 0, so the maximum is at x = 3. x = 2 is where f stops being constant, which does not affect the sign of g\'.',
+    reviewed: false,
+  },
+  {
+    id: 'calc-accumulation-008',
+    topic: 'accumulation',
+    formulas: ['accumulation'],
+    calculator: true,
+    difficulty: 3,
+    prompt: 'A function f has f(1) = 5 and f\'(x) = √(x³ + 1). What is the value of f(3)?',
+    choices: ['6.230', '−1.230', '10.292', '11.230'],
+    answer: 3,
+    explanation: 'By the Fundamental Theorem, f(3) = f(1) + ∫₁³ √(x³ + 1) dx = 5 + 6.230 = 11.230 (integral by calculator). 6.230 is only the change in f and forgets f(1). 10.292 adds f\'(3) instead of the integral.',
+    verify: 'numeric',
+    solve: () => INITIAL_F + integrate(fPrime, 1, 3),
+    reviewed: false,
   },
 ];
