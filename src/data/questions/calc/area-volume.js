@@ -1,7 +1,9 @@
 // AP Calculus AB and BC, Unit 8 (first half): area between curves, volumes, and BC-only arc length.
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
-import { integrate } from '../calcMath.js'
+import { integrate, findRoot } from '../calcMath.js'
+
+const parabolaGap = x => Math.cos(x) - x * x;
 
 export default [
   {
@@ -69,5 +71,45 @@ export default [
     verify: 'exact',
     solve: () => integrate(x => Math.sqrt(1 + x), 0, 3),
     reviewed: true,
+  },
+  {
+    id: 'calc-area-volume-006',
+    topic: 'area-volume',
+    formulas: ['area-between'],
+    difficulty: 1,
+    prompt: 'What is the area of the region bounded by y = 4 − x² and the x-axis?',
+    choices: ['16/3', '8', '64/3', '32/3'],
+    answer: 3,
+    explanation: 'The parabola meets the x-axis at x = −2 and x = 2 and is above it in between, so the area is ∫₋₂² (4 − x²) dx = [4x − x³/3] from −2 to 2 = (8 − 8/3) − (−8 + 8/3) = 32/3. 16/3 integrates only from 0 to 2.',
+    verify: 'exact',
+    solve: () => integrate(x => 4 - x * x, -2, 2),
+    reviewed: false,
+  },
+  {
+    id: 'calc-area-volume-007',
+    topic: 'area-volume',
+    formulas: ['disc'],
+    difficulty: 2,
+    prompt: 'The region bounded by y = x² and y = 4 is revolved about the line y = 4. What is the volume of the solid?',
+    choices: ['512π/15', '256π/15', '32π/3', '128π/5'],
+    answer: 0,
+    explanation: 'Revolving about y = 4, which is the region\'s top edge, gives discs with radius 4 − x² for −2 ≤ x ≤ 2. V = π∫₋₂² (4 − x²)² dx = π∫₋₂² (16 − 8x² + x⁴) dx = π(64 − 128/3 + 64/5) = 512π/15. 256π/15 uses only half the region (0 to 2).',
+    verify: 'exact',
+    solve: () => Math.PI * integrate(x => (4 - x * x) ** 2, -2, 2),
+    reviewed: false,
+  },
+  {
+    id: 'calc-area-volume-008',
+    topic: 'area-volume',
+    formulas: ['area-between'],
+    calculator: true,
+    difficulty: 3,
+    prompt: 'What is the area of the region enclosed by the graphs of y = cos x and y = x²?',
+    choices: ['0.547', '1.173', '1.095', '2.190'],
+    answer: 2,
+    explanation: 'The curves cross where cos x = x², at x ≈ ±0.8241 (by calculator). cos x is on top between them, so the area is ∫ (cos x − x²) dx from −0.8241 to 0.8241 ≈ 1.095. 0.547 is only the right half. 1.173 integrates from −1 to 1 instead of between the intersection points.',
+    verify: 'numeric',
+    solve: () => { const a = findRoot(parabolaGap, 0, 1); return integrate(parabolaGap, -a, a); },
+    reviewed: false,
   },
 ];
