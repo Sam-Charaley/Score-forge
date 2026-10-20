@@ -1,0 +1,131 @@
+// AP Macroeconomics, Unit 5: the short-run and long-run Phillips curves,
+// expectations, and money growth and inflation (the quantity theory).
+// Question ids are permanent once a question is reviewed: attempts point at them.
+// If you change what a question asks, give it a new id instead of editing it.
+
+// SRPC: inflation = 10 − unemployment. LRPC vertical at the natural rate, 5%.
+const NATURAL_RATE = 5;
+const srpcInflation = unemployment => 10 - unemployment;
+const PHILLIPS = {
+  type: 'graph', xLabel: 'Unemployment rate (%)', yLabel: 'Inflation rate (%)', xMax: 10, xStep: 1, yMin: 0, yMax: 10, yStep: 1,
+  series: [
+    { points: [[1, 9], [9, 1]], label: 'SRPC' },
+    { points: [[NATURAL_RATE, 0], [NATURAL_RATE, 10]], label: 'LRPC' },
+  ],
+  alt: 'Phillips curve graph with the unemployment rate in percent on the horizontal axis and the inflation rate in percent on the vertical axis. The short-run Phillips curve SRPC slopes down from (1, 9) to (9, 1). The long-run Phillips curve LRPC is vertical at 5% unemployment. They cross at 5% unemployment and 5% inflation.',
+};
+
+export default [
+  {
+    id: 'macro-phillips-curve-001',
+    topic: 'phillips-curve',
+    difficulty: 1,
+    prompt: 'Based on the Phillips curve graph, what is the natural rate of unemployment?',
+    figure: PHILLIPS,
+    choices: ['1%', '5%', '9%', '10%'],
+    answer: 1,
+    explanation: 'The long-run Phillips curve is vertical at the natural rate of unemployment, here 5%. In the long run, unemployment returns to this rate whatever the inflation rate.',
+    verify: 'numeric',
+    solve: () => NATURAL_RATE,
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-002',
+    topic: 'phillips-curve',
+    difficulty: 2,
+    prompt: 'Based on the Phillips curve graph, an increase in aggregate demand lowers the unemployment rate to 3% in the short run. What is the inflation rate at that point?',
+    figure: PHILLIPS,
+    choices: ['3%', '5%', '9%', '7%'],
+    answer: 3,
+    explanation: 'An increase in AD moves the economy up and to the left along the short-run Phillips curve. At 3% unemployment, the SRPC gives inflation of 10 − 3 = 7%. Lower unemployment comes with higher inflation in the short run.',
+    verify: 'numeric',
+    solve: () => srpcInflation(3),
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-003',
+    topic: 'phillips-curve',
+    difficulty: 1,
+    prompt: 'A decrease in aggregate demand is shown on the Phillips curve graph as',
+    choices: [
+      'a movement down and to the right along the short-run Phillips curve',
+      'a movement up and to the left along the short-run Phillips curve',
+      'a rightward shift of the short-run Phillips curve',
+      'a leftward shift of the long-run Phillips curve',
+    ],
+    answer: 0,
+    explanation: 'Lower AD reduces output and the price level, so unemployment rises and inflation falls: a movement down and to the right along the SRPC. Shifts of the SRPC come from supply shocks and changes in expected inflation.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-004',
+    topic: 'phillips-curve',
+    difficulty: 2,
+    prompt: 'A sharp increase in the price of oil decreases short-run aggregate supply. How is this shown on the Phillips curve graph?',
+    choices: [
+      'A movement up and to the left along the SRPC',
+      'A leftward shift of the SRPC',
+      'A rightward shift of the SRPC',
+      'A rightward shift of the LRPC only',
+    ],
+    answer: 2,
+    explanation: 'A negative supply shock raises both inflation and unemployment (stagflation). The only way to get more of both is for the whole short-run Phillips curve to shift right (up). A movement along the SRPC always trades one for the other.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-005',
+    topic: 'phillips-curve',
+    difficulty: 3,
+    prompt: 'The central bank keeps increasing the money supply to hold unemployment below the natural rate. As people come to expect higher inflation, what happens in the long run?',
+    choices: [
+      'Unemployment stays below the natural rate, and inflation stays constant.',
+      'The LRPC shifts left, lowering the natural rate permanently.',
+      'The SRPC shifts left, lowering both inflation and unemployment.',
+      'The SRPC shifts right; unemployment returns to the natural rate at a higher inflation rate.',
+    ],
+    answer: 3,
+    explanation: 'Once workers expect the higher inflation, they demand higher nominal wages, and the SRPC shifts right. Unemployment returns to the natural rate on the vertical LRPC, but inflation is now higher. Monetary policy cannot keep unemployment below the natural rate in the long run.',
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-006',
+    topic: 'phillips-curve',
+    formulas: ['quantity-theory'],
+    difficulty: 2,
+    prompt: 'According to the quantity theory of money, if velocity and real output are constant and the money supply grows by 8%, by how much will the price level change?',
+    choices: ['0%', '+4%', '+8%', '+16%'],
+    answer: 2,
+    explanation: 'In MV = PY, with V and Y fixed, P must change in proportion to M. An 8% increase in the money supply raises the price level by 8%. This is why money growth and inflation move together in the long run.',
+    verify: 'numeric',
+    solve: () => (1.08 - 1) * 100,
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-007',
+    topic: 'phillips-curve',
+    formulas: ['quantity-theory'],
+    difficulty: 2,
+    prompt: 'In an economy, the money supply is $500 billion, the velocity of money is 4, and real output is $1,000 billion. According to the equation of exchange, what is the price level?',
+    choices: ['0.5', '4', '2', '2,000'],
+    answer: 2,
+    explanation: 'MV = PY, so P = MV/Y = (500 × 4)/1,000 = 2. 0.5 divides Y by MV instead, 4 is just the velocity, and 2,000 is nominal GDP (MV), not the price level.',
+    verify: 'numeric',
+    solve: () => (500 * 4) / 1000,
+    reviewed: false,
+  },
+  {
+    id: 'macro-phillips-curve-008',
+    topic: 'phillips-curve',
+    difficulty: 3,
+    prompt: 'A new online service makes it much faster for workers to find jobs that match their skills, lowering frictional unemployment. What happens on the Phillips curve graph?',
+    choices: [
+      'The LRPC shifts left.',
+      'The LRPC shifts right.',
+      'The economy moves up along the SRPC.',
+      'Neither curve changes.',
+    ],
+    answer: 0,
+    explanation: 'The natural rate is frictional plus structural unemployment. Lower frictional unemployment lowers the natural rate, so the vertical LRPC shifts left. The SRPC would also shift left with it.',
+    reviewed: false,
+  },
+];
