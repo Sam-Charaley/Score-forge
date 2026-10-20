@@ -3,6 +3,8 @@ import { ArrowLeft, ClipboardCheck, Check, Flag, PenLine, RotateCcw, Save } from
 import Button from './ui/Button'
 import EmptyState from './ui/EmptyState'
 import CheckBubble from './ui/CheckBubble'
+import QuestionFigure from './QuestionFigure'
+import SourcePassage from './SourcePassage'
 import { useFrqSet } from '../hooks/useFrqSet'
 import { frqScores } from '../utils/progress'
 import { pointsPossible } from '../data/frqs/frqLoader'
@@ -39,6 +41,26 @@ function CodeAnswer({ id, value, onChange, disabled, label }) {
       onChange={e => onChange(e.target.value)} onKeyDown={onKeyDown}
       placeholder="Write your code here. Tab indents; press Escape then Tab to leave the box."
     />
+  );
+}
+
+// A plain answer box for written FRQs: spellcheck on, and Tab moves on as usual.
+function WrittenAnswer({ id, value, onChange, disabled, label }) {
+  return (
+    <textarea
+      id={id} className="input written-answer" value={value} disabled={disabled} aria-label={label}
+      onChange={e => onChange(e.target.value)}
+      placeholder="Type your answer, or work on paper and use this for notes."
+    />
+  );
+}
+
+function FrqSources({ sources }) {
+  if (!sources?.length) return null;
+  return (
+    <div className="frq-sources">
+      {sources.map(source => <SourcePassage key={source.label} label={source.label} text={source.text} citation={source.citation} />)}
+    </div>
   );
 }
 
@@ -111,7 +133,12 @@ function FrqWorkspace({ frq, typeName, onBack, onSave, onReport }) {
     return () => timer.current?.stop();
   }, []);
 
+  // Code FRQs are answered in the box, so checking waits for some code.
+  // Written FRQs are often worked on paper (graphs, calculations), so the
+  // rubric is always open to them.
+  const isCode = Boolean(frq.setup);
   const written = Object.values(responses).some(text => text.trim().length > 0);
+  const canCheck = !isCode || written;
   const toggle = pointId => setEarned(prev => {
     const next = new Set(prev);
     if (next.has(pointId)) next.delete(pointId); else next.add(pointId);
@@ -131,31 +158,40 @@ function FrqWorkspace({ frq, typeName, onBack, onSave, onReport }) {
         <p className="phase-kicker">{typeName}{!frq.reviewed && <span className="badge badge-pencil frq-draft">Draft {frq.id}</span>}</p>
         <h2>{frq.title}</h2>
         <p className="frq-intro">{frq.intro}</p>
+        {!isCode && <p className="frq-paper-hint">Work on paper wherever a part asks for a graph or calculation, then check your work against the rubric.</p>}
       </header>
-      <pre className="code-block">{frq.setup}</pre>
+      {isCode && <pre className="code-block">{frq.setup}</pre>}
+      <FrqSources sources={frq.sources} />
+      <QuestionFigure figure={frq.figure} />
 
-      {frq.parts.map(part => (
-        <section key={part.id} className="card card-pad frq-part" aria-labelledby={`part-${part.id}`}>
-          <h3 id={`part-${part.id}`}>Part ({part.id})</h3>
-          <p className="frq-prompt">{part.prompt}</p>
-          <code className="frq-header">{part.header}</code>
-          <CodeAnswer id={`answer-${part.id}`} label={`Your answer to part (${part.id})`} value={responses[part.id]}
-            disabled={checking} onChange={text => setResponses(prev => ({ ...prev, [part.id]: text }))} />
-          {checking && (
-            <>
-              <div className="frq-solution">
-                <span className="label">One correct solution (others can earn full points too)</span>
-                <pre className="code-block">{part.solution}</pre>
-              </div>
-              <RubricPart part={part} earned={earned} onToggle={toggle} locked={saveState === 'saved'} />
-            </>
-          )}
-        </section>
-      ))}
+      {frq.parts.map(part => {
+        const answerProps = {
+          id: `answer-${part.id}`, label: `Your answer to part (${part.id})`, value: responses[part.id],
+          disabled: checking, onChange: text => setResponses(prev => ({ ...prev, [part.id]: text })),
+        };
+        return (
+          <section key={part.id} className="card card-pad frq-part" aria-labelledby={`part-${part.id}`}>
+            <h3 id={`part-${part.id}`}>Part ({part.id})</h3>
+            <p className="frq-prompt">{part.prompt}</p>
+            <QuestionFigure figure={part.figure} />
+            {isCode && <code className="frq-header">{part.header}</code>}
+            {isCode ? <CodeAnswer {...answerProps} /> : <WrittenAnswer {...answerProps} />}
+            {checking && (
+              <>
+                <div className="frq-solution">
+                  <span className="label">{isCode ? 'One correct solution (others can earn full points too)' : 'A sample answer (others can earn full points too)'}</span>
+                  {isCode ? <pre className="code-block">{part.solution}</pre> : <p className="frq-solution-text">{part.solution}</p>}
+                </div>
+                <RubricPart part={part} earned={earned} onToggle={toggle} locked={saveState === 'saved'} />
+              </>
+            )}
+          </section>
+        );
+      })}
 
       <div className="frq-actions">
         {onReport && <button type="button" className="report-link" onClick={() => onReport(frq)}><Flag aria-hidden="true" />Report a problem</button>}
-        {!checking && <Button icon={ClipboardCheck} onClick={startChecking} disabled={!written}>{written ? 'Check against the rubric' : 'Write an answer first'}</Button>}
+        {!checking && <Button icon={ClipboardCheck} onClick={startChecking} disabled={!canCheck}>{canCheck ? 'Check against the rubric' : 'Write an answer first'}</Button>}
         {checking && saveState !== 'saved' && (
           <Button icon={Save} onClick={save} disabled={saveState === 'saving'}>
             {saveState === 'saving' ? 'Saving' : `Save score: ${earned.size} of ${total}`}
@@ -172,8 +208,9 @@ function FrqWorkspace({ frq, typeName, onBack, onSave, onReport }) {
   );
 }
 
-// Free-response practice for one subject: pick an FRQ, write code, then
-// score it yourself against the official-style rubric and a sample solution.
+// Free-response practice for one subject: pick an FRQ, answer it (code for
+// CS A, writing or paper work elsewhere), then score it yourself against the
+// official-style rubric and a sample answer.
 export default function FrqPractice({ user, subject, onSaveError, onReport }) {
   const set = useFrqSet({ userId: user.id, subjectId: subject.id, onSaveError });
   const [openId, setOpenId] = useState(null);

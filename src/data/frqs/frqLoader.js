@@ -17,3 +17,11 @@ export async function loadFrqs(subjectId, { includeDrafts = INCLUDE_DRAFTS } = {
 }
 
 export const pointsPossible = frq => frq.parts.reduce((sum, part) => sum + part.points.length, 0);
+
+// Subjects whose FRQs are answered in code (a `setup` class with part
+// markers, a Java solution and a verify test). Every other subject's FRQs are
+// written: a text box per part, worked on paper where it needs graphs or math.
+// frqs.test.js checks each set matches its kind.
+export const CODE_FRQ_SUBJECTS = ['csa'];
+
+export const isCodeFrqSubject = subjectId => CODE_FRQ_SUBJECTS.includes(subjectId);

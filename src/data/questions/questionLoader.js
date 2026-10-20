@@ -4,21 +4,12 @@
 const questionModules = import.meta.glob(['./*/*.js', '!./*/topics.js', '!./**/*.test.js']);
 const topicModules = import.meta.glob('./*/topics.js');
 
+import { foldersFor } from './sharedFolders'
+
+export { SHARED_FOLDERS, foldersFor } from './sharedFolders'
+
 export const QUESTION_CHOICE_COUNT = 4;
 export const DIFFICULTY_LEVELS = [1, 2, 3];
-
-// Folders shared between subjects with overlapping courses. Calculus AB is
-// Units 1-8 of Calculus BC, so both load ./calc/; BC adds ./calcbc/ for
-// Units 9-10. A shared question marked onlyIn: 'calcbc' (BC-only content in
-// those units) is left out of the AB bank.
-export const SHARED_FOLDERS = {
-  calcab: ['calc'],
-  calcbc: ['calc'],
-};
-
-export function foldersFor(subjectId) {
-  return [...(SHARED_FOLDERS[subjectId] ?? []), subjectId];
-}
 
 const folderOf = filePath => filePath.split('/')[1];
 

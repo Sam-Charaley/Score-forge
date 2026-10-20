@@ -1,34 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { loadQuestionBank, loadTopicMap, foldersFor, QUESTION_CHOICE_COUNT, DIFFICULTY_LEVELS } from './questionLoader'
-
-// A screen reader gets only the alt text, so it must describe the figure in full.
-const MIN_ALT_LENGTH = 60;
-
-function figureProblems(figure) {
-  const problems = [];
-  if (typeof figure.alt !== 'string' || figure.alt.trim().length < MIN_ALT_LENGTH) problems.push(`needs alt text of at least ${MIN_ALT_LENGTH} characters describing it`);
-  if (figure.type === 'graph') {
-    const { xMin = 0, xMax, xStep, yMin, yMax, yStep, series } = figure;
-    if (![xMin, xMax, xStep, yMin, yMax, yStep].every(Number.isFinite) || xMax <= xMin || xStep <= 0 || yStep <= 0 || yMax <= yMin) problems.push('graph needs xMin < xMax, xStep, yMin < yMax and yStep');
-    if ((xMax - xMin) / xStep > 12 || (yMax - yMin) / yStep > 12) problems.push('more than 12 grid lines is unreadable on a phone');
-    if (!figure.xLabel || !figure.yLabel) problems.push('graph needs both axis labels, with units');
-    if (!Array.isArray(series) || series.length === 0) problems.push('graph needs at least one series');
-    (series ?? []).forEach((s, si) => {
-      s.points.forEach(([x, y], i) => {
-        if (x < xMin - 1e-9 || x > xMax + 1e-9 || y < yMin - 1e-9 || y > yMax + 1e-9) problems.push(`series ${si} point ${i} (${x}, ${y}) is off the axes`);
-        if (i > 0 && x < s.points[i - 1][0]) problems.push(`series ${si} point ${i}: x must not decrease`);
-      });
-    });
-  } else if (figure.type === 'forces') {
-    const labels = figure.forces?.map(f => f.label) ?? [];
-    if (labels.length === 0) problems.push('force diagram needs forces');
-    if (new Set(labels).size !== labels.length) problems.push('force labels must be unique');
-    figure.forces?.forEach(f => { if (!(f.value > 0) || !Number.isFinite(f.angle)) problems.push(`force "${f.label}" needs a positive value and an angle`); });
-  } else {
-    problems.push(`unknown type "${figure.type}"`);
-  }
-  return problems;
-}
+import { figureProblems, sourceProblems } from './contentChecks'
 
 const files = import.meta.glob(['./*/*.js', '!./*/topics.js'], { eager: true });
 const topicFiles = import.meta.glob('./*/topics.js');
@@ -111,6 +83,7 @@ describe.each(SUBJECTS)('%s question bank', subjectId => {
         if (q.setup !== undefined && (typeof q.setup !== 'string' || !q.setup.trim())) problems.push(`${where}: setup must be non-empty code if present`);
         if (q.fixedOrder !== undefined && q.fixedOrder !== true) problems.push(`${where}: fixedOrder must be true or absent`);
         if (q.figure !== undefined) problems.push(...figureProblems(q.figure).map(p => `${where}: figure ${p}`));
+        if (q.stimulus !== undefined) problems.push(...sourceProblems(q.stimulus).map(p => `${where}: stimulus ${p}`));
       });
     });
     expect(problems).toEqual([]);

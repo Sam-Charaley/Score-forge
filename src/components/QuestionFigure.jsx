@@ -109,14 +109,39 @@ function Forces({ figure, titleId }) {
   );
 }
 
+// figure.type 'table': { caption?, columns: [...], rows: [[...], ...], alt }
+// A real HTML table, so screen readers navigate it cell by cell; the first
+// cell of each row is its row header (a quantity, a strategy, a year).
+function DataTable({ figure }) {
+  return (
+    <div className="q-figure-table-wrap">
+      <table className="q-figure-table">
+        {figure.caption && <caption>{figure.caption}</caption>}
+        <thead>
+          <tr>{figure.columns.map(column => <th key={column} scope="col">{column}</th>)}</tr>
+        </thead>
+        <tbody>
+          {/* Static rows that never reorder, so the index is a stable key. */}
+          {figure.rows.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, i) => (i === 0 ? <th key={i} scope="row">{cell}</th> : <td key={i}>{cell}</td>))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function QuestionFigure({ figure }) {
   // useId gives ':r1:'; colons break url(#...) references to the arrow marker.
   const titleId = `fig${useId().replace(/:/g, '')}`;
   if (!figure) return null;
   return (
-    <figure className="q-figure">
+    <figure className={`q-figure${figure.type === 'table' ? ' q-figure-is-table' : ''}`}>
       {figure.type === 'graph' && <Graph figure={figure} titleId={titleId} />}
       {figure.type === 'forces' && <Forces figure={figure} titleId={titleId} />}
+      {figure.type === 'table' && <DataTable figure={figure} />}
     </figure>
   );
 }

@@ -11,7 +11,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "verify:questions": "node scripts/verify-questions.mjs"
+    "verify:questions": "node scripts/verify-questions.mjs",
+    "review:drafts": "node scripts/review-drafts.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.100.0",

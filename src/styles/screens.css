@@ -667,6 +667,21 @@ kbd svg { width: .75rem; height: .75rem; }
 .q-figure { margin: 0 0 18px; padding: 10px 12px; max-width: 26rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); }
 .q-figure-svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-text); }
 .q-figure-forces { max-width: 20rem; margin: 0 auto; }
+.q-figure-is-table { max-width: 36rem; padding: 0; }
+.q-figure-table-wrap { overflow-x: auto; }
+.q-figure-table { width: 100%; border-collapse: collapse; font-size: var(--text-footnote); font-variant-numeric: tabular-nums; }
+.q-figure-table caption { caption-side: top; text-align: left; padding: 10px 12px 6px; font-weight: 600; color: var(--graphite); }
+.q-figure-table th, .q-figure-table td { padding: 7px 12px; text-align: left; border-top: 1px solid var(--rule-soft); }
+.q-figure-table thead th { color: var(--lead); font-weight: 600; border-top: none; background: var(--paper-deep); }
+.q-figure-table tbody th { font-weight: 600; color: var(--graphite); }
+.source-passage { margin: 0 0 18px; padding: 12px 16px; max-width: 70ch; background: var(--sheet); border: 1px solid var(--rule); border-left: 3px solid var(--line-strong); border-radius: var(--radius); display: grid; gap: 6px; }
+.source-text { margin: 0; white-space: pre-wrap; font-size: var(--text-callout); line-height: 1.65; color: var(--graphite); }
+.source-citation { font-size: var(--text-footnote); color: var(--lead); }
+.frq-sources { display: grid; gap: 12px; }
+.frq-sources .source-passage { margin: 0; }
+.written-answer { min-height: 9rem; resize: vertical; font-size: var(--text-body); line-height: 1.6; }
+.frq-solution-text { margin: 0; padding: 14px 16px; white-space: pre-wrap; font-size: var(--text-body); line-height: 1.65; background: var(--pass-soft); border: 1px solid var(--pass-line); border-radius: var(--radius); }
+.frq-paper-hint { font-size: var(--text-footnote); color: var(--lead); }
 .fig-grid line { stroke: var(--rule); stroke-width: 1; }
 .fig-axis line { stroke: var(--lead); stroke-width: 1.5; }
 .fig-tick-label text { fill: var(--lead); font-size: 11px; font-variant-numeric: tabular-nums; }

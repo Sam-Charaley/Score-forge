@@ -14,7 +14,8 @@ import { hasModifier, isTypingTarget, mayTakeActivationKey } from '../utils/keyb
 import Tabs, { TabPanel } from '../components/ui/Tabs'
 import FrqPractice from '../components/FrqPractice'
 import QuestionFigure from '../components/QuestionFigure'
-import { hasFrqs } from '../data/frqs/frqLoader'
+import { hasFrqs, isCodeFrqSubject } from '../data/frqs/frqLoader'
+import SourcePassage from '../components/SourcePassage'
 import { hasQuestionBank } from '../data/questions/questionLoader'
 import { hasFormulaSheet } from '../data/formulaLoader'
 import { useFormulaSheet } from '../hooks/useFormulaSheet'
@@ -206,7 +207,9 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
         <div>
           <h1>{subject.shortName} practice</h1>
           <p>{mode === FREE_RESPONSE
-            ? 'Write the code, then score it yourself against the rubric, the way exam readers do.'
+            ? (isCodeFrqSubject(subject.id)
+              ? 'Write the code, then score it yourself against the rubric, the way exam readers do.'
+              : 'Answer each part, then score it yourself against the rubric, the way exam readers do.')
             : !hasBank
               ? 'Formula drill: pick the right formula from look-alikes. Full practice questions are on the way.'
               : "Questions picked for where you'll gain the most. Ratings update after every answer."}</p>
@@ -295,6 +298,8 @@ export default function PracticePage({ user, subject, practiceSubjects = [], ini
                       {reason.attempts > 0 && (reason.dueForReview ? `, ${reviewNote(reason.daysSince)}.` : '.')}</span>
                   </p>
                 )}
+                {/* The source comes first, as on the exam: read it, then the question. */}
+                {question.stimulus && <SourcePassage text={question.stimulus.text} citation={question.stimulus.citation} />}
                 <p className="prompt">{question.prompt}</p>
                 <QuestionFigure figure={question.figure} />
                 {question.setup && <pre className="code-block code-setup" aria-label="Code given for this question">{question.setup}</pre>}
