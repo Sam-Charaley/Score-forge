@@ -140,7 +140,7 @@ DISPLAY(count)`,
       'larger(1, 1), larger(2, 2) and larger(3, 3)',
     ],
     answer: 0,
-    explanation: 'Good tests cover every case the procedure must handle: the first number larger, the second number larger, and the two equal. Each other set repeats one case three times, so a procedure that always returned a (or always returned b) could pass it.',
+    explanation: 'Good tests cover every case the procedure must handle: the first number larger, the second number larger, and the two equal. Each other set repeats one case three times, so a procedure that always returns the same one of its two parameters could pass that whole set.',
     reviewed: false,
   },
 ];
