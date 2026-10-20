@@ -1,6 +1,8 @@
 // AP Physics 1, Unit 5: rotational kinematics, torque and equilibrium.
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
+import { G } from './topics.js'
+
 const DEGREES = Math.PI / 180;
 
 export default [
@@ -71,5 +73,48 @@ export default [
     verify: 'numeric',
     solve: () => 0.30 * 5.0,
     reviewed: true,
+  },
+  {
+    id: 'phys1-torque-006',
+    topic: 'torque',
+    formulas: ['torque', 'newtons-second'],
+    difficulty: 1,
+    prompt: 'A ladder leans against a wall and stays at rest. Which statement about the forces on the ladder must be true?',
+    choices: [
+      'The net force on it is zero, but the net torque need not be',
+      'The net torque on it is zero, but the net force need not be',
+      'Both the net force and the net torque on it are zero',
+      'No forces act on it',
+    ],
+    answer: 2,
+    explanation: 'An object in static equilibrium has no translational acceleration and no angular acceleration. That requires zero net force and zero net torque about any point. Several forces do act on the ladder (gravity, the floor and the wall); they just balance.',
+    reviewed: false,
+  },
+  {
+    id: 'phys1-torque-007',
+    topic: 'torque',
+    formulas: ['torque'],
+    difficulty: 2,
+    prompt: 'A meterstick of negligible mass balances on a pivot at its 50 cm mark. A 2.0 N weight hangs at the 20 cm mark. Where must a 4.0 N weight hang to keep the stick balanced?',
+    choices: ['65 cm mark', '80 cm mark', '35 cm mark', '58 cm mark'],
+    answer: 0,
+    explanation: 'The 2.0 N weight is 30 cm from the pivot and makes a torque of 2.0 × 0.30 = 0.60 N·m. The 4.0 N weight must make an equal torque on the other side, so it hangs 0.60/4.0 = 0.15 m = 15 cm from the pivot, at the 65 cm mark. The 80 cm mark mirrors the distance without accounting for the larger weight, and the 35 cm mark is on the wrong side.',
+    verify: 'numeric',
+    solve: () => 50 + (100 * (2.0 * 0.3)) / 4.0,
+    reviewed: false,
+  },
+  {
+    id: 'phys1-torque-008',
+    topic: 'torque',
+    formulas: ['torque', 'weight'],
+    difficulty: 3,
+    calculator: true,
+    prompt: 'A uniform 4.0 m beam with a mass of 20 kg rests on two supports, one at each end. A 30 kg crate sits on the beam 1.0 m from the left end. What force does the right support exert on the beam? (g = 9.8 m/s²)',
+    choices: ['320 N', '250 N', '490 N', '170 N'],
+    answer: 3,
+    explanation: 'Take torques about the left support so its unknown force drops out. The beam\'s weight acts at its center, 2.0 m away, and the crate is 1.0 m away: F × 4.0 = 196 × 2.0 + 294 × 1.0, so F = 686/4.0 ≈ 170 N. 320 N is the left support\'s force, and 250 N splits the total weight equally, which is only right if the crate were at the center.',
+    verify: 'numeric',
+    solve: () => (20 * G * 2.0 + 30 * G * 1.0) / 4.0,
+    reviewed: false,
   },
 ];
