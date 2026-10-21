@@ -16,7 +16,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The digital divide is unequal access to computing and the Internet, shaped by socioeconomic, geographic and demographic factors. It can be local, national or global, and it can widen other inequalities.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-002',
@@ -31,7 +31,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The goal was faster feedback, but students on the wrong side of the digital divide may not be able to finish online work at home. Faster feedback is the intended benefit, not a harm.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-003',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Computing bias often comes from the data an algorithm learns from. If some groups are underrepresented in the training data, the system works less well for them, even if nobody intended that.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-004',
@@ -61,7 +61,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Routing many drivers onto side streets helps the drivers but harms the people who live on those streets. Innovations often have effects that their creators did not plan for. The other choices are intended features or benefits.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-005',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The digital divide is about access. Free Internet and loaned devices give access to people who lack it. Moving services online only, or raising prices, makes the gap worse for those without access.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-007',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Innovations usually have both benefits and harms, and people may see the same effect differently. Many effects appear only after an innovation is widely used, and harms can arise even when everyone uses it as intended.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-008',
@@ -121,6 +121,6 @@ export default [
     ],
     answer: 0,
     explanation: 'The data reflects who uses the app, not only where the potholes are. Areas with less smartphone access are underrepresented, so the city\'s decisions inherit a bias from the digital divide.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
