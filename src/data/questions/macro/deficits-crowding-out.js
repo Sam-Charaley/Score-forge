@@ -136,6 +136,6 @@ export default [
     ],
     answer: 3,
     explanation: 'In a deep recession, private demand for loans is weak and resources are idle, so extra government borrowing raises interest rates only a little and displaces little private investment. At full employment, the same borrowing pushes rates up more and crowds out more.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

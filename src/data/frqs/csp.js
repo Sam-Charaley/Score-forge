@@ -247,7 +247,7 @@ export default [
     title: 'Practice quiz: errors and boundary tests',
     intro: QUIZ_INTRO,
     sources: [QUIZ_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

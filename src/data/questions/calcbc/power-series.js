@@ -98,7 +98,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The series is centered at 2. Converging at x = 5 (distance 3) means the radius R is at least 3, and diverging at x = −2 (distance 4) means R is at most 4. x = 4 is distance 2 < 3 from the center, so the series converges there absolutely. x = −1 and x = 6 are at distances 3 and 4, which could be endpoints, so nothing is guaranteed, and R could be anything from 3 to 4.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-power-series-008',

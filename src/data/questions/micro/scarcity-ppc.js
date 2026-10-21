@@ -84,7 +84,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Making a yard of cloth costs Beta 1 bushel of wheat and costs Alpha 2 bushels. A price between those two costs lets Beta sell cloth for more than it costs to make and lets Alpha buy cloth for less than making it would cost, so 1.5 bushels works. At exactly 1 bushel Beta gains nothing, and at 2.5 bushels Alpha would rather make its own cloth.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-005',

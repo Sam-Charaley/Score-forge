@@ -76,7 +76,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The program copied the bias in its historical data. Checking its results for each group and changing the training data addresses the cause. More of the same biased data would only reinforce the pattern.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-computing-effects-006',

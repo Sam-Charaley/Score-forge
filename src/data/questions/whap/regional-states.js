@@ -136,7 +136,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Srivijaya (centered on Sumatra) and later Majapahit (on Java) grew rich by controlling the straits between the Indian Ocean and the South China Sea and taxing the ships that passed. Both were influenced by Hindu and Buddhist traditions, not Christianity. By contrast, the Khmer Empire of Angkor was a land-based state built on rice farming.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-009',

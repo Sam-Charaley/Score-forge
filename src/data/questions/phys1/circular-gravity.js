@@ -99,6 +99,6 @@ export default [
     explanation: 'At the top, both tension and gravity point down, toward the center, so T + mg = mv²/r. Then T = 0.50 × 4.0²/0.80 − 0.50 × 9.8 = 10 − 4.9 = 5.1 N. 14.9 N adds the weight instead of subtracting it, which is the result at the bottom of the circle, not the top.',
     verify: 'numeric',
     solve: () => (0.5 * 4 ** 2) / 0.8 - 0.5 * G,
-    reviewed: false,
+    reviewed: true,
   },
 ];

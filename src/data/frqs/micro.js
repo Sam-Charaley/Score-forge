@@ -156,7 +156,7 @@ export default [
     title: 'Pricing game',
     intro: 'Lumen and Prism are the only two sellers of smart light bulbs. Each must choose a high price or a low price without knowing the other\'s choice. The payoff matrix shows each firm\'s weekly profit. Both firms know all the information in the matrix.',
     figure: PRICING_GAME,
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -277,7 +277,7 @@ export default [
     title: 'Ferry tickets and a price ceiling',
     intro: 'The graph shows the market for daily ferry tickets to an island, which is perfectly competitive.',
     figure: TICKET_MARKET,
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

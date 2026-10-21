@@ -105,7 +105,7 @@ export default [
     prompt: 'For which values of p does the series Σ (n = 2 to ∞) 1/(n (ln n)ᵖ) converge?',
     choices: ['p > 1', 'p ≥ 1', 'p > 0', 'All real p'],
     answer: 0,
-    explanation: 'Use the integral test: the terms are positive and decreasing for n ≥ 2. With u = ln x, ∫₂^∞ dx/(x (ln x)ᵖ) = ∫ from ln 2 to ∞ of du/uᵖ, which converges exactly when p > 1. At p = 1 the integral is ln(ln x), which grows without bound, so p ≥ 1 is wrong.',
-    reviewed: false,
+    explanation: 'Use the integral test: the terms are positive and eventually decreasing (from n = 2 when p ≥ 0, and from some later n when p < 0). With u = ln x, ∫₂^∞ dx/(x (ln x)ᵖ) = ∫ from ln 2 to ∞ of du/uᵖ, which converges exactly when p > 1. At p = 1 the integral is ln(ln x), which grows without bound, so p ≥ 1 is wrong.',
+    reviewed: true,
   },
 ];

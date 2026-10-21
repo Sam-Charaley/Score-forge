@@ -82,7 +82,7 @@ export default [
     explanation: 'The marginal social benefits of the 1st to 4th lights are $150, $100, $60 and $20. Provide each light whose social benefit is at least its $70 cost: the 2nd ($100) qualifies, but the 3rd ($60) does not. If each resident compared only their own benefit to the full cost, no one would pay for even one light, which is the free-rider problem.',
     verify: 'numeric',
     solve: () => efficientLights(LIGHT_COST),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-006',

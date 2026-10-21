@@ -15,10 +15,10 @@ const NUCLEAR_WARHEADS = {
     [1950, '300', '5'],
     [1960, '18,600', '1,600'],
     [1970, '26,000', '11,600'],
-    [1980, '23,800', '30,100'],
+    [1980, '23,400', '30,100'],
     [1986, '23,300', '40,200'],
   ],
-  alt: 'Table of approximate nuclear warheads. 1950: United States 300, Soviet Union 5. 1960: 18,600 and 1,600. 1970: 26,000 and 11,600. 1980: 23,800 and 30,100. 1986: 23,300 and 40,200. The Soviet total passes the US total by 1980.',
+  alt: 'Table of approximate nuclear warheads. 1950: United States 300, Soviet Union 5. 1960: 18,600 and 1,600. 1970: 26,000 and 11,600. 1980: 23,400 and 30,100. 1986: 23,300 and 40,200. The Soviet total passes the US total by 1980.',
 };
 const NUCLEAR_WARHEADS_SOURCE = {
   text: 'The table rounds published estimates. Both governments kept their exact numbers secret during the Cold War.',
@@ -89,7 +89,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Both countries went from few or no warheads in 1950 to tens of thousands by the 1980s. The Soviet Union first tested a bomb in 1949 and passed the US total around the late 1970s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-005',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Because either side could destroy the other even after being attacked, a direct war became too dangerous, as the Cuban Missile Crisis of 1962 showed. The rivalry was fought instead through proxy wars, the space race and competition for allies.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-006',

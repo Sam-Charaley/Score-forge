@@ -49,11 +49,11 @@ export default [
     type: 'saq',
     title: 'The Meiji Charter Oath',
     intro: 'Read the source below, then answer all three parts in a few complete sentences each.',
-    reviewed: false,
+    reviewed: true,
     sources: [
       {
         label: 'Source',
-        text: 'The new government makes five promises. Councils will be set up, and the business of the state will be settled through open debate. People of every rank, from nobles to commoners, will work together for the nation. Harmful old customs will be abandoned. And Japan will learn from every part of the world, so that the rule of the emperor stands on firm ground.',
+        text: 'The new government makes five promises. Councils will be set up, and the business of the state will be settled through open debate. People of every rank, from nobles to commoners, will work together for the nation. Officials, warriors and common people alike will each be free to follow their own calling, so that no one is left discontented. Harmful old customs will be abandoned. And Japan will learn from every part of the world, so that the rule of the emperor stands on firm ground.',
         citation: 'Written for ScoreForge, a summary of the Charter Oath issued in the name of Emperor Meiji of Japan, April 1868.',
       },
     ],
@@ -197,12 +197,12 @@ export default [
     type: 'dbq',
     title: 'The Scramble for Africa',
     intro: 'Read all seven documents, then write an essay that answers the prompt. On the exam you get 60 minutes for the DBQ, including about 15 minutes to read. Plan your thesis first, group the documents by argument, and use at least four of them as evidence.',
-    reviewed: false,
+    reviewed: true,
     sources: [
       {
         label: 'Document 1',
-        text: 'To open to civilization the only part of our globe where it has not yet entered, to pierce the darkness that hangs over whole peoples: this is a crusade worthy of this century of progress. Our aim is to end the slave trade and bring the light of science and Christianity to Central Africa. Belgium, a small country, seeks nothing for itself but the honor of serving humanity.',
-        citation: 'Written for ScoreForge, based on King Leopold II of Belgium, opening speech to the Brussels Geographic Conference, 1876.',
+        text: 'Leopold told the delegates that Central Africa was the last large region Europeans had not yet reached, and he presented exploring it as a moral mission fit for an age of progress. He said the goal was to stamp out the slave trade and spread science and Christianity there. He insisted that Belgium, a small country, wanted no land or profit for itself, only the honor of helping humanity.',
+        citation: 'Written for ScoreForge, summarizing King Leopold II of Belgium, opening speech to the Brussels Geographic Conference, 1876.',
       },
       {
         label: 'Document 2',
@@ -217,7 +217,7 @@ export default [
       {
         label: 'Document 4',
         text: 'Any power that takes possession of land on the coasts of Africa from now on, or sets up a protectorate there, must notify the other signing powers so that they may make any claims of their own. The signing powers agree that a claim must be backed by real authority on the ground, enough to protect existing rights and freedom of trade.',
-        citation: 'Written for ScoreForge, summarizing Articles 34 and 35 of the General Act of the Berlin Conference, signed by fourteen European states and the United States, 1885.',
+        citation: 'Written for ScoreForge, summarizing Articles 34 and 35 of the General Act of the Berlin Conference, signed by fourteen states, including the United States and the Ottoman Empire, 1885.',
       },
       {
         label: 'Document 5',

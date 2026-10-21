@@ -8,13 +8,13 @@ const MEXICO_POPULATION = {
   columns: ['Year', 'Estimated population (millions)'],
   rows: [
     [1519, 25.2],
-    [1523, 16.8],
+    [1532, 16.8],
     [1548, 6.3],
     [1568, 2.65],
     [1580, 1.9],
     [1605, 1.075],
   ],
-  alt: 'Table of estimated population of central Mexico in millions: 25.2 in 1519, 16.8 in 1523, 6.3 in 1548, 2.65 in 1568, 1.9 in 1580 and 1.075 in 1605, a fall of about 96 percent in under a century.',
+  alt: 'Table of estimated population of central Mexico in millions: 25.2 in 1519, 16.8 in 1532, 6.3 in 1548, 2.65 in 1568, 1.9 in 1580 and 1.075 in 1605, a fall of about 96 percent in under a century.',
 };
 const MEXICO_POPULATION_SOURCE = {
   text: 'The table restates population estimates for central Mexico made by two historians who worked from Spanish tax and tribute records. Other scholars have argued for much lower numbers in 1519.',
@@ -42,7 +42,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Epidemics of smallpox, measles and other diseases killed most of the population, made worse by war, forced labor and disruption. Potatoes came from the Americas, not from Europe, and industrialization was centuries away.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-002',
@@ -59,7 +59,7 @@ export default [
     ],
     answer: 1,
     explanation: 'With far fewer Indigenous workers, colonizers turned to the transatlantic slave trade to supply labor for plantations and mines, especially in the Caribbean and Brazil. Spanish silver mining at Potosí and in Mexico expanded rather than stopped.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-003',
@@ -76,7 +76,7 @@ export default [
     ],
     answer: 2,
     explanation: 'No census existed in 1519, so the early figures are reconstructions from later tribute records, and the source notes that other scholars give much lower starting numbers. The trend of steep decline is widely accepted, but the exact size is debated. The numbers fall over time, so the first choice misreads the table.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-004',

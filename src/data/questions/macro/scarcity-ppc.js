@@ -70,10 +70,10 @@ export default [
     figure: LINEAR_PPC,
     choices: ['2 tractors', '0.5 tractor', '20 tractors', '40 tractors'],
     answer: 1,
-    explanation: 'Moving along the whole curve, 20 thousand tractors are given up for 40 thousand computers, so each computer costs 20/40 = 0.5 tractor. 2 tractors is the opportunity cost of one tractor in computers flipped the wrong way.',
+    explanation: 'Moving along the whole curve, 20 thousand tractors are given up for 40 thousand computers, so each computer costs 20/40 = 0.5 tractor. 2 tractors divides the wrong way (40/20): that is the number of computers given up for each tractor, not tractors given up for each computer.',
     verify: 'numeric',
     solve: () => 20 / 40,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-005',

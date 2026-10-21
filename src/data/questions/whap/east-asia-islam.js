@@ -7,7 +7,7 @@ const ANALECTS = {
 };
 
 const CHAMPA_RICE = {
-  text: 'In 1012 the emperor learned that the rice fields of the lower Yangzi region failed whenever the rains came late. He ordered officials to bring 30,000 bushels of a fast-ripening rice from the kingdom of Champa, in what is now Vietnam, and to hand the seed out to farmers with printed instructions for planting it. Because this rice ripened in about one hundred days and needed less water, many farmers could now harvest two crops a year.',
+  text: 'In 1012 the emperor learned that the rice fields of the lower Yangzi region failed whenever the rains came late. He ordered officials to bring 30,000 bushels of a fast-ripening rice from Fujian province, where farmers grew a variety that had come from the kingdom of Champa, in what is now Vietnam, and to hand the seed out to farmers with printed instructions for planting it. Because this rice ripened in about one hundred days and needed less water, many farmers could now harvest two crops a year.',
   citation: 'Written for ScoreForge, based on accounts of Song emperor Zhenzong\'s rice policy in Song dynasty official records, 1000s CE.',
 };
 
@@ -74,7 +74,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Fast-ripening Champa rice let farmers grow two crops a year, so food supplies rose and the population of Song China grew quickly, roughly doubling over the dynasty. More food also fed larger cities, so a decline in city size is the reverse of what happened.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-005',
@@ -90,7 +90,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The emperor ordered officials to import seed and hand it out with printed instructions, which shows a central bureaucracy taking an active role in farming. The policy relied on an imported crop, so the claim that foreign crops were banned contradicts the passage.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-006',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Surplus food freed more people to work in crafts, iron production and trade, and Song China became one of the most commercial economies in the world, using paper money and producing goods such as silk and porcelain for markets. The south, where the rice grew, gained population rather than losing it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-007',

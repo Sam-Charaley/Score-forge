@@ -79,7 +79,7 @@ export default [
     choices: ['h/2', '2h', 'Any height, as long as the first drop is steep', 'Just under h'],
     answer: 3,
     explanation: 'With no friction, the cart-Earth system keeps the same total mechanical energy, which is all gravitational potential energy mgh at the start. To get over a hill the cart needs some kinetic energy left at the top, so the hill must be lower than h. The steepness of the track changes how fast energy converts, not how much there is.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-energy-conservation-007',

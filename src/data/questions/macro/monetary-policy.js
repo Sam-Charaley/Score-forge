@@ -20,7 +20,7 @@ export default [
     id: 'macro-monetary-policy-001',
     topic: 'monetary-policy',
     difficulty: 1,
-    prompt: 'Which of the following open-market operations would the Federal Reserve use to fight a recession?',
+    prompt: 'Which of the following actions would the Federal Reserve take to fight a recession?',
     choices: [
       'Selling government bonds to banks',
       'Raising the discount rate',
@@ -29,7 +29,7 @@ export default [
     ],
     answer: 3,
     explanation: 'When the Fed buys bonds, it pays with new reserves, which increases the money supply and lowers interest rates, raising investment and aggregate demand. Selling bonds, raising the discount rate and raising the reserve requirement are all contractionary.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-002',
@@ -85,7 +85,7 @@ export default [
     ],
     answer: 2,
     explanation: 'With ample reserves, small open-market operations barely move the federal funds rate. Instead the Fed uses administered rates: banks will not lend reserves for less than the interest the Fed pays on reserves, so raising that rate pulls the federal funds rate up. The other choices would lower rates.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-006',

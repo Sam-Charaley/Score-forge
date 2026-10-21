@@ -113,6 +113,6 @@ export default [
     choices: ['17, 25', '3, 8, 12, 17, 21, 25', '17, 21, 25', '30, 25'],
     answer: 0,
     explanation: 'The middle of 7 elements is the 4th, 17. Since 25 > 17, the search keeps only [21, 25, 30], whose middle is 25, and the value is found. Checking every element from the start is a linear search.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

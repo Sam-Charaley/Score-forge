@@ -42,8 +42,8 @@ export default [
       'U.S. Treasury bonds held by households',
     ],
     answer: 0,
-    explanation: 'M1 is the most liquid money: currency in circulation and checkable (demand) deposits. A credit card is a way to borrow, not money. Stocks and bonds are financial assets that must be sold before they can be spent.',
-    reviewed: false,
+    explanation: 'M1 is the most liquid money: currency held by the public, checkable (demand) deposits and, since 2020, savings deposits. A credit card is a way to borrow, not money. Stocks and bonds are financial assets that must be sold before they can be spent.',
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-003',

@@ -80,7 +80,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Easy entry means profit attracts new firms with similar products, which take customers away, so each firm\'s demand shifts left (and becomes more elastic). This continues until demand just touches ATC, where P = ATC and profit is zero. Unlike perfect competition, that tangency is on the falling part of ATC, so price does not fall all the way to minimum ATC.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-005',

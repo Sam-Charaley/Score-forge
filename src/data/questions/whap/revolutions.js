@@ -3,8 +3,8 @@
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
 const DECLARATION = {
-  text: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed.',
-  citation: 'Thomas Jefferson and the Second Continental Congress, The Declaration of Independence, 1776.',
+  text: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, ...',
+  citation: 'Thomas Jefferson and the Second Continental Congress, The Declaration of Independence, 1776. Dashes in the original are omitted.',
 };
 
 const BOLIVAR = {

@@ -58,7 +58,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Government borrowing increases the demand for loanable funds (or, in another common model, lowers the supply through negative public saving). Either way, the real interest rate rises and some private investment is crowded out.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-004',

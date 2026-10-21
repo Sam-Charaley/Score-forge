@@ -68,7 +68,7 @@ export default [
     explanation: 'Consumer surplus is the triangle below demand and above the price, out to the equilibrium quantity: ½ × 40 × ($10 − $6) = $80. $160 forgets the ½.',
     verify: 'numeric',
     solve: () => 0.5 * 40 * (DEMAND.intercept - priceOnLine(DEMAND, 40)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-005',
@@ -114,7 +114,7 @@ export default [
       const quantityTraded = quantityOnLine(DEMAND, 8);
       return 0.5 * (40 - quantityTraded) * (priceOnLine(DEMAND, quantityTraded) - priceOnLine(SUPPLY, quantityTraded));
     },
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-008',

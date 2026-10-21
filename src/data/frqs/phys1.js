@@ -236,7 +236,7 @@ export default [
     type: 'experimental',
     title: 'Measuring the coefficient of friction',
     intro: 'Students want to find the coefficient of kinetic friction between a wooden block and a long, level board. They have the block, a set of slotted masses that can be stacked on the block, a spring scale, a meterstick, a stopwatch and a balance.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -284,7 +284,7 @@ export default [
     type: 'experimental',
     title: 'Density of an unknown liquid',
     intro: 'Students want to find the density of an unknown liquid. They hang a metal cylinder from a spring scale. The cylinder has weight W = 4.00 N, height 0.100 m and cross-sectional area A = 1.0 × 10⁻³ m². They lower it into a beaker of the liquid in steps, keeping it upright, and record the scale reading at each submerged depth d. Use g = 9.8 m/s².',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -331,7 +331,7 @@ export default [
     type: 'qual-quant',
     title: 'Two blocks launched by one spring',
     intro: 'A spring with spring constant k is compressed a distance x and used to launch a block across a frictionless floor. The block then slides onto a rough section of floor where the coefficient of kinetic friction is μ, and it slides until it stops. The experiment is done twice with the same spring and compression: once with block 1 of mass m and once with block 2 of mass 2m.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

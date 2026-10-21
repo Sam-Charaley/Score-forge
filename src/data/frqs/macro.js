@@ -15,8 +15,8 @@ export default [
     id: 'macro-frq-long-001',
     type: 'long',
     title: 'Recession and monetary policy',
-    intro: 'Assume the economy of Country X has a fractional reserve banking system with a reserve requirement of 10%, uses the U.S. dollar, and is currently in a short-run equilibrium with real output below full employment. The central bank of Country X operates with limited reserves.',
-    reviewed: false,
+    intro: 'Assume the economy of Country X has a fractional reserve banking system with a reserve requirement of 10% and is currently in a short-run equilibrium with real output below full employment. The central bank of Country X operates with limited reserves.',
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -274,7 +274,7 @@ export default [
     type: 'short',
     title: 'Deficit spending and crowding out',
     intro: 'Country Z is at full employment. Its government increases spending without changing taxes, and it finances the resulting budget deficit by borrowing.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

@@ -107,9 +107,9 @@ export default [
     prompt: 'What is the area of the region enclosed by the graphs of y = cos x and y = x²?',
     choices: ['0.547', '1.173', '1.095', '2.190'],
     answer: 2,
-    explanation: 'The curves cross where cos x = x², at x ≈ ±0.8241 (by calculator). cos x is on top between them, so the area is ∫ (cos x − x²) dx from −0.8241 to 0.8241 ≈ 1.095. 0.547 is only the right half. 1.173 integrates from −1 to 1 instead of between the intersection points.',
+    explanation: 'The curves cross where cos x = x², at x ≈ ±0.8241 (by calculator). cos x is on top between them, so the area is ∫ (cos x − x²) dx from −0.8241 to 0.8241 ≈ 1.095. 0.547 is only the right half. 1.173 is the area between the curves all the way from −1 to 1, which adds the small pieces outside the intersection points instead of stopping where the curves cross.',
     verify: 'numeric',
     solve: () => { const a = findRoot(parabolaGap, 0, 1); return integrate(parabolaGap, -a, a); },
-    reviewed: false,
+    reviewed: true,
   },
 ];

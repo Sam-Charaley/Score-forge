@@ -119,6 +119,6 @@ export default [
     choices: ['1/6', '1/2', '−1/120', '−1/6'],
     answer: 3,
     explanation: 'Substitute u = x² into sin u = u − u³/3! + u⁵/5! − ...: sin(x²) = x² − x⁶/6 + x¹⁰/120 − .... The x⁶ term is −x⁶/6, so the coefficient is −1/6. 1/6 drops the alternating sign, and −1/120 belongs to the u⁵ term, which becomes x¹⁰.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

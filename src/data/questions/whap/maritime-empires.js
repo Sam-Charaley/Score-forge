@@ -59,7 +59,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Sugar work killed people faster than they were born, so Caribbean and Brazilian planters kept buying new captives. In North America, where work was mostly on tobacco and cotton and the climate was less deadly, the enslaved population grew through births. The source says the table counts mainland North America, so it is not left out.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-003',

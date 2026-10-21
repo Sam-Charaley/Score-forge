@@ -101,7 +101,7 @@ export default [
     explanation: 'The 2.0 N weight is 30 cm from the pivot and makes a torque of 2.0 × 0.30 = 0.60 N·m. The 4.0 N weight must make an equal torque on the other side, so it hangs 0.60/4.0 = 0.15 m = 15 cm from the pivot, at the 65 cm mark. The 80 cm mark mirrors the distance without accounting for the larger weight, and the 35 cm mark is on the wrong side.',
     verify: 'numeric',
     solve: () => 50 + (100 * (2.0 * 0.3)) / 4.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-torque-008',

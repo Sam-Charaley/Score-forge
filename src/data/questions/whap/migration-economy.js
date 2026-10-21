@@ -12,9 +12,9 @@ const INDENTURED_MIGRATION = {
     ['Natal (South Africa)', '152,000'],
     ['Trinidad', '144,000'],
     ['Fiji', '61,000'],
-    ['Jamaica', '38,000'],
+    ['Jamaica', '36,000'],
   ],
-  alt: 'Table of approximate numbers of Indian indentured laborers sent abroad between 1834 and 1917: Mauritius 453,000, British Guiana 239,000, Natal in South Africa 152,000, Trinidad 144,000, Fiji 61,000 and Jamaica 38,000.',
+  alt: 'Table of approximate numbers of Indian indentured laborers sent abroad between 1834 and 1917: Mauritius 453,000, British Guiana 239,000, Natal in South Africa 152,000, Trinidad 144,000, Fiji 61,000 and Jamaica 36,000.',
 };
 const INDENTURED_SOURCE = {
   text: 'Most of these laborers signed contracts of five years to work on sugar estates in exchange for passage, wages and, for some, a return ticket. Many stayed after their contracts ended.',
@@ -47,7 +47,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Britain abolished slavery in 1833. Plantation owners in Mauritius, the Caribbean and elsewhere turned to indentured laborers from India (and China) to replace enslaved workers. The table starts in 1834, right after abolition, and ends long before 1947.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-002',
@@ -64,7 +64,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The note says many stayed after their contracts ended. People of Indian descent are now a large share of the population in several of these countries, and they brought Hindu and Muslim traditions, foods and languages with them.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-003',

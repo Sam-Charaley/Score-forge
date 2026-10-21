@@ -93,10 +93,10 @@ export default [
     prompt: 'The function f is differentiable for all real numbers. Selected values of f are given in the table. On which interval must there be a value c with f\'(c) = 3?',
     figure: { type: 'table', columns: ['x', 'f(x)'], rows: MVT_TABLE,
       alt: 'Table of values of f: f(0) = 4, f(2) = 1, f(5) = 10 and f(7) = 8.' },
-    choices: ['(0, 2)', '(2, 5)', '(5, 7)', '(0, 7)'],
+    choices: ['(0, 2)', '(2, 5)', '(5, 7)', 'None of these intervals'],
     answer: 1,
-    explanation: 'f is differentiable, so it is also continuous, and the Mean Value Theorem applies on each interval. The average rate of change on [2, 5] is (10 − 1)/(5 − 2) = 3, so f\'(c) = 3 for some c in (2, 5). The other intervals give −3/2, −1 and 4/7.',
-    reviewed: false,
+    explanation: 'f is differentiable, so it is also continuous, and the Mean Value Theorem applies on each interval. The average rate of change on [2, 5] is (10 − 1)/(5 − 2) = 3, so f\'(c) = 3 for some c in (2, 5). The other two intervals give −3/2 and −1, so the Mean Value Theorem guarantees nothing about 3 there, and since (2, 5) works, "none of these" is wrong.',
+    reviewed: true,
   },
   {
     id: 'calc-mvt-extrema-008',

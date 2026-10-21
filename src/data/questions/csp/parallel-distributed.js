@@ -70,7 +70,7 @@ export default [
     explanation: 'Put the 50-second process on one processor and the 40- and 30-second processes on the other. The second processor finishes last, at 40 + 30 = 70 seconds. Any other split is slower, and 60 seconds would need a process to be split in half, which is not allowed.',
     verify: 'numeric',
     solve: () => twoProcessorTime(PROCESS_SECONDS),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-005',
@@ -82,7 +82,7 @@ export default [
     explanation: 'Speedup is the sequential time divided by the parallel time: 120 / 70 ≈ 1.71. 2.00 would need the work split perfectly evenly, which these process lengths do not allow. 0.58 is the ratio upside down.',
     verify: 'numeric',
     solve: () => sequentialTime / twoProcessorTime(PROCESS_SECONDS),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-006',
@@ -92,7 +92,7 @@ export default [
     choices: ['30 seconds', '45 seconds', '50 seconds', '75 seconds'],
     answer: 1,
     explanation: 'Run X and then Z on one processor (20 + 25 = 45 seconds) while Y runs on the other (30 seconds). Everything is done at 45 seconds. Z cannot start at time 0, so 30 seconds is impossible, and 75 seconds is the sequential time.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-007',

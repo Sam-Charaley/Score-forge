@@ -27,7 +27,7 @@ export default [
     intro: 'Calculator allowed. Rainwater flows into a barrel at a rate of R(t) gallons per hour, where R is a differentiable function of t and t is measured in hours for 0 ≤ t ≤ 12. Selected values of R(t) are given in the table. Water drains out of the barrel at a rate modeled by D(t) = 8 + 6 sin(t/3) gallons per hour. At time t = 0 the barrel holds 50 gallons of water.',
     figure: { type: 'table', columns: ['t (hours)', 'R(t) (gallons per hour)'], rows: [[0, 10], [3, 14], [5, 15], [8, 12], [12, 8]],
       alt: 'Table of the inflow rate R(t) in gallons per hour: R(0) = 10, R(3) = 14, R(5) = 15, R(8) = 12 and R(12) = 8.' },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -121,7 +121,7 @@ export default [
     type: 'particle',
     title: 'Particle in the plane',
     intro: 'Calculator allowed. A particle moves in the xy-plane so that its velocity vector at time t is ⟨x′(t), y′(t)⟩ = ⟨1 + 2 sin(t²), 4 cos(0.5t)⟩ for 0 ≤ t ≤ 3. At time t = 0 the particle is at the point (2, −1).',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -135,10 +135,10 @@ export default [
       {
         id: 'b',
         prompt: 'For 0 < t < 3, find all times at which the particle is moving to the left. Give a reason for your answer.',
-        solution: 'The particle moves to the left when x′(t) < 0, that is 1 + 2 sin(t²) < 0, or sin(t²) < −1/2. For 0 < t < 3 this happens when 7π/6 < t² < 11π/6, so for 1.915 < t < 2.400.',
+        solution: 'The particle moves to the left when x′(t) < 0, that is 1 + 2 sin(t²) < 0, or sin(t²) < −1/2. For 0 < t < 3 this happens when 7π/6 < t² < 11π/6, so for 1.914 < t < 2.400.',
         points: [
           { id: 'b1', text: 'States that the particle moves left when x′(t) < 0' },
-          { id: 'b2', text: 'Gets the interval 1.915 < t < 2.400 (accept 1.914 to 1.915 and 2.399 to 2.400)' },
+          { id: 'b2', text: 'Gets the interval 1.914 < t < 2.400 (accept 1.914 to 1.915 and 2.399 to 2.400)' },
         ],
       },
       {
@@ -215,7 +215,7 @@ export default [
     figure: { type: 'graph', xLabel: 'x', yLabel: 'f(x)', xMin: -4, xMax: 6, xStep: 1, yMin: -3, yMax: 3, yStep: 1,
       series: [{ points: [[-4, 2], [0, -2], [3, 1], [6, -2]] }],
       alt: 'Graph of f for −4 ≤ x ≤ 6, made of three line segments. It falls from (−4, 2) to (0, −2), crossing zero at x = −2. It rises from (0, −2) to (3, 1), crossing zero at x = 2. It falls from (3, 1) to (6, −2), crossing zero at x = 4.' },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -271,7 +271,7 @@ export default [
     figure: { type: 'graph', xLabel: 'x', yLabel: 'f′(x)', xMin: -2, xMax: 6, xStep: 1, yMin: -3, yMax: 3, yStep: 1,
       series: [{ points: [...LOWER_SEMICIRCLE, [4, 2], [6, 0]] }],
       alt: 'Graph of f′ for −2 ≤ x ≤ 6. From x = −2 to x = 2 it is a semicircle below the x-axis, starting at 0, reaching its lowest value −2 at x = 0, and returning to 0 at x = 2. It then rises in a straight line to (4, 2) and falls in a straight line to (6, 0).' },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -317,7 +317,7 @@ export default [
     type: 'diffeq',
     title: 'Slope field and Euler\'s method',
     intro: 'No calculator. Consider the differential equation dy/dx = x²(y − 1). Let y = f(x) be the particular solution to this differential equation with initial condition f(1) = 2.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -424,8 +424,8 @@ export default [
     id: 'calcbc-frq-parametric-001',
     type: 'parametric',
     title: 'Limaçon and circle',
-    intro: 'Calculator allowed. The polar curves r = 3 − 2 cos θ and r = 2 are graphed together for 0 ≤ θ ≤ 2π. The curves intersect at θ = π/3 and θ = 5π/3.',
-    reviewed: false,
+    intro: 'Calculator allowed. The polar curves r = 3 − 2 cos θ and r = 2 are considered for 0 ≤ θ ≤ 2π. Sketch them on paper if it helps. The curves intersect at θ = π/3 and θ = 5π/3.',
+    reviewed: true,
     parts: [
       {
         id: 'a',

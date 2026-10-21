@@ -3,7 +3,7 @@
 // Question ids are permanent once a question is reviewed: attempts point at them.
 // If you change what a question asks, give it a new id instead of editing it.
 const FDR_INAUGURAL = {
-  text: 'So, first of all, let me assert my firm belief that the only thing we have to fear is fear itself, nameless, unreasoning, unjustified terror which paralyzes needed efforts to convert retreat into advance. ... Our greatest primary task is to put people to work. ... It can be accomplished in part by direct recruiting by the Government itself, treating the task as we would treat the emergency of a war.',
+  text: 'So, first of all, let me assert my firm belief that the only thing we have to fear is fear itself, nameless, unreasoning, unjustified terror which paralyzes needed efforts to convert retreat into advance. ... Our greatest primary task is to put people to work. ... It can be accomplished in part by direct recruiting by the Government itself, treating the task as we would treat the emergency of a war, ...',
   citation: 'Franklin D. Roosevelt (President of the United States), First Inaugural Address, March 4, 1933. Dash shown as a comma.',
 };
 

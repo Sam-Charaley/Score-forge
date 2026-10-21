@@ -122,6 +122,6 @@ export default [
     explanation: 'Squaring T = 2π√(m/k) gives k = 4π²m/T². Each row gives about 20 N/m, for example 4π² × 0.20/0.63² ≈ 20 N/m. A graph of T² against m would be a straight line with slope 4π²/k. 13 N/m divides by T instead of T², and 0.050 N/m is the ratio turned upside down.',
     verify: 'numeric',
     solve: () => SPRING_LAB.reduce((sum, [m, t]) => sum + (4 * Math.PI ** 2 * m) / t ** 2, 0) / SPRING_LAB.length,
-    reviewed: false,
+    reviewed: true,
   },
 ];
