@@ -26,7 +26,7 @@ export default [
     choices: ['A slice of pizza', 'A ticket to a movie', 'National defense', 'A seat on a crowded bus'],
     answer: 2,
     explanation: 'A public good is nonrival (one person\'s use does not reduce what others get) and nonexcludable (people cannot be kept from benefiting). National defense protects everyone in the country at once. Pizza, movie tickets and bus seats are all rival, and sellers can exclude people who do not pay.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-002',
@@ -41,7 +41,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Because no one can be excluded, each person has an incentive to let others pay and enjoy the good for free. Firms cannot collect enough revenue to cover the cost, even when the total benefit is large, so the government often provides public goods and pays for them with taxes.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-003',
@@ -56,7 +56,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Fish are a common resource: a fish one boat catches is not available to another, but no one can be kept from fishing. Each boat ignores the cost its catch imposes on others, so the stock is overfished. Public goods have the opposite problem: they are underprovided, not overused.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-004',
@@ -69,7 +69,7 @@ export default [
     explanation: 'All three residents enjoy the same streetlight at once, so its social benefit is the sum of their benefits: $20 + $20 + $20 = $60. $20 is just one resident\'s benefit, and $100 is the social benefit of the 2nd light.',
     verify: 'numeric',
     solve: () => socialBenefit(3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-005',
@@ -97,7 +97,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The Lorenz curve shows the share of income earned by each share of households. The farther it bows away from the 45-degree line of equality, the more unequal the distribution, and the Gini coefficient (the area between the curves as a share of the area under the line) gets closer to 1.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-007',
@@ -107,7 +107,7 @@ export default [
     choices: ['progressive', 'regressive', 'proportional', 'lump-sum'],
     answer: 0,
     explanation: 'The lower-income household pays 5% of its income and the higher-income household pays 10%. When the share of income paid rises as income rises, the tax is progressive. The richer household paying more dollars is not enough; a proportional tax would charge both the same percentage.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-008',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The tax rate is the same for everyone, but a family with less income spends a bigger fraction of it on food, so the tax takes a larger share of its income. A tax that takes a smaller share as income rises is regressive. Who sends the money to the government does not determine this.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-public-goods-009',
@@ -137,6 +137,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Taking a larger share from high earners and giving it to low earners raises the income share of the bottom groups. The Lorenz curve shifts toward the 45-degree line, and the Gini coefficient, which measures inequality, falls. The Lorenz curve shows how income is shared, so it can change even if total income does not.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
