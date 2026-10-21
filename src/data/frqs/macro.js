@@ -81,7 +81,7 @@ export default [
     type: 'long',
     title: 'Inflationary gap and fiscal policy',
     intro: 'The economy of Country Y is currently in short-run equilibrium with real output of $2,400 billion. Full-employment output is $2,000 billion. The marginal propensity to consume is 0.8. Assume there is no international trade.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -155,7 +155,7 @@ export default [
       ],
       alt: 'Balance sheet for Lakeside Bank with a 20 percent reserve requirement. Assets: reserves of $40,000 and loans of $60,000. Liabilities: demand deposits of $100,000.',
     },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -197,7 +197,7 @@ export default [
     type: 'short',
     title: 'Interest rates and the foreign exchange market',
     intro: 'The United States and Mexico trade with each other, and financial capital moves freely between them. The central bank of the United States raises interest rates, while interest rates in Mexico do not change.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -232,7 +232,7 @@ export default [
       rows: [['Country A', 20, 40], ['Country B', 10, 30]],
       alt: 'Table of maximum output. Country A can make 20 phones or 40 shirts. Country B can make 10 phones or 30 shirts.',
     },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
