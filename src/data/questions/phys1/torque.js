@@ -88,7 +88,7 @@ export default [
     ],
     answer: 2,
     explanation: 'An object in static equilibrium has no translational acceleration and no angular acceleration. That requires zero net force and zero net torque about any point. Several forces do act on the ladder (gravity, the floor and the wall); they just balance.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-torque-007',
@@ -115,6 +115,6 @@ export default [
     explanation: 'Take torques about the left support so its unknown force drops out. The beam\'s weight acts at its center, 2.0 m away, and the crate is 1.0 m away: F × 4.0 = 196 × 2.0 + 294 × 1.0, so F = 686/4.0 ≈ 170 N. 320 N is the left support\'s force, and 250 N splits the total weight equally, which is only right if the crate were at the center.',
     verify: 'numeric',
     solve: () => (20 * G * 2.0 + 30 * G * 1.0) / 4.0,
-    reviewed: false,
+    reviewed: true,
   },
 ];
