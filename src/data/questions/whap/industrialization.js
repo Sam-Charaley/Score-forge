@@ -52,7 +52,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Britain went from about 2 percent to about 23 percent, while China fell from about 33 to 12.5 and India from about 24 to under 3. The United States led only in 1900.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-002',
@@ -69,7 +69,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Coal powered steam engines, iron built machines, and wealth from trade gave investors capital. Colonies supplied cotton and bought finished cloth. Britain\'s population grew in this period, which supplied factory workers.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-003',
@@ -86,7 +86,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Machine-made British cloth was cheaper than handwoven Indian cloth, and British rule in India shaped trade to send raw materials to Britain and buy British goods. India\'s hand-textile industry, once the world\'s largest, collapsed. Historians call this deindustrialization.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-004',
@@ -102,7 +102,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Writing in 1848, during rapid industrialization, Marx and Engels argued that factory owners (the bourgeoisie) exploited workers (the proletariat), and that workers should unite and overthrow capitalism. Engels had studied factory conditions in Manchester.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-005',
@@ -118,7 +118,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Smith says the butcher and baker serve us because it profits them, so self-interest in a free market benefits everyone. This laissez-faire idea is the opposite of Marx\'s view that capitalism pits classes against each other. Smith supported free trade, so the last choice is wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-006',
@@ -134,7 +134,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The Sadler Committee\'s reports shocked many readers, and Parliament passed the Factory Act of 1833, which limited children\'s working hours and set up inspectors. Factories kept growing; reform made them less harsh rather than ending them.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-007',
@@ -149,7 +149,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The Meiji government built railroads, shipyards and model factories, hired foreign experts and later sold many enterprises to business groups (zaibatsu). Its goal was to make Japan strong enough to resist Western imperialism. Japan was never a colony.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-008',
@@ -164,7 +164,7 @@ export default [
     ],
     answer: 0,
     explanation: 'After about 1870, new industries grew around steel (made cheaply with the Bessemer process), chemicals, electricity and oil, led especially by Germany and the United States. The handloom and printing press are much older technologies.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-industrialization-009',
@@ -179,6 +179,6 @@ export default [
     ],
     answer: 2,
     explanation: 'As work moved to offices and factories, the middle class adopted the ideal of "separate spheres": men in public work, women in the home. Working-class women and children, by contrast, often worked in factories. Women did not gain the vote anywhere in Europe or the US by 1850.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
