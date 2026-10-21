@@ -15,7 +15,7 @@ export default [
     type: 'saq',
     title: 'Historians on the Mongol Empire',
     intro: 'Read the passage below, then answer all three parts. A short answer is a few complete sentences per part: make a clear claim and back it with specific historical evidence.',
-    reviewed: false,
+    reviewed: true,
     sources: [
       {
         label: 'Passage',
@@ -83,7 +83,7 @@ export default [
     type: 'saq',
     title: 'Ruling diverse land-based empires',
     intro: 'Answer all three parts in a few complete sentences each. No source is provided; use your own knowledge of the period 1450 to 1750.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -110,7 +110,7 @@ export default [
     type: 'saq',
     title: 'The Cold War and new nations',
     intro: 'Answer all three parts in a few complete sentences each. No source is provided; use your own knowledge of the period 1945 to 1991.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -137,7 +137,7 @@ export default [
     type: 'dbq',
     title: 'Industrialization and British workers',
     intro: 'Read all seven documents, then write an essay that answers the prompt. On the exam you get 60 minutes for the DBQ, including about 15 minutes to read. Plan your thesis first, group the documents by argument, and use at least four of them as evidence.',
-    reviewed: false,
+    reviewed: true,
     sources: [
       {
         label: 'Document 1',
@@ -257,7 +257,7 @@ export default [
     type: 'leq',
     title: 'The Columbian Exchange in the Americas',
     intro: 'Write an essay that answers the prompt. No documents are provided; use your own knowledge. On the exam you get about 40 minutes for the long essay. Spend a few minutes planning a thesis and two or three body paragraphs before you write.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -279,7 +279,7 @@ export default [
     type: 'leq',
     title: 'Paths to independence after 1900',
     intro: 'Write an essay that answers the prompt. No documents are provided; use your own knowledge. On the exam you get about 40 minutes for the long essay. Spend a few minutes planning a thesis and two or three body paragraphs before you write.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
