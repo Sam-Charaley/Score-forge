@@ -30,7 +30,7 @@ export default [
     choices: ['The $90 she earns', 'The concert she gives up', 'The $40 ticket price only', 'Nothing, because she earns money'],
     answer: 1,
     explanation: 'Opportunity cost is the value of the next best alternative given up, which here is going to the concert. The $90 is the benefit of working, not its cost.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-002',
@@ -45,7 +45,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Points inside the PPC are attainable but inefficient: some resources are unemployed or misallocated, as in a recession. Points on the curve are efficient, and points outside are unattainable with current resources.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-003',
@@ -60,7 +60,7 @@ export default [
     ],
     answer: 0,
     explanation: 'As an economy makes more of one good, it must move resources that are less and less suited to that good, so each extra unit costs more of the other good. A straight-line PPC would mean constant opportunity costs.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-004',
@@ -86,7 +86,7 @@ export default [
     explanation: 'A worker in Arland can make 12 bushels of wheat or 4 meters of cloth, so 1 meter of cloth costs 12/4 = 3 bushels of wheat. 1/3 bushel is the cost of a bushel of wheat measured in cloth, and 2 bushels is Borovia\'s cost of cloth.',
     verify: 'numeric',
     solve: () => ARLAND.wheat / ARLAND.cloth,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-006',
@@ -102,7 +102,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Arland gives up 3 wheat per cloth and Borovia only 2, so Borovia has the lower cost of cloth. In turn, Arland gives up 1/3 cloth per wheat and Borovia 1/2, so Arland has the lower cost of wheat. Arland has the absolute advantage in both goods, but no country can have the comparative advantage in both.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-007',
@@ -118,7 +118,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Trade helps both countries when the price of cloth lies between their opportunity costs: Borovia gives up 2 wheat per cloth and Arland 3. A price of 2.5 wheat is in that range. At 1.5, Borovia would rather make its own wheat; at 3.5 or 4, Arland would rather make its own cloth.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-scarcity-ppc-008',
@@ -133,6 +133,6 @@ export default [
     ],
     answer: 0,
     explanation: 'Capital goods are a resource used to produce future output, so choosing more of them today adds to productive capacity and shifts the future PPC out further. Today, the choice is still a point on the current curve, not outside it.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
