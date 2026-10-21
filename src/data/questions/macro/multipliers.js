@@ -28,7 +28,7 @@ export default [
     explanation: 'Spending multiplier = 1/(1 − MPC) = 1/0.2 = 5. 4 is the size of the tax multiplier (MPC/MPS), and 1.25 is 1/MPC.',
     verify: 'numeric',
     solve: () => spendingMultiplier(0.8),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-002',
@@ -41,7 +41,7 @@ export default [
     explanation: 'Spending multiplier = 1/MPS = 1/0.25 = 4, so real GDP can rise by up to 4 × $20 billion = $80 billion. 60 billion uses the tax multiplier (3) by mistake.',
     verify: 'numeric',
     solve: () => spendingMultiplier(1 - 0.25) * 20,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-003',
@@ -54,7 +54,7 @@ export default [
     explanation: 'Tax multiplier = MPC/MPS = 0.75/0.25 = 3, so the tax cut can raise real GDP by up to 3 × $10 billion = $30 billion. 40 uses the spending multiplier: households save part of a tax cut before spending, so it has a smaller effect than the same increase in government purchases.',
     verify: 'numeric',
     solve: () => taxMultiplier(0.75) * 10,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-004',
@@ -67,7 +67,7 @@ export default [
     explanation: 'The spending increase adds 10 × 50 = 500, and the tax increase subtracts 9 × 50 = 450, for a net change of +50. This is the balanced budget multiplier of 1. 0 assumes the two cancel, but a dollar of taxes lowers spending by only $0.90 at first.',
     verify: 'numeric',
     solve: () => spendingMultiplier(0.9) * 50 - taxMultiplier(0.9) * 50,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-005',
@@ -80,7 +80,7 @@ export default [
     explanation: 'The spending multiplier is 1/0.2 = 5, so purchases need to rise by $100 billion / 5 = $20 billion. 25 is the tax cut needed (tax multiplier 4), and 100 ignores the multiplier.',
     verify: 'numeric',
     solve: () => 100 / spendingMultiplier(0.8),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-006',
@@ -93,7 +93,7 @@ export default [
     explanation: 'Tax multiplier = MPC/MPS = 0.8/0.2 = 4, so taxes must fall by $100 billion / 4 = $25 billion. 20 is the increase in government purchases that would do the same job; a tax cut must be larger because part of it is saved.',
     verify: 'numeric',
     solve: () => 100 / taxMultiplier(0.8),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-007',
@@ -107,7 +107,7 @@ export default [
     explanation: 'MPC = change in consumption / change in disposable income = 150/200 = 0.75, so the multiplier is 1/(1 − 0.75) = 4. 10 divides by the average propensity to save at the first row (100/1,000) instead of the marginal one, and 3 is the tax multiplier.',
     verify: 'numeric',
     solve: () => spendingMultiplier(TABLE_MPC),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-multipliers-008',
@@ -123,6 +123,6 @@ export default [
     ],
     answer: 1,
     explanation: 'Each round of spending is larger when households spend a bigger share of each extra dollar, so a higher MPC (and lower MPS) means a larger multiplier, 1/(1 − MPC). A change in government purchases changes how much is multiplied, not the multiplier itself.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
