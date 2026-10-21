@@ -30,7 +30,7 @@ export default [
     ],
     answer: 2,
     explanation: 'More confident firms invest more, and investment is part of aggregate demand. A change in the price level is a movement along AD, cheaper raw materials shift SRAS, and higher income taxes lower consumption and shift AD left.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-002',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Short-run equilibrium (AD crossing SRAS) is at real GDP 60, to the left of LRAS at 80. Output is below full employment, so there is a recessionary gap and unemployment is above the natural rate.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-003',
@@ -59,7 +59,7 @@ export default [
     explanation: 'The output gap is the difference between actual real GDP (60, where AD meets SRAS) and full-employment real GDP (80, at LRAS): 80 − 60 = 20 billion.',
     verify: 'numeric',
     solve: () => FULL_EMPLOYMENT_GDP - SHORT_RUN_GDP,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-004',
@@ -75,7 +75,7 @@ export default [
     ],
     answer: 0,
     explanation: 'With unemployment above the natural rate, nominal wages and other input prices eventually fall. Lower costs shift SRAS right until it crosses AD at full employment, with a lower price level. Falling prices move the economy along AD; they do not shift it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-005',
@@ -90,7 +90,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Higher input costs shift SRAS left, which raises the price level and lowers real output: stagflation. A rise in both would come from an increase in AD.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-006',
@@ -105,7 +105,7 @@ export default [
     ],
     answer: 0,
     explanation: 'AD slopes down because of the wealth (real balances) effect, the interest rate effect and the exchange rate (net export) effect. Substitution between goods explains a single market\'s demand curve, not aggregate demand, and costs relate to supply.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-007',
@@ -120,7 +120,7 @@ export default [
     ],
     answer: 1,
     explanation: 'AD shifts right, so in the short run output and prices rise. With unemployment below the natural rate, nominal wages rise and SRAS shifts left until output returns to full employment at LRAS. In the long run only the price level is higher.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-ad-as-008',
@@ -135,6 +135,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Better technology raises productivity, which increases both short-run supply and the economy\'s full-employment output. Lower nominal wages shift only SRAS, because they do not change the economy\'s productive capacity. Government purchases shift AD.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
