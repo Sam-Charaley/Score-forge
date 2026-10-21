@@ -28,7 +28,7 @@ export default [
     choices: ['Pixel data', 'Metadata', 'Lossy compression', 'Encryption'],
     answer: 1,
     explanation: 'Metadata is data about data. Here it describes the photo without being part of the image. Changing or deleting the metadata does not change the picture itself.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-002',
@@ -44,7 +44,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The table has both trip length and rider type, so the two groups can be compared. It has no ages, weather or prices, so the other questions need data that was not collected.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-003',
@@ -60,7 +60,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Trips 2, 4 and 6 start and end at the same station, and all three are casual riders. Members averaged about 12 minutes and casual riders about 34, each station starts two trips, and trip 4 lasted 41 minutes.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-004',
@@ -73,7 +73,7 @@ export default [
     explanation: 'Filter the table to the member rows (trips 1, 3 and 5), then average: (12 + 8 + 15) / 3 = 35 / 3 ≈ 11.7. 23.0 is the average of all six trips, and 35.0 is the members\' total before dividing.',
     verify: 'numeric',
     solve: () => MEMBER_MINUTES.reduce((sum, m) => sum + m, 0) / MEMBER_MINUTES.length,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-005',
@@ -83,7 +83,7 @@ export default [
     choices: ['Encrypting the data', 'Cleaning the data', 'Compressing the data', 'Filtering the data'],
     answer: 1,
     explanation: 'Cleaning data makes it uniform without changing its meaning, here so that four spellings of one state are counted together. Filtering would keep only some rows, which is a different step.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-006',
@@ -98,7 +98,7 @@ export default [
     ],
     answer: 2,
     explanation: 'A correlation does not show causation. Students who already work hard might both use the app more and earn higher grades. An experiment or more data would be needed to show the app itself makes a difference.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-007',
@@ -113,7 +113,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Each trip\'s start station can be matched to that station\'s neighborhood in data set B, and the trip minutes can then be added up by neighborhood. Neither data set identifies riders or where they live, and neither records how full the docks were over time.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-008',
@@ -128,7 +128,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Bias in how data is collected is not removed by collecting more of it. Teenagers who play the game are not a fair sample of all residents, so the results may not reflect the whole city.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-analysis-009',
@@ -143,6 +143,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Programs can process large data sets quickly to find patterns, trends and outliers that would take a person a very long time to see. They cannot remove bias in how the data was collected or prove that a pattern has a cause.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
