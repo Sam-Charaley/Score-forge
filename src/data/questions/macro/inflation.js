@@ -37,7 +37,7 @@ export default [
     explanation: 'The basket costs 5 × $10 + 10 × $5 = $100 in 2024 and 5 × $12 + 10 × $6 = $120 in 2025. CPI = 120/100 × 100 = 120. 83 divides the base year by the current year, and 100 is the CPI of the base year itself.',
     verify: 'numeric',
     solve: () => cpi(2025),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-002',
@@ -51,7 +51,7 @@ export default [
     explanation: 'The basket costs $131 in 2026, so CPI is 131. Inflation = (131 − 120)/120 = 9.2%. 11.0% is just the change in index points, 31.0% is inflation since the base year, and 8.4% divides by the new CPI instead of the old one.',
     verify: 'numeric',
     solve: () => ((cpi(2026) - cpi(2025)) / cpi(2025)) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-003',
@@ -64,7 +64,7 @@ export default [
     explanation: 'Real interest rate = nominal interest rate − inflation = 7% − 3% = 4%. 10% adds inflation instead of subtracting it.',
     verify: 'numeric',
     solve: () => 7 - 3,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-004',
@@ -79,7 +79,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The real interest rate turns out lower than both expected (fixed nominal rate minus 6% instead of minus 2%), so the borrower repays dollars worth less. The lender loses purchasing power. With a fixed rate, the nominal rate does not adjust.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-005',
@@ -92,7 +92,7 @@ export default [
     explanation: 'Her nominal wage rose 10% ($2 on $20), the same as the price level, so her purchasing power is unchanged: real wage = $22 / 1.10 = $20 in starting-year dollars. A real wage rises only when the nominal wage grows faster than prices.',
     verify: 'numeric',
     solve: () => ((22 / 1.1 - 20) / 20) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-006',
@@ -107,7 +107,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Cost-push inflation comes from higher production costs, which shift short-run aggregate supply left. Oil is an input to most production. The other choices raise aggregate demand, which causes demand-pull inflation.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-007',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The CPI prices a fixed basket, but when a good gets relatively expensive, people buy less of it and more of cheaper substitutes. The fixed basket misses this, so it overstates how much more it costs to live as well as before. The CPI does include imported consumer goods.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-inflation-008',
@@ -135,6 +135,6 @@ export default [
     explanation: 'Real income in the later year is $66,000 / 120 × 100 = $55,000 in base-year dollars. Compared with $50,000, that is a 10% increase. 32% is the nominal increase, and 12% subtracts the 20% inflation from the 32% nominal rise, which only approximates the real change.',
     verify: 'numeric',
     solve: () => (((66000 / 120) * 100 - 50000) / 50000) * 100,
-    reviewed: false,
+    reviewed: true,
   },
 ];
