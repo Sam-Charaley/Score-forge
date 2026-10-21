@@ -28,7 +28,7 @@ export default [
     explanation: 'By the rule of 70, doubling time ≈ 70 / growth rate = 70 / 3.5 = 20 years. 35 years divides 70 by 2 rather than by the growth rate.',
     verify: 'numeric',
     solve: () => yearsToDouble(3.5),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-002',
@@ -39,7 +39,7 @@ export default [
     choices: ['Nominal GDP', 'Real GDP', 'Real GDP per capita', 'The consumer price index'],
     answer: 2,
     explanation: 'Real GDP per capita removes both inflation (by using real values) and population growth (by dividing by population), so it measures the average amount of goods and services per person. Real GDP alone can rise just because the population grew.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-003',
@@ -53,7 +53,7 @@ export default [
     explanation: 'Real GDP per capita is $10,000 in year 1 (500 billion / 50 million) and about $10,392 in year 2 (530 billion / 51 million), a growth rate of about 3.9%. 6.0% is the growth of total real GDP, ignoring the 2.0% population growth.',
     verify: 'numeric',
     solve: () => ((perCapita(GROWTH.year2) - perCapita(GROWTH.year1)) / perCapita(GROWTH.year1)) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-004',
@@ -68,7 +68,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Education and training build human capital, which raises labor productivity and the economy\'s capacity to produce. Taxing saving would reduce funds for investment, and unemployment benefits and bond sales are short-run stabilization tools.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-005',
@@ -83,7 +83,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Long-run growth is an increase in the economy\'s potential output, which shifts LRAS (and the PPC) outward. An AD shift changes output only in the short run unless capacity also grows.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-006',
@@ -95,7 +95,7 @@ export default [
     explanation: 'Productivity is output per labor hour: $40 per hour in the first year and $45 the next. Growth = (45 − 40)/40 = 12.5%. 11.1% divides the change by the new value instead of the old one.',
     verify: 'numeric',
     solve: () => ((2700 / 60 - 2400 / 60) / (2400 / 60)) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-007',
@@ -110,7 +110,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Firms spending on equipment is investment, part of AD, so AD shifts right in the short run. Over time, the added physical capital raises productivity and potential output, shifting LRAS right.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-economic-growth-008',
@@ -123,6 +123,6 @@ export default [
     explanation: 'Country A doubles in about 70/2 = 35 years and Country B in about 70/7 = 10 years, so Country A takes 25 more years. 5 is just the difference in growth rates. Small differences in growth rates add up to large differences in living standards over time.',
     verify: 'numeric',
     solve: () => yearsToDouble(2) - yearsToDouble(7),
-    reviewed: false,
+    reviewed: true,
   },
 ];
