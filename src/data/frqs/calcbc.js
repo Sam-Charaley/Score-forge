@@ -75,7 +75,7 @@ export default [
     intro: 'Calculator allowed. Fans line up outside a concert hall. On a particular evening, fans join the line at a rate of A(t) people per minute, where A is a differentiable function of t and t is measured in minutes for 0 ≤ t ≤ 60. Selected values of A(t) are given in the table. Starting at t = 0 the doors admit fans from the front of the line at a constant rate of 9 people per minute. At time t = 0 there are 40 people in line.',
     figure: { type: 'table', columns: ['t (minutes)', 'A(t) (people per minute)'], rows: [[0, 12], [10, 17], [20, 17], [30, 12], [40, 7], [60, 12]],
       alt: 'Table of the rate fans join the line, A(t), in people per minute: A(0) = 12, A(10) = 17, A(20) = 17, A(30) = 12, A(40) = 7 and A(60) = 12.' },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -167,7 +167,7 @@ export default [
     type: 'particle',
     title: 'Particle on a line',
     intro: 'No calculator. A particle moves along the x-axis so that its velocity at time t is v(t) = t² − 6t + 8 for 0 ≤ t ≤ 5. At time t = 0 the particle is at position x = 2.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -372,7 +372,7 @@ export default [
     type: 'diffeq',
     title: 'Logistic population',
     intro: 'No calculator. The population P(t) of a protected deer herd, where t is measured in years, satisfies the logistic differential equation dP/dt = 0.3P(1 − P/600), with P(0) = 100.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -470,7 +470,7 @@ export default [
     type: 'parametric',
     title: 'Parametric curve',
     intro: 'No calculator. A curve in the xy-plane is defined by the parametric equations x(t) = t² − 2t and y(t) = t³ − 3t for −2 ≤ t ≤ 2.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -514,7 +514,7 @@ export default [
     type: 'series',
     title: 'A power series and its derivative',
     intro: 'No calculator. The function f is defined by the power series f(x) = Σ (n = 1 to ∞) (x − 1)ⁿ/(n · 3ⁿ) for all x at which the series converges.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -554,7 +554,7 @@ export default [
     intro: 'No calculator. The function f has derivatives of all orders for all real numbers. Values of f and its first three derivatives at x = 2 are given in the table. The fourth derivative of f satisfies |f⁽⁴⁾(x)| ≤ 30 for 2 ≤ x ≤ 2.5.',
     figure: { type: 'table', columns: ['x', 'f(x)', 'f′(x)', 'f″(x)', 'f‴(x)'], rows: [[2, 3, -2, 5, 12]],
       alt: 'Table of values at x = 2: f(2) = 3, f′(2) = −2, f″(2) = 5 and f‴(2) = 12.' },
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
