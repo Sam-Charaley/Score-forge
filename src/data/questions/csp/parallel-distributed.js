@@ -31,7 +31,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Parallel computing has a sequential part and a part where several operations run at the same time, often on multiple processors. Running every step in order is sequential computing.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-002',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Distributed computing spreads work across many devices, so problems too large or too slow for one computer become possible. Individual machines can still fail, and communication between them adds its own cost.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-003',
@@ -58,7 +58,7 @@ export default [
     explanation: 'Sequential computing runs one process at a time, so the total time is the sum: 40 + 30 + 50 = 120 seconds. 50 seconds would be the time if all three could run at once.',
     verify: 'numeric',
     solve: () => sequentialTime,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-004',
@@ -107,7 +107,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The sequential part of a program takes the same time no matter how many processors there are, so it limits the speedup. Communication between processors adds overhead too. More processors usually help, just by less than the ratio.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-parallel-distributed-008',
@@ -122,6 +122,6 @@ export default [
     ],
     answer: 1,
     explanation: 'Each photo can be filtered on its own, so the work splits cleanly across many processors. In the running balance and the recipe, each step depends on the one before, so the steps must happen in order.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -6,7 +6,7 @@ export const PUBLISHED_COUNTS = {
   calcbc: { questions: 123, frqs: 6 },
   chem: { questions: 83, frqs: 0 },
   csa: { questions: 116, frqs: 8 },
-  csp: { questions: 0, frqs: 0 },
+  csp: { questions: 126, frqs: 7 },
   macro: { questions: 0, frqs: 0 },
   micro: { questions: 0, frqs: 0 },
   phys1: { questions: 112, frqs: 5 },

@@ -16,7 +16,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Investigating what users need (through surveys, interviews or observation) is the first step of the development process and shapes which features get built. Waiting until the code is finished to ask for feedback makes it expensive to change direction.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-002',
@@ -31,7 +31,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A program\'s purpose is why it exists: the problem it solves or the creative goal it serves. The instructions describe its function (what it does), not its purpose.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-003',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Pair programming puts a second set of eyes on every line, so mistakes are caught early, and switching roles means both partners understand all of the code. It does not remove the need for testing, and it is not parallel work on separate parts.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-004',
@@ -61,7 +61,7 @@ export default [
     ],
     answer: 3,
     explanation: 'An incremental process breaks the problem into smaller pieces and makes sure each piece works before adding it to the whole. An iterative process is related: it repeats cycles of design, testing and refinement based on feedback.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-005',
@@ -76,7 +76,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Output is data the program sends out, here the converted temperature shown on screen. The number the user types is input, and the formula is part of the program\'s code, not its output.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-006',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Code written by someone else should be credited, usually with a comment naming the author and source. This is expected even when the code is freely shared, and it is required in the Create performance task.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-007',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Collaboration among people with diverse perspectives helps a team understand users better and avoid bias in a computing innovation. Larger teams are not automatically faster, and team makeup has nothing to do with whether code needs comments.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-program-design-008',
@@ -121,6 +121,6 @@ export default [
     ],
     answer: 1,
     explanation: 'Good documentation describes how a program or code segment works and how to use it, such as what each procedure does and what its parameters and return value mean. A screenshot of output shows only one result and says nothing about how the code works.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

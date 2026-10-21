@@ -87,7 +87,7 @@ export default [
     title: 'Workout tracker: users, input and output',
     intro: WORKOUT_INTRO,
     sources: [WORKOUT_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -117,7 +117,7 @@ export default [
     title: 'Practice quiz: purpose, function and improvement',
     intro: QUIZ_INTRO,
     sources: [QUIZ_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -147,7 +147,7 @@ export default [
     title: 'Workout tracker: loops and conditions',
     intro: WORKOUT_INTRO,
     sources: [WORKOUT_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -186,7 +186,7 @@ export default [
     title: 'Practice quiz: how scoreQuiz works',
     intro: QUIZ_INTRO,
     sources: [QUIZ_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -217,7 +217,7 @@ export default [
     title: 'Workout tracker: testing countLongWorkouts',
     intro: WORKOUT_INTRO,
     sources: [WORKOUT_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -277,7 +277,7 @@ export default [
     title: 'Workout tracker: the list and the procedure',
     intro: WORKOUT_INTRO,
     sources: [WORKOUT_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -307,7 +307,7 @@ export default [
     title: 'Practice quiz: the answer key and scoreQuiz',
     intro: QUIZ_INTRO,
     sources: [QUIZ_PROGRAM],
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

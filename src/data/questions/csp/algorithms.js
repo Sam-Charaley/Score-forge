@@ -19,7 +19,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Binary search checks the middle element and throws away the half that cannot contain the target. That only works if the list is in order. Lists of words can be binary searched too, as long as they are sorted.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-002',
@@ -31,7 +31,7 @@ export default [
     explanation: 'Each check halves the part of the list still being searched: 1,000, 500, 250, 125, 62, 31, 15, 7, 3, 1. That is at most 10 checks, since 2¹⁰ = 1,024 is more than 1,000. 1000 is the worst case for a linear search.',
     verify: 'exact',
     solve: () => binarySearchWorstCase(1000),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-003',
@@ -43,7 +43,7 @@ export default [
     explanation: 'The worst case is when the name is last or not in the list at all, so every one of the 200 names is checked. 8 is the binary search worst case, which is not possible here because the list is unsorted.',
     verify: 'exact',
     solve: () => 200,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-004',
@@ -53,7 +53,7 @@ export default [
     choices: ['n steps', '2ⁿ steps', 'n² steps', 'n³ steps'],
     answer: 1,
     explanation: 'Algorithms whose steps grow like a polynomial (n, n², n³) run in reasonable time. 2ⁿ is exponential: adding one more input doubles the work, so it becomes impossible to run for large n. n³ grows quickly but is still polynomial.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-005',
@@ -63,7 +63,7 @@ export default [
     choices: ['A binary search', 'An undecidable problem', 'A heuristic', 'Lossless compression'],
     answer: 2,
     explanation: 'A heuristic is an approach that finds an approximate solution when the exact solution cannot be found in reasonable time. The routing problem is not undecidable: an exact answer exists and could be computed, just far too slowly.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-006',
@@ -78,7 +78,7 @@ export default [
     ],
     answer: 0,
     explanation: 'An undecidable problem is a decision problem for which no algorithm can always give a correct answer. Some individual inputs may still have algorithmic solutions, so "cannot be solved for any input" goes too far. Faster computers do not help.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-007',
@@ -88,7 +88,7 @@ export default [
     choices: ['2 times as many', '4 times as many', 'The same number', '2ⁿ times as many'],
     answer: 1,
     explanation: 'Comparing every pair takes about n²/2 comparisons. Doubling n gives about (2n)²/2 = 4 × n²/2, so about 4 times as many. Doubling would only double the work for an algorithm that looks at each element once.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-008',
@@ -103,7 +103,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Sequencing runs steps in order, selection chooses between paths with a condition, and iteration repeats steps. Together they can express any algorithm. Variables and lists are ways to store data, not ways to control steps.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-algorithms-009',

@@ -16,7 +16,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Crowdsourcing uses the Internet to gather contributions from many people, such as reviews, funding or answers to questions. Splitting a program across processors is parallel computing.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-002',
@@ -31,7 +31,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Creative Commons licenses let creators grant permissions up front, for example allowing sharing with credit, or allowing only non-commercial use. The creator keeps the copyright and chooses which uses to allow.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-003',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Citizen science is scientific research done partly by members of the public, often using their own devices to collect or label data. It is a kind of crowdsourcing that lets researchers handle far more data than they could alone.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-004',
@@ -61,7 +61,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Open source programs publish their code and use a license that allows others to study, modify and redistribute it. They still have licenses, which set the terms, and they can still contain errors.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-005',
@@ -76,7 +76,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The license already gives permission to use the photo, with one condition: attribution. Material found online is not automatically free to use, and editing a work does not remove the requirement to credit its creator.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-006',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Using personal data for purposes users were not told about takes away their informed choice, and location history can reveal where someone lives and works. Something can be legal and still unethical. A free product does not make it acceptable.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-007',
@@ -101,7 +101,7 @@ export default [
     choices: ['Plagiarism', 'Open access', 'Phishing', 'Lossy compression'],
     answer: 1,
     explanation: 'Open access makes research freely available online, which spreads knowledge to people who cannot pay for journals. Plagiarism is presenting someone else\'s work as your own.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-legal-ethical-008',
@@ -116,6 +116,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Digital work can be copied perfectly and spread instantly, which makes intellectual property easy to misuse. Free to view is not the same as free to reuse, and giving credit does not replace permission when a license or copyright requires it.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

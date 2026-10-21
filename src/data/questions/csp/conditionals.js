@@ -11,7 +11,7 @@ export default [
     choices: ['true', 'false', '5', 'The expression causes an error'],
     answer: 1,
     explanation: '5 > 3 is true but 2 = 4 is false. AND is true only when both sides are true, so the whole expression is false. With OR instead of AND it would be true.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-002',
@@ -37,7 +37,7 @@ ELSE
     choices: ['hot', 'cold', 'mild', 'hot mild'],
     answer: 2,
     explanation: '72 ≥ 80 is false, so the ELSE branch runs. Inside it, 72 ≥ 60 is true, so "mild" is displayed. Only one branch of an IF/ELSE ever runs, so "hot mild" is not possible.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-003',
@@ -52,7 +52,7 @@ ELSE
     ],
     answer: 0,
     explanation: 'The original is true when neither x > 10 nor y < 5 holds, so x must be at most 10 and y must be at least 5. NOT flips OR to AND and flips each comparison: the opposite of > is ≤, not <.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-004',
@@ -67,7 +67,7 @@ ELSE
     ],
     answer: 3,
     explanation: 'Both limits must hold at once, so the parts are joined with AND, and ≥ and ≤ include the endpoints. The OR version is true for every number, and (num < 1) AND (num > 10) is never true.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-005',
@@ -96,7 +96,7 @@ DISPLAY(grade)`,
     choices: ['A', 'D', 'C', 'B'],
     answer: 3,
     explanation: 'These are separate IF statements, so each one is checked. The first three are true, and each overwrites grade, ending with "B". The fourth is false. "D" would be right only if the later checks were in ELSE branches of the first.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-006',
@@ -111,7 +111,7 @@ DISPLAY(grade)`,
     ],
     answer: 1,
     explanation: 'The expression is true when at least one is true (a OR b) but not both (NOT (a AND b)), so exactly one must be true. With a true and b false, both parts are true. With both true, NOT (a AND b) is false.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-007',
@@ -141,7 +141,7 @@ IF((x > 0) OR (y > 0))
     choices: ['II only', 'III only', 'II and III', 'Neither II nor III'],
     answer: 0,
     explanation: 'In segment I, "yes" is displayed only if x > 0 and then also y > 0, which is what AND checks in segment II. Segment III also displays "yes" when only one of them is positive, for example x = 5 and y = -1.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-conditionals-008',
@@ -167,6 +167,6 @@ IF((x > 0) OR (y > 0))
     choices: ['ticketPrice(10, true)', 'ticketPrice(16, false)', 'ticketPrice(16, true)', 'ticketPrice(65, true)'],
     answer: 2,
     explanation: 'Age 16 fails the first condition, so the ELSE branch runs, and isStudent is true, so price becomes 9. Ages 10 and 65 meet the first condition and get 6 even though they are students, and a 16-year-old non-student pays 12.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
