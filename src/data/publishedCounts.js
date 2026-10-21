@@ -8,7 +8,7 @@ export const PUBLISHED_COUNTS = {
   csa: { questions: 116, frqs: 8 },
   csp: { questions: 0, frqs: 0 },
   macro: { questions: 0, frqs: 0 },
-  micro: { questions: 0, frqs: 0 },
+  micro: { questions: 122, frqs: 4 },
   phys1: { questions: 86, frqs: 0 },
   psych: { questions: 90, frqs: 0 },
   whap: { questions: 0, frqs: 0 },
