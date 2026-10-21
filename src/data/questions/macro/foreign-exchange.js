@@ -27,7 +27,7 @@ export default [
     explanation: 'Demand and supply for dollars cross at 50 billion dollars, where one dollar trades for 0.8 euro. 1.25 is the same rate expressed the other way, in dollars per euro.',
     verify: 'numeric',
     solve: () => EUROS_PER_DOLLAR,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-002',
@@ -39,7 +39,7 @@ export default [
     explanation: 'An exchange rate in one direction is the reciprocal of the other: 1 / 0.8 = 1.25 dollars per euro.',
     verify: 'numeric',
     solve: () => 1 / EUROS_PER_DOLLAR,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-003',
@@ -51,7 +51,7 @@ export default [
     explanation: 'Each dollar buys 0.8 euro, so 400 euros cost 400 / 0.8 = 500 dollars. 320 multiplies by the rate instead of dividing, which would be the price in euros of a 400-dollar item.',
     verify: 'numeric',
     solve: () => 400 / EUROS_PER_DOLLAR,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-004',
@@ -66,7 +66,7 @@ export default [
     ],
     answer: 0,
     explanation: 'To buy U.S. goods, Europeans need dollars, so the demand for dollars shifts right and the dollar appreciates (each dollar buys more euros).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-005',
@@ -81,7 +81,7 @@ export default [
     ],
     answer: 2,
     explanation: 'A stronger dollar makes U.S. goods more expensive for Europeans, so U.S. exports fall, and makes European goods cheaper for Americans, so U.S. imports rise. U.S. net exports decrease.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-006',
@@ -96,7 +96,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Higher U.S. interest rates make U.S. financial assets more attractive. Foreign investors buy dollars to buy them, which raises the demand for dollars, and the dollar appreciates.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-007',
@@ -111,7 +111,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Lower interest rates make the country\'s assets less attractive, so demand for its currency falls and it depreciates. Its exports become cheaper abroad and imports more expensive, so net exports rise, adding to the increase in AD. The open economy strengthens monetary policy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-foreign-exchange-008',
@@ -126,6 +126,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Higher real interest rates draw in foreign capital, raising the demand for dollars. The dollar appreciates, U.S. exports become more expensive and imports cheaper, and net exports fall. This offsets part of the fiscal stimulus, much like crowding out of investment.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
