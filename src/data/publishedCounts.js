@@ -11,5 +11,5 @@ export const PUBLISHED_COUNTS = {
   micro: { questions: 0, frqs: 0 },
   phys1: { questions: 86, frqs: 0 },
   psych: { questions: 90, frqs: 0 },
-  whap: { questions: 0, frqs: 0 },
+  whap: { questions: 145, frqs: 6 },
 };
