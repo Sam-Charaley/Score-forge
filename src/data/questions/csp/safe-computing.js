@@ -16,7 +16,7 @@ export default [
     ],
     answer: 2,
     explanation: 'PII is information that can identify a specific person, such as a Social Security number, home address, phone number or date of birth. The other choices describe groups or things, not one person.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-002',
@@ -31,7 +31,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Multifactor authentication requires at least two different kinds of evidence, such as something you know (a password) and something you have (a phone). A username is not secret, and repeating or lengthening a password is still only one factor.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-003',
@@ -41,7 +41,7 @@ export default [
     choices: ['A computer virus spreading through the bank\'s network', 'A phishing attack', 'Lossless compression', 'Multifactor authentication'],
     answer: 1,
     explanation: 'Phishing tricks people into giving away personal information, often with a message that looks official and creates urgency. Real banks do not ask for passwords by email. The safe move is to go to the bank\'s site directly instead of using the link.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-004',
@@ -56,7 +56,7 @@ export default [
     ],
     answer: 3,
     explanation: 'In public key encryption, anyone can encrypt with the receiver\'s public key, but only the matching private key can decrypt. Ana keeps her private key secret, so only she can read the message. Ben never has Ana\'s private key.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-005',
@@ -66,7 +66,7 @@ export default [
     choices: ['ZXQ', 'DBU', 'FDW', 'FDT'],
     answer: 2,
     explanation: 'C moves to F, A moves to D and T moves to W, giving FDW. ZXQ shifts each letter 3 places earlier, which is how the message would be decrypted. This is a symmetric cipher: the same key (shift by 3) encrypts and decrypts.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-006',
@@ -76,7 +76,7 @@ export default [
     choices: ['It is 2 times as many', 'It is 9 times as many', 'It is 8 times as many', 'It is 62 times as many'],
     answer: 3,
     explanation: 'There are 62⁸ possible 8-character passwords and 62⁹ possible 9-character ones. 62⁹ / 62⁸ = 62, so each added character multiplies the possibilities by 62. That is why longer passwords take far longer to guess.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-007',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 0,
     explanation: 'A rogue access point lets the attacker see and possibly change traffic that passes through it. Using encrypted connections (HTTPS) and avoiding sensitive tasks on unknown networks reduces the risk.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-safe-computing-008',
@@ -106,6 +106,6 @@ export default [
     ],
     answer: 1,
     explanation: 'Certificate authorities are trusted organizations that vouch for a site\'s identity by verifying that its public key belongs to it. This lets the browser set up encrypted communication with the real bank. A certificate says nothing about bugs, passwords or speed.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
