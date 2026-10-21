@@ -113,6 +113,6 @@ export default [
     explanation: 'Only the component of the force along the displacement does work: W = Fd cos θ = 50 × 10 × cos 37° ≈ 400 J. 500 J treats the whole tension as horizontal, and 300 J uses sin 37°, which is the vertical component that does no work on a level path.',
     verify: 'numeric',
     solve: () => 50 * 10 * Math.cos(37 * Math.PI / 180),
-    reviewed: false,
+    reviewed: true,
   },
 ];
