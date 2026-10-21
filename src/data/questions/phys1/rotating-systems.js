@@ -82,7 +82,7 @@ export default [
     choices: ['Angular momentum', 'Angular velocity', 'Rotational kinetic energy', 'Rotational inertia'],
     answer: 0,
     explanation: 'The clay lands without any external torque about the axle, so the system\'s angular momentum Iω is conserved. The clay increases the rotational inertia, so the angular velocity drops. The sticking is like an inelastic collision, so some rotational kinetic energy becomes internal energy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotating-systems-007',
@@ -96,7 +96,7 @@ export default [
     explanation: 'Angular momentum is conserved: 0.40 × 6.0 = (0.40 + 0.20 × 0.50²)ω, so ω = 2.4/0.45 ≈ 5.3 rad/s. 4.0 rad/s adds the clay\'s mass to the rotational inertia instead of mr², and 2.4 is the angular momentum, not the angular velocity.',
     verify: 'numeric',
     solve: () => (0.4 * 6.0) / (0.4 + 0.2 * 0.5 ** 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotating-systems-008',
@@ -110,6 +110,6 @@ export default [
     explanation: 'Gravitational energy becomes both translational and rotational kinetic energy. With v = ωR, Mgh = ½Mv² + ½(⅖MR²)(v/R)² = (7/10)Mv², so v = √(10gh/7) = √19.6 ≈ 4.4 m/s. 5.2 m/s is √(2gh), which ignores the energy that goes into spinning, and 3.7 m/s is the answer for a thin hoop.',
     verify: 'numeric',
     solve: () => Math.sqrt((10 * G * 1.4) / 7),
-    reviewed: false,
+    reviewed: true,
   },
 ];
