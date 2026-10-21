@@ -33,7 +33,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A deficit is a flow: how much spending exceeds revenue in one year. The debt is a stock: the accumulated total the government owes from all past deficits, minus any surpluses. Each deficit adds to the debt.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-002',
@@ -46,7 +46,7 @@ export default [
     explanation: 'Year 1 deficit: 450 − 400 = 50. Year 2 deficit: 500 − 420 = 80. Year 3 surplus: 470 − 440 = 30, which pays debt down. Debt = 1,000 + 50 + 80 − 30 = 1,100. 1,160 adds the year 3 surplus as if it were a deficit.',
     verify: 'numeric',
     solve: () => debtAfter(3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-003',
@@ -61,7 +61,7 @@ export default [
     ],
     answer: 0,
     explanation: 'When the government borrows to finance a deficit, it competes with private borrowers for loanable funds. The real interest rate rises, and interest-sensitive private investment falls, offsetting part of the fiscal stimulus.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-004',
@@ -76,7 +76,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Less private investment means less new physical capital. With a smaller capital stock than otherwise, productivity and potential output (LRAS) grow more slowly. That is the main long-run cost of crowding out.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-005',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Automatic stabilizers work through the budget: as incomes fall, income tax collections drop, and spending on unemployment insurance and other transfers rises. The deficit grows even without new legislation.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-006',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Crowding out works through higher interest rates. If the Fed buys bonds, it expands the money supply and holds interest rates down, so private investment falls less. Selling bonds, lower saving and a higher reserve requirement would all push rates up further.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-007',
@@ -121,7 +121,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Interest on the debt must be paid every year, so future taxpayers bear higher taxes or give up other government spending. A large debt can also mean a smaller capital stock if deficits crowded out investment.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-deficits-crowding-out-008',
