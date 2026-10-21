@@ -57,7 +57,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Population went from 2.5 to 7.8 billion (just over three times) and life expectancy from 46 to 72 years. Doubling every ten years would have meant far more than 7.8 billion people by 2020.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-002',
@@ -74,7 +74,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Vaccines (smallpox was eradicated in 1980), antibiotics, clean water programs and higher crop yields from the Green Revolution cut death rates, especially for children, so population grew quickly. The Black Death and the Columbian Exchange belong to much earlier periods.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-003',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Burning fossil fuels for energy, transport and industry releases carbon dioxide, and cutting forests removes plants that absorb it. Global industry grew rather than declined after 1960. Scientists link the rise to climate change.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-004',
@@ -108,7 +108,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Climate change affects every country, so governments tried to address it through global agreements, as they did with trade (the WTO) and health (the WHO). These agreements set targets but have been hard to enforce, and emissions kept rising.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-005',
@@ -119,7 +119,7 @@ export default [
     choices: ['the Green Revolution', 'the Great Leap Forward', 'collectivization', 'the Columbian Exchange'],
     answer: 0,
     explanation: 'The Green Revolution spread high-yield seeds, chemical fertilizers and irrigation in the 1950s to 1970s and greatly increased food production in Mexico, India and elsewhere. The Great Leap Forward and Soviet collectivization were communist farm policies that caused famines.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-006',
@@ -135,7 +135,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The new seeds needed fertilizer, pesticides and irrigation. Wealthier farmers gained the most, some poor farmers went into debt, and heavy chemical and water use damaged soil and groundwater. The passage itself says harvests doubled, so the first choice is wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-007',
@@ -150,7 +150,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Standard shipping containers made moving goods by sea far cheaper, and the internet and cell phones made communication almost instant and nearly free. Steam engines and the telegraph transformed the 1800s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-008',
@@ -165,7 +165,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Deng allowed private farming and businesses, created special economic zones for foreign investment and expanded trade, while the Communist Party kept political control. Similar free-market shifts happened in many countries in the 1980s and 1990s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-009',
@@ -180,7 +180,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The UN declaration set out rights for all people, and civil rights, anti-apartheid and feminist movements used similar claims of universal equality to challenge discrimination around the world. The declaration came from the United Nations, an international body.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-globalization-010',
@@ -195,6 +195,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Critics argued that globalization moved jobs to low-wage countries, hurt the environment and spread Western culture at the expense of local traditions, as in the 1999 WTO protests in Seattle. Trade kept growing, and the WTO gained members.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
