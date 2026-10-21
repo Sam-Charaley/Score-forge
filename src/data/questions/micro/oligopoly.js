@@ -52,7 +52,7 @@ export default [
     ],
     answer: 2,
     explanation: 'With only a few large firms, each firm\'s price or output choice noticeably affects its rivals, so firms must anticipate each other\'s moves. That interdependence is why game theory is used to study oligopoly. Oligopolies usually have significant barriers to entry and can sell identical or differentiated products.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-002',
@@ -68,7 +68,7 @@ export default [
     ],
     answer: 1,
     explanation: 'If B charges high, A earns 70 with a low price versus 50 with a high price. If B charges low, A earns 30 with a low price versus 20 with a high price. A low price is better for A whatever B does, so it is a dominant strategy. Both firms would be better off charging high, but that is not what each does on its own.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-003',
@@ -84,7 +84,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The matrix is symmetric, so a low price is a dominant strategy for both firms, and each earns 30. Neither can do better by switching alone: moving to a high price would drop that firm to 20. Both firms charging high (50 each) gives more total profit, but each firm would gain by cutting its price, so it is not an equilibrium. This is a prisoner\'s dilemma.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-004',
@@ -100,7 +100,7 @@ export default [
     ],
     answer: 0,
     explanation: 'If one firm keeps its promise and charges high, the other earns 70 instead of 50 by cheating with a low price. Since each firm faces this temptation, collusive agreements tend to be unstable, especially when cheating is hard to detect. High prices actually give each firm more (50) than the low-price equilibrium (30).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-005',
@@ -116,7 +116,7 @@ export default [
     ],
     answer: 3,
     explanation: 'For Alto, advertising pays more whatever Brio does (40 > 30 and 60 > 50), so it is dominant. For Brio, the best choice depends on Alto: if Alto advertises, Brio prefers to advertise (25 > 20), but if Alto does not, Brio prefers not to (40 > 35). So only Alto has a dominant strategy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-006',
@@ -129,7 +129,7 @@ export default [
     explanation: 'Alto will advertise because it is dominant. Knowing that, Brio compares 25 (advertise) with 20 (don\'t) and advertises. In that cell neither firm gains by switching alone, so it is the Nash equilibrium and Brio earns 25. Brio would earn 40 if neither advertised, but Alto would then switch to advertising.',
     verify: 'numeric',
     solve: () => nashEquilibria(ADVERTISING)[0].payoffs[1],
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-007',
@@ -142,7 +142,7 @@ export default [
     explanation: 'In the Nash equilibrium both advertise and Alto earns 40. If neither advertised, Alto would earn 50, an increase of 10. Both firms would be better off, but Alto still prefers to advertise once it knows Brio won\'t (60 > 50), which is why they end up both advertising. 20 compares 60 with 40, a cell neither firm moves to.',
     verify: 'numeric',
     solve: () => ADVERTISING.dont.dont[0] - nashEquilibria(ADVERTISING)[0].payoffs[0],
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-008',
@@ -157,7 +157,7 @@ export default [
     ],
     answer: 0,
     explanation: 'A cartel coordinates to maximize the members\' combined profit, which means acting like a single monopolist: restricting output to where industry MR = MC and charging a higher price. Price equal to MC is the competitive outcome, the opposite of what a cartel aims for.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-oligopoly-009',
@@ -172,6 +172,6 @@ export default [
     ],
     answer: 2,
     explanation: 'At a Nash equilibrium, neither player can gain by changing its own strategy while the other\'s stays the same. It need not give the highest combined profit, as the prisoner\'s dilemma shows. Dominant strategies lead to a Nash equilibrium when they exist, but many games have an equilibrium without them.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
