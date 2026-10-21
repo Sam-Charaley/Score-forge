@@ -27,7 +27,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Ibn Battuta was a trained Muslim judge from Morocco. He praises what matches his idea of good Islamic practice (prayer, learning the Qur\'an, justice) and criticizes what does not (women going uncovered). He was a foreign visitor, not a Malian ruler, and he clearly supported Islam.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-002',
@@ -43,7 +43,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Mali controlled gold fields and the trade routes that carried gold north across the Sahara in exchange for salt, cloth and other goods. Mansa Musa\'s famous pilgrimage to Mecca in 1324 showed off this gold wealth. Sugar plantations for Europe came later and elsewhere.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-003',
@@ -59,7 +59,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Full mosques and children memorizing the Qur\'an show that Islam was deeply rooted, while Ibn Battuta\'s complaints show that local customs continued alongside it. This kind of syncretism was common where Islam spread through trade. The full mosques rule out the idea that only foreigners practiced it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-004',
@@ -75,7 +75,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The Mexica let conquered towns keep their own rulers and gods but forced them to send tribute, which made the capital rich and kept the towns weak. The passage says local rulers stayed in place, which rules out the last choice. The Andean road network belongs to the Inca.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-005',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The Inca demanded labor through the mit\'a, built a vast road network, sent officials to run provinces and moved whole communities to keep control. That is more direct rule than the Mexica tribute system, which left local rulers in place. The Inca were a centralized empire with a capital at Cusco.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-006',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 0,
     explanation: 'In feudal Europe, kings depended on nobles who owed them military service in exchange for land, while peasants worked manors, and the Catholic Church held great power of its own. Kings slowly gained power over this period, but Europe had nothing like the exam-based bureaucracy of Song China.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-007',
@@ -121,7 +121,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Vijayanagara was founded in reaction to raids by the Delhi Sultanate and became a powerful Hindu kingdom that controlled much of southern India. Portuguese traders did not arrive in India until 1498, long after its founding.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-regional-states-008',
@@ -151,6 +151,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Monsoon winds carried merchants between East Africa, Arabia, Persia and India. Swahili towns traded gold, ivory and other goods from the interior, and their culture blended African Bantu and Arab influences, including Islam. The Sahara and the Spanish played no role on this coast.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

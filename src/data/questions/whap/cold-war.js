@@ -40,7 +40,7 @@ export default [
     choices: ['appeasement', 'isolationism', 'non-alignment', 'containment'],
     answer: 3,
     explanation: 'Containment meant stopping the spread of Soviet communism by supporting governments that resisted it, with aid and sometimes with force. Appeasement and isolationism describe the 1930s, and non-alignment was the policy of states that refused to join either side.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-002',
@@ -56,7 +56,7 @@ export default [
     ],
     answer: 0,
     explanation: 'In 1947 Britain could no longer afford to support the Greek government against communist rebels, and the Soviet Union was pressing Turkey for control of the straits. Truman asked Congress for aid to both. The other events came later: 1962, 1989 and the 1960s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-003',
@@ -72,7 +72,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The United States fought in Korea (1950 to 1953) and Vietnam to keep communist forces from taking over, treating them as fronts of the global contest with the Soviet Union and China. The Soviet invasion of Afghanistan was a Soviet action, not an application of US policy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-004',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Leaders such as Sukarno, Nehru of India, Nasser of Egypt and Tito of Yugoslavia formed the Non-Aligned Movement (1961) to avoid joining either Cold War bloc. NATO and the Warsaw Pact were the military alliances of the two blocs, and the Marshall Plan was US aid to Europe.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-007',
@@ -138,7 +138,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Sukarno stresses unity and numbers instead of weapons and refuses to be a "tool" of the great powers. He also says colonialism is "not dead," so the last choice reverses his point. In practice, several non-aligned states still accepted aid from one side or the other.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-008',
@@ -153,7 +153,7 @@ export default [
     ],
     answer: 2,
     explanation: 'By the 1980s the Soviet economy was falling behind, and military spending and the Afghan war drained it. Gorbachev\'s reforms allowed more openness, which let nationalist movements and protests in Eastern Europe grow. There was never a US invasion.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-cold-war-009',
@@ -168,6 +168,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Mao pushed peasants into huge communes and backyard steel furnaces, and officials reported false harvest numbers while grain was taken. The result was one of the deadliest famines in history. The Communist Party stayed in power, and market reforms came only after 1978 under Deng Xiaoping.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -29,7 +29,7 @@ export default [
     choices: ['The lateen sail', 'Caravanserai', 'The astrolabe', 'The camel saddle'],
     answer: 3,
     explanation: 'Camel saddles let traders load camels efficiently and cross the desert in large caravans, which opened the Sahara to regular trade in gold and salt. The lateen sail and astrolabe are sea technologies used in the Indian Ocean.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-002',
@@ -45,7 +45,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Sailors timed voyages to the monsoon winds, and ships could carry heavy, cheaper goods like cotton cloth and pepper in large amounts. Overland caravans were limited to lighter, high-value goods. Muslim merchants were very active in the Indian Ocean, and no single empire controlled it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-003',
@@ -61,7 +61,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Samarkand, Malacca and Timbuktu sat at key points on their routes, so merchants from many places met there, and the cities grew rich from markets, taxes and services. They traded goods produced far away, not just their own products, and none was founded by Europeans.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-004',
@@ -77,7 +77,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The inscription says the fleet carried gifts to show the emperor\'s power and virtue, and that foreign lands then sent envoys with tribute. The voyages displayed Ming strength and expanded the tributary system rather than setting up colonies.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-005',
@@ -93,7 +93,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The voyages were very expensive, and many Confucian officials saw them as a waste while the Mongols threatened the north; the Ming turned to rebuilding the Great Wall. The Portuguese did not reach the Indian Ocean until 1498, long after the voyages ended.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-006',
@@ -109,7 +109,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The Portuguese seized ports such as Goa and Malacca and forced ships to buy passes, trying to control trade by force. The Ming fleets were far larger (hundreds of ships) and sought tribute and prestige, not trading posts. Ming ships carried gifts, so the first choice is wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-007',
@@ -124,7 +124,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Merchants used bills of exchange, credit and banking houses (and in China, paper money and "flying cash") so they did not have to carry large amounts of coin. Joint-stock companies came later, in the 1600s, and the telegraph in the 1800s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-008',
@@ -139,7 +139,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A diasporic community is a group living away from its homeland. Merchants settled in trading cities, married local people and spread their customs and religion, as Arab and Persian Muslims did in Chinese ports and Chinese merchants did in Southeast Asia. They were not rulers, so they were not a colony.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-trade-networks-009',
@@ -154,6 +154,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Merchants and religious teachers carried Hinduism and Buddhism across the Indian Ocean. Angkor Wat was built as a Hindu temple and later became a Buddhist one. The Delhi Sultanate never ruled Southeast Asia, and Christianity arrived much later with European traders.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

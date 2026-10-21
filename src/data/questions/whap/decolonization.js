@@ -47,7 +47,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Seventeen African countries became independent in 1960 alone, and many more followed through the decade, each joining the UN. The Soviet Union broke up and Germany reunified around 1990 to 1991, after the period in the table.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-002',
@@ -64,7 +64,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Membership went from 51 to 154, and the source note says nearly all the new members had been colonies or protectorates. Membership kept rising after 1960, so the last choice misreads the table.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-003',
@@ -80,7 +80,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The British taxed salt and banned Indians from making it. Gandhi led a march to the sea to make salt, openly breaking the law and accepting arrest, which is the nonviolent civil disobedience the passage describes. Armed revolt is what Gandhi rejected.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-004',
@@ -96,7 +96,7 @@ export default [
     ],
     answer: 1,
     explanation: 'France fought hard to keep Algeria, where about a million European settlers lived, and the National Liberation Front (FLN) fought an eight-year war for independence. Ghana\'s mostly peaceful, negotiated path was closer to Gandhi\'s approach.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-005',
@@ -112,7 +112,7 @@ export default [
     ],
     answer: 3,
     explanation: 'He says the flag and assembly are signs of independence, but foreign companies, foreign markets and foreign lenders still controlled the economy. That is his idea of neo-colonialism. He criticizes the loan conditions, so he does not want more of them.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-006',
@@ -128,7 +128,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Economies that rely on exporting cocoa, copper or other raw goods have little control over their income, which is the dependence Nkrumah describes. A new flag or UN seat shows political independence, which Nkrumah says is not enough.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-007',
@@ -143,7 +143,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Between 10 and 20 million people moved across the new borders, and hundreds of thousands, possibly more, were killed in religious violence. Muslim League leaders had demanded a separate Muslim state, which led to partition.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-008',
@@ -158,7 +158,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The canal had been run by a British and French company. Nasser took it over to fund development and assert Egyptian sovereignty. Britain, France and Israel invaded, but US and Soviet pressure forced them to withdraw, a sign of declining European power.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-decolonization-009',
@@ -173,6 +173,6 @@ export default [
     ],
     answer: 1,
     explanation: 'The ANC and other groups resisted through protests, strikes and armed struggle, while many countries imposed sanctions and boycotts. Nelson Mandela was released in 1990 and elected president in 1994 in the first elections open to all races.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -26,7 +26,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The passage describes a society that works when everyone fills their proper role: ruler over minister, father over son. Song rulers backed Neo-Confucianism because it tied obedience in the family to obedience to the state. Confucian thinkers ranked merchants low, so the merchant answer reverses their view.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-002',
@@ -42,7 +42,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The Song expanded the imperial examinations, which tested candidates on Confucian texts like the Analects. Officials who passed had studied these ideas about proper roles and duty, so the bureaucracy itself spread them. Paper money and rice policy were real Song developments, but they are economic, not ways of applying Confucian ideas to government.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-003',
@@ -58,7 +58,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Neo-Confucian thinkers such as Zhu Xi kept the focus on family duty and social order but added a theory of the universe and of personal self-cultivation, borrowing ideas from Buddhism and Daoism, which had grown popular in China. Filial piety stayed central, so the first choice is the opposite of what happened.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-004',
@@ -121,7 +121,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Turkic peoples who had converted to Islam built new states as the Abbasids weakened: the Seljuks, later the Mamluks in Egypt and the Delhi Sultanate in India. The Abbasid caliph became mostly a religious figure. Islam kept spreading through these states and through trade, so the second choice is wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-008',
@@ -136,7 +136,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Muslim scholars translated Greek, Persian and Indian texts and added new work, such as advances in algebra, optics and medicine and Nasir al-Din al-Tusi\'s work in trigonometry. Much of this later reached Europe. Their openness to outside learning is the opposite of the second choice.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-009',
@@ -151,7 +151,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Muslim merchants on Indian Ocean and trans-Saharan routes, along with Sufi teachers who adapted Islam to local customs, carried the faith to places such as Malacca, Java and Mali. Rulers often converted to strengthen trade ties. Military conquest mattered in some regions, but not in these two.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-east-asia-islam-010',
@@ -166,6 +166,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Neighbors of China borrowed Chinese writing, Confucian government ideas and forms of Buddhism, but each kept its own traditions. Japan, for example, kept a warrior aristocracy instead of an exam-based bureaucracy. Korea and Vietnam often sent tribute but were not ruled directly by the Song.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

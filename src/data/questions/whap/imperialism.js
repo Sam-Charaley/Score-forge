@@ -32,7 +32,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Kipling presents empire as a burden that white nations must take on to help peoples he describes as "half-devil and half-child." This civilizing mission, often tied to ideas of racial superiority and Social Darwinism, was used to justify colonial rule. Self-government is the opposite of what the poem urges.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-002',
@@ -48,7 +48,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The subtitle names the United States and the Philippine Islands. The US took the Philippines from Spain in 1898, and Kipling, a British writer, urged Americans to join Britain in empire-building. Filipino forces then fought a war against US rule.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-003',
@@ -64,7 +64,7 @@ export default [
     ],
     answer: 2,
     explanation: 'British merchants sold opium grown in British India to China to pay for the tea and silk they bought, and millions of Chinese became addicted. Lin points out that Britain banned opium at home but let its merchants sell it in China. Britain was buying, not refusing, Chinese tea.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-004',
@@ -80,7 +80,7 @@ export default [
     ],
     answer: 3,
     explanation: 'When Lin destroyed British opium, Britain went to war and won with its steam-powered gunboats. The Treaty of Nanjing ceded Hong Kong, opened five treaty ports and made China pay an indemnity. It was the first of the "unequal treaties."',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-005',
@@ -96,7 +96,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Kipling presents empire as a sacrifice made for the colonized. Naoroji argues the reverse: wealth flowed out of India to Britain (the "drain theory"), so British rule made India poorer. He uses Britain\'s own ideals of justice to criticize it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-006',
@@ -112,7 +112,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Naoroji was a founding member of the Indian National Congress (1885). Economic critiques of British rule helped educated Indians build a national movement, which later demanded self-rule. The Mughal Empire was founded in 1526, long before.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-007',
@@ -127,7 +127,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The conference set rules for claiming African land, and the "Scramble for Africa" followed. By 1914 nearly all of Africa was under European rule. No Africans took part. Ethiopia stayed independent, but not because of this conference.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-008',
@@ -142,7 +142,7 @@ export default [
     ],
     answer: 2,
     explanation: 'After crushing the rebellion, Britain ended the East India Company\'s rule and governed India directly through a viceroy (the British Raj). The last Mughal emperor was exiled. India did not gain independence until 1947.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-009',
@@ -157,7 +157,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Menelik II used rivalries among European powers to buy modern rifles and artillery, and his army defeated Italy at Adwa. Ethiopia is a historically Christian kingdom, and Europeans were very interested in East Africa: Italy, Britain and France all held colonies around it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-imperialism-010',
@@ -172,6 +172,6 @@ export default [
     ],
     answer: 0,
     explanation: 'Both states built arsenals and modern armies and adopted some Western methods to strengthen themselves, but kept their emperor or sultan. Both had limited success, partly because conservative officials resisted change. The Qing were not overthrown until 1911.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

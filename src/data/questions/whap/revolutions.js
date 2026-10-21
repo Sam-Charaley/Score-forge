@@ -27,7 +27,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Enlightenment thinkers such as John Locke argued that people create governments by agreement to protect their natural rights, and can replace a government that fails to do so. Divine right says the opposite: power comes from God, not the people.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-002',
@@ -43,7 +43,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The French declaration, written with help from Lafayette, who had fought in the American Revolution, also claimed natural rights and said that sovereignty belongs to the nation. The Ninety-Five Theses and the Treaty of Tordesillas came before 1776, so they could not have been influenced by it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-003',
@@ -59,7 +59,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Many signers, including Jefferson, held people in slavery, and women could not vote. Later reformers such as abolitionists and the women at Seneca Falls (1848) quoted this language to demand the rights it promised. The passage clearly supports natural rights, so the first choice is wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-004',
@@ -75,7 +75,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Bolívar was a creole, an American-born person of Spanish descent. Creoles were wealthy and educated but were kept out of top posts, which went to peninsulares, and limited by Spanish trade rules. These are the exact complaints in the passage.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-005',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Bolívar\'s Gran Colombia split into Venezuela, Colombia and Ecuador by 1831, and caudillos seized power in many countries. That matches his worry about factions and weak republics. Spain lost nearly all its mainland colonies, and no single federation formed.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-006',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Enslaved Africans in Saint-Domingue, led by figures such as Toussaint Louverture and Jean-Jacques Dessalines, defeated French, British and Spanish forces and created an independent state without slavery. The American Revolution, by contrast, left slavery in place.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-007',
@@ -121,7 +121,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Otto von Bismarck, Prussia\'s chief minister, used wars against Denmark, Austria and France to stir German national feeling and unite the German states under the Prussian king. Italy was unified in a similar period. Neither involved British rule.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-008',
@@ -131,7 +131,7 @@ export default [
     choices: ['Adam Smith', 'Montesquieu', 'Thomas Hobbes', 'Karl Marx'],
     answer: 1,
     explanation: 'Montesquieu argued in The Spirit of the Laws (1748) that dividing power among branches protects liberty. Adam Smith wrote about free markets, Hobbes defended strong rulers, and Marx was a later critic of capitalism.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-revolutions-009',
@@ -146,6 +146,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Abolitionists and women\'s rights activists argued that if all people have natural rights, slavery and denying women a vote were wrong. Britain abolished slavery in its empire in 1833, and women\'s suffrage campaigns grew across the century. Russia abolished serfdom in 1861 rather than expanding it.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

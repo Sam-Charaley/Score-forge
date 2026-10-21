@@ -46,7 +46,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Before 1914, European powers formed alliances, some with secret terms, so a conflict between Austria-Hungary and Serbia quickly pulled in Russia, Germany, France and Britain. Wilson wanted diplomacy done in public to prevent this. The Great Depression came after the war.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-002',
@@ -62,7 +62,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Wilson\'s language raised hopes of self-rule, but the Paris Peace Conference mostly applied self-determination to Europe. Protests followed, such as the March First Movement in Korea, the May Fourth Movement in China and the 1919 revolution in Egypt.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-003',
@@ -78,7 +78,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The mandate system handed Arab lands of the defeated Ottoman Empire to Britain and France rather than giving them independence, despite wartime promises to Arab leaders. The independence of Poland and the breakup of Austria-Hungary fit the idea of self-determination in Europe.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-004',
@@ -95,7 +95,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Machine guns, artillery, poison gas and barbed wire made attacks across no man\'s land deadly, and trench warfare dragged on for four years. Cavalry charges were nearly useless against these weapons.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-005',
@@ -112,7 +112,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Governments drafted millions of men, took control of industry, rationed food, used propaganda to keep up support and recruited women into factories. Total war blurred the line between soldiers and civilians.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-006',
@@ -128,7 +128,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The day after the attack on Pearl Harbor, Congress declared war on Japan, and Germany and Italy declared war on the United States soon after. The First World War had ended in 1918, and the League was founded in 1920.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-007',
@@ -144,7 +144,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Japan took Manchuria in 1931, invaded China in 1937 and moved into Southeast Asia for oil, rubber and other resources. When the US cut off oil exports, Japanese leaders decided to strike the US fleet. Japanese leaders were strongly anti-communist.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-008',
@@ -159,7 +159,7 @@ export default [
     ],
     answer: 3,
     explanation: 'More than a million Indian soldiers served in the First World War, and Africans fought for Britain and France in both wars. Having sacrificed for empires that preached freedom, many colonized peoples demanded self-rule, and the wars weakened Britain and France financially.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-world-wars-009',
@@ -174,6 +174,6 @@ export default [
     ],
     answer: 1,
     explanation: 'The war left Europe and Japan devastated, while the US and the USSR had huge armies and economies, setting up the Cold War. The United Nations replaced the failed League of Nations in 1945. Britain and France were weakened, not strengthened.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

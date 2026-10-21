@@ -48,7 +48,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Roosevelt says the government itself should put people to work, as in a war emergency. The New Deal created public works jobs, relief programs and new regulations, influenced by Keynesian ideas, while keeping private ownership. Laissez-faire, the first choice, is what the New Deal moved away from.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-002',
@@ -65,7 +65,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Mass unemployment and anger at the Treaty of Versailles led many Germans to support the Nazis, who promised jobs and national revival. Hitler became chancellor in January 1933. Germany had already joined the League in 1926 and left it in 1933.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-003',
@@ -82,7 +82,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Both governments spent heavily to create jobs, but the US did so through elected institutions, while the Nazis abolished other parties, crushed unions and rearmed. Neither turned to communism; the Nazis persecuted communists.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-004',
@@ -98,7 +98,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Starting in 1928, Stalin\'s Five-Year Plans set production targets for steel, coal and machinery, all run by the state. This was a command economy, the opposite of free markets.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-005',
@@ -114,7 +114,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Peasants were forced into state-run collective farms, and the state seized grain to feed cities and sell abroad. Resistance was crushed, and famine killed millions, especially in Ukraine (the Holodomor) and Kazakhstan.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-006',
@@ -130,7 +130,7 @@ export default [
     ],
     answer: 2,
     explanation: 'During the First World War, the Ottoman government deported and killed about a million or more Armenians. The Holocaust was the Nazi murder of Jews during the Second World War, and the Holodomor was the Soviet famine in Ukraine.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-007',
@@ -146,7 +146,7 @@ export default [
     ],
     answer: 3,
     explanation: 'In 1915 the United States was not yet at war, so Morgenthau had less reason to exaggerate than a wartime enemy would. He wrote at the time, based on reports from consuls and missionaries, for officials rather than the public. That gives it strong value as evidence, though it still relies on second-hand reports.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-008',
@@ -161,7 +161,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Nazi ideology claimed Jews and others were racial enemies. The state moved from discriminatory laws to ghettos and finally to death camps such as Auschwitz. It was organized mass murder by a government, not a famine or civil war.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-interwar-atrocities-009',
@@ -171,6 +171,6 @@ export default [
     choices: ['containment', 'appeasement', 'collective security', 'self-determination'],
     answer: 1,
     explanation: 'Appeasement meant giving in to some demands to avoid war. Hitler took the rest of Czechoslovakia in 1939 and then invaded Poland, which started the Second World War in Europe. Containment was the later US policy toward the Soviet Union.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

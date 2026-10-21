@@ -42,7 +42,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Sugar was the most valuable plantation crop, and growing and processing it was brutal, deadly work. Plantation owners in Brazil and the Caribbean bought enslaved Africans in huge numbers. Textile factories belong to the later Industrial Revolution.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-002',
@@ -75,7 +75,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Las Casas addresses the future king directly and asks him to stop the abuses. His campaign contributed to the New Laws of 1542, which limited the encomienda. His description of mass death is clearly a criticism, not praise.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-004',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Under the encomienda, the crown gave colonists the right to Indigenous labor and tribute in return for protecting them and teaching them Christianity. In practice it led to forced labor and abuse, as the passage says. The treaty dividing the Americas was the Treaty of Tordesillas (1494).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-005',
@@ -107,7 +107,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The Spanish adapted the Inca mit\'a to send Indigenous men to the Potosí silver mines, and haciendas often tied workers through debt. The encomienda declined, but coerced labor continued in new forms. Silver mining grew rather than ended.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-006',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The Ming tax reform called the Single Whip required taxes in silver, so China needed far more silver than it produced. Spanish galleons carried American silver from Acapulco to Manila to buy Chinese silk and porcelain. Europeans wanted many Chinese goods, which is why they paid in silver.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-007',
@@ -137,7 +137,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The casta system ranked people by birthplace and ancestry: peninsulares, then American-born creoles, then people of mixed ancestry such as mestizos and mulattoes, then Indigenous and enslaved African people. Spanish America was Catholic, so Protestants had no place at the top.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-008',
@@ -152,7 +152,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Investors bought shares in the VOC, so no single person bore the full risk of a lost ship. The Dutch government gave it the right to make treaties, build forts and wage war in Asia, and it came to control much of the spice trade.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-009',
@@ -167,7 +167,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Pueblo peoples drove the Spanish out of their region for about twelve years, and maroons were people who escaped slavery and built their own communities, sometimes fighting colonial forces. Both resisted the control of European colonizers.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-maritime-empires-010',
@@ -182,6 +182,6 @@ export default [
     ],
     answer: 3,
     explanation: 'The Tokugawa shoguns feared that Christianity and European influence threatened their control. They expelled missionaries, persecuted Japanese Christians and allowed only the Dutch (and Chinese) to trade, at Nagasaki, under tight limits. Japan did not try to conquer the Philippines.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
