@@ -31,7 +31,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Data is broken into packets that are routed independently, so they can take different paths and arrive in any order. Each packet carries information that lets the receiver reassemble them, and only lost packets need to be resent.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-002',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Protocols are agreed-upon rules for communication, such as IP, TCP and HTTP. Because the Internet\'s protocols are open, any device that follows them can connect, no matter who made it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-003',
@@ -56,7 +56,7 @@ export default [
     choices: ['IP', 'TCP', 'UDP', 'DNS'],
     answer: 1,
     explanation: 'TCP (Transmission Control Protocol) guarantees reliable, ordered delivery. IP handles addressing and routing packets, UDP sends packets faster but without checking that they all arrive, and DNS turns domain names into IP addresses.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-004',
@@ -67,7 +67,7 @@ export default [
     choices: ['The connection between A and B', 'The connection between B and D', 'The connection between A and C', 'The connection between D and E'],
     answer: 3,
     explanation: 'E is connected only to D, so losing the D-E link cuts E off from everyone. Any one of the other links can fail and A can still reach D the other way (through B or through C) and then reach E.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-005',
@@ -78,7 +78,7 @@ export default [
     choices: ['0', '1', '2', '3'],
     answer: 2,
     explanation: 'There are two separate paths from A to D: A-B-D and A-C-D. One failure breaks at most one of them, so two failures are needed, for example A-B and A-C. This redundancy is what makes the connection fault tolerant.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-006',
@@ -93,7 +93,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Redundancy means extra paths exist, so if one router or connection fails, packets are routed another way. This fault tolerance makes the Internet reliable. Redundancy does have a cost: more connections and equipment.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-007',
@@ -108,7 +108,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Bandwidth is the maximum amount of data sent in a fixed amount of time, usually measured in bits per second. The time for data to cross a connection is called latency, which is a different measure.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-008',
@@ -123,7 +123,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The Internet is the network of networks and the protocols that connect devices. The World Wide Web is one system that uses the Internet, alongside others such as email. The Internet came first.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-internet-009',
@@ -133,6 +133,6 @@ export default [
     choices: ['4 times as many', '96 times as many', '2⁹⁶ times as many', '2¹²⁸ times as many'],
     answer: 2,
     explanation: 'IPv4 allows 2³² addresses and IPv6 allows 2¹²⁸. Dividing gives 2¹²⁸ / 2³² = 2⁹⁶. 4 comes from comparing the bit counts (128 / 32) instead of the number of addresses. The switch to IPv6 lets the Internet scale to many more devices.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
