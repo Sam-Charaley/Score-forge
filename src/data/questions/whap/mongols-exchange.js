@@ -27,7 +27,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Paper money began in China under the Tang and Song, and the Mongol Yuan dynasty kept and expanded it. The passage describes foreign merchants arriving and trading for paper, so they were not banned.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-002',
@@ -43,7 +43,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Polo came from a merchant family in Venice, a trading city that used coins of gold and silver. Paper that worked as money would have amazed him and his European readers. He served the Khan but was not a Chinese official or a Mongol general.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-003',
@@ -59,7 +59,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The Yuan rulers distrusted the Chinese scholar elite and suspended the civil service exams for decades. They gave many posts to Mongols and to foreigners, including Muslim administrators and, by his account, Marco Polo. Suspending the exams is the opposite of the first choice.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-004',
@@ -75,7 +75,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The Mongols united most of Eurasia and protected the Silk Roads, so goods, people and also fleas and rats carrying plague moved quickly from Central Asia to the Black Sea and on to Europe. Columbus sailed in 1492 and railroads came in the 1800s, both long after 1348.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-005',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The plague killed roughly a third of Europe\'s population, so workers were scarce. Surviving peasants could demand higher wages or leave for better terms, which helped weaken serfdom in Western Europe, even though landowners tried to hold wages down. Trade with Asia recovered.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-006',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Once the conquests were over, Mongol rule made travel across Eurasia safer, and the Mongols moved scholars, artisans and ideas between their lands. The Mongols were known for religious tolerance, so the forced-conversion choice is wrong.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-007',
@@ -121,7 +121,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Mongol forces sacked Baghdad, killed the last Abbasid caliph and destroyed much of the city, including its libraries. This ended the Abbasid Caliphate, which had already lost most of its political power. The Crusades began in 1095, long before.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-008',
@@ -136,7 +136,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Mongol rulers often adopted the religions and governing practices of the people they ruled. The Ilkhans converted to Islam around 1295 and the Golden Horde did so in the 1300s, while the Yuan in China drew on Chinese customs and Tibetan Buddhism. The Golden Horde ruled Russian princes through tribute but was not Christian.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-mongols-exchange-009',
@@ -151,6 +151,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Muslim traders and farmers carried sugar, citrus fruits and other crops westward through Dar al-Islam to the Mediterranean, and Champa rice spread into China. Maize and potatoes came from the Americas, which had no contact with Afro-Eurasia until after 1492.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
