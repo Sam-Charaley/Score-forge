@@ -50,7 +50,7 @@ export default [
     explanation: 'Consumer surplus is the triangle below demand and above the $5 price, out to 50 units: ½ × 50 × ($10 − $5) = $125. $100 is producer surplus, the triangle above supply and below the price (½ × 50 × $4), and $250 forgets the ½.',
     verify: 'numeric',
     solve: () => 0.5 * EQ_A.q * (demandA(0) - EQ_A.p),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-002',
@@ -63,7 +63,7 @@ export default [
     explanation: 'A ceiling below the $5 equilibrium is binding. At $3 buyers want 70 units but sellers supply only 25, so the shortage is 70 − 25 = 45 units. 25 units is the quantity actually sold, and 70 units is only the quantity demanded.',
     verify: 'numeric',
     solve: () => quantityDemandedA(3) - quantitySuppliedA(3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-003',
@@ -78,7 +78,7 @@ export default [
     ],
     answer: 2,
     explanation: 'A binding price floor holds the price above equilibrium. At the higher wage, more people want to work but firms want to hire fewer, so quantity supplied of labor exceeds quantity demanded: a surplus of labor. A shortage comes from a price held below equilibrium, as with a binding ceiling.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-004',
@@ -92,7 +92,7 @@ export default [
     explanation: 'After the tax, the market trades where D meets S + tax: 40 units. Revenue is the tax per unit times the quantity sold after the tax, $2 × 40 = $80. $100 uses the pre-tax quantity of 50 units, which is no longer traded.',
     verify: 'numeric',
     solve: () => TAX * Q_TAXED,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-005',
@@ -106,7 +106,7 @@ export default [
     explanation: 'Deadweight loss is the triangle between the pre-tax quantity (50) and the after-tax quantity (40), with a height equal to the $2 tax: ½ × 10 × $2 = $10. $20 forgets the ½, and $80 is the tax revenue, which is transferred to the government rather than lost.',
     verify: 'numeric',
     solve: () => 0.5 * (Q_NO_TAX - Q_TAXED) * TAX,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-006',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Before the tax the price was $7. After it, buyers pay $8 and sellers keep $8 − $2 = $6, so each side bears $1. Here demand and supply are equally steep, so the burden splits evenly; the more inelastic side would bear more. Who writes the check to the government does not decide who bears the burden.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-007',
@@ -137,7 +137,7 @@ export default [
     ],
     answer: 1,
     explanation: 'At the competitive equilibrium, every unit whose value to buyers exceeds its cost to sellers is traded, and no others, so the sum of consumer and producer surplus is as large as it can be. Consumer and producer surplus do not need to be equal, and price controls that move quantity away from equilibrium create deadweight loss.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-008',
@@ -152,7 +152,7 @@ export default [
     ],
     answer: 2,
     explanation: 'At the lower world price, domestic buyers want more steel than domestic firms will make, and imports fill the gap. Consumers gain surplus from the lower price and producers lose some because they sell less at a lower price. Consumers gain more than producers lose, so total surplus rises. Exports would happen only if the world price were above the domestic price.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-surplus-government-009',
@@ -167,6 +167,6 @@ export default [
     ],
     answer: 3,
     explanation: 'A tariff raises the price of imported sugar, so the domestic price rises. Domestic producers sell more, buyers buy less, and imports shrink from both sides. Consumers lose more surplus than producers and the government gain, so the tariff creates deadweight loss even though it raises revenue.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
