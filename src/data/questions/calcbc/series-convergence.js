@@ -96,7 +96,7 @@ export default [
     ],
     answer: 3,
     explanation: 'For large n the terms behave like 3n/n³ = 3/n². The limit of [3n/(n³ + 1)]/(1/n²) is 3, a positive finite number, and Σ 1/n² is a convergent p-series (p = 2 > 1), so the series converges. The ratio test gives a limit of 1 here, which is inconclusive, and the terms do go to 0, so the nth-term test says nothing.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-series-convergence-008',

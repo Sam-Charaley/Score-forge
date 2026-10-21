@@ -84,7 +84,7 @@ export default [
     choices: ['t = 0 only', 't = 1 only', 't = 0 and t = 1', 't = −1 and t = 1'],
     answer: 3,
     explanation: 'A horizontal tangent needs dy/dt = 0 with dx/dt ≠ 0. dy/dt = 3t² − 3 = 0 at t = ±1, and dx/dt = 2t is not zero there. t = 0 makes dx/dt = 0, which is where the tangent would be vertical, not horizontal.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-parametric-vector-007',
@@ -98,7 +98,7 @@ export default [
     explanation: 'x(2) = x(0) + ∫₀² cos(t²) dt = 1 + 0.461 = 1.461 (integral by calculator). 0.461 is only the change in x and forgets the starting point. −0.654 is the x-velocity cos(4) at t = 2, and 5.437 is the y-coordinate.',
     verify: 'numeric',
     solve: () => START_X + integrate(xVelocity, 0, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-parametric-vector-008',
@@ -109,6 +109,6 @@ export default [
     choices: ['y = 2x − 2', 'y = 2x', 'y = x − 1', 'y = 2x + 1'],
     answer: 0,
     explanation: 'At t = 0 the point is (e⁰, 0) = (1, 0). dy/dx = (dy/dt)/(dx/dt) = (2t + 2)/eᵗ, which is 2 at t = 0. The tangent line is y − 0 = 2(x − 1), or y = 2x − 2. y = 2x uses the slope but puts the point at the origin.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

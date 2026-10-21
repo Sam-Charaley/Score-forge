@@ -83,7 +83,7 @@ export default [
     choices: ['x = 2 only', 'x = 0, x = −2 and x = 2', 'x = 0 only', 'x = −2 and x = 2'],
     answer: 3,
     explanation: 'Critical points are where f\'(x) = 0 or is undefined. f\'(x) = 3x² − 12 = 3(x − 2)(x + 2), which is zero at x = −2 and x = 2 and is defined everywhere. x = 0 is where f itself is zero, not f\'.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-mvt-extrema-007',
@@ -109,6 +109,6 @@ export default [
     explanation: 'f\'(x) = 2xe^(−x) − x²e^(−x) = xe^(−x)(2 − x), so the critical points are x = 0 and x = 2. Compare the candidates: f(0) = 0, f(2) = 4/e² ≈ 0.541 and f(3) = 9/e³ ≈ 0.448. The maximum is 4/e². 9/e³ is the right endpoint, which is not the largest value here.',
     verify: 'exact',
     solve: () => extremeValue(x => x * x * Math.exp(-x), 0, 3, 'max'),
-    reviewed: false,
+    reviewed: true,
   },
 ];

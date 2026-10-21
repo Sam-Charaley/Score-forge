@@ -83,7 +83,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Substitute u = 3x into 1/(1 − u) = Σ uⁿ for |u| < 1. That gives Σ (3x)ⁿ = Σ 3ⁿxⁿ, valid when |3x| < 1, that is |x| < 1/3. Σ 3xⁿ multiplies only the series by 3 instead of raising 3 to each power.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-power-series-007',
@@ -111,6 +111,6 @@ export default [
     explanation: 'The Maclaurin series ln(1 + x) = Σ (n = 1 to ∞) (−1)ⁿ⁺¹xⁿ/n holds for −1 < x ≤ 1. This series is that one at x = 1/2, so the sum is ln(1 + 1/2) = ln(3/2). ln 2 is the value at x = 1, and 1/2 is only the first term.',
     verify: 'exact',
     solve: () => partialSum(n => (-1) ** (n + 1) / (n * 2 ** n), 1, SERIES_TERMS),
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -88,7 +88,7 @@ export default [
     choices: ['y = Ce^(x²)', 'y = e^(x²) + C', 'y = Cx²', 'y = Ce^(2x)'],
     answer: 0,
     explanation: 'Separate: dy/y = 2x dx. Integrating gives ln|y| = x² + C, so y = ±e^C · e^(x²), which is y = Ce^(x²). Adding C after exponentiating (e^(x²) + C) is the classic slip: the constant was added before exponentiating, so it becomes a factor.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-differential-equations-007',
@@ -102,7 +102,7 @@ export default [
     explanation: 'This is logistic growth with carrying capacity 800. Starting above 800, dP/dt is negative, so the population decreases toward 800 and approaches it as t → ∞. 400 is where a population below the carrying capacity grows fastest, not the limit.',
     verify: 'exact',
     solve: () => solveODE((t, population) => fishRate(population), 0, 1000, LONG_RUN_YEARS),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-differential-equations-008',
@@ -115,6 +115,6 @@ export default [
     explanation: 'Separate: dy/y² = sin x dx, so −1/y = −cos x + C. At (0, 1/2): −2 = −1 + C, so C = −1, and −1/y = −cos x − 1, which gives y = 1/(1 + cos x). Then f(π/2) = 1/(1 + 0) = 1. 1/3 comes from integrating sin x as cos x instead of −cos x.',
     verify: 'exact',
     solve: () => solveODE((x, y) => y * y * Math.sin(x), 0, 0.5, Math.PI / 2),
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -105,7 +105,7 @@ export default [
     explanation: 'Position = starting position + displacement. The displacement is the signed area under the graph: 4 (triangle, 0 to 2) + 12 (rectangle, 2 to 5) + 2 (triangle, 5 to 6) − 2 (triangle below the axis, 6 to 8) = 16. So x(8) = 3 + 16 = 19. 16 forgets the starting position, and 23 adds the area below the axis instead of subtracting it.',
     verify: 'exact',
     solve: () => START_POSITION + areaUnder(VELOCITY_POINTS, 0, 8),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-average-value-motion-007',
@@ -119,7 +119,7 @@ export default [
     explanation: 'Total distance adds the areas between the graph and the axis without signs: 4 + 12 + 2 + 2 = 20 meters. 16 is the displacement, which subtracts the 2 meters traveled backward from t = 6 to t = 8.',
     verify: 'exact',
     solve: () => absoluteAreaUnder(VELOCITY_POINTS, 0, 8),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-average-value-motion-008',
@@ -132,6 +132,6 @@ export default [
     explanation: 'Average value = (1/6)∫₀⁶ (60 + 15 sin(πt/12)) dt = (1/6)[60t − (180/π)cos(πt/12)] from 0 to 6 = (1/6)(360 + 180/π) = 60 + 30/π ≈ 69.5 degrees. 67.5 averages only the endpoint values T(0) = 60 and T(6) = 75, which is not the average value of the function.',
     verify: 'exact',
     solve: () => integrate(temperature, 0, 6) / 6,
-    reviewed: false,
+    reviewed: true,
   },
 ];

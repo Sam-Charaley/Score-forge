@@ -83,7 +83,7 @@ export default [
     explanation: 'The parabola meets the x-axis at x = −2 and x = 2 and is above it in between, so the area is ∫₋₂² (4 − x²) dx = [4x − x³/3] from −2 to 2 = (8 − 8/3) − (−8 + 8/3) = 32/3. 16/3 integrates only from 0 to 2.',
     verify: 'exact',
     solve: () => integrate(x => 4 - x * x, -2, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-area-volume-007',
@@ -96,7 +96,7 @@ export default [
     explanation: 'Revolving about y = 4, which is the region\'s top edge, gives discs with radius 4 − x² for −2 ≤ x ≤ 2. V = π∫₋₂² (4 − x²)² dx = π∫₋₂² (16 − 8x² + x⁴) dx = π(64 − 128/3 + 64/5) = 512π/15. 256π/15 uses only half the region (0 to 2).',
     verify: 'exact',
     solve: () => Math.PI * integrate(x => (4 - x * x) ** 2, -2, 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-area-volume-008',

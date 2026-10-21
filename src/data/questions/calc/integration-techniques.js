@@ -97,7 +97,7 @@ export default [
     explanation: 'Let u = x² + 1, so du = 2x dx, and the limits become u = 1 to u = 2. The integral is ∫₁² u³ du = [u⁴/4] from 1 to 2 = 16/4 − 1/4 = 15/4. 4 forgets to subtract the value at the lower limit, and 15/2 divides by 2 instead of 4.',
     verify: 'exact',
     solve: () => integrate(x => 2 * x * (x * x + 1) ** 3, 0, 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-integration-techniques-008',
@@ -111,6 +111,6 @@ export default [
     explanation: 'Use parts with u = x and dv = cos x dx, so du = dx and v = sin x. The integral is [x sin x] from 0 to π/2 minus ∫₀^(π/2) sin x dx = π/2 − [−cos x] from 0 to π/2 = π/2 − 1. π/2 + 1 gets the sign of the second integral wrong.',
     verify: 'exact',
     solve: () => integrate(x => x * Math.cos(x), 0, Math.PI / 2),
-    reviewed: false,
+    reviewed: true,
   },
 ];

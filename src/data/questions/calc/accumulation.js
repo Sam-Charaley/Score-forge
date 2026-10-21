@@ -100,7 +100,7 @@ export default [
     explanation: 'Each trapezoid uses its own width: 2(10 + 14)/2 + 3(14 + 11)/2 + 4(11 + 7)/2 = 24 + 37.5 + 36 = 97.5 liters. 106 is the left Riemann sum and 89 the right Riemann sum. 42 adds the rates without multiplying by the widths.',
     verify: 'exact',
     solve: () => trapezoidSum(RATE_TABLE),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-accumulation-007',
@@ -112,7 +112,7 @@ export default [
     choices: ['x = 3', 'x = 2', 'x = 6', 'x = 4'],
     answer: 0,
     explanation: 'g\'(x) = f(x), so g increases while f > 0 and decreases while f < 0. f changes from positive to negative at x = 3, so g rises until x = 3 and falls after. g(3) = 5 while g(0) = 0 and g(6) = 0, so the maximum is at x = 3. x = 2 is where f stops being constant, which does not affect the sign of g\'.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-accumulation-008',
@@ -126,6 +126,6 @@ export default [
     explanation: 'By the Fundamental Theorem, f(3) = f(1) + ∫₁³ √(x³ + 1) dx = 5 + 6.230 = 11.230 (integral by calculator). 6.230 is only the change in f and forgets f(1). 10.292 adds f\'(3) instead of the integral.',
     verify: 'numeric',
     solve: () => INITIAL_F + integrate(fPrime, 1, 3),
-    reviewed: false,
+    reviewed: true,
   },
 ];

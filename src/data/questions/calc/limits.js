@@ -85,7 +85,7 @@ export default [
     verify: 'exact',
     // Just left of 2 the quotient is constant, so one sample is the limit.
     solve: () => { const f = x => Math.abs(x - 2) / (x - 2); return f(2 - 1e-6); },
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-limits-007',
@@ -97,7 +97,7 @@ export default [
     explanation: 'Multiply top and bottom by the conjugate √(x + 9) + 3: the numerator becomes (x + 9) − 9 = x, so the quotient is 1/(√(x + 9) + 3) for x ≠ 0. At x = 0 that is 1/(3 + 3) = 1/6. 1/3 forgets the + 3 in the conjugate.',
     verify: 'exact',
     solve: () => limit(x => (Math.sqrt(x + 9) - 3) / x, 0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-limits-008',
@@ -112,6 +112,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Factor: f(x) = 2(x − 2)(x + 2)/((x − 2)(x + 1)). The factor x − 2 cancels, so lim (x → 2) f(x) = 2(4)/3 = 8/3 exists but f(2) is undefined: a hole. The factor x + 1 stays in the denominator, so f is unbounded near x = −1: a vertical asymptote. Treating every zero of the denominator as an asymptote misses the cancellation.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

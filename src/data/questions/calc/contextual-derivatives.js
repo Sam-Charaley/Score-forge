@@ -93,7 +93,7 @@ export default [
     ],
     answer: 3,
     explanation: 'T\'(5) is the instantaneous rate of change of temperature at t = 5, in degrees per minute. The negative sign means the temperature is falling at that moment. A total change over the first 5 minutes would come from T(5) − T(0), not from T\'(5).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-contextual-derivatives-008',
@@ -109,6 +109,6 @@ export default [
     ],
     answer: 0,
     explanation: 'v(2.5) = 6.25 − 10 + 3 = −0.75 and a(t) = v\'(t) = 2t − 4, so a(2.5) = 1. Velocity and acceleration have opposite signs, so the speed is decreasing. A positive acceleration alone does not mean speeding up: here it makes a negative velocity less negative.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
