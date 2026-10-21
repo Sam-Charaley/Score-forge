@@ -95,7 +95,7 @@ export default [
     choices: ['Σ (n = 0 to ∞) (n + 1)xⁿ', 'Σ (n = 0 to ∞) (n + 1)! xⁿ', 'Σ (n = 0 to ∞) xⁿ/(n + 1)', 'Σ (n = 0 to ∞) n xⁿ'],
     answer: 0,
     explanation: 'The Maclaurin coefficient of xⁿ is f⁽ⁿ⁾(0)/n! = (n + 1)!/n! = n + 1, so the series is Σ (n + 1)xⁿ. Σ (n + 1)! xⁿ forgets to divide each derivative by n!.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-taylor-007',
@@ -108,7 +108,7 @@ export default [
     explanation: 'The Lagrange error bound for a degree-3 polynomial is max|f⁽⁴⁾| · |x − 1|⁴/4! = 6(0.5)⁴/24 = 6(1/16)/24 = 1/64. 3/8 forgets to divide by 4!, and 1/384 leaves out the bound of 6 on the fourth derivative.',
     verify: 'exact',
     solve: () => (FOURTH_DERIVATIVE_BOUND * ERROR_DISTANCE ** (ERROR_DEGREE + 1)) / factorial(ERROR_DEGREE + 1),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-taylor-008',
