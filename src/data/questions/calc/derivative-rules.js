@@ -100,7 +100,7 @@ export default [
     explanation: 'By the product rule, h\'(2) = f\'(2)g(2) + f(2)g\'(2) = (−1)(4) + (3)(5) = −4 + 15 = 11. −5 multiplies the two derivatives, which is not the product rule.',
     verify: 'exact',
     solve: () => PRODUCT_TABLE.df * PRODUCT_TABLE.g + PRODUCT_TABLE.f * PRODUCT_TABLE.dg,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-derivative-rules-008',
@@ -113,6 +113,6 @@ export default [
     explanation: 'Since cos(π/3) = 1/2, this is the definition of the derivative of cos x at x = π/3. The derivative of cos x is −sin x, so the limit is −sin(π/3) = −√3/2. √3/2 drops the minus sign, and 1/2 is cos(π/3) itself.',
     verify: 'exact',
     solve: () => limit(h => (Math.cos(Math.PI / 3 + h) - 0.5) / h, 0),
-    reviewed: false,
+    reviewed: true,
   },
 ];
