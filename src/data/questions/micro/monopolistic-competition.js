@@ -33,7 +33,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Monopolistically competitive firms, such as restaurants or hair salons, each sell a slightly different product, which gives them some control over price, but entry is easy. Identical products describe perfect competition, a few interdependent firms describe oligopoly, and one firm is a monopoly.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-002',
@@ -50,7 +50,7 @@ export default [
       // 16 − 2Q = Q − 2
       return (16 + 2) / 3;
     },
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-003',
@@ -64,7 +64,7 @@ export default [
     explanation: 'At 6 units the firm charges $10 (from demand) and ATC is $7, so profit is ($10 − $7) × 6 = $18. $24 uses the minimum ATC of $6 instead of ATC at the chosen quantity, $60 is total revenue, and $42 is total cost.',
     verify: 'numeric',
     solve: () => (demandPrice(PROFIT_Q) - valueAt(ATC_POINTS, PROFIT_Q)) * PROFIT_Q,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-004',
@@ -96,7 +96,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Entry drives profit to zero, so P = ATC. But the firm still faces a downward-sloping demand curve, so MR is below price and MR = MC leaves P above MC. It is neither allocatively efficient (P > MC) nor productively efficient (output is below the minimum of ATC).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-006',
@@ -111,7 +111,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Advertising and branding try to convince buyers that the product has no close substitutes. That shifts the firm\'s demand right and makes it less elastic, so the firm can charge more without losing many customers. Advertising adds to costs, so it raises ATC rather than lowering it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-007',
@@ -126,7 +126,7 @@ export default [
     ],
     answer: 1,
     explanation: 'In the long run, demand is tangent to ATC on its falling part, to the left of minimum ATC. Each firm could lower its cost per unit by producing more, but it would have to cut its price to sell the extra output. The gap between its output and the output at minimum ATC is excess capacity.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopolistic-competition-008',
@@ -136,6 +136,6 @@ export default [
     choices: ['Local electricity service', 'Wheat farming', 'Commercial aircraft manufacturing', 'Restaurants in a large city'],
     answer: 3,
     explanation: 'A big city has many restaurants, each with its own menu, location and style, and new ones open easily. Wheat is an identical product sold by many farms (perfect competition), aircraft manufacturing has a few large firms (oligopoly), and local electricity is usually a natural monopoly.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
