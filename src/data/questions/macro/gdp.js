@@ -54,7 +54,7 @@ export default [
     ],
     answer: 2,
     explanation: 'GDP counts the market value of final goods and services newly produced within the country in a given year, and a new house counts as investment. Used goods were counted when first made, stocks are financial assets, and Social Security is a transfer payment with no production in return.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-gdp-002',
@@ -68,7 +68,7 @@ export default [
     explanation: 'GDP = C + I + G + Xn = 800 + 200 + 250 + (120 − 170) = 1,200. Transfer payments are left out because nothing is produced in exchange. 1,350 includes transfer payments, and 1,370 leaves out imports entirely, and 1,540 adds imports instead of subtracting them.',
     verify: 'numeric',
     solve: () => ACCOUNTS.consumption + ACCOUNTS.investment + ACCOUNTS.governmentPurchases + ACCOUNTS.exports - ACCOUNTS.imports,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-gdp-003',
@@ -83,7 +83,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Households own the factors of production and sell them to firms in the factor market, receiving wages, rent, interest and profit. In the product market, households are the buyers who spend that income.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-gdp-004',
@@ -124,7 +124,7 @@ export default [
     explanation: 'GDP deflator = (nominal GDP / real GDP) × 100 = (15/12) × 100 = 125. 80 divides real by nominal. A deflator of 125 means prices are 25% higher than in the base year.',
     verify: 'numeric',
     solve: () => (15 / 12) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-gdp-007',
@@ -139,7 +139,7 @@ export default [
     ],
     answer: 3,
     explanation: 'GDP measures production within a country\'s borders, whoever owns the business. The Ohio factory\'s output counts in U.S. GDP; the Mexican factory\'s output counts in Mexico\'s GDP (and in U.S. GNP, not GDP).',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-gdp-008',
@@ -154,6 +154,6 @@ export default [
     ],
     answer: 2,
     explanation: 'GDP counts production in the year it happens. Goods added to inventory count as investment (a change in business inventories). When they are sold next year, consumption rises and inventory investment falls by the same amount, so they are not counted twice.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
