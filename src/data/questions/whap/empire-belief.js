@@ -27,7 +27,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Indulgences were documents that reduced punishment for sins, and the Church was selling them to raise money, including for St. Peter\'s Basilica in Rome. Luther argued this was wrong. Translating the Bible into German was something Luther himself later did, not something he attacked.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-002',
@@ -43,7 +43,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Gutenberg\'s printing press (c. 1450) made it cheap to print pamphlets, and Luther\'s writings were copied and sold across Germany within weeks. The telegraph came in the 1800s, and the Mongol empire had broken up long before.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-003',
@@ -59,7 +59,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The Church reformed some abuses and restated its core teachings at the Council of Trent (1545 to 1563), and new orders such as the Jesuits spread Catholicism through education and missions. The Counter-Reformation made doctrine more uniform, the opposite of the last choice.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-004',
@@ -75,7 +75,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Bossuet argues that kings are chosen by God and answer only to God, which is the theory of divine right. Popular sovereignty and the social contract, Enlightenment ideas, place the source of power in the people instead.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-005',
@@ -91,7 +91,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Both ideas use religion to justify a ruler\'s power: Chinese emperors claimed to rule by the Mandate of Heaven. One difference is that the Mandate could be lost if a ruler governed badly, while Bossuet says the king answers to no one but God. The exam system was about choosing officials, not legitimizing the emperor.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-006',
@@ -107,7 +107,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Grand palaces, tombs and mosques displayed a ruler\'s wealth and power to subjects and foreign visitors. Louis XIV also brought nobles to live at Versailles so he could watch them, which strengthened his control rather than giving it away.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-007',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The Ottomans were Sunni and the Safavids made Shia Islam their state religion. Their rivalry over land, such as Iraq and the Caucasus, was also a religious conflict. Neither empire had colonies in the Americas.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-008',
@@ -137,7 +137,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Guru Nanak taught devotion to one God and rejected the caste system, drawing on both the Hindu bhakti tradition and Islamic ideas, in a region where both religions met. Sikhs later clashed with some Mughal emperors, so it was not the Mughal state religion.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-belief-009',
@@ -152,6 +152,6 @@ export default [
     ],
     answer: 2,
     explanation: 'Under the millet system, Orthodox Christians, Armenians and Jews could follow their own religious laws for matters like marriage, under their own religious leaders, as long as they paid the tax on non-Muslims and stayed loyal. This allowed a diverse empire to be governed without forced conversion.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
