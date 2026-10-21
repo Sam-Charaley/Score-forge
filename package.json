@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "verify:questions": "node scripts/verify-questions.mjs",
-    "review:drafts": "node scripts/review-drafts.mjs"
+    "review:drafts": "node scripts/review-drafts.mjs",
+    "counts": "node scripts/count-published.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.100.0",

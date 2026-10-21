@@ -6,51 +6,15 @@
 // Usage: npm run review:drafts -- <subject> [--all]
 //   --all  include reviewed items too (to re-check a whole bank)
 // Output: ../review/<subject>.html, next to the repo, not in it.
-import { readdirSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
-import { foldersFor } from '../src/data/questions/sharedFolders.js';
+import { loadQuestions, loadTopicNames, loadFrqSet, REVIEW_DIR as OUTPUT_DIR } from './lib/content.mjs';
 
-const QUESTIONS_ROOT = path.resolve('src/data/questions');
-const FRQS_ROOT = path.resolve('src/data/frqs');
-const OUTPUT_DIR = path.resolve('..', 'review');
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D'];
 const DIFFICULTY_NAMES = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
 
 const escapeHtml = value => String(value ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-const importFile = file => import(pathToFileURL(file));
-
-async function loadQuestions(subjectId) {
-  const questions = [];
-  for (const folder of foldersFor(subjectId)) {
-    const dir = path.join(QUESTIONS_ROOT, folder);
-    if (!existsSync(dir)) continue;
-    for (const file of readdirSync(dir).sort()) {
-      if (file === 'topics.js' || !file.endsWith('.js') || file.endsWith('.test.js')) continue;
-      const module = await importFile(path.join(dir, file));
-      questions.push(...module.default
-        .filter(q => !q.onlyIn || q.onlyIn === subjectId)
-        .map(q => ({ ...q, file: `${folder}/${file}` })));
-    }
-  }
-  return questions;
-}
-
-async function loadTopicNames(subjectId) {
-  const file = path.join(QUESTIONS_ROOT, subjectId, 'topics.js');
-  if (!existsSync(file)) return new Map();
-  const { default: map } = await importFile(file);
-  return new Map(map.topics.map(t => [t.id, t.name]));
-}
-
-async function loadFrqSet(subjectId) {
-  const file = path.join(FRQS_ROOT, `${subjectId}.js`);
-  if (!existsSync(file)) return { frqs: [], types: {} };
-  const module = await importFile(file);
-  return { frqs: module.default, types: module.FRQ_TYPES ?? {} };
-}
 
 function sourceHtml({ label, text, citation }) {
   return `<blockquote class="source">${label ? `<b>${escapeHtml(label)}</b><br>` : ''}${escapeHtml(text)}<cite>${escapeHtml(citation)}</cite></blockquote>`;

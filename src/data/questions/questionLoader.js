@@ -5,6 +5,7 @@ const questionModules = import.meta.glob(['./*/*.js', '!./*/topics.js', '!./**/*
 const topicModules = import.meta.glob('./*/topics.js');
 
 import { foldersFor } from './sharedFolders'
+import { PUBLISHED_COUNTS } from '../publishedCounts'
 
 export { SHARED_FOLDERS, foldersFor } from './sharedFolders'
 
@@ -17,10 +18,14 @@ const folderOf = filePath => filePath.split('/')[1];
 // (and badged) so they can be reviewed in the real practice screen.
 const INCLUDE_DRAFTS = import.meta.env.DEV;
 
-// Synchronous: only checks which subjects have question files, without loading them.
-export function hasQuestionBank(subjectId) {
+// Synchronous: checks which subjects have question files, without loading
+// them. In production a bank also needs at least one reviewed question
+// (PUBLISHED_COUNTS), so a subject whose questions are all drafts doesn't
+// show an empty practice screen; in dev, drafts count so they can be reviewed.
+export function hasQuestionBank(subjectId, { includeDrafts = INCLUDE_DRAFTS } = {}) {
   const folders = new Set(foldersFor(subjectId));
-  return Boolean(topicModules[`./${subjectId}/topics.js`]) && Object.keys(questionModules).some(filePath => folders.has(folderOf(filePath)));
+  const hasFiles = Boolean(topicModules[`./${subjectId}/topics.js`]) && Object.keys(questionModules).some(filePath => folders.has(folderOf(filePath)));
+  return hasFiles && (includeDrafts || (PUBLISHED_COUNTS[subjectId]?.questions ?? 0) > 0);
 }
 
 export async function loadQuestionBank(subjectId, { includeDrafts = INCLUDE_DRAFTS } = {}) {
