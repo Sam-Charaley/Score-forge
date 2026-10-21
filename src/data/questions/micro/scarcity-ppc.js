@@ -36,7 +36,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Scarcity is the gap between unlimited wants and limited resources, and it exists in every economy, rich or poor. High prices are a result of scarcity, not its cause, and scarcity would remain even if every price fell.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-002',
@@ -50,7 +50,7 @@ export default [
     explanation: 'An Alpha worker gives up 20 yards of cloth to make 40 bushels of wheat, so each bushel costs 20/40 = 0.5 yard of cloth. 2 yards flips the ratio: that is the cost of a yard of cloth measured in wheat.',
     verify: 'numeric',
     solve: () => OUTPUT.alpha.cloth / OUTPUT.alpha.wheat,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-003',
@@ -67,7 +67,7 @@ export default [
     ],
     answer: 2,
     explanation: 'A bushel of wheat costs 0.5 yard of cloth in Alpha but 1 yard in Beta, so Alpha has the lower opportunity cost for wheat. A yard of cloth costs 2 bushels in Alpha but 1 in Beta, so Beta has the lower cost for cloth. One country can never have a comparative advantage in both goods, even though Alpha has the absolute advantage in wheat.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-004',
@@ -98,7 +98,7 @@ export default [
     explanation: 'Moving along the curve from 30 to 40 robots, food falls from 38 to 20 tons, so the 10 extra robots cost 38 − 20 = 18 tons of food. 20 tons is the food still produced at 40 robots, not what was given up, and 12 tons is the cost of the previous 10 robots (50 − 38).',
     verify: 'numeric',
     solve: () => foodAt(30) - foodAt(40),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-006',
@@ -114,7 +114,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Each extra 10 robots costs more food than the last (3, then 7, then 12, then 18 tons) because the resources moved last are the ones best suited to farming. A straight-line PPC would show constant opportunity cost. Unemployment is shown by a point inside the curve, not by the curve\'s shape.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-007',
@@ -130,7 +130,7 @@ export default [
     ],
     answer: 2,
     explanation: 'With 20 robots the economy could make up to 50 tons of food, so 30 tons is a point inside the curve. Some resources are idle or used inefficiently, and the economy could have more of one good without giving up any of the other. An unattainable point would lie outside the curve.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-008',
@@ -145,7 +145,7 @@ export default [
     ],
     answer: 0,
     explanation: 'More labor means the economy can produce more of both goods, which moves the whole curve out. Lower unemployment moves the economy from a point inside the curve toward the curve, and shifting workers between goods is a movement along the curve. Neither changes what the economy is able to produce.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-009',
@@ -160,7 +160,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The food intercept rises while the robot intercept stays put, so the curve gets steeper. Resources moved into robots now could have grown more food than before, so each robot costs more food. It is tempting to say nothing changes for robots, but opportunity cost is measured in the other good, which did change.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-scarcity-ppc-010',
@@ -175,6 +175,6 @@ export default [
     ],
     answer: 2,
     explanation: 'In a market economy, prices signal what people value and what is scarce, and households and firms acting in their own interest decide what is produced and who gets it. A central planning agency answers these questions in a command economy, and tradition answers them in a traditional economy.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

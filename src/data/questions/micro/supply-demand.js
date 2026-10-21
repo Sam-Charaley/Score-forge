@@ -31,7 +31,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A change in the good\'s own price moves buyers along the demand curve, which is a change in quantity demanded. A change in demand, a shift of the whole curve, comes only from something other than the good\'s own price, such as income, tastes or the prices of related goods.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-002',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 2,
     explanation: 'When tea gets more expensive, some tea drinkers switch to coffee, so the demand curve for coffee shifts right. Along the unchanged supply curve, that raises both the equilibrium price and quantity of coffee. The price of tea is not coffee\'s own price, so this is a shift, not a movement along the curve.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-003',
@@ -61,7 +61,7 @@ export default [
     ],
     answer: 3,
     explanation: 'A higher wage raises the cost of producing each bicycle, so supply shifts left. Moving up along the demand curve, price rises and quantity falls. Price rising and quantity rising together would come from an increase in demand, not a change in costs.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-004',
@@ -74,7 +74,7 @@ export default [
     explanation: 'At $7, buyers want 30 units (on D) and sellers offer 75 units (on S). Quantity supplied exceeds quantity demanded by 75 − 30 = 45 units, a surplus, which pushes the price down toward $5. 30 units is only the quantity demanded and 75 units only the quantity supplied; the surplus is the gap between them.',
     verify: 'numeric',
     solve: () => quantitySupplied(7) - quantityDemanded(7),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-005',
@@ -89,7 +89,7 @@ export default [
       const price = 120 / (4 + 2);
       return 2 * price;
     },
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-006',
@@ -104,7 +104,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Higher income shifts demand right, and lower costs shift supply right. Both shifts raise quantity, so quantity must rise. They push price in opposite directions (demand up, supply down), so without knowing which shift is larger, the price change is indeterminate. Choosing a definite price change assumes the size of the shifts.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-007',
@@ -119,7 +119,7 @@ export default [
     ],
     answer: 0,
     explanation: 'For an inferior good, demand falls as income rises because people switch to alternatives such as driving. The demand curve shifts left, so equilibrium price and quantity both fall. Rising demand would be the response for a normal good.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-008',
@@ -134,7 +134,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Buyers want to buy now before the price rises, so demand increases. Sellers would rather wait and sell later at the higher price, so supply decreases. Both shifts raise today\'s price, but they move quantity in opposite directions, so the quantity change is indeterminate. Price and quantity both rising would need only the demand shift.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-supply-demand-009',
@@ -150,6 +150,6 @@ export default [
     ],
     answer: 1,
     explanation: 'At $3, buyers want 70 units but sellers offer only 25, so there is a shortage. Buyers compete for the scarce units and bid the price up toward the $5 equilibrium. The supply curve does not shift: a higher price moves sellers along it to a larger quantity supplied.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -53,7 +53,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Firms hire workers for what they produce, so the demand for a factor comes from the demand for the product. If demand for new houses rises, the value of a carpenter\'s output rises and so does the demand for carpenters. The wage carpenters want affects labor supply, not demand.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-002',
@@ -67,7 +67,7 @@ export default [
     explanation: `The 3rd worker raises output from 18 to 24 units, a marginal product of 6. With a constant price of $${OUTPUT_PRICE}, MRP = MP × P = 6 × $5 = $30. $120 multiplies total product (24) by the price instead of marginal product, and 6 is the marginal product in units, not dollars.`,
     verify: 'numeric',
     solve: () => marginalRevenueProduct(3, OUTPUT_PRICE),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-003',
@@ -81,7 +81,7 @@ export default [
     explanation: 'The MRPs of the 1st to 6th workers are $50, $40, $30, $20, $10 and $5. The firm hires each worker who adds at least as much revenue as the $25 wage costs: the 3rd adds $30, but the 4th adds only $20. Hiring 4 would add more cost than revenue.',
     verify: 'numeric',
     solve: () => workersHired(OUTPUT_PRICE, WAGE),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-004',
@@ -95,7 +95,7 @@ export default [
     explanation: 'At $10 the MRPs double to $100, $80, $60, $40, $20 and $10. The 4th worker adds $40, which covers the $25 wage, but the 5th adds only $20. A higher product price raises MRP, which shifts the firm\'s labor demand right, so it hires 4 instead of 3.',
     verify: 'numeric',
     solve: () => workersHired(10, WAGE),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-005',
@@ -111,7 +111,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Labor demand is the MRP curve, MP × P. Higher productivity raises nurses\' marginal product and so their MRP, shifting labor demand right. A higher wage is a movement along the demand curve, more trained nurses is an increase in supply, and less demand for health care would lower the price of care and the demand for nurses.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-006',
@@ -127,7 +127,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A firm that is small relative to the labor market is a wage taker: it can hire as many workers as it wants at the market wage. The supply of labor it faces is horizontal, and each extra worker costs exactly the wage, so MRC = wage. An upward-sloping supply with MRC above the wage describes a monopsony.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-007',
@@ -141,7 +141,7 @@ export default [
     explanation: 'Total labor cost is $8, $20, $36 and $56 for 1 to 4 workers, so MRC is $8, $12, $16 and $20. The firm hires while MRP is at least MRC: the 3rd worker\'s MRP of $16 equals its MRC, but the 4th worker\'s $10 is below $20. It then pays the lowest wage that attracts 3 workers, $12. $16 is the MRC (and MRP) of the 3rd worker, not the wage paid.',
     verify: 'numeric',
     solve: monopsonyWage,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-008',
@@ -157,7 +157,7 @@ export default [
     ],
     answer: 3,
     explanation: 'A monopsony\'s MRC is above the wage because hiring one more worker means raising the wage for everyone. It hires where MRP = MRC, which is fewer workers than where MRP meets labor supply, and then pays only the wage on the supply curve for that number, which is lower than the competitive wage.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-factor-markets-009',
@@ -173,6 +173,6 @@ export default [
     ],
     answer: 1,
     explanation: 'Labor gives 30 / $10 = 3 units per dollar, and machines give 40 / $20 = 2 units per dollar. Shifting spending toward labor produces the same output for less, until MP per dollar is equal for both inputs. The machine has the higher marginal product, but per dollar spent it is the weaker choice.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

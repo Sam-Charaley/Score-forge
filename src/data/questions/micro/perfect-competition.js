@@ -61,7 +61,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Each firm is so small and its product so identical to the others\' that it can sell all it wants at the market price and nothing above it. Its demand curve is perfectly elastic, a horizontal line where P = MR = AR. The market demand curve still slopes down.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-perfect-competition-002',
@@ -89,7 +89,7 @@ export default [
     explanation: 'At $18 the bakery makes 5 cakes. Total revenue is $18 × 5 = $90 and total cost is $80, so profit is $10. $90 is total revenue alone, and −$6 is the loss at a price of $14.',
     verify: 'numeric',
     solve: () => profitAt(18),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-perfect-competition-004',
@@ -106,7 +106,7 @@ export default [
     ],
     answer: 1,
     explanation: 'At $14 the bakery makes 4 cakes (MC of the 4th is $14). Revenue is $56 and total cost is $62, a loss of $6. Shutting down would still leave the $20 fixed cost, so producing loses less. Price ($14) is above AVC ($42 / 4 = $10.50), which is the shutdown test. A price taker cannot raise its price.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-perfect-competition-005',
@@ -120,7 +120,7 @@ export default [
     explanation: 'The firm produces where MR = MC on the rising part of MC: MC reaches $12 at 6 units. 5 units is where ATC is lowest, which minimizes cost per unit but not profit. 2 units is where MC is lowest, which has nothing to do with the price.',
     verify: 'numeric',
     solve: () => PROFIT_QUANTITY,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-perfect-competition-006',
@@ -134,7 +134,7 @@ export default [
     explanation: 'At 6 units, ATC is $10, so profit is (P − ATC) × Q = ($12 − $10) × 6 = $12. $18 uses the minimum ATC of $9 instead of ATC at the chosen quantity, and $72 is total revenue.',
     verify: 'numeric',
     solve: () => (PRICE - valueAt(ATC_POINTS, PROFIT_QUANTITY)) * PROFIT_QUANTITY,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-perfect-competition-007',
@@ -164,7 +164,7 @@ export default [
     ],
     answer: 3,
     explanation: 'At each price the firm produces where P = MC, so the MC curve tells you the quantity supplied. Below minimum AVC the firm shuts down and supplies nothing, so only the part of MC above minimum AVC is the supply curve. The MR curve is just the horizontal price line.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-perfect-competition-009',
@@ -175,6 +175,6 @@ export default [
     choices: ['total fixed cost', 'total variable cost', 'total cost', 'zero, because it produces nothing'],
     answer: 0,
     explanation: 'Shutting down avoids all variable costs, but fixed costs such as rent must still be paid in the short run. So a firm that shuts down loses exactly its total fixed cost. This is why a firm keeps producing when price covers AVC: it then loses less than its fixed cost.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

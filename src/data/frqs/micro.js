@@ -47,7 +47,7 @@ export default [
     type: 'long',
     title: 'Wheat farms in the long run',
     intro: 'The market for wheat is perfectly competitive and is a constant-cost industry. Hilltop Farm is a typical firm in the market, and the market is in long-run equilibrium.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -101,7 +101,7 @@ export default [
     type: 'long',
     title: 'A patented medicine',
     intro: 'MediCo holds a patent on a new medicine and is the only seller. It is an unregulated, profit-maximizing monopolist and currently earns positive economic profit.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -198,7 +198,7 @@ export default [
     type: 'short',
     title: 'Pollution from paint',
     intro: 'Paint factories release fumes that harm people living nearby. The market for paint is perfectly competitive, and the harm is the same for every can produced.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -234,7 +234,7 @@ export default [
     title: 'Hiring bakers',
     intro: 'A bakery sells bread in a perfectly competitive market at $4 per loaf and hires workers in a perfectly competitive labor market at a wage of $30 per hour. The table shows its total product.',
     figure: BAKERY_LABOR,
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

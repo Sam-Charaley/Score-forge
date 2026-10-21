@@ -26,7 +26,7 @@ export default [
     choices: ['positive economic profit', 'zero accounting profit', 'zero economic profit', 'an economic loss'],
     answer: 2,
     explanation: 'With free entry and exit, any economic profit draws in new firms and any loss drives firms out, until price equals minimum ATC and economic profit is zero. Zero economic profit still includes a normal accounting profit, which covers the owners\' opportunity costs.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-002',
@@ -41,7 +41,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Profits signal that resources earn more here than elsewhere, so new firms enter. Market supply shifts right, which lowers the price each firm takes, until price falls to minimum ATC. Individual firms are price takers, so they cannot simply raise prices.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-003',
@@ -56,7 +56,7 @@ export default [
     ],
     answer: 1,
     explanation: 'A firm covering AVC stays open in the short run, but in the long run all costs are variable and it will not accept a loss. Firms leave, the market supply curve shifts left, and price rises to minimum ATC, where the firms that remain earn zero economic profit.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-004',
@@ -67,7 +67,7 @@ export default [
     choices: ['price equals minimum average total cost', 'marginal revenue equals average total cost', 'total revenue is at its maximum', 'price equals marginal cost'],
     answer: 3,
     explanation: 'Allocative efficiency means the value buyers place on the last unit (the price) equals the cost of producing it (marginal cost), so society gets the right amount of the good. Price equal to minimum ATC is productive efficiency: producing at the lowest possible cost per unit. Perfect competition in the long run achieves both.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-005',
@@ -82,7 +82,7 @@ export default [
     ],
     answer: 1,
     explanation: 'In the short run, higher demand raises the price and creates profits. Entry then shifts market supply right until price returns to minimum ATC. In a constant-cost industry entry does not raise input prices, so minimum ATC and the long-run price are unchanged, and the extra output comes from more firms. A higher long-run price would describe an increasing-cost industry.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-006',
@@ -92,7 +92,7 @@ export default [
     choices: ['horizontal', 'vertical', 'upward sloping', 'downward sloping'],
     answer: 2,
     explanation: 'This is an increasing-cost industry: expanding output raises input prices, so each new long-run equilibrium has a higher minimum ATC and a higher price. Connecting those equilibria gives an upward-sloping long-run supply curve. A horizontal one belongs to a constant-cost industry, and a downward-sloping one to a decreasing-cost industry.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-007',
@@ -106,7 +106,7 @@ export default [
     explanation: 'In long-run equilibrium, price equals minimum average total cost. ATC is $30, $19, about $16, $15.50, $16 and $17, so the minimum is $15.50 at 4 units. $10.50 is AVC at 4 units, which leaves out fixed cost and would mean losses, and $20 is the fixed cost.',
     verify: 'numeric',
     solve: () => MIN_ATC,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-008',
@@ -120,7 +120,7 @@ export default [
     explanation: `In the long run each firm produces at minimum ATC, which is 4 units. Market output of ${MARKET_QUANTITY} divided by 4 units per firm gives 100 firms. 80 firms assumes each firm makes 5 units instead of 4, and 400 counts units, not firms.`,
     verify: 'numeric',
     solve: () => MARKET_QUANTITY / EFFICIENT_SCALE,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-competitive-long-run-009',
@@ -135,6 +135,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Economic cost includes implicit costs such as the owner\'s time and money. Zero economic profit means revenue covers all of them, a normal profit, so the owners do as well here as in their next best use. It is not a reason to shut down or exit.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

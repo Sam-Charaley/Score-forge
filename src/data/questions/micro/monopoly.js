@@ -50,7 +50,7 @@ export default [
     ],
     answer: 2,
     explanation: 'In competitive markets, profit attracts entry that competes the profit away. A monopoly is protected by barriers such as patents, control of a key resource or large economies of scale, so new firms cannot enter. A monopoly faces the downward-sloping market demand curve, not a perfectly elastic one.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-002',
@@ -64,7 +64,7 @@ export default [
     explanation: 'Every firm produces where MR = MC. MR = 20 − 2Q equals $4 at Q = 8. 16 units is where demand meets MC, the allocatively efficient quantity a competitive market would produce, and 10 units is where MR is zero, which maximizes revenue rather than profit.',
     verify: 'numeric',
     solve: () => MONOPOLY_Q,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-003',
@@ -78,7 +78,7 @@ export default [
     explanation: 'After choosing Q = 8 where MR = MC, the monopolist goes up to the demand curve to find the highest price buyers will pay for 8 units: 20 − 8 = $12. $4 reads the price off the MC curve, and $8 is the quantity, not a price.',
     verify: 'numeric',
     solve: () => MONOPOLY_P,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-004',
@@ -92,7 +92,7 @@ export default [
     explanation: 'Profit is (P − ATC) × Q = ($12 − $4) × 8 = $64, the rectangle between the price and ATC out to 8 units. $96 is total revenue ($12 × 8), and $32 is the deadweight loss triangle.',
     verify: 'numeric',
     solve: () => (MONOPOLY_P - COST) * MONOPOLY_Q,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-005',
@@ -106,7 +106,7 @@ export default [
     explanation: 'The efficient quantity is 16 units, where demand meets MC. Deadweight loss is the triangle between 8 and 16 units, below demand and above MC: ½ × (16 − 8) × ($12 − $4) = $32. $64 forgets the ½ (and equals the profit rectangle), and $16 uses only half the base.',
     verify: 'numeric',
     solve: () => 0.5 * (COMPETITIVE_Q - MONOPOLY_Q) * (MONOPOLY_P - COST),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-006',
@@ -122,7 +122,7 @@ export default [
     ],
     answer: 1,
     explanation: 'To sell one more unit, a single-price monopolist must cut the price for every buyer. The extra unit brings in its price, but revenue from all the earlier units falls, so MR is below price. Marginal cost has nothing to do with marginal revenue.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-007',
@@ -133,7 +133,7 @@ export default [
     choices: ['perfectly inelastic', 'inelastic', 'unit elastic', 'elastic'],
     answer: 3,
     explanation: 'Profit requires MR = MC, and with MC above zero, MR must be positive. MR is positive only where demand is elastic, the upper part of a linear demand curve. On the inelastic part, raising price would increase revenue and cut costs, so no monopolist stays there.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-008',
@@ -148,7 +148,7 @@ export default [
     ],
     answer: 0,
     explanation: 'With perfect price discrimination, the monopolist\'s MR equals the demand curve, so it sells to every buyer willing to pay at least MC: the efficient quantity, with no deadweight loss. But each buyer pays exactly their willingness to pay, so the firm captures all the surplus and consumer surplus is zero. Only the last unit sells at a price equal to MC.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-009',
@@ -164,7 +164,7 @@ export default [
     ],
     answer: 2,
     explanation: 'For a natural monopoly, ATC falls over the relevant range, so MC lies below ATC. Setting P = MC puts the price below ATC, and the firm loses money on each unit. The fair-return price, P = ATC, avoids the loss and gives zero economic profit but produces less than the efficient amount.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-monopoly-010',
@@ -178,6 +178,6 @@ export default [
     explanation: 'Total revenue at 1 to 5 units is $10, $18, $24, $28 and $30, so marginal revenue is $10, $8, $6, $4 and $2. The firm sells every unit with MR at least $5: three units. It charges the highest price at which buyers take 3 units, $8. $5 sets price equal to MC, which a monopolist does not do.',
     verify: 'numeric',
     solve: scheduleBestPrice,
-    reviewed: false,
+    reviewed: true,
   },
 ];

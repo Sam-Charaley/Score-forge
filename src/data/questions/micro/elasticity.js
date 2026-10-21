@@ -26,7 +26,7 @@ export default [
     explanation: 'The midpoint percent change in quantity is 20/90 ≈ 22.2%, and in price it is 2/5 = 40%. Elasticity is 22.2/40 ≈ 0.56, so demand is inelastic in this range. 0.40 uses the starting values instead of midpoints (20% / 50%), and 1.8 divides the percent changes the wrong way around.',
     verify: 'numeric',
     solve: () => Math.abs(midpointChange(100, 80) / midpointChange(4, 6)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-002',
@@ -37,7 +37,7 @@ export default [
     choices: ['increase', 'decrease', 'stay the same', 'fall to zero'],
     answer: 0,
     explanation: 'With elastic demand, quantity demanded changes by a larger percentage than price. A price cut brings in so many more buyers that price times quantity rises. If demand were inelastic, the same price cut would lower total revenue.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-003',
@@ -47,7 +47,7 @@ export default [
     choices: ['A particular brand of cereal', 'Restaurant meals', 'Insulin for people with diabetes', 'Concert tickets'],
     answer: 2,
     explanation: 'Insulin is a necessity with no close substitutes, so buyers keep purchasing about the same amount when its price rises. A single brand of cereal has many close substitutes, which makes its demand highly elastic, and restaurant meals and concerts are easy to cut back on.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-004',
@@ -60,7 +60,7 @@ export default [
     explanation: 'Income elasticity is the percent change in quantity divided by the percent change in income: −10% / 20% = −0.5. The negative sign means instant noodles are an inferior good in this town. Keep the sign for income elasticity; dropping it would wrongly suggest a normal good, and −2.0 divides the wrong way around.',
     verify: 'numeric',
     solve: () => -10 / 20,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-005',
@@ -78,7 +78,7 @@ export default [
       for (let q = 0; q <= 100; q++) if (q * demandPrice(q) > best * demandPrice(best)) best = q;
       return best;
     },
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-006',
@@ -95,7 +95,7 @@ export default [
     ],
     answer: 3,
     explanation: 'At $8, quantity is 20 units and revenue is $160. At $6, quantity is 40 units and revenue is $240. Price and revenue moved in opposite directions, so demand is elastic between those prices, as it always is on the upper half of a linear demand curve. Although the slope is constant, elasticity is not.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-007',
@@ -108,7 +108,7 @@ export default [
     explanation: 'Elasticity = %ΔQ / %ΔP, so %ΔQ = 2.0 × 5% = 10%. Because demand is elastic, the publisher\'s total revenue will fall. 2.5% comes from dividing 5% by 2.0 instead of multiplying.',
     verify: 'numeric',
     solve: () => 2.0 * 5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-008',
@@ -124,7 +124,7 @@ export default [
     ],
     answer: 3,
     explanation: 'With a fixed number of seats, the supply curve is vertical at 40,000: quantity supplied cannot respond to price. A rightward shift in demand can only raise the price. Quantity rising with price would need an upward-sloping supply curve.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-elasticity-009',
@@ -135,6 +135,6 @@ export default [
     choices: ['complements', 'substitutes', 'inferior goods', 'normal goods'],
     answer: 0,
     explanation: 'A negative cross-price elasticity means a higher price of one good lowers the quantity demanded of the other, which is how goods used together behave. Substitutes have a positive cross-price elasticity. Whether a good is normal or inferior depends on income elasticity, not cross-price elasticity.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
