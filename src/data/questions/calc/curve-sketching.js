@@ -89,7 +89,7 @@ export default [
     choices: ['(−1, 1) only', '(0, ∞) only', '(1, ∞) only', '(−∞, −1) and (1, ∞)'],
     answer: 3,
     explanation: 'f is increasing where f\'(x) > 0. f\'(x) = 3x² − 3 = 3(x − 1)(x + 1), which is positive when x < −1 and when x > 1. On (−1, 1), f\' is negative, so f is decreasing there.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-curve-sketching-007',
@@ -100,7 +100,7 @@ export default [
     choices: ['(−2, 2)', '(1, 3)', '(−3, −1)', '(−1, 1)'],
     answer: 1,
     explanation: 'f is concave down where f\' is decreasing. The graph of f\' falls only on (1, 3). On (−2, 2) f\' is positive, which says f is increasing, not anything about concavity. On (−1, 1) f\' is constant, so f is a straight line there.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-curve-sketching-008',
@@ -112,6 +112,6 @@ export default [
     explanation: 'Minimize the squared distance D(x) = (x − 4)² + (√x)² = (x − 4)² + x. D\'(x) = 2(x − 4) + 1 = 0 gives x = 3.5, and D\'\' = 2 > 0, so it is a minimum. D(3.5) = 0.25 + 3.5 = 15/4, so the distance is √15/2. 2 is the distance to (4, 2), which is not the closest point.',
     verify: 'exact',
     solve: () => extremeValue(x => Math.sqrt((x - 4) ** 2 + x), 0, 10, 'min'),
-    reviewed: false,
+    reviewed: true,
   },
 ];
