@@ -28,7 +28,7 @@ export default [
     choices: ['frictionally unemployed', 'structurally unemployed', 'cyclically unemployed', 'not in the labor force'],
     answer: 0,
     explanation: 'Frictional unemployment is the short-term unemployment of people between jobs or searching for a better match. Her skills are still in demand, so it is not structural, and nothing about a recession caused it, so it is not cyclical.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-002',
@@ -42,7 +42,7 @@ export default [
     explanation: 'The labor force is employed plus unemployed: 115 + 10 = 125 million. The unemployment rate is 10/125 = 8.0%. 5.0% divides by the whole adult population, and 8.7% divides by the employed only.',
     verify: 'numeric',
     solve: () => (LABOR.unemployed / laborForce()) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-003',
@@ -56,7 +56,7 @@ export default [
     explanation: 'The participation rate is the labor force divided by the adult population: 125/200 = 62.5%. 57.5% uses only the employed, and 92.0% is the employment rate within the labor force.',
     verify: 'numeric',
     solve: () => (laborForce() / LABOR.adultPopulation) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-004',
@@ -66,7 +66,7 @@ export default [
     choices: ['Frictional', 'Seasonal', 'Cyclical', 'Structural'],
     answer: 3,
     explanation: 'Structural unemployment is caused by a mismatch between workers\' skills and the jobs available, often from technological change. It lasts longer than frictional unemployment and does not go away when the economy recovers, unlike cyclical unemployment.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-005',
@@ -81,7 +81,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Discouraged workers are no longer actively searching, so they are not counted as unemployed or in the labor force. The number unemployed falls by more, in percentage terms, than the labor force, so the measured rate falls even though no one found a job.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-006',
@@ -97,7 +97,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Full employment means no cyclical unemployment. Frictional and structural unemployment still exist, and together they make up the natural rate of unemployment, so the unemployment rate is above zero.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-007',
@@ -113,7 +113,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The natural rate is frictional plus structural: 2.5% + 1.5% = 4.0%. Actual unemployment is 2.5 points above it, so there is cyclical unemployment and the economy is in a recession, producing below full-employment output.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-unemployment-008',
@@ -128,6 +128,6 @@ export default [
     ],
     answer: 3,
     explanation: 'In a contraction, real GDP falls and firms need fewer workers, so cyclical unemployment rises. Rising real GDP and falling unemployment describe an expansion, and output above full employment describes the peak of a boom.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

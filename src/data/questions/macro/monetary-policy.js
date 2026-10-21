@@ -42,7 +42,7 @@ export default [
     explanation: 'Equilibrium is where money demand crosses the vertical money supply at 200 billion: i = 10 − 200/40 = 5%. At a higher rate, people would want to hold less money than the amount supplied.',
     verify: 'numeric',
     solve: () => moneyDemandRate(MONEY_SUPPLY),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-003',
@@ -55,7 +55,7 @@ export default [
     explanation: 'The money supply shifts right to 300 billion, and money demand there gives i = 10 − 300/40 = 2.5%. More money with the same demand lowers the interest rate.',
     verify: 'numeric',
     solve: () => moneyDemandRate(300),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-004',
@@ -70,7 +70,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Selling bonds removes reserves from banks and shrinks the money supply, so the nominal interest rate rises. Borrowing costs more, so interest-sensitive investment falls, AD shifts left and real GDP falls.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-005',
@@ -100,7 +100,7 @@ export default [
     ],
     answer: 0,
     explanation: 'With more spending and higher prices, people need more money for transactions, so money demand shifts right. With a fixed money supply, the equilibrium nominal interest rate rises.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-007',
@@ -115,7 +115,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Fed purchases raise the demand for bonds, pushing bond prices up. A bond pays a fixed amount, so paying more for it means a lower yield. Bond prices and interest rates always move in opposite directions.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-monetary-policy-008',
@@ -131,6 +131,6 @@ export default [
     ],
     answer: 1,
     explanation: 'The money multiplier is 1/reserve requirement, which falls from 1/0.10 = 10 to 1/0.20 = 5. Banks must hold more of each deposit, so they can lend less and the money supply shrinks. This is contractionary.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

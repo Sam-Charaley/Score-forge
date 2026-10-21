@@ -28,7 +28,7 @@ export default [
     explanation: 'Demand and supply cross at 250 billion, where r = 250/50 = 5%. At that rate, the amount savers want to lend equals the amount borrowers want to borrow.',
     verify: 'numeric',
     solve: () => rateAfterDemandShift(0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-002',
@@ -43,7 +43,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Saving is the source of loanable funds, so more saving shifts supply to the right. The real interest rate falls and the quantity of loans rises.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-003',
@@ -71,7 +71,7 @@ export default [
     explanation: 'The new demand curve is r = 12 − Q/50. Setting it equal to supply, Q/50: 12 − Q/50 = Q/50 gives Q = 300 billion and r = 6%. 7% reads the new demand curve at the old quantity of 250 billion, as if the quantity supplied could not respond to a higher rate.',
     verify: 'numeric',
     solve: () => rateAfterDemandShift(100),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-005',
@@ -86,7 +86,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Firms borrow to invest, so a tax credit that raises the expected return on investment increases the demand for loanable funds. More saving and foreign capital inflows increase supply, and a smaller deficit lowers government borrowing.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-006',
@@ -101,7 +101,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Foreign purchases of U.S. assets are a capital inflow: foreign saving lent in the United States. That adds to the supply of loanable funds, lowering the real interest rate.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-007',
@@ -117,7 +117,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Savers and borrowers care about purchasing power, so the loanable funds market uses the real interest rate: 9% − 4% = 5%. The money market, by contrast, is drawn with the nominal interest rate.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-loanable-funds-008',
@@ -132,6 +132,6 @@ export default [
     ],
     answer: 1,
     explanation: 'A surplus adds public saving to the supply of loanable funds (or removes government borrowing from demand), lowering the real interest rate. Lower rates encourage private investment in capital, which raises productive capacity and long-run growth.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

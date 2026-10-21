@@ -28,7 +28,7 @@ export default [
     choices: ['Medium of exchange', 'Store of value', 'Unit of account', 'Standard of deferred payment'],
     answer: 2,
     explanation: 'Money as a unit of account gives a common measure for comparing the values of different goods. Paying for the jacket would be using money as a medium of exchange, and saving money for later is a store of value.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-002',
@@ -57,7 +57,7 @@ export default [
     explanation: 'Required reserves are a share of deposits: 10% × $200,000 = $20,000. 50,000 is the bank\'s total reserves, and 15,000 takes 10% of loans instead of deposits.',
     verify: 'numeric',
     solve: requiredReserves,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-004',
@@ -71,7 +71,7 @@ export default [
     explanation: 'A single bank can lend only its excess reserves: total reserves minus required reserves = $50,000 − $20,000 = $30,000. 300,000 is the most the whole banking system could create from those excess reserves, not what one bank can lend.',
     verify: 'numeric',
     solve: excessReserves,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-005',
@@ -85,7 +85,7 @@ export default [
     explanation: 'The money multiplier is 1/0.10 = 10, so $30,000 of excess reserves can become at most $30,000 × 10 = $300,000 of new money as loans are re-deposited and re-lent. 500,000 multiplies total reserves, including the required part, which cannot be lent.',
     verify: 'numeric',
     solve: () => excessReserves() / RESERVE_REQUIREMENT,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-006',
@@ -98,7 +98,7 @@ export default [
     explanation: 'The deposit itself only moves $1,000 from currency to checkable deposits, so M1 does not change at first. The bank must keep $200 and can lend $800 in excess reserves. With a money multiplier of 1/0.20 = 5, new loans can create at most $800 × 5 = $4,000. 5,000 multiplies the whole deposit.',
     verify: 'numeric',
     solve: () => 1000 * (1 - 0.2) * (1 / 0.2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-007',
@@ -111,7 +111,7 @@ export default [
     explanation: 'The Fed pays the bank with new reserves, and since no deposit was created, all $10 million is excess reserves. Multiplied by 1/0.10 = 10, the money supply can rise by up to $100 million. 90 subtracts required reserves as if a $10 million deposit had been made, and 10 ignores the multiplier.',
     verify: 'numeric',
     solve: () => 10 * (1 / RESERVE_REQUIREMENT),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-money-banking-008',
@@ -126,6 +126,6 @@ export default [
     ],
     answer: 1,
     explanation: 'The money multiplier assumes every loan is re-deposited in full and banks lend all excess reserves. Cash kept outside banks (a currency drain) is never re-lent, so less money is created. Lending all excess reserves is the assumption itself, and a lower reserve requirement makes the multiplier larger.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

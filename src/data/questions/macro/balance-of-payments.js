@@ -38,7 +38,7 @@ export default [
     explanation: 'The current account includes trade in goods and services, net investment income and net transfers: 300 − 400 + 20 − 10 = −90. −100 is only the balance of trade, leaving out income and transfers. Asset purchases belong in the financial account.',
     verify: 'numeric',
     solve: currentAccount,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-002',
@@ -52,7 +52,7 @@ export default [
     explanation: 'Foreign purchases of Country Z assets bring funds in (+150), and Country Z purchases of foreign assets send funds out (−60), for a balance of +90. It exactly offsets the current account deficit of −90, as the balance of payments requires.',
     verify: 'numeric',
     solve: financialAccount,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-003',
@@ -67,7 +67,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Buying a foreign asset is foreign direct investment by the United States: money flows out to buy an asset, so it is a debit in the financial account. It is not trade in goods or services.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-004',
@@ -82,7 +82,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Services sold to foreigners are U.S. exports, even when the foreigner buys them inside the United States. Exports are credits in the current account.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-005',
@@ -98,7 +98,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The balance of payments sums to zero: CA + CFA = 0. A country that buys more goods and services from abroad than it sells pays for the difference by selling assets to foreigners or borrowing from them, a financial account surplus.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-006',
@@ -113,7 +113,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Investment income (interest and dividends) earned from abroad is part of the current account, as a credit. Buying the shares in the first place was a financial account transaction, but the income they pay is not.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-007',
@@ -126,7 +126,7 @@ export default [
     explanation: 'Net exports = exports − imports = 200 − 260 = −60 billion, a trade deficit. Net exports are negative whenever imports exceed exports.',
     verify: 'numeric',
     solve: () => 200 - 260,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-balance-of-payments-008',
@@ -141,6 +141,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Higher U.S. rates attract foreign saving into U.S. assets, a capital inflow that moves the financial account toward surplus. Buying dollars to make these purchases appreciates the dollar, which makes U.S. exports more expensive and imports cheaper, moving the current account toward deficit.',
-    reviewed: false,
+    reviewed: true,
   },
 ];

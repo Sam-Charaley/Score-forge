@@ -31,7 +31,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Gasoline and gas-powered cars are complements, so a higher gas price lowers the demand for the cars. A change in the cars\' own price is a movement along the demand curve, and cheaper steel shifts supply, not demand.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-002',
@@ -42,7 +42,7 @@ export default [
     choices: ['$6 and 40 units', '$4 and 60 units', '$6 and 60 units', '$10 and 0 units'],
     answer: 0,
     explanation: 'Equilibrium is where the demand and supply curves cross: at 40 units, demand gives P = 10 − 4 = $6 and supply gives P = 2 + 4 = $6. At that price, quantity demanded equals quantity supplied.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-003',
@@ -55,7 +55,7 @@ export default [
     explanation: 'At $4, buyers want 60 units (from 4 = 10 − Q/10) but sellers offer only 20 units (from 4 = 2 + Q/10). The shortage is 60 − 20 = 40 units. 60 is the quantity demanded alone.',
     verify: 'numeric',
     solve: () => quantityOnLine(DEMAND, 4) - quantityOnLine(SUPPLY, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-004',
@@ -83,7 +83,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Supply shifts right and demand shifts right. Both shifts raise quantity, so quantity rises for sure. The supply shift lowers price while the demand shift raises it, so without the sizes of the shifts the price change is indeterminate.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-006',
@@ -98,7 +98,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The frost lowers the supply of coffee and raises its price. Buyers switch to the substitute, so the demand for tea rises, raising both the price and quantity of tea. The frost did not change the supply of tea.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-supply-demand-007',
@@ -129,6 +129,6 @@ export default [
     ],
     answer: 2,
     explanation: 'The income effect (a lower price makes buyers\' money go further) and the substitution effect (the good becomes cheaper than alternatives) both raise quantity demanded as price falls. A price change moves along the curve; it does not shift it.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
