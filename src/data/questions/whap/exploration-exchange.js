@@ -92,7 +92,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Columbus promises gold, spices and slaves and describes the people as harmless and easy to convert. He was writing to the officials who had paid for his voyage, so he had reason to make the lands sound rich and easy to control. That makes it unreliable as a neutral description.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-005',
@@ -108,7 +108,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Columbus mentions gold, spices and trade goods along with converting the people to Christianity, the "gold and God" motives often linked to Iberian expansion, together with glory for the crown. Industrialization did not begin until the 1700s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-006',
@@ -123,7 +123,7 @@ export default [
     ],
     answer: 2,
     explanation: 'The caravel combined square and lateen sails so it could sail against the wind, and the compass and astrolabe (both adopted from other parts of Afro-Eurasia) helped with navigation. Steam and iron ships came in the 1800s.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-007',
@@ -138,7 +138,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Maize, potatoes and sweet potatoes grew well on land that did not suit older crops, and they supported population growth in China, Europe and Africa. Wheat and cattle went the other way, from Afro-Eurasia to the Americas, and sugar cane came from Asia originally.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-008',
@@ -153,7 +153,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Spices from Asia reached Europe through Muslim and Venetian traders who raised the price at every stage. A sea route around Africa would let Portugal buy directly. Vasco da Gama reached India in 1498. Protestantism did not exist until after 1517, and Portugal stayed Catholic.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-exploration-exchange-009',
@@ -168,6 +168,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Horses made buffalo hunting far more effective and long-distance travel easier, so several Plains peoples left farming villages for a mobile, horse-based way of life in the 1700s. This shows how the Columbian Exchange could strengthen some Indigenous societies, at least for a time.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
