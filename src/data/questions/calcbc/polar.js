@@ -81,7 +81,7 @@ export default [
     ],
     answer: 0,
     explanation: 'dr/dθ = 2 cos θ, which is negative for π/2 < θ < π. Since r stays positive (it is at least 1), a decreasing r means the distance from the origin is shrinking. A sign of dr/dθ says nothing about concavity, which needs d²y/dx².',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-polar-007',
@@ -97,7 +97,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Polar area is (1/2)∫ r² dθ over one full trace of the curve. r = 2 + cos θ is never zero, so it is traced once as θ goes from 0 to 2π. Leaving out the 1/2 doubles the area, and stopping at π covers only the top half.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calcbc-polar-008',
@@ -110,6 +110,6 @@ export default [
     explanation: 'The circles meet where 4 sin θ = 2, at θ = π/6 and 5π/6. The area is (1/2)∫ (16 sin²θ − 4) dθ from π/6 to 5π/6 = (1/2)(16π/3 + 4√3 − 8π/3) = 4π/3 + 2√3. 8π/3 + 4√3 leaves out the 1/2 in the polar area formula.',
     verify: 'exact',
     solve: () => polarArea(theta => 4 * Math.sin(theta), Math.PI / 6, 5 * Math.PI / 6) - polarArea(() => 2, Math.PI / 6, 5 * Math.PI / 6),
-    reviewed: false,
+    reviewed: true,
   },
 ];
