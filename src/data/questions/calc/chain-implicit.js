@@ -101,7 +101,7 @@ export default [
     explanation: 'By the chain rule, h\'(1) = f\'(g(1)) · g\'(1). g(1) = 3, so this is f\'(3) · g\'(1) = (−4)(2) = −8. 10 uses f\'(1) instead of f\'(g(1)), the most common slip.',
     verify: 'exact',
     solve: () => { const [, , , g1, dg1] = tableRow(1); return tableRow(g1)[2] * dg1; },
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'calc-chain-implicit-008',
@@ -114,6 +114,6 @@ export default [
     verify: 'exact',
     // y as a function of x near (1, 2), found by solving the equation for y.
     solve: () => derivative(x => findRoot(y => x * y + y ** 3 - 10, 0, 5), 1),
-    reviewed: false,
+    reviewed: true,
   },
 ];
