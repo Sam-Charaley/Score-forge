@@ -27,7 +27,7 @@ export default [
     explanation: 'The long-run Phillips curve is vertical at the natural rate of unemployment, here 5%. In the long run, unemployment returns to this rate whatever the inflation rate.',
     verify: 'numeric',
     solve: () => NATURAL_RATE,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-002',
@@ -40,7 +40,7 @@ export default [
     explanation: 'An increase in AD moves the economy up and to the left along the short-run Phillips curve. At 3% unemployment, the SRPC gives inflation of 10 − 3 = 7%. Lower unemployment comes with higher inflation in the short run.',
     verify: 'numeric',
     solve: () => srpcInflation(3),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-003',
@@ -55,7 +55,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Lower AD reduces output and the price level, so unemployment rises and inflation falls: a movement down and to the right along the SRPC. Shifts of the SRPC come from supply shocks and changes in expected inflation.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-004',
@@ -70,7 +70,7 @@ export default [
     ],
     answer: 2,
     explanation: 'A negative supply shock raises both inflation and unemployment (stagflation). The only way to get more of both is for the whole short-run Phillips curve to shift right (up). A movement along the SRPC always trades one for the other.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-005',
@@ -85,7 +85,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Once workers expect the higher inflation, they demand higher nominal wages, and the SRPC shifts right. Unemployment returns to the natural rate on the vertical LRPC, but inflation is now higher. Monetary policy cannot keep unemployment below the natural rate in the long run.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-006',
@@ -98,7 +98,7 @@ export default [
     explanation: 'In MV = PY, with V and Y fixed, P must change in proportion to M. An 8% increase in the money supply raises the price level by 8%. This is why money growth and inflation move together in the long run.',
     verify: 'numeric',
     solve: () => (1.08 - 1) * 100,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-007',
@@ -111,7 +111,7 @@ export default [
     explanation: 'MV = PY, so P = MV/Y = (500 × 4)/1,000 = 2. 0.5 divides Y by MV instead, 4 is just the velocity, and 2,000 is nominal GDP (MV), not the price level.',
     verify: 'numeric',
     solve: () => (500 * 4) / 1000,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'macro-phillips-curve-008',
@@ -126,6 +126,6 @@ export default [
     ],
     answer: 0,
     explanation: 'The natural rate is frictional plus structural unemployment. Lower frictional unemployment lowers the natural rate, so the vertical LRPC shifts left. The SRPC would also shift left with it.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
