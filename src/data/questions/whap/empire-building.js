@@ -30,7 +30,7 @@ export default [
     choices: ['the mit\'a system', 'the encomienda system', 'the devshirme system', 'the zamindar system'],
     answer: 2,
     explanation: 'Under the devshirme, the Ottoman state took boys from Christian families in the Balkans, converted them to Islam and trained them as Janissary soldiers or palace officials loyal only to the sultan. The mit\'a was Inca and later Spanish forced labor, and the encomienda was a Spanish colonial labor grant.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-002',
@@ -46,7 +46,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The last two sentences turn the comparison back on Europe: "With us, it is different." As a Habsburg ambassador writing to a European reader, Busbecq used the Ottoman system to point out the weakness of a system based on birth. Nothing in the passage predicts collapse; it praises Ottoman strength.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-003',
@@ -62,7 +62,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Both systems built a bureaucracy whose members owed their position to the ruler and to their own training rather than to family rank. China tested candidates on the Confucian classics; the Ottomans trained devshirme recruits in the palace. Giving land for military service describes European feudalism.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-004',
@@ -73,7 +73,7 @@ export default [
     choices: ['Ottoman', 'Safavid', 'Mughal', 'None of them'],
     answer: 2,
     explanation: 'The Mughal rulers were Sunni Muslims, but most people in South Asia were Hindu. In the Ottoman and Safavid empires, most subjects shared the rulers\' branch of Islam.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-005',
@@ -89,7 +89,7 @@ export default [
     ],
     answer: 3,
     explanation: 'Akbar abolished the jizya (a tax on non-Muslims), married into Hindu Rajput families, gave Hindus high posts and encouraged religious debate. This tolerance helped a Muslim minority rule a Hindu majority. A later emperor, Aurangzeb, brought the jizya back, which caused resentment.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-006',
@@ -105,7 +105,7 @@ export default [
     ],
     answer: 1,
     explanation: 'The Qing presented themselves as proper Confucian rulers, kept the exams and the bureaucracy, and appointed Manchu and Han officials side by side. At the same time they required the queue as a sign of submission. They ruled from Beijing, inside China.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-007',
@@ -120,7 +120,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Sultan Mehmed II used huge cannons to break the walls of Constantinople, which had stood for about a thousand years. The Ottomans, Safavids and Mughals are often called gunpowder empires because firearms and cannons helped them expand.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-008',
@@ -135,7 +135,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Both empires relied on local elites to collect taxes, often in exchange for keeping a portion. This raised revenue for large states without a huge salaried bureaucracy, but it could lead to abuse of peasants and weaken central control over time.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-empire-building-009',
@@ -150,6 +150,6 @@ export default [
     ],
     answer: 3,
     explanation: 'Russian rulers from Ivan IV onward pushed east across Siberia, with Cossacks and fur traders leading the way, and reached the Pacific in the 1600s. Russia was a land-based empire and had no colonies in Africa; it was a rival of the Ottomans, not a partner.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
