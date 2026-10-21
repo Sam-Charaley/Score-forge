@@ -45,7 +45,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Marginal utility is the extra satisfaction from one more unit, and it eventually shrinks: the third slice of pizza adds less than the first. Total utility still rises as long as marginal utility is positive, so saying total utility falls confuses the two.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-002',
@@ -57,7 +57,7 @@ export default [
     choices: ['4 units of X and 2 units of Y', '2 units of X and 5 units of Y', '3 units of X and 4 units of Y', '5 units of X and 0 units of Y'],
     answer: 2,
     explanation: 'Divide each marginal utility by the price. X gives 10, 8, 6, 4, 2 utils per dollar and Y gives 12, 10, 8, 6, 4. Buying in order of the highest utils per dollar, the $10 runs out at 3 X and 4 Y, where both last units give 6 utils per dollar and 3($2) + 4($1) = $10. 4 X and 2 Y also costs $10 but leaves the fourth X at only 4 utils per dollar while a third Y would give 8.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-003',
@@ -71,7 +71,7 @@ export default [
     explanation: 'The best combination is 3 X and 4 Y. Total utility adds up every unit\'s marginal utility: X gives 20 + 16 + 12 = 48 and Y gives 12 + 10 + 8 + 6 = 36, so 84 utils. 78 utils is 4 X and 2 Y, which costs the same but gives less. 6 utils is the marginal utility per dollar at the optimum, not the total.',
     verify: 'numeric',
     solve: () => totalUtility(MU_X, 3) + totalUtility(MU_Y, 4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-004',
@@ -87,7 +87,7 @@ export default [
     ],
     answer: 3,
     explanation: 'A dollar moved from smoothies to tacos loses about 3 utils and gains about 5, so total utility rises. As he buys more tacos their marginal utility falls, and as he buys fewer smoothies theirs rises, until MU/P is equal for both. Spending the whole budget is necessary but not enough: the last dollar on each good must give the same utility.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-005',
@@ -100,7 +100,7 @@ export default [
     explanation: 'The marginal benefits of each hour are $50, $40, $30, $20 and $10. Leo should keep studying while the marginal benefit is at least the $25 marginal cost: the third hour adds $30, but the fourth adds only $20. 5 hours maximizes total benefit, but it ignores the cost of each hour.',
     verify: 'numeric',
     solve: bestHours,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-006',
@@ -115,7 +115,7 @@ export default [
     ],
     answer: 0,
     explanation: 'The $60 is gone whichever choice she makes, so it is a sunk cost and should be ignored. Only future costs and benefits matter: she values the $80 shift more than the concert, so working gives the higher net benefit. Going to avoid "wasting" the ticket is the sunk cost fallacy.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-007',
@@ -125,7 +125,7 @@ export default [
     choices: ['income effect', 'substitution effect', 'law of diminishing marginal utility', 'cross-price effect on supply'],
     answer: 1,
     explanation: 'The substitution effect is the shift toward a good that has become relatively cheaper than its alternatives. The income effect is the other part of the response: a lower price raises the buyer\'s purchasing power, so they can afford more of everything.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-008',
@@ -137,7 +137,7 @@ export default [
     choices: ['3 units of X and 4 units of Y', '1 unit of X and 4 units of Y', '2 units of X and 3 units of Y', '3 units of X and 2 units of Y'],
     answer: 3,
     explanation: 'At $2 each, Y now gives 6, 5, 4, 3 and 2 utils per dollar, while X still gives 10, 8, 6, 4, 2. Buying in order of utils per dollar: X, X, then X and Y at 6, then the second Y at 5, which spends exactly $10 on 3 X and 2 Y. Y falls from 4 units to 2, as the law of demand predicts. 3 X and 4 Y was the old choice and would now cost $14.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-consumer-choice-009',
@@ -147,6 +147,6 @@ export default [
     choices: ['at its maximum', 'equal to the price of the good', 'zero', 'equal to total utility'],
     answer: 2,
     explanation: 'Total utility rises as long as each extra unit adds positive utility. When marginal utility reaches zero, one more unit adds nothing, and beyond that it would lower total utility. Marginal utility is usually at its highest with the first unit, when total utility is still low.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
