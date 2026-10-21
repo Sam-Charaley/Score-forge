@@ -18,7 +18,7 @@ export default [
     explanation: 'Reading the place values from the right: 1 × 1 + 0 × 2 + 1 × 4 + 1 × 8 = 13. 11 comes from reading the place values in the wrong order (1011).',
     verify: 'exact',
     solve: () => parseInt('1101', 2),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-002',
@@ -30,7 +30,7 @@ export default [
     explanation: 'Each bit doubles the number of possible patterns, so n bits give 2ⁿ values: 2⁵ = 32 (the numbers 0 to 31). 10 comes from multiplying 5 × 2 instead of raising 2 to the 5th power.',
     verify: 'exact',
     solve: () => 2 ** 5,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-003',
@@ -42,7 +42,7 @@ export default [
     explanation: '45 = 32 + 8 + 4 + 1, so the 32, 8, 4 and 1 places are 1 and the 16 and 2 places are 0: 101101. 110101 is 53, which puts the 16 bit on instead of the 8 bit.',
     verify: 'exact',
     solve: () => binaryDigits(45),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-004',
@@ -52,7 +52,7 @@ export default [
     choices: ['7 + 8', '15 − 8', '9 + 7', '3 × 5'],
     answer: 2,
     explanation: '9 + 7 = 16, which is too large for 4 bits (the largest 4-bit value is 1111, or 15). The other results are all between 0 and 15. Note that 7 + 8 = 15 just fits.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-005',
@@ -62,7 +62,7 @@ export default [
     choices: ['Binary 1110', 'Decimal 13', 'Binary 1011', 'Decimal 12'],
     answer: 0,
     explanation: 'Binary 1110 is 8 + 4 + 2 = 14 and binary 1011 is 8 + 2 + 1 = 11. 14 is greater than 13, 12 and 11. Comparing digit strings across bases does not work: convert first.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-006',
@@ -77,7 +77,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Lossless compression reduces size without losing any information, so the original can be reconstructed exactly. Lossy compression usually makes files smaller, but it throws some data away for good, so it fails the requirement.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-007',
@@ -87,7 +87,7 @@ export default [
     choices: ['AAAAAAAA', 'AABBCCDD', 'AAAABBBB', 'ABCDEFGH'],
     answer: 3,
     explanation: 'ABCDEFGH has no repeats, so every letter becomes two characters: 1A1B1C1D1E1F1G1H is 16 characters, twice the original 8. AABBCCDD becomes 2A2B2C2D, the same length, and the other two shrink. Run-length encoding only helps when the data has long runs.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-008',
@@ -102,7 +102,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Bits are an abstraction: the same sequence can stand for a number, a character, a color component or an instruction. The meaning comes from how the program uses it. Read as a whole number, 01000001 is 65, and in ASCII that code is the letter A.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'csp-data-representation-009',
@@ -112,6 +112,6 @@ export default [
     choices: ['It is about 1.33 times as many', 'It is 2 times as many', 'It is 4 times as many', 'It is 8 times as many'],
     answer: 2,
     explanation: '6 bits give 2⁶ = 64 values and 8 bits give 2⁸ = 256 values, and 256 / 64 = 4. Each added bit doubles the count, and two added bits double it twice. 1.33 comes from comparing the bit counts (8 / 6) instead of the number of values.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
