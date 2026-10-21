@@ -32,7 +32,7 @@ export default [
     choices: ['a public good', 'a negative externality', 'a positive externality', 'a price floor'],
     answer: 1,
     explanation: 'An externality is a cost or benefit that falls on people outside the transaction. Here a cost falls on neighbors who neither buy nor sell the factory\'s product, so it is a negative externality, and the factory\'s private cost understates the true social cost.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-002',
@@ -46,7 +46,7 @@ export default [
     explanation: 'The socially optimal quantity is where marginal social benefit equals marginal social cost: demand meets MSC at 40 tons. The unregulated market produces 50 tons, where demand meets the firms\' private cost and ignores the $2 external cost per ton.',
     verify: 'numeric',
     solve: () => OPTIMAL_Q,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-003',
@@ -60,7 +60,7 @@ export default [
     explanation: 'The market produces 50 tons, but the last 10 tons cost society more (MSC) than they are worth (MSB). The deadweight loss is the triangle between 40 and 50 tons, from demand up to MSC: ½ × 10 × $2 = $10. $20 forgets the ½, and $100 is the total external cost of all 50 tons.',
     verify: 'numeric',
     solve: () => 0.5 * (MARKET_Q - OPTIMAL_Q) * (socialCost(MARKET_Q) - benefit(MARKET_Q)),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-004',
@@ -74,7 +74,7 @@ export default [
     explanation: 'A Pigouvian tax equal to the marginal external cost, $2 per ton, raises the firms\' private cost to match MSC, so the market settles at 40 tons. $8 is the price buyers pay at the optimum, not the tax, and $1 would only close half the gap.',
     verify: 'numeric',
     solve: () => socialCost(OPTIMAL_Q) - privateCost(OPTIMAL_Q),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-005',
@@ -90,7 +90,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Vaccinations create a positive externality: society\'s benefit (MSB) includes the protection to others, which buyers ignore. Demand reflects only the private benefit, so the market stops short of the quantity where MSB = MSC. A per-unit subsidy equal to the external benefit can fix this.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-006',
@@ -103,7 +103,7 @@ export default [
     explanation: 'The market sets MPB = MC: 20 − Q = 2 + Q, so Q = 9. Society sets MSB = MC, where MSB = 24 − Q: 24 − Q = 2 + Q, so Q = 11. The gap is 2 hours. 4 is the external benefit per hour in dollars, not a quantity, and 9 and 11 are the two quantities themselves.',
     verify: 'numeric',
     solve: () => (24 - 2) / 2 - (20 - 2) / 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-007',
@@ -118,7 +118,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Firms that can reduce pollution cheaply cut more and sell their spare permits; firms with high costs buy permits instead. The cap fixes total pollution, so the cut is the same, but it is done by the firms that can do it most cheaply. Equal cuts for every firm ignore those cost differences.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-externalities-008',
@@ -133,6 +133,6 @@ export default [
     ],
     answer: 3,
     explanation: 'A Pigouvian tax makes producers pay for the harm they cause, which shifts the supply curve up toward marginal social cost. Output falls from the market quantity toward the efficient quantity, and the deadweight loss shrinks. The goal is the right amount of the good, not none of it.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
