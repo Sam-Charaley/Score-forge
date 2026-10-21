@@ -32,6 +32,8 @@ From `package.json`:
 - `npm run preview`: serve the production build locally
 - `npm test`: Vitest, run once. Content tests guard subjects, flashcards, formulas, questions and FRQs, so run this after any content change. It skips `.claude/**`, so Claude Code session worktrees aren't tested twice.
 - `npm run verify:questions`: compiles and runs the Java in every CS A question marked `verify: 'output'` and checks it against the answer key, plus the sample solutions of code FRQs. Needs a JDK (`javac` and `java` on PATH).
+- `npm run counts`: regenerates `src/data/publishedCounts.js` (reviewed questions and FRQs per subject). Run it after changing any `reviewed` flag; `publishedCounts.test.js` fails if it drifts.
+- `node scripts/blind-export.mjs <subject>` and `node scripts/blind-compare.mjs <subject> <answers.json>`: second-pass check. Export drafts without their keys, solve them cold, compare with the marked keys.
 - `npm run review:drafts -- <subject> [--all]`: writes `~/Downloads/Scoreforge/review/<subject>.html`, listing every draft question and FRQ with its key, explanation and rubric, for Sam's review. Run it from the main checkout: it writes to `../review` relative to where it runs.
 
 There is no lint script.
@@ -93,6 +95,7 @@ The monolithic `App.jsx` has been split (commit `374bfda`). Every file in `src/c
 - `subjects/<id>.js`: each subject's weekly plan, resources, FRQ prompts and exam tips, loaded on demand by `subjectLoader.js`. World language plans share weeks from `worldLanguages/project.js`.
 - `questions/<folder>/<topic>.js` plus `topics.js` per subject, loaded by `questionLoader.js`. Banks exist for CS A, Psychology, Physics 1, Chemistry, Calculus AB and BC (AB and BC share `questions/calc/`; see `sharedFolders.js`), CS Principles, World History, Macro and Micro. Only questions with `reviewed: true` ship to production.
 - `questions/contentChecks.js`: shared figure and source checks used by the question and FRQ tests.
+- `publishedCounts.js`: generated. `hasQuestionBank()` and `hasFrqs()` use it, so in production a subject only shows Practice, Progress and the Free response tab once it has published content. In dev, drafts count.
 - Each bank's `topics.js` also exports `exam`: section weights (`mcq`, `frq`) and estimated cut points for the predicted score, with a `source` note. A bank without one shows no score (`questions.test.js` requires it).
 - `frqs/<subject>.js`: FRQ sets for CS A (code) and Calc BC, Physics 1, CSP, World History, Macro, Micro (written), same `reviewed` gate. `CODE_FRQ_SUBJECTS` in `frqLoader.js` says which subjects answer in code, and `frqs.test.js` checks each set against its kind.
 - `flashcards/<id>.js`: one deck per subject. `flashcardCounts.js` must match the decks (tested).
@@ -123,7 +126,8 @@ Decisions already made:
 - CS A questions are AI-drafted; Sam reviews every answer key
 - CS A free-response: self-check against a rubric, not AI grading
 - Question bank order after CS A: AP Psychology, then AP Physics 1 (both done; Chemistry and Calculus AB/BC banks have since been added)
-- Oct 2026: parity drafts for Calc BC, Physics 1, CSP, World History, Macro and Micro were merged as `reviewed: false`: 618 questions and 48 FRQs, about 8 questions per topic and 2 FRQs per type. None of it reaches students until Sam reviews it, using the review pages. Cut points for CSP, World History, Macro and Micro are drafts, like the earlier batch.
+- Oct 2026: parity drafts for Calc BC, Physics 1, CSP, World History, Macro and Micro were merged as `reviewed: false`: 618 questions and 48 FRQs, about 8 questions per topic and 2 FRQs per type. Cut points for CSP, World History, Macro and Micro are drafts, like the earlier batch.
+- One-time exception, approved by Sam for that batch only: an independent second pass checked every draft (a blind solve without the key, plus a full check of the explanation, wording, figures, sources and quotes) and set `reviewed: true` on the 575 questions and 32 FRQs that passed. The 43 questions and 16 FRQs that were flagged or held stay drafts for Sam; the list is in `~/Downloads/Scoreforge/review/FLAGS.md`. The normal rule still applies to all new content: only Sam publishes.
 - Outdated study plans are being rewritten in phases: Physics 1, Physics 2, then Spanish / French / Chinese / Japanese (all done). Rewritten plans start fresh with new week ids; old progress is not carried over. Retired week ids are listed in `RETIRED_WEEK_IDS` in `src/data/subjects.test.js`; add to it on any future rewrite.
 - **Formulas** nav tab covering every AP subject with formulas, rendered with KaTeX (done). Each formula shows its variables, a note, and whether it is given on the exam or must be memorized.
 - Auth for the localStorage to Supabase migration: Option B, a real email field at signup with email confirmation (done; the app no longer uses localStorage).
