@@ -35,7 +35,7 @@ export default [
     choices: ['The cost of ingredients', 'Wages for servers paid by the hour', 'The monthly rent on its building', 'The electricity used by its ovens'],
     answer: 2,
     explanation: 'A fixed cost does not change with how much the firm produces. The rent is the same whether the restaurant serves 10 meals or 500. Ingredients, hourly wages and oven electricity all rise with output, so they are variable costs.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-002',
@@ -49,7 +49,7 @@ export default [
     explanation: 'Marginal cost is the change in total cost from one more unit: $80 − $62 = $18. $16 is the average total cost of 5 cakes ($80 / 5), and $14 is the marginal cost of the 4th cake.',
     verify: 'numeric',
     solve: () => marginalCost(5),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-003',
@@ -63,7 +63,7 @@ export default [
     explanation: 'Variable cost is total cost minus fixed cost: $62 − $20 = $42. Average variable cost is $42 / 4 = $10.50. $15.50 is average total cost ($62 / 4), which still includes the fixed cost, and $42 is total variable cost, not the average.',
     verify: 'numeric',
     solve: () => (TOTAL_COST[4] - FIXED_COST) / 4,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-004',
@@ -77,7 +77,7 @@ export default [
     explanation: 'Marginal product is the change in total product from adding one worker: 40 − 35 = 5 units. 40 units is the total product of 4 workers, and 10 units is the average product (40 / 4).',
     verify: 'numeric',
     solve: () => marginalProduct(4),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-005',
@@ -89,7 +89,7 @@ export default [
     choices: ['The 2nd worker', 'The 3rd worker', 'The 5th worker', 'The 1st worker'],
     answer: 1,
     explanation: 'Marginal product is 10, 15, 10, 5 and then 2 units. It rises with the 2nd worker, then falls starting with the 3rd, so diminishing marginal returns begin there. Total product keeps rising, which is why looking only at total product can be misleading.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-006',
@@ -105,7 +105,7 @@ export default [
     ],
     answer: 0,
     explanation: 'When marginal cost is below an average, it pulls the average down; when it is above, it pulls the average up. So MC crosses both AVC and ATC exactly at their lowest points. AFC falls forever and has no minimum for MC to cross.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-007',
@@ -121,7 +121,7 @@ export default [
     ],
     answer: 3,
     explanation: 'A higher license fee is a fixed cost, so it raises AFC and therefore ATC (ATC = AVC + AFC). It does not change the cost of producing one more unit, so MC is unchanged, and AVC is unchanged because variable costs are the same. Expecting MC to shift is the most common mistake here.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-008',
@@ -134,7 +134,7 @@ export default [
     explanation: 'Accounting profit subtracts only explicit costs: $200,000 − $150,000 = $50,000. Economic profit also subtracts the implicit cost of her forgone salary: $50,000 − $60,000 = −$10,000. The shop makes an accounting profit but an economic loss, so she would have earned more at her old job.',
     verify: 'numeric',
     solve: () => 200000 - 150000 - 60000,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-009',
@@ -149,7 +149,7 @@ export default [
     ],
     answer: 0,
     explanation: 'When output grows faster than inputs, cost per unit falls, which is economies of scale on the downward-sloping part of the LRATC curve. Diminishing marginal returns is a short-run idea about adding one input to a fixed amount of another, not about changing all inputs together.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'micro-production-costs-010',
@@ -160,6 +160,6 @@ export default [
     choices: ['always rises', 'first falls, then rises', 'always falls', 'stays the same'],
     answer: 2,
     explanation: 'Average fixed cost is fixed cost divided by output. The fixed cost stays the same while output grows, so the same amount is spread over more units and AFC keeps falling. The U shape belongs to ATC, AVC and MC, not AFC.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
