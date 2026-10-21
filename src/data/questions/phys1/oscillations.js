@@ -107,7 +107,7 @@ export default [
     choices: ['It is cut in half', 'It stays the same', 'It becomes four times as long', 'It doubles'],
     answer: 3,
     explanation: 'The period of a mass on a spring is T = 2π√(m/k), so it grows with the square root of the mass. Four times the mass gives √4 = 2 times the period. "Four times as long" forgets the square root.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-oscillations-008',

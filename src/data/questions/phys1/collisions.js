@@ -89,7 +89,7 @@ export default [
     choices: ['Total momentum only', 'Total kinetic energy only', 'Both total momentum and total kinetic energy', 'Neither'],
     answer: 0,
     explanation: 'No net external force acts on the two-cart system during the collision, so its total momentum is conserved in every collision. The crumpling turns some kinetic energy into internal energy, so kinetic energy is not conserved. Kinetic energy is conserved only in an elastic collision.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-collisions-007',
@@ -103,7 +103,7 @@ export default [
     explanation: 'Total momentum before is 0.50 × 0.80 = 0.40 kg·m/s. After, cart A carries 0.50 × 0.30 = 0.15 kg·m/s, so cart B carries 0.25 kg·m/s and v = 0.25/0.25 = +1.0 m/s. 1.6 m/s gives cart B all of the original momentum, forgetting that cart A is still moving.',
     verify: 'numeric',
     solve: () => (0.5 * 0.8 - 0.5 * 0.3) / 0.25,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-collisions-008',
@@ -116,6 +116,6 @@ export default [
     explanation: 'With no external force, the center of mass moves at a constant velocity no matter what kind of collision happens: v_cm = (3.0 × 4.0 + 1.0 × (−2.0))/(3.0 + 1.0) = 10/4 = +2.5 m/s, before and after. +3.5 m/s ignores the minus sign on the second cart\'s velocity.',
     verify: 'numeric',
     solve: () => (3 * 4 + 1 * -2) / (3 + 1),
-    reviewed: false,
+    reviewed: true,
   },
 ];

@@ -34,7 +34,7 @@ export default [
     type: 'math-routines',
     title: 'Block and hanging mass',
     intro: 'Block A (mass 2.0 kg) sits on a horizontal table. A light string tied to block A runs over a light, frictionless pulley at the table edge to block B (mass 1.0 kg), which hangs freely. The coefficient of kinetic friction between block A and the table is 0.20. The blocks are released from rest and block A slides toward the pulley. Use g = 9.8 m/s².',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -88,7 +88,7 @@ export default [
     type: 'math-routines',
     title: 'Ramp, collision and rough floor',
     intro: 'Block 1 (mass 0.50 kg) is released from rest at the top of a curved, frictionless ramp, 0.45 m above the level floor. At the bottom it slides onto the floor and collides with block 2 (mass 1.0 kg), which is at rest. The blocks stick together and slide onto a rough section of floor where the coefficient of kinetic friction is 0.30, until they stop. The floor between the ramp and block 2 is frictionless. Use g = 9.8 m/s².',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -141,7 +141,7 @@ export default [
     type: 'representations',
     title: 'Cart on a spring',
     intro: 'A cart of mass m is attached to a horizontal spring with spring constant k on a level, frictionless track. The cart is pulled to position x = −A, where the spring is stretched, and released from rest at time t = 0. Position x = 0 is the spring\'s natural length.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -189,7 +189,7 @@ export default [
     type: 'representations',
     title: 'Block sliding up a rough ramp',
     intro: 'A block of mass m is launched with speed v₀ up a ramp inclined at angle θ above the horizontal. The coefficient of kinetic friction between the block and the ramp is μ, small enough that the block slides back down after it stops. Air resistance is negligible.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',
@@ -367,7 +367,7 @@ export default [
     type: 'qual-quant',
     title: 'Rolling race',
     intro: 'A solid cylinder (I = ½MR²) and a thin-walled hollow cylinder (I = MR²) have the same mass M and the same radius R. They are released from rest side by side at the top of the same ramp and roll without slipping down a vertical drop h.',
-    reviewed: false,
+    reviewed: true,
     parts: [
       {
         id: 'a',

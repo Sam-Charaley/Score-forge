@@ -87,7 +87,7 @@ export default [
     explanation: 'Angular acceleration is the slope of an angular velocity-time graph: α = Δω/Δt = 12/4 = 3.0 rad/s². 24 is the area under the line, which is the angle turned in radians, and 12 rad/s² is just the final angular velocity.',
     verify: 'numeric',
     solve: () => 12 / 4,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotational-dynamics-007',
@@ -100,7 +100,7 @@ export default [
     explanation: 'The string pulls tangentially, so the torque is τ = rF = 0.20 × 10 = 2.0 N·m, and α = τ/I = 2.0/0.050 = 40 rad/s². 200 rad/s² divides the force by I, skipping the lever arm, and 2.0 is the torque itself.',
     verify: 'numeric',
     solve: () => (0.2 * 10) / 0.05,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-rotational-dynamics-008',
@@ -114,6 +114,6 @@ export default [
     explanation: 'For the block, mg − T = ma. For the disk, TR = (½MR²)(a/R), so T = ½Ma. Adding them gives a = mg/(m + ½M) = 9.8/(1.0 + 1.0) = 4.9 m/s², and the radius cancels. 9.8 m/s² ignores the pulley, and 3.3 m/s² treats the pulley as if all its mass were at the rim.',
     verify: 'numeric',
     solve: () => (1.0 * G) / (1.0 + 0.5 * 2.0),
-    reviewed: false,
+    reviewed: true,
   },
 ];

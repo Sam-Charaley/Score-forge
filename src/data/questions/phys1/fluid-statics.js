@@ -77,7 +77,7 @@ export default [
     choices: ['It is equal to the weight', 'It is greater than the weight', 'It is less than the weight', 'It is zero, because the block is not fully under water'],
     answer: 0,
     explanation: 'The block is at rest, so the net force on it is zero: the upward buoyant force balances the downward gravitational force exactly. The block sinks just far enough to displace a weight of water equal to its own weight. A buoyant force acts on any submerged part, not only on fully submerged objects.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-statics-007',
@@ -90,7 +90,7 @@ export default [
     explanation: 'Absolute pressure is the air pressure on the surface plus the water above: P = P₀ + ρgh = 1.0 × 10⁵ + 1000 × 9.8 × 5.0 ≈ 1.5 × 10⁵ Pa. 4.9 × 10⁴ Pa is only the gauge pressure, which leaves out the atmosphere.',
     verify: 'numeric',
     solve: () => 1.0e5 + WATER_DENSITY * G * 5.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-statics-008',
@@ -104,6 +104,6 @@ export default [
     explanation: 'The block is in equilibrium with the buoyant force up and both gravity and tension down: T = ρVg − mg = 1000 × 8.0 × 10⁻⁴ × 9.8 − 0.50 × 9.8 = 7.8 − 4.9 = 2.9 N. 7.8 N is the whole buoyant force, which forgets that gravity also pulls down on the block.',
     verify: 'numeric',
     solve: () => WATER_DENSITY * 8.0e-4 * G - 0.5 * G,
-    reviewed: false,
+    reviewed: true,
   },
 ];

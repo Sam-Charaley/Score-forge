@@ -100,7 +100,7 @@ export default [
     explanation: 'The boat\'s velocity relative to the shore is the vector sum of its velocity relative to the water and the water\'s velocity. The two are perpendicular, so the speed is √(4.0² + 3.0²) = 5.0 m/s. 7.0 m/s and 1.0 m/s would only be right if the two velocities pointed along the same line.',
     verify: 'numeric',
     solve: () => Math.hypot(4.0, 3.0),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-projectiles-008',
@@ -114,6 +114,6 @@ export default [
     explanation: 'Only the vertical component matters for height: v_y0 = 25 sin 53° ≈ 20 m/s. At the top v_y = 0, so h = v_y0²/(2g) = 20²/19.6 ≈ 20 m. 32 m uses the full launch speed as if the ball went straight up, and 12 m uses the horizontal component, 25 cos 53°.',
     verify: 'numeric',
     solve: () => (25 * Math.sin(53 * DEGREES)) ** 2 / (2 * G),
-    reviewed: false,
+    reviewed: true,
   },
 ];

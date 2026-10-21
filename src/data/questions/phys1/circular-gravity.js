@@ -72,7 +72,7 @@ export default [
     choices: ['It doubles', 'It stays the same', 'It is cut in half', 'It becomes four times as large'],
     answer: 3,
     explanation: 'The tension is the only horizontal force, so it equals mv²/r. Tension depends on the square of the speed, so doubling v multiplies it by 2² = 4. "It doubles" treats the force as proportional to v instead of v².',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-circular-gravity-007',
@@ -85,7 +85,7 @@ export default [
     explanation: 'Surface field strength is g = GM/R². Doubling M doubles g, and doubling R divides it by 4, so g = 9.8 × 2/4 = 4.9 N/kg. 9.8 N/kg comes from assuming the two changes cancel, which ignores that R is squared.',
     verify: 'numeric',
     solve: () => (G * 2) / 2 ** 2,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-circular-gravity-008',

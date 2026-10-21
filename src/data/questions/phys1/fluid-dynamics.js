@@ -93,7 +93,7 @@ export default [
     ],
     answer: 1,
     explanation: 'For an incompressible fluid the volume flow rate Av is the same everywhere along the flow. Shrinking the opening area A means the speed v must rise. Water barely compresses, so its volume does not change; the faster flow comes from continuity.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-dynamics-007',
@@ -106,7 +106,7 @@ export default [
     explanation: 'The area is constant, so by continuity the speed is the same at both points and the kinetic terms in Bernoulli\'s equation cancel. What is left is ΔP = ρgΔy = 1000 × 9.8 × 2.0 = 19,600 Pa. Equal speeds do not mean equal pressures when the heights differ.',
     verify: 'numeric',
     solve: () => WATER_DENSITY * G * 2.0,
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-fluid-dynamics-008',
@@ -121,6 +121,6 @@ export default [
     explanation: 'Continuity gives the narrow speed: v = (0.0040 × 1.0)/0.0010 = 4.0 m/s. For a horizontal pipe Bernoulli gives ΔP = ½ρ(v₂² − v₁²) = ½ × 1000 × (16 − 1.0) = 7500 Pa. 8000 Pa forgets the wide section\'s own speed, and 4500 Pa squares the difference of the speeds instead of taking the difference of their squares.',
     verify: 'numeric',
     solve: () => 0.5 * WATER_DENSITY * ((0.004 * 1.0 / 0.001) ** 2 - 1.0 ** 2),
-    reviewed: false,
+    reviewed: true,
   },
 ];

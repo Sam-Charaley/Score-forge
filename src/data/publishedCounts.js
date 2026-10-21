@@ -9,7 +9,7 @@ export const PUBLISHED_COUNTS = {
   csp: { questions: 0, frqs: 0 },
   macro: { questions: 0, frqs: 0 },
   micro: { questions: 0, frqs: 0 },
-  phys1: { questions: 86, frqs: 0 },
+  phys1: { questions: 112, frqs: 5 },
   psych: { questions: 90, frqs: 0 },
   whap: { questions: 0, frqs: 0 },
 };

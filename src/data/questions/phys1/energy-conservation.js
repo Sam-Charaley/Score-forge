@@ -93,7 +93,7 @@ export default [
     explanation: 'Energy is conserved: ½v₂² = ½v₁² + gh, so v₂ = √(2.0² + 2 × 9.8 × 0.80) = √19.7 ≈ 4.4 m/s. 4.0 m/s ignores the block\'s starting speed, and 6.0 m/s adds the speeds directly, but kinetic energies add, not speeds.',
     verify: 'numeric',
     solve: () => Math.sqrt(2 ** 2 + 2 * G * 0.8),
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'phys1-energy-conservation-008',
@@ -107,6 +107,6 @@ export default [
     explanation: 'All the spring energy, ½kx² = ½ × 500 × 0.10² = 2.5 J, is removed by friction doing negative work μmgd. So d = 2.5/(0.25 × 0.20 × 9.8) = 5.1 m. 10 m comes from using kx² without the ½.',
     verify: 'numeric',
     solve: () => (0.5 * 500 * 0.1 ** 2) / (0.25 * 0.2 * G),
-    reviewed: false,
+    reviewed: true,
   },
 ];
