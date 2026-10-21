@@ -80,7 +80,7 @@ export default [
     ],
     answer: 3,
     explanation: 'The act banned Chinese laborers from entering the United States, after years of anti-Chinese campaigns by some workers and politicians who blamed Chinese migrants for low wages. It was the first US law to bar a group by nationality.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-004',
@@ -96,7 +96,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Australia\'s Immigration Restriction Act of 1901 was designed to keep out Asian and other non-European migrants, much as the US law targeted Chinese workers. Both reflect racial ideas and labor fears in receiving societies at the time. The other choices are not immigration policies.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-005',
@@ -112,7 +112,7 @@ export default [
     ],
     answer: 0,
     explanation: 'Industrial countries needed rubber for tires, hoses, belts and electrical insulation. King Leopold II, who personally controlled the Congo Free State, used forced labor and violence to supply it. Millions of Congolese died. The passage describes villagers forced away from farming, not expanding it.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-006',
@@ -128,7 +128,7 @@ export default [
     ],
     answer: 2,
     explanation: 'Industrialization created demand for raw materials and food, and many regions came to depend on exporting one or two products. This made them vulnerable to price swings and often left profits with foreign investors, even in independent states like Argentina.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-007',
@@ -143,7 +143,7 @@ export default [
     ],
     answer: 1,
     explanation: 'Most Latin American states were independent after the 1820s, but foreign companies such as British railroad firms in Argentina and the United Fruit Company in Central America controlled key parts of their economies. That is economic, not formal, imperialism.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-008',
@@ -158,7 +158,7 @@ export default [
     ],
     answer: 2,
     explanation: 'When a blight destroyed the potato crop that most poor Irish families depended on, about a million people died and more than a million emigrated, largely to the United States and Britain. The Meiji Restoration was in 1868 and the Berlin Conference in 1884.',
-    reviewed: false,
+    reviewed: true,
   },
   {
     id: 'whap-migration-economy-009',
@@ -173,6 +173,6 @@ export default [
     ],
     answer: 0,
     explanation: 'With many men working abroad, women often ran farms and households on their own, while migrants sent money (remittances) home. Remittances usually increased rather than stopped. Voting rights for women came later and for other reasons.',
-    reviewed: false,
+    reviewed: true,
   },
 ];
